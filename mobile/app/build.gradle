@@ -49,4 +49,9 @@ dependencies {
 
     // Lifecycle
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+
+    // RxJava
+    implementation "io.reactivex.rxjava3:rxkotlin:$rxjava_version"
+    implementation "io.reactivex.rxjava3:rxandroid:$rxjava_version"
+    implementation "com.jakewharton.rxbinding4:rxbinding:$rxbinding_version"
 }

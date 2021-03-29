@@ -4,6 +4,8 @@ buildscript {
         kotlin_version = "1.4.31"
         mockito_version = "3.8.0"
         lifecycle_version = "2.3.1"
+        rxjava_version = "3.0.0"
+        rxbinding_version = "4.0.0"
     }
     repositories {
         google()
