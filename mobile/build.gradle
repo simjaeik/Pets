@@ -6,6 +6,7 @@ buildscript {
         lifecycle_version = "2.3.1"
         rxjava_version = "3.0.0"
         rxbinding_version = "4.0.0"
+        archtesting_version = "2.1.0"
     }
     repositories {
         google()
