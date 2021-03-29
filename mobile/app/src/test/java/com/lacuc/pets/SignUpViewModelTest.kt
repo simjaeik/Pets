@@ -34,7 +34,7 @@ class SignUpViewModelTest {
     fun passwordEqualCheck_samePassword() {
         viewModel.completeBtnEnable.value = false
 
-        viewModel.isPasswordEqual(
+        viewModel.setCompleteBtnEnableChecker(
             Observable.just("password"),
             Observable.just("password")
         )
