@@ -2,10 +2,12 @@ package com.lacuc.pets
 
 import com.lacuc.pets.data.LoginService
 import com.lacuc.pets.domain.SignUpUseCase
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.mockito.ArgumentMatchers
 import org.mockito.Mock
 import org.mockito.Mockito.*
 import org.mockito.junit.MockitoJUnitRunner
@@ -37,6 +39,18 @@ class SignUpUseCaseTest {
 
         verify(loginService).signUp(param)
         assertTrue(result)
+    }
+
+    @Test
+    fun signUp_duplicatedEmail() {
+        `when`(loginService.signUp(ArgumentMatchers.anyMap())).thenAnswer {
+            it.getArgument<Map<String, String>>(0)["name"] !in listOf("Alice", "Bob")
+        }
+
+        assertFalse(useCase("Alice", "existingUser1@lacuc.com", "password"))
+        assertFalse(useCase("Bob", "existingUser2@lacuc.com", "password"))
+        assertTrue(useCase("John", "newUser@lacuc.com", "password"))
+        verify(loginService, times(3)).signUp(anyMap())
     }
 
 }
