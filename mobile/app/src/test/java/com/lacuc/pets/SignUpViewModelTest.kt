@@ -6,8 +6,7 @@ import com.lacuc.pets.data.LoginService
 import com.lacuc.pets.domain.SignUpUseCase
 import com.lacuc.pets.ui.SignUpViewModel
 import io.reactivex.rxjava3.core.Observable
-import org.junit.Assert.assertFalse
-import org.junit.Assert.assertTrue
+import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -33,14 +32,12 @@ class SignUpViewModelTest {
 
     @Test
     fun passwordConfirmCheck_samePassword() {
-        viewModel.passwordConfirmHelperTextEnable.value = false
-
         viewModel.setPasswordConfirmHelperTextEnableWatcher(
             Observable.just("password"),
             Observable.just("password")
         )
 
-        assertTrue(viewModel.passwordConfirmHelperTextEnable.getOrAwaitValue())
+        assertNull(viewModel.passwordConfirmError.getOrAwaitValue())
     }
 
     @Test
@@ -50,7 +47,8 @@ class SignUpViewModelTest {
             Observable.just("otherPassword")
         )
 
-        assertFalse(viewModel.passwordConfirmHelperTextEnable.getOrAwaitValue())
+        assertEquals(viewModel.passwordConfirmError.getOrAwaitValue(),
+            "패스워드가 일치하지 않습니다")
     }
 
     @Test
