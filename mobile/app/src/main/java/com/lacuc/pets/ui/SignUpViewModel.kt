@@ -10,25 +10,29 @@ import io.reactivex.rxjava3.disposables.Disposable
 class SignUpViewModel(private val signUpUseCase: SignUpUseCase) : ViewModel() {
 
     val completeBtnEnable = MutableLiveData(false)
-    val passwordConfirmHelperTextEnable = MutableLiveData(false)
+    val passwordConfirmError = MutableLiveData<String?>()
 
     fun setPasswordConfirmHelperTextEnableWatcher(
-        password: ObservableSource<String>,
-        passwordConfirm: ObservableSource<String>
+        password: ObservableSource<CharSequence>,
+        passwordConfirm: ObservableSource<CharSequence>
     ): Disposable = Observable.combineLatest(password, passwordConfirm, { p, pc ->
-        p == pc
-    }).subscribe {
-        passwordConfirmHelperTextEnable.value = it
+        p.toString() == pc.toString()
+    }).subscribe { isMatch ->
+        if (isMatch) {
+            passwordConfirmError.value = null
+        } else {
+            passwordConfirmError.value = "패스워드가 일치하지 않습니다"
+        }
     }
 
     fun setCompleteBtnEnableWatcher(
-        name: ObservableSource<String>,
-        email: ObservableSource<String>,
-        password: ObservableSource<String>,
-        passwordConfirm: ObservableSource<String>
+        name: ObservableSource<CharSequence>,
+        email: ObservableSource<CharSequence>,
+        password: ObservableSource<CharSequence>,
+        passwordConfirm: ObservableSource<CharSequence>
     ): Disposable =
-        Observable.combineLatest(name, email, password, passwordConfirm, { name, email, p, pc ->
-            name.isNotEmpty() && email.isNotEmpty() && p.isNotEmpty() && pc.isNotEmpty() && p == pc
+        Observable.combineLatest(name, email, password, passwordConfirm, { n, e, p, pc ->
+            n.isNotEmpty() && e.isNotEmpty() && p.isNotEmpty() && pc.isNotEmpty() && p.toString() == pc.toString()
         }).subscribe {
             completeBtnEnable.value = it
         }
