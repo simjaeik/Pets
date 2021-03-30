@@ -9,7 +9,8 @@ import io.reactivex.rxjava3.disposables.Disposable
 
 class SignUpViewModel(private val signUpUseCase: SignUpUseCase) : ViewModel() {
 
-    val passwordConfirmHelperTextEnable = MutableLiveData<Boolean>()
+    val completeBtnEnable = MutableLiveData(false)
+    val passwordConfirmHelperTextEnable = MutableLiveData(false)
 
     fun setPasswordConfirmHelperTextEnableWatcher(
         password: ObservableSource<String>,
@@ -19,4 +20,16 @@ class SignUpViewModel(private val signUpUseCase: SignUpUseCase) : ViewModel() {
     }).subscribe {
         passwordConfirmHelperTextEnable.value = it
     }
+
+    fun setCompleteBtnEnableWatcher(
+        name: ObservableSource<String>,
+        email: ObservableSource<String>,
+        password: ObservableSource<String>,
+        passwordConfirm: ObservableSource<String>
+    ): Disposable =
+        Observable.combineLatest(name, email, password, passwordConfirm, { name, email, p, pc ->
+            true
+        }).subscribe {
+            completeBtnEnable.value = it
+        }
 }

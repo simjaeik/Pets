@@ -52,4 +52,16 @@ class SignUpViewModelTest {
 
         assertFalse(viewModel.passwordConfirmHelperTextEnable.getOrAwaitValue())
     }
+
+    @Test
+    fun completeBtnEnable_emptyEmail() {
+        viewModel.setCompleteBtnEnableWatcher(
+            Observable.just("name"),
+            Observable.just(""),
+            Observable.just("password"),
+            Observable.just("password")
+        )
+
+        assertFalse(viewModel.completeBtnEnable.getOrAwaitValue())
+    }
 }
