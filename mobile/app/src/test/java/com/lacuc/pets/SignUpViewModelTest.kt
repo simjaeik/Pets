@@ -64,4 +64,65 @@ class SignUpViewModelTest {
 
         assertFalse(viewModel.completeBtnEnable.getOrAwaitValue())
     }
+
+    @Test
+    fun completeBtnEnable_emptyName() {
+        viewModel.setCompleteBtnEnableWatcher(
+            Observable.just(""),
+            Observable.just("email@lacuc.com"),
+            Observable.just("password"),
+            Observable.just("password")
+        )
+
+        assertFalse(viewModel.completeBtnEnable.getOrAwaitValue())
+    }
+
+    @Test
+    fun completeBtnEnable_emptyPassword() {
+        viewModel.setCompleteBtnEnableWatcher(
+            Observable.just("name"),
+            Observable.just("email@lacuc.com"),
+            Observable.just(""),
+            Observable.just("password")
+        )
+
+        assertFalse(viewModel.completeBtnEnable.getOrAwaitValue())
+    }
+
+    @Test
+    fun completeBtnEnable_emptyPasswordConfirm() {
+        viewModel.setCompleteBtnEnableWatcher(
+            Observable.just("name"),
+            Observable.just("email@lacuc.com"),
+            Observable.just("password"),
+            Observable.just("")
+        )
+
+        assertFalse(viewModel.completeBtnEnable.getOrAwaitValue())
+    }
+
+    @Test
+    fun completeBtnEnable_differentPassword() {
+        viewModel.setCompleteBtnEnableWatcher(
+            Observable.just("name"),
+            Observable.just("email@lacuc.com"),
+            Observable.just("password"),
+            Observable.just("otherPassword")
+        )
+
+        assertFalse(viewModel.completeBtnEnable.getOrAwaitValue())
+    }
+
+    @Test
+    fun completeBtnEnable_validInput() {
+        viewModel.setCompleteBtnEnableWatcher(
+            Observable.just("name"),
+            Observable.just("email@lacuc.com"),
+            Observable.just("password"),
+            Observable.just("password")
+        )
+
+        assertTrue(viewModel.completeBtnEnable.getOrAwaitValue())
+    }
+
 }
