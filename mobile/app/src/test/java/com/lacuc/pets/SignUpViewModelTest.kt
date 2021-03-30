@@ -6,6 +6,7 @@ import com.lacuc.pets.data.LoginService
 import com.lacuc.pets.domain.SignUpUseCase
 import com.lacuc.pets.ui.SignUpViewModel
 import io.reactivex.rxjava3.core.Observable
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
@@ -40,5 +41,15 @@ class SignUpViewModelTest {
         )
 
         assertTrue(viewModel.passwordConfirmHelperTextEnable.getOrAwaitValue())
+    }
+
+    @Test
+    fun passwordEqualCheck_differentPassword() {
+        viewModel.setPasswordConfirmHelperTextEnableWatcher(
+            Observable.just("password"),
+            Observable.just("otherPassword")
+        )
+
+        assertFalse(viewModel.passwordConfirmHelperTextEnable.getOrAwaitValue())
     }
 }
