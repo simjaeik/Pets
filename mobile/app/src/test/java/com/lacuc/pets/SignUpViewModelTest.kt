@@ -31,14 +31,14 @@ class SignUpViewModelTest {
     }
 
     @Test
-    fun passwordEqualCheck_samePassword() {
-        viewModel.completeBtnEnable.value = false
+    fun passwordConfirmCheck_samePassword() {
+        viewModel.passwordConfirmHelperTextEnable.value = false
 
-        viewModel.setCompleteBtnEnableChecker(
+        viewModel.setPasswordConfirmHelperTextEnableWatcher(
             Observable.just("password"),
             Observable.just("password")
         )
 
-        assertTrue(viewModel.completeBtnEnable.getOrAwaitValue())
+        assertTrue(viewModel.passwordConfirmHelperTextEnable.getOrAwaitValue())
     }
 }
