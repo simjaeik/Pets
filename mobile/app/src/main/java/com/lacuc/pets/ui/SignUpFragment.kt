@@ -29,22 +29,24 @@ class SignUpFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSignUpBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        val navController = findNavController()
-        val appBarConfiguration = AppBarConfiguration(navController.graph)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupToolbar()
 
-        binding.toolbar.setupWithNavController(navController, appBarConfiguration)
+        binding.apply {
+            vm = viewModel
+            lifecycleOwner = viewLifecycleOwner
+        }
 
-        binding.vm = viewModel
-        binding.lifecycleOwner = viewLifecycleOwner
+        setPasswordConfirmErrorMessage()
 
-        disposables.add(
-            viewModel.bindPasswordConfirmError(
-                binding.textInputPassword.textChanges(),
-                binding.textInputPasswordConfirm.textChanges()
-            )
-        )
+        setCompleteBtnEnable()
+    }
 
+    private fun setCompleteBtnEnable() {
         disposables.add(
             viewModel.bindCompleteBtnEnable(
                 binding.textInputName.textChanges(),
@@ -53,12 +55,26 @@ class SignUpFragment : Fragment() {
                 binding.textInputPasswordConfirm.textChanges()
             )
         )
+    }
+
+    private fun setPasswordConfirmErrorMessage() {
+        disposables.add(
+            viewModel.bindPasswordConfirmError(
+                binding.textInputPassword.textChanges(),
+                binding.textInputPasswordConfirm.textChanges()
+            )
+        )
 
         viewModel.passwordConfirmError.observe(viewLifecycleOwner) {
             binding.inputLayoutPasswordConfirm.error = it
         }
+    }
 
-        return binding.root
+    private fun setupToolbar() {
+        val navController = findNavController()
+        val appBarConfiguration = AppBarConfiguration(navController.graph)
+
+        binding.toolbar.setupWithNavController(navController, appBarConfiguration)
     }
 
     override fun onDestroyView() {
