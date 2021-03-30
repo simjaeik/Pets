@@ -12,7 +12,7 @@ class SignUpViewModel(private val signUpUseCase: SignUpUseCase) : ViewModel() {
     val completeBtnEnable = MutableLiveData(false)
     val passwordConfirmError = MutableLiveData<String?>()
 
-    fun setPasswordConfirmHelperTextEnableWatcher(
+    fun bindPasswordConfirmError(
         password: ObservableSource<CharSequence>,
         passwordConfirm: ObservableSource<CharSequence>
     ): Disposable = Observable.combineLatest(password, passwordConfirm, { p, pc ->
@@ -25,7 +25,7 @@ class SignUpViewModel(private val signUpUseCase: SignUpUseCase) : ViewModel() {
         }
     }
 
-    fun setCompleteBtnEnableWatcher(
+    fun bindCompleteBtnEnable(
         name: ObservableSource<CharSequence>,
         email: ObservableSource<CharSequence>,
         password: ObservableSource<CharSequence>,

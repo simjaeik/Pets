@@ -32,7 +32,7 @@ class SignUpViewModelTest {
 
     @Test
     fun passwordConfirmCheck_samePassword() {
-        viewModel.setPasswordConfirmHelperTextEnableWatcher(
+        viewModel.bindPasswordConfirmError(
             Observable.just("password"),
             Observable.just("password")
         )
@@ -42,7 +42,7 @@ class SignUpViewModelTest {
 
     @Test
     fun passwordEqualCheck_differentPassword() {
-        viewModel.setPasswordConfirmHelperTextEnableWatcher(
+        viewModel.bindPasswordConfirmError(
             Observable.just("password"),
             Observable.just("otherPassword")
         )
@@ -53,7 +53,7 @@ class SignUpViewModelTest {
 
     @Test
     fun completeBtnEnable_emptyEmail() {
-        viewModel.setCompleteBtnEnableWatcher(
+        viewModel.bindCompleteBtnEnable(
             Observable.just("name"),
             Observable.just(""),
             Observable.just("password"),
@@ -65,7 +65,7 @@ class SignUpViewModelTest {
 
     @Test
     fun completeBtnEnable_emptyName() {
-        viewModel.setCompleteBtnEnableWatcher(
+        viewModel.bindCompleteBtnEnable(
             Observable.just(""),
             Observable.just("email@lacuc.com"),
             Observable.just("password"),
@@ -77,7 +77,7 @@ class SignUpViewModelTest {
 
     @Test
     fun completeBtnEnable_emptyPassword() {
-        viewModel.setCompleteBtnEnableWatcher(
+        viewModel.bindCompleteBtnEnable(
             Observable.just("name"),
             Observable.just("email@lacuc.com"),
             Observable.just(""),
@@ -89,7 +89,7 @@ class SignUpViewModelTest {
 
     @Test
     fun completeBtnEnable_emptyPasswordConfirm() {
-        viewModel.setCompleteBtnEnableWatcher(
+        viewModel.bindCompleteBtnEnable(
             Observable.just("name"),
             Observable.just("email@lacuc.com"),
             Observable.just("password"),
@@ -101,7 +101,7 @@ class SignUpViewModelTest {
 
     @Test
     fun completeBtnEnable_differentPassword() {
-        viewModel.setCompleteBtnEnableWatcher(
+        viewModel.bindCompleteBtnEnable(
             Observable.just("name"),
             Observable.just("email@lacuc.com"),
             Observable.just("password"),
@@ -113,7 +113,7 @@ class SignUpViewModelTest {
 
     @Test
     fun completeBtnEnable_validInput() {
-        viewModel.setCompleteBtnEnableWatcher(
+        viewModel.bindCompleteBtnEnable(
             Observable.just("name"),
             Observable.just("email@lacuc.com"),
             Observable.just("password"),
