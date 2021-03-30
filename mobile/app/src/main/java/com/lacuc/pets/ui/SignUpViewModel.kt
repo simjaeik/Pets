@@ -28,7 +28,7 @@ class SignUpViewModel(private val signUpUseCase: SignUpUseCase) : ViewModel() {
         passwordConfirm: ObservableSource<String>
     ): Disposable =
         Observable.combineLatest(name, email, password, passwordConfirm, { name, email, p, pc ->
-            true
+            name.isNotEmpty() && email.isNotEmpty() && p.isNotEmpty() && pc.isNotEmpty() && p == pc
         }).subscribe {
             completeBtnEnable.value = it
         }
