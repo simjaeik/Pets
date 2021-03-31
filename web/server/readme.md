@@ -12,4 +12,5 @@
   +-- routes
      +-- middleware
   +-- service
+  app.js
 ```
