@@ -1,5 +1,5 @@
 package com.lacuc.pets.data
 
 interface GroupRepository {
-    fun loadGroup(): List<Group>
+    fun loadGroup(email: String): List<Group>
 }
