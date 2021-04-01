@@ -14,20 +14,18 @@ import org.mockito.junit.MockitoJUnitRunner
 class GetGroupUseCaseTest {
 
     lateinit var repository: GroupRepository
-    lateinit var clickListener: GroupItem.ClickListener
     lateinit var useCase: GetGroupUseCase
 
     @Before
     fun init_useCase() {
         repository = mock(GroupRepository::class.java)
-        clickListener = mock(GroupItem.ClickListener::class.java)
 
-        useCase = GetGroupUseCase(repository, clickListener)
+        useCase = GetGroupUseCase(repository)
     }
 
     @Test
     fun loadGroup_empty() {
-        val result = useCase("user@lacuc.com")
+        val result = useCase("user@lacuc.com" ) {}
 
         assertTrue(result.isEmpty())
         verify(repository).loadGroup(anyString())
@@ -39,7 +37,7 @@ class GetGroupUseCaseTest {
             listOf(Group(), Group(), Group())
         )
 
-        val result = useCase("user@lacuc.com")
+        val result = useCase("user@lacuc.com") {}
 
         assertEquals(result.size, 3)
         verify(repository).loadGroup(anyString())

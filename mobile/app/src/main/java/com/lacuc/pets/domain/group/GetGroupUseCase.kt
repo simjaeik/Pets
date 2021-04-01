@@ -3,10 +3,9 @@ package com.lacuc.pets.domain.group
 import com.lacuc.pets.data.GroupRepository
 
 class GetGroupUseCase(
-    private val repository: GroupRepository,
-    private val clickListener: GroupItem.ClickListener
+    private val repository: GroupRepository
 ) {
-    operator fun invoke(email: String): List<GroupItem> =
+    operator fun invoke(email: String, listener: (GroupItem) -> Unit): List<GroupItem> =
         repository.loadGroup(email)
-            .map { GroupItem(it, clickListener) }
+            .map { GroupItem(it, listener) }
 }
