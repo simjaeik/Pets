@@ -1,9 +1,7 @@
-package com.lacuc.pets
+package com.lacuc.pets.domain.group
 
 import com.lacuc.pets.data.Group
 import com.lacuc.pets.data.GroupRepository
-import com.lacuc.pets.domain.GetGroupUseCase
-import com.lacuc.pets.domain.GroupItem
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Before

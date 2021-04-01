@@ -1,7 +1,6 @@
-package com.lacuc.pets
+package com.lacuc.pets.domain.login
 
 import com.lacuc.pets.data.LoginService
-import com.lacuc.pets.domain.SignUpUseCase
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Before

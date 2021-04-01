@@ -1,4 +1,4 @@
-package com.lacuc.pets.domain
+package com.lacuc.pets.domain.group
 
 import com.lacuc.pets.data.Group
 

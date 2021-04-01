@@ -1,4 +1,4 @@
-package com.lacuc.pets.ui
+package com.lacuc.pets.ui.login.signin
 
 import android.os.Bundle
 import android.view.LayoutInflater

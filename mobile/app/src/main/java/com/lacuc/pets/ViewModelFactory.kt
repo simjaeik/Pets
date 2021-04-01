@@ -3,8 +3,8 @@ package com.lacuc.pets
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.lacuc.pets.data.LoginService
-import com.lacuc.pets.domain.SignUpUseCase
-import com.lacuc.pets.ui.SignUpViewModel
+import com.lacuc.pets.domain.login.SignUpUseCase
+import com.lacuc.pets.ui.login.signup.SignUpViewModel
 
 class ViewModelFactory : ViewModelProvider.Factory {
 

@@ -8,7 +8,7 @@
 
         <variable
             name="vm"
-            type="com.lacuc.pets.ui.SignUpViewModel" />
+            type="com.lacuc.pets.ui.login.signup.SignUpViewModel" />
     </data>
 
     <LinearLayout
@@ -16,7 +16,7 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
         android:orientation="vertical"
-        tools:context=".ui.SignUpFragment">
+        tools:context=".ui.login.signup.SignUpFragment">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/content_toolbar"
