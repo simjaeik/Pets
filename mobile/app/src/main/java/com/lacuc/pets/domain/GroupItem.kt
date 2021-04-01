@@ -1,4 +1,6 @@
 package com.lacuc.pets.domain
 
-class GroupItem {
+import com.lacuc.pets.data.Group
+
+class GroupItem(val group: Group) {
 }

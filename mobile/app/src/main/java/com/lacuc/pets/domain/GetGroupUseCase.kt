@@ -2,8 +2,10 @@ package com.lacuc.pets.domain
 
 import com.lacuc.pets.data.GroupRepository
 
-class GetGroupUseCase(repository: GroupRepository) {
-    operator fun invoke(): List<GroupItem> {
-        TODO("Not yet implemented")
-    }
+class GetGroupUseCase(
+    private val repository: GroupRepository
+) {
+    operator fun invoke(): List<GroupItem> =
+        repository.loadGroup()
+            .map { GroupItem(it) }
 }
