@@ -14,7 +14,6 @@
     <fragment
         android:id="@+id/signInFragment"
         android:name="com.lacuc.pets.ui.SignInFragment"
-        android:label="로그인"
         tools:layout="@layout/fragment_sign_in">
         <action
             android:id="@+id/action_signInFragment_to_signUpFragment"
