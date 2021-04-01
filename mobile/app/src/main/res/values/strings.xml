@@ -5,4 +5,7 @@
     <string name="email">이메일</string>
     <string name="password">패스워드</string>
     <string name="password_confirm">패스워드 확인</string>
+    <string name="signUp">회원가입</string>
+    <string name="signIn">로그인</string>
+    <string name="pets">Pets</string>
 </resources>
