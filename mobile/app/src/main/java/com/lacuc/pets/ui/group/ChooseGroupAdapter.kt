@@ -27,4 +27,10 @@ class ChooseGroupAdapter : RecyclerView.Adapter<ViewBindingHolder<ItemGroupBindi
 
     override fun getItemViewType(position: Int) = R.layout.item_group
 
+    fun addList(list: List<GroupItem>) {
+        items.clear()
+        items.addAll(list)
+        notifyDataSetChanged()
+    }
+
 }
