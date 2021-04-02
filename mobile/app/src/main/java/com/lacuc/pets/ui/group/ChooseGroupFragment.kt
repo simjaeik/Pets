@@ -40,6 +40,9 @@ class ChooseGroupFragment : Fragment() {
             adapter = this@ChooseGroupFragment.adapter
         }
 
+        viewModel.groupItems.observe(viewLifecycleOwner) {
+            adapter.addList(it)
+        }
     }
 
     override fun onDestroy() {
