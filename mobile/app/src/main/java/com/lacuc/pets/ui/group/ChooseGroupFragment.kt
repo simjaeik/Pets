@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.FragmentChooseGroupBinding
 
@@ -16,14 +15,14 @@ class ChooseGroupFragment : Fragment() {
 
     private val viewModel: ChooseGroupViewModel by viewModels { ViewModelFactory() }
 
-    lateinit var adapter: ChooseGroupAdapter
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentChooseGroupBinding.inflate(inflater, container, false)
+        _binding = FragmentChooseGroupBinding.inflate(inflater, container, false).apply {
+            vm = viewModel
+        }
         return binding.root
     }
 
@@ -31,18 +30,6 @@ class ChooseGroupFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.lifecycleOwner = viewLifecycleOwner
-        binding.vm = viewModel
-
-        adapter = ChooseGroupAdapter()
-
-        binding.recyclerViewChooseGroup.apply {
-            layoutManager = LinearLayoutManager(context)
-            adapter = this@ChooseGroupFragment.adapter
-        }
-
-        viewModel.groupItems.observe(viewLifecycleOwner) {
-            adapter.addList(it)
-        }
     }
 
     override fun onDestroy() {
