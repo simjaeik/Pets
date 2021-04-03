@@ -1,8 +1,8 @@
-package com.lacuc.pets.ui
+package com.lacuc.pets.ui.login.signup
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.lacuc.pets.domain.SignUpUseCase
+import com.lacuc.pets.domain.login.SignUpUseCase
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.ObservableSource
 import io.reactivex.rxjava3.disposables.Disposable

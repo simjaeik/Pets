@@ -8,4 +8,6 @@
     <string name="signUp">회원가입</string>
     <string name="signIn">로그인</string>
     <string name="pets">Pets</string>
+    <string name="noGroup">속한 그룹이 없습니다.\n 새로운 그룹을 만들어 보세요.</string>
+    <string name="add">Add</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.lacuc.pets
+package com.lacuc.pets.util
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer

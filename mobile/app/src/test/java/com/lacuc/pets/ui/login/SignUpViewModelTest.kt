@@ -1,10 +1,10 @@
-package com.lacuc.pets
+package com.lacuc.pets.ui.login
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.lacuc.pets.LiveDataTestUtil.getOrAwaitValue
 import com.lacuc.pets.data.LoginService
-import com.lacuc.pets.domain.SignUpUseCase
-import com.lacuc.pets.ui.SignUpViewModel
+import com.lacuc.pets.domain.login.SignUpUseCase
+import com.lacuc.pets.ui.login.signup.SignUpViewModel
+import com.lacuc.pets.util.LiveDataTestUtil.getOrAwaitValue
 import io.reactivex.rxjava3.core.Observable
 import org.junit.Assert.*
 import org.junit.Before

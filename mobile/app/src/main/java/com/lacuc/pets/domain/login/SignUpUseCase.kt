@@ -1,4 +1,4 @@
-package com.lacuc.pets.domain
+package com.lacuc.pets.domain.login
 
 import com.lacuc.pets.data.LoginService
 

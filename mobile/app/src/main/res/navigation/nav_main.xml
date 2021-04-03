@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.lacuc.pets.ui.SignUpFragment"
+        android:name="com.lacuc.pets.ui.login.signup.SignUpFragment"
         android:label="회원가입"
         tools:layout="@layout/fragment_sign_up" />
 
     <fragment
         android:id="@+id/signInFragment"
-        android:name="com.lacuc.pets.ui.SignInFragment"
+        android:name="com.lacuc.pets.ui.login.signin.SignInFragment"
         tools:layout="@layout/fragment_sign_in">
         <action
             android:id="@+id/action_signInFragment_to_signUpFragment"
@@ -22,6 +22,15 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_signInFragment_to_chooseGroupFragment"
+            app:destination="@id/chooseGroupFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/chooseGroupFragment"
+        android:name="com.lacuc.pets.ui.group.ChooseGroupFragment"
+        android:label="Group"
+        tools:layout="@layout/fragment_choose_group" />
 
 </navigation>
