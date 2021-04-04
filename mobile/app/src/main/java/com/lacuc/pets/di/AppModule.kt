@@ -3,11 +3,13 @@ package com.lacuc.pets.di
 import android.app.Application
 import android.content.Context
 import com.lacuc.pets.App
+import com.lacuc.pets.data.FakeGroupRepository
+import com.lacuc.pets.data.GroupRepository
 import dagger.Binds
 import dagger.Module
 import javax.inject.Singleton
 
-@Module
+@Module(includes = [RetrofitModule::class, ViewModelModule::class])
 abstract class AppModule {
 
     @Binds
@@ -18,5 +20,9 @@ abstract class AppModule {
     @Singleton
     @ApplicationContext
     abstract fun provideContext(app: App): Context
+
+    @Binds
+    @Singleton
+    abstract fun bindsFakeGroupRepository(repository: FakeGroupRepository): GroupRepository
 
 }
