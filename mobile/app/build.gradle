@@ -32,9 +32,11 @@ android {
         mock {
             dimension "default"
             applicationIdSuffix ".mock"
+            manifestPlaceholders = [appLabel: "Pets(mock)"]
         }
         prod {
             dimension "default"
+            manifestPlaceholders = [appLabel: "Pets(prod)"]
         }
     }
 
