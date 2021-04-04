@@ -2,7 +2,7 @@ package com.lacuc.pets.data
 
 import javax.inject.Inject
 
-// TODO: 2021-04-02 디버깅 목적으로 사용하는 리포지토리.
+// 디버깅 목적으로 사용하는 리포지토리.
 class FakeGroupRepository @Inject constructor() : GroupRepository {
     override fun loadGroup(email: String): List<Group> {
         return listOf(
