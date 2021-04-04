@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -12,14 +11,19 @@ import androidx.navigation.ui.setupWithNavController
 import com.jakewharton.rxbinding4.widget.textChanges
 import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.FragmentSignUpBinding
+import dagger.android.support.DaggerFragment
 import io.reactivex.rxjava3.disposables.CompositeDisposable
+import javax.inject.Inject
 
 
-class SignUpFragment : Fragment() {
+class SignUpFragment : DaggerFragment() {
     private var _binding: FragmentSignUpBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: SignUpViewModel by viewModels { ViewModelFactory() }
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val viewModel: SignUpViewModel by viewModels { viewModelFactory }
 
     private val disposables = CompositeDisposable()
 
