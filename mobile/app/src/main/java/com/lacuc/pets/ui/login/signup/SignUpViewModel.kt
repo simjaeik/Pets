@@ -6,8 +6,9 @@ import com.lacuc.pets.domain.login.SignUpUseCase
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.ObservableSource
 import io.reactivex.rxjava3.disposables.Disposable
+import javax.inject.Inject
 
-class SignUpViewModel(private val signUpUseCase: SignUpUseCase) : ViewModel() {
+class SignUpViewModel @Inject constructor(private val signUpUseCase: SignUpUseCase) : ViewModel() {
 
     val completeBtnEnable = MutableLiveData(false)
     val passwordConfirmError = MutableLiveData<String?>()

@@ -25,7 +25,7 @@ class GetGroupUseCaseTest {
 
     @Test
     fun loadGroup_empty() {
-        val result = useCase("user@lacuc.com" ) {}
+        val result = useCase("user@lacuc.com") {}
 
         assertTrue(result.isEmpty())
         verify(repository).loadGroup(anyString())
@@ -34,7 +34,11 @@ class GetGroupUseCaseTest {
     @Test
     fun loadGroup() {
         `when`(repository.loadGroup("user@lacuc.com")).thenReturn(
-            listOf(Group(), Group(), Group())
+            listOf(
+                Group("", "", "", false),
+                Group("", "", "", false),
+                Group("", "", "", false)
+            )
         )
 
         val result = useCase("user@lacuc.com") {}

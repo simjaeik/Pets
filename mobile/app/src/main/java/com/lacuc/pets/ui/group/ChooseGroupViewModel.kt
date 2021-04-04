@@ -4,8 +4,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.lacuc.pets.domain.group.GetGroupUseCase
 import com.lacuc.pets.domain.group.GroupItem
+import javax.inject.Inject
 
-class ChooseGroupViewModel(private val getGroupUseCase: GetGroupUseCase) : ViewModel() {
+class ChooseGroupViewModel @Inject constructor(private val getGroupUseCase: GetGroupUseCase) : ViewModel() {
 
     val groupItems = MutableLiveData<List<GroupItem>>()
 
