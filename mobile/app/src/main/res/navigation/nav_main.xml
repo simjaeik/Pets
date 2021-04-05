@@ -48,7 +48,11 @@
     <fragment
         android:id="@+id/addGroupFragment"
         android:name="com.lacuc.pets.ui.group.AddGroupFragment"
-        android:label="그룹 생성"
-        tools:layout="@layout/fragment_add_group" />
+        android:label="{toolbar_title}"
+        tools:layout="@layout/fragment_add_group">
+        <argument
+            android:name="toolbar_title"
+            app:argType="string" />
+    </fragment>
 
 </navigation>
