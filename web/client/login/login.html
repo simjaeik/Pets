@@ -5,18 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
-    <title>join.html</title>
+    <title>login.html</title>
     <!--라이브러리-->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="../boot_css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!--css 연결-->
-    <link rel="stylesheet" href="css/login.css">
-    <style>
-        #warning{
-          text-align: left;
-        }
-    </style>
+    <link rel="stylesheet" href="../boot_css/login.css">
+    <style src="login.css"></style>
+    <!--javascript 파일 연결-->
+    <script src="login.js"></script>
   </head>
 
   <body>
@@ -25,7 +23,6 @@
             <div class="col xs-12">
             <form method="post" action="./community.html">
                 
-                <!--id-->
                 <div class="form-group row">
                     <label class="col-lg-2 col-form-label form-control-label text-muted">ID</label>
                         <div class="col-lg-10">
@@ -34,8 +31,7 @@
                             <div class="line-box"> <div class="line"></div></div> 
                     </label> </div>
                 </div>
-                
-                <!--pw-->
+
                 <div class="form-group row">
                     <label class="col-lg-2 col-form-label form-control-label text-muted">PW</label>
                         <div class="col-lg-10">
@@ -44,35 +40,14 @@
                             <div class="line-box"> <div class="line"></div></div> 
                     </label> </div>
                 </div>
-
-                 <!--pw re-->
-                 <div class="form-group row">
-                    <label class="col-lg-2 col-form-label form-control-label text-muted">PW</label>
-                        <div class="col-lg-10">
-                            <label> <p class="label-txt"></p> 
-                            <input type="password" id="PWRE" placeholder="비밀번호를 재입력하세요" class="input" required> 
-                            <div class="line-box"> <div class="line"></div></div> 
-                    </label> </div>
-                </div>
-
-                 <!--email-->
-                 <div class="form-group row">
-                    <label class="col-lg-2 col-form-label form-control-label text-muted">PW</label>
-                        <div class="col-lg-10">
-                            <label> <p class="label-txt"></p> 
-                            <input type="text" id="EMAIL" placeholder="이메일을 입력하세요" class="input" required> 
-                            <div class="line-box"> <div class="line"></div></div> 
-                    </label> </div>
-                </div>
-
-                <button type="button" class="btn btn-outline-primary btn-lg" onclick="check_blank()";>로그인</button>   
+                <button type="button" class="btn btn-outline-primary btn-lg" onclick="check_blank()";>로그인</button>  
             </form>
            </div>
         </div>
       </div>
     <!--javascript-->
     <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="../boot_js/bootstrap.min.js"></script>
 
     </body>
 </html>
