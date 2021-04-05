@@ -24,13 +24,31 @@
             app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_signInFragment_to_chooseGroupFragment"
-            app:destination="@id/chooseGroupFragment" />
+            app:destination="@id/chooseGroupFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 
     <fragment
         android:id="@+id/chooseGroupFragment"
         android:name="com.lacuc.pets.ui.group.ChooseGroupFragment"
         android:label="Group"
-        tools:layout="@layout/fragment_choose_group" />
+        tools:layout="@layout/fragment_choose_group">
+        <action
+            android:id="@+id/action_chooseGroupFragment_to_addGroupFragment"
+            app:destination="@id/addGroupFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addGroupFragment"
+        android:name="com.lacuc.pets.ui.group.AddGroupFragment"
+        android:label="그룹 생성"
+        tools:layout="@layout/fragment_add_group" />
 
 </navigation>

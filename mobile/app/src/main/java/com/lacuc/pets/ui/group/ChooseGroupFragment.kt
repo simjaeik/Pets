@@ -14,7 +14,6 @@ import com.lacuc.pets.R
 import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.FragmentChooseGroupBinding
 import dagger.android.support.DaggerFragment
-import timber.log.Timber
 import javax.inject.Inject
 
 class ChooseGroupFragment : DaggerFragment() {
@@ -54,9 +53,12 @@ class ChooseGroupFragment : DaggerFragment() {
     private fun setupToolbar() {
         val appBarConfiguration = AppBarConfiguration(setOf(R.id.chooseGroupFragment))
         binding.toolbarChooseGroup.setupWithNavController(navController, appBarConfiguration)
+
         binding.toolbarChooseGroup.inflateMenu(R.menu.menu_group)
+
         binding.toolbarChooseGroup.setOnMenuItemClickListener {
-            Timber.d("onOptionsItemSelected")
+            val action = ChooseGroupFragmentDirections.actionChooseGroupFragmentToAddGroupFragment()
+            navController.navigate(action)
             true
         }
     }
