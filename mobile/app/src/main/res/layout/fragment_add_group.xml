@@ -45,7 +45,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|end"
                     android:layout_marginEnd="16dp"
-                    android:enabled="@{vm.name.empty}"
+                    android:enabled="@{!vm.name.empty}"
                     android:minWidth="0dp"
                     android:onClick="@{() -> vm.saveGroup()}"
                     android:text="@string/complete"

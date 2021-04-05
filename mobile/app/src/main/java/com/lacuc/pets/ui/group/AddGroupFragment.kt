@@ -33,12 +33,17 @@ class AddGroupFragment : DaggerFragment() {
     ): View {
         _binding = FragmentAddGroupBinding.inflate(inflater, container, false).apply {
             vm = viewModel
+            lifecycleOwner = viewLifecycleOwner
         }
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel.groupUpdated.observe(viewLifecycleOwner) {
+            navController.navigateUp()
+        }
 
         setupToolbar()
     }
