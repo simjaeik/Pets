@@ -1,6 +1,6 @@
 package com.lacuc.pets.domain.group
 
-import com.lacuc.pets.data.GroupRepository
+import com.lacuc.pets.data.group.GroupRepository
 import javax.inject.Inject
 
 class GetGroupUseCase @Inject constructor(private val repository: GroupRepository) {
