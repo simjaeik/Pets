@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -12,14 +11,17 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.FragmentAddGroupBinding
+import dagger.android.support.DaggerFragment
+import javax.inject.Inject
 
-class AddGroupFragment : Fragment() {
+class AddGroupFragment : DaggerFragment() {
 
     private var _binding: FragmentAddGroupBinding? = null
     private val binding get() = _binding!!
 
     private val navController: NavController by lazy { findNavController() }
 
+    @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
     private val viewModel: AddGroupViewModel by viewModels { viewModelFactory }

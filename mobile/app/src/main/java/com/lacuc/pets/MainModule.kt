@@ -1,5 +1,6 @@
 package com.lacuc.pets
 
+import com.lacuc.pets.ui.group.AddGroupFragment
 import com.lacuc.pets.ui.group.ChooseGroupFragment
 import com.lacuc.pets.ui.login.signup.SignUpFragment
 import dagger.Module
@@ -13,4 +14,7 @@ abstract class MainModule {
 
     @ContributesAndroidInjector
     abstract fun getChooseGroupFragment(): ChooseGroupFragment
+
+    @ContributesAndroidInjector
+    abstract fun getAddGroupFragment(): AddGroupFragment
 }
