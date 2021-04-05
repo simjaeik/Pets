@@ -34,6 +34,7 @@ class ChooseGroupFragment : DaggerFragment() {
     ): View {
         _binding = FragmentChooseGroupBinding.inflate(inflater, container, false).apply {
             vm = viewModel
+            lifecycleOwner = viewLifecycleOwner
         }
         return binding.root
     }
@@ -41,11 +42,12 @@ class ChooseGroupFragment : DaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.lifecycleOwner = viewLifecycleOwner
-
         setupToolbar()
 
+        viewModel.loadGroups()
+
         viewModel.clickItem.observe(viewLifecycleOwner) {
+            // SingleLiveEvent가 필요한가?
             Toast.makeText(context, "clicked: $it", Toast.LENGTH_SHORT).show()
         }
     }
