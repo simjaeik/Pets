@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
-    <title>login.html</title>
+    <title>join.html</title>
     <!--라이브러리-->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
@@ -17,20 +17,6 @@
           text-align: left;
         }
     </style>
-    <!--아이디나 비밀번호가 비어있으면 화면이동이 안되게 한다-->
-    <script>
-        function check_blank(){
-
-            let checkid = document.getElementById("ID");
-            let checkpw = document.getElementById("PW");
-            
-            if ( checkid.value === "") { alert(" 아이디가 입력되지 않았습니다. "); }
-            else if ( checkpw.value === "") { alert(" 비밀번호가 입력되지 않았습니다. "); }
-            else{
-                location.href="community.html";
-            }
-        }
-    </script>
   </head>
 
   <body>
@@ -39,6 +25,7 @@
             <div class="col xs-12">
             <form method="post" action="./community.html">
                 
+                <!--id-->
                 <div class="form-group row">
                     <label class="col-lg-2 col-form-label form-control-label text-muted">ID</label>
                         <div class="col-lg-10">
@@ -47,7 +34,8 @@
                             <div class="line-box"> <div class="line"></div></div> 
                     </label> </div>
                 </div>
-
+                
+                <!--pw-->
                 <div class="form-group row">
                     <label class="col-lg-2 col-form-label form-control-label text-muted">PW</label>
                         <div class="col-lg-10">
@@ -56,6 +44,27 @@
                             <div class="line-box"> <div class="line"></div></div> 
                     </label> </div>
                 </div>
+
+                 <!--pw re-->
+                 <div class="form-group row">
+                    <label class="col-lg-2 col-form-label form-control-label text-muted">PW</label>
+                        <div class="col-lg-10">
+                            <label> <p class="label-txt"></p> 
+                            <input type="password" id="PWRE" placeholder="비밀번호를 재입력하세요" class="input" required> 
+                            <div class="line-box"> <div class="line"></div></div> 
+                    </label> </div>
+                </div>
+
+                 <!--email-->
+                 <div class="form-group row">
+                    <label class="col-lg-2 col-form-label form-control-label text-muted">PW</label>
+                        <div class="col-lg-10">
+                            <label> <p class="label-txt"></p> 
+                            <input type="text" id="EMAIL" placeholder="이메일을 입력하세요" class="input" required> 
+                            <div class="line-box"> <div class="line"></div></div> 
+                    </label> </div>
+                </div>
+
                 <button type="button" class="btn btn-outline-primary btn-lg" onclick="check_blank()";>로그인</button>   
             </form>
            </div>
