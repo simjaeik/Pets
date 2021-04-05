@@ -15,4 +15,5 @@
     <string name="group_image">대표 이미지</string>
     <string name="is_share">공개 여부</string>
     <string name="_private">비공개</string>
+    <string name="_public">공개</string>
 </resources>

@@ -6,6 +6,11 @@
 
     <data>
 
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="com.lacuc.pets.ui.group.AddGroupViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -40,7 +45,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|end"
                     android:layout_marginEnd="16dp"
+                    android:enabled="@{vm.name.empty}"
                     android:minWidth="0dp"
+                    android:onClick="@{() -> vm.saveGroup()}"
                     android:text="@string/complete"
                     android:textAppearance="?textAppearanceHeadline6" />
 
@@ -80,7 +87,8 @@
                         android:id="@+id/textInput_groupName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:text="@={vm.name}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -101,7 +109,8 @@
                         android:id="@+id/textInput_groupInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textMultiLine" />
+                        android:inputType="textMultiLine"
+                        android:text="@={vm.info}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -122,13 +131,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:backgroundTint="#7feeeeee"
-                        android:scaleType="centerCrop" />
+                        android:scaleType="centerCrop"
+                        app:image="@{vm.image}" />
 
                     <ImageView
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_baseline_camera_alt_24" />
+                        android:src="@drawable/ic_baseline_camera_alt_24"
+                        android:visibility="@{vm.image.empty ? View.VISIBLE : View.GONE}" />
 
                 </FrameLayout>
 
@@ -148,8 +159,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical|end"
-                        android:checked="false"
-                        android:text="@string/_private" />
+                        android:checked="@={vm.isShare}"
+                        android:text="@{vm.isShare() ? @string/_public : @string/_private}" />
 
                 </FrameLayout>
 

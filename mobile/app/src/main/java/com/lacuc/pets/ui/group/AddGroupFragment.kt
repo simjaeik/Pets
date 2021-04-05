@@ -5,10 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
+import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.FragmentAddGroupBinding
 
 class AddGroupFragment : Fragment() {
@@ -18,12 +20,18 @@ class AddGroupFragment : Fragment() {
 
     private val navController: NavController by lazy { findNavController() }
 
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val viewModel: AddGroupViewModel by viewModels { viewModelFactory }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentAddGroupBinding.inflate(inflater, container, false)
+        _binding = FragmentAddGroupBinding.inflate(inflater, container, false).apply {
+            vm = viewModel
+        }
         return binding.root
     }
 
