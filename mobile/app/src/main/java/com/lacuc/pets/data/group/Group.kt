@@ -1,4 +1,4 @@
-package com.lacuc.pets.data
+package com.lacuc.pets.data.group
 
 data class Group(
     val name: String,
