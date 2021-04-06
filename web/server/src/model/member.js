@@ -10,4 +10,11 @@ module.exports = (sequelize, DataTypes) => {
     email: { type: DataTypes.STRING(50), allowNull: false },
   });
 
+  const DB = { Member };
+
+  DB.associate = (db) => {
+    db.Member.hasMany(db.MemberGroup, { foreignKey: "UID" });
+    db.Member.hasMany(db.Comment, { foreignKefy: "UID" });
+  };
+  return DB;
 };
