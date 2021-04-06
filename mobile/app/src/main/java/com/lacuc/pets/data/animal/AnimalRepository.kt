@@ -1,7 +1,5 @@
 package com.lacuc.pets.data.animal
 
 interface AnimalRepository {
-    fun loadAnimal(gid: Int) {
-        TODO("Not yet implemented")
-    }
+    fun loadAnimal(gid: Int): List<Animal>
 }
