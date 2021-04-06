@@ -48,4 +48,18 @@ module.exports = (sequelize, DataTypes) => {
     authority: { type: DataTypes.STRING(30), allowNull: false },
   });
 
+  const DB = { Group, GalleryImage, ItemHistory, MemberGroup };
+
+  DB.associate = (db) => {
+    db.Group.hasMany(db.Animal, { foreignKey: "GID" });
+    db.Group.hasMany(db.Post, { foreignKey: "GID" });
+    db.Group.hasMany(db.Favorite, { foreignKey: "GID" });
+    db.Group.hasMany(db.MemberGroup, { foreignKey: "GID" });
+
+    db.GalleryImage.belongsTo(db.Group, { foreignKey: "GID" });
+    db.ItemHistory.belongsTo(db.Group, { foreignKey: "GID" });
+    db.MemberGroup.belongsTo(db.Group, { foreignKey: "GID" });
+    db.MemberGroup.belongsTo(db.Member, { foreignKey: "UID" });
+  };
+  return DB;
 };
