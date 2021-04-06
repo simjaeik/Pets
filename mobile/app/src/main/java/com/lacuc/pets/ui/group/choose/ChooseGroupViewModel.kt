@@ -1,4 +1,4 @@
-package com.lacuc.pets.ui.group
+package com.lacuc.pets.ui.group.choose
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

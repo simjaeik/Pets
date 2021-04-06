@@ -1,4 +1,4 @@
-package com.lacuc.pets.ui.group
+package com.lacuc.pets.ui.group.choose
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -59,8 +59,8 @@ class ChooseGroupFragment : DaggerFragment() {
         binding.toolbarChooseGroup.inflateMenu(R.menu.menu_group)
 
         binding.toolbarChooseGroup.setOnMenuItemClickListener {
-            val action = ChooseGroupFragmentDirections
-                .actionChooseGroupFragmentToAddGroupFragment("그룹 생성")
+            val action =
+                ChooseGroupFragmentDirections.actionChooseGroupFragmentToAddGroupFragment("그룹 생성")
             navController.navigate(action)
             true
         }

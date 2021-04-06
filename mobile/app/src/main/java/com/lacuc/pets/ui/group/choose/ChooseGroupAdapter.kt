@@ -1,4 +1,4 @@
-package com.lacuc.pets.ui.group
+package com.lacuc.pets.ui.group.choose
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView

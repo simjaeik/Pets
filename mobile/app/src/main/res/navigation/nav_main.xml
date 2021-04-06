@@ -33,7 +33,7 @@
 
     <fragment
         android:id="@+id/chooseGroupFragment"
-        android:name="com.lacuc.pets.ui.group.ChooseGroupFragment"
+        android:name="com.lacuc.pets.ui.group.choose.ChooseGroupFragment"
         android:label="Group"
         tools:layout="@layout/fragment_choose_group">
         <action
@@ -47,7 +47,7 @@
 
     <fragment
         android:id="@+id/addGroupFragment"
-        android:name="com.lacuc.pets.ui.group.AddGroupFragment"
+        android:name="com.lacuc.pets.ui.group.add.AddGroupFragment"
         android:label="{toolbar_title}"
         tools:layout="@layout/fragment_add_group">
         <argument

@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.group.AddGroupFragment">
+    tools:context=".ui.group.add.AddGroupFragment">
 
     <data>
 
@@ -10,7 +10,7 @@
 
         <variable
             name="vm"
-            type="com.lacuc.pets.ui.group.AddGroupViewModel" />
+            type="com.lacuc.pets.ui.group.add.AddGroupViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

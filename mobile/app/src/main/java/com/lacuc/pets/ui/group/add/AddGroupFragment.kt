@@ -1,4 +1,4 @@
-package com.lacuc.pets.ui.group
+package com.lacuc.pets.ui.group.add
 
 import android.content.Intent
 import android.os.Bundle
