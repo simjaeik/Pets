@@ -1,9 +1,10 @@
 package com.lacuc.pets.domain.animal
 
 import com.lacuc.pets.data.animal.AnimalRepository
-import com.lacuc.pets.data.animal.DefaultAnimalRepository
-import com.lacuc.pets.data.animal.FakeAnimalRemoteDataSource
+import org.junit.Assert.assertTrue
 import org.junit.Before
+import org.junit.Test
+import org.mockito.Mockito.*
 
 class GetAnimalUseCaseTest {
 
@@ -13,7 +14,15 @@ class GetAnimalUseCaseTest {
 
     @Before
     fun init_useCase() {
-        repository = DefaultAnimalRepository(FakeAnimalRemoteDataSource())
+        repository = mock(AnimalRepository::class.java)
         useCase = GetAnimalUseCase(repository)
+    }
+
+    @Test
+    fun loadAnimal_empty() {
+        val result = useCase(0)
+
+        assertTrue(result.isEmpty())
+        verify(repository).loadAnimal(anyInt())
     }
 }
