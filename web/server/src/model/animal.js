@@ -26,4 +26,12 @@ module.exports = (sequelize, DataTypes) => {
     hospital: { type: DataTypes.STRING(100), allowNull: false },
   });
 
+  const DB = { Animal, MedicalHistory };
+
+  DB.associate = (db) => {
+    db.Animal.hasMany(db.MedicalHistory, { foreignKey: "AID" });
+    db.Animal.belongsTo(db.Group, { foreignKey: "GID" });
+    db.MedicalHistory.belongsTo(db.Animal, { foreignKey: "AID" });
+  };
+  return DB;
 };
