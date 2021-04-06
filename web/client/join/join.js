@@ -1,4 +1,4 @@
-function check_blank(){
+function check_join(){
            
     let checkid = document.getElementById("ID");
     let checkpw = document.getElementById("PW");
@@ -10,9 +10,12 @@ function check_blank(){
     else if ( checkpw.value === "") { alert(" 비밀번호가 입력되지 않았습니다. "); }
     else if ( checkpwre.value === "") { alert(" 비밀번호가 입력되지 않았습니다. "); }
     else if ( checkemail.value === "") { alert(" 이메일이 입력되지 않았습니다. "); }
+  
+    if ( checkpw.value !== checkpwre.value ) { alert("비밀번호가 일치하지 않습니다."); }
     else{
-        location.href="community.html";
+        location.href="../pets.html";
     }
+
 }
 
 function eqaul_pw(){
