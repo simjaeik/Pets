@@ -1,5 +1,5 @@
 // Dependencies
-const express = require(" express");
+const express = require("express");
 // const jwtAuth = require('./middleware/jwt-auth');
 
 // Router
