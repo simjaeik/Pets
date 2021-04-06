@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/group_account">
+        <item
+            android:id="@+id/account"
+            android:title="@string/account">
+            <menu>
+                <item
+                    android:id="@+id/info_account"
+                    android:icon="@drawable/ic_baseline_person_24"
+                    android:title="@string/info_account" />
+                <item
+                    android:id="@+id/info_group"
+                    android:icon="@drawable/ic_baseline_group_24"
+                    android:title="@string/info_group" />
+                <item
+                    android:id="@+id/manage_group"
+                    android:icon="@drawable/ic_baseline_group_add_24"
+                    android:title="@string/manage_group" />
+            </menu>
+        </item>
+    </group>
+
+    <group android:id="@+id/group_posts">
+        <item
+            android:id="@+id/posts"
+            android:title="@string/posts">
+            <menu>
+                <item
+                    android:id="@+id/posts_add"
+                    android:icon="@drawable/ic_baseline_wysiwyg_24"
+                    android:title="@string/posts_add" />
+                <item
+                    android:id="@+id/posts_favorite"
+                    android:icon="@drawable/ic_baseline_favorite_24"
+                    android:title="@string/posts_favorite" />
+            </menu>
+        </item>
+    </group>
+</menu>
