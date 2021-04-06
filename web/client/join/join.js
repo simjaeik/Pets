@@ -14,9 +14,15 @@ function check_blank(){
         location.href="community.html";
     }
 }
-/* 
- let check = [ $('#ID'), $('#PW'), $('#PWRE'), $('#EMAIL') ];
-    for (let i=0; i<4; i++){
-        if (check[i].value === "") { alert("모든 문항을 다 채워주세요. "); }
-    }
-*/
+
+function eqaul_pw(){
+   
+    let pw = document.getElementById("PW");
+    let pwre = document.getElementById("PWRE");
+    let success = document.getElementById("equal");
+    let danger = document.getElementById("no_equal");
+
+    if ( pw.value === pwre.value ) { success.style.display = "block"; danger.style.display = "none"; }
+    else { danger.style.display = "block"; success.style.display = "none"; }
+
+}
