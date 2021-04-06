@@ -44,4 +44,15 @@ module.exports = (sequelize, DataTypes) => {
     date: { type: DataTypes.DATE, allowNull: false },
   });
 
+  const DB = { Post, PostImage, Favorite, Comment };
+
+  DB.associate = (db) => {
+    db.Post.hasMany(db.PostImage, { foreignKey: "PID" });
+    db.Post.hasMany(db.Favorite, { foreignKey: "PID" });
+    db.Post.hasMany(db.Comment, { foreignKey: "PID" });
+
+    db.Post.belongsTo(db.Group, { foreignKey: "GID" });
+    db.Comment.belongsTo(db.Post, { foreignKey: "PID" });
+  };
+  return DB;
 };
