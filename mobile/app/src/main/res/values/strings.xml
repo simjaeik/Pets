@@ -10,4 +10,10 @@
     <string name="pets">Pets</string>
     <string name="noGroup">속한 그룹이 없습니다.\n 새로운 그룹을 만들어 보세요.</string>
     <string name="add">Add</string>
+    <string name="group_name">그룹명</string>
+    <string name="group_info">그룹 소개</string>
+    <string name="group_image">대표 이미지</string>
+    <string name="is_share">공개 여부</string>
+    <string name="_private">비공개</string>
+    <string name="_public">공개</string>
 </resources>

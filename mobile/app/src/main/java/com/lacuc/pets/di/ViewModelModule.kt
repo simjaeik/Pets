@@ -3,7 +3,8 @@ package com.lacuc.pets.di
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.lacuc.pets.ViewModelFactory
-import com.lacuc.pets.ui.group.ChooseGroupViewModel
+import com.lacuc.pets.ui.group.add.AddGroupViewModel
+import com.lacuc.pets.ui.group.choose.ChooseGroupViewModel
 import com.lacuc.pets.ui.login.signup.SignUpViewModel
 import dagger.Binds
 import dagger.MapKey
@@ -30,4 +31,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ChooseGroupViewModel::class)
     abstract fun bindChooseGroupViewModel(viewModel: ChooseGroupViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(AddGroupViewModel::class)
+    abstract fun bindAddGroupViewModel(viewModel: AddGroupViewModel): ViewModel
 }

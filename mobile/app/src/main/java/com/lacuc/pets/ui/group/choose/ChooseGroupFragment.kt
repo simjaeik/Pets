@@ -1,4 +1,4 @@
-package com.lacuc.pets.ui.group
+package com.lacuc.pets.ui.group.choose
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,7 +14,6 @@ import com.lacuc.pets.R
 import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.FragmentChooseGroupBinding
 import dagger.android.support.DaggerFragment
-import timber.log.Timber
 import javax.inject.Inject
 
 class ChooseGroupFragment : DaggerFragment() {
@@ -35,6 +34,7 @@ class ChooseGroupFragment : DaggerFragment() {
     ): View {
         _binding = FragmentChooseGroupBinding.inflate(inflater, container, false).apply {
             vm = viewModel
+            lifecycleOwner = viewLifecycleOwner
         }
         return binding.root
     }
@@ -42,11 +42,12 @@ class ChooseGroupFragment : DaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.lifecycleOwner = viewLifecycleOwner
-
         setupToolbar()
 
+        viewModel.loadGroups()
+
         viewModel.clickItem.observe(viewLifecycleOwner) {
+            // SingleLiveEvent가 필요한가?
             Toast.makeText(context, "clicked: $it", Toast.LENGTH_SHORT).show()
         }
     }
@@ -54,15 +55,19 @@ class ChooseGroupFragment : DaggerFragment() {
     private fun setupToolbar() {
         val appBarConfiguration = AppBarConfiguration(setOf(R.id.chooseGroupFragment))
         binding.toolbarChooseGroup.setupWithNavController(navController, appBarConfiguration)
+
         binding.toolbarChooseGroup.inflateMenu(R.menu.menu_group)
+
         binding.toolbarChooseGroup.setOnMenuItemClickListener {
-            Timber.d("onOptionsItemSelected")
+            val action =
+                ChooseGroupFragmentDirections.actionChooseGroupFragmentToAddGroupFragment("그룹 생성")
+            navController.navigate(action)
             true
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding = null
     }
 }
