@@ -1,9 +1,12 @@
 package com.lacuc.pets.ui.group
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -26,6 +29,11 @@ class AddGroupFragment : DaggerFragment() {
 
     private val viewModel: AddGroupViewModel by viewModels { viewModelFactory }
 
+    private val requestActivity =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            viewModel.setImage(it.data?.dataString)
+        }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -46,6 +54,11 @@ class AddGroupFragment : DaggerFragment() {
         }
 
         setupToolbar()
+
+        binding.btnAddGroupPickImage.setOnClickListener {
+            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+            requestActivity.launch(intent)
+        }
     }
 
     private fun setupToolbar() {

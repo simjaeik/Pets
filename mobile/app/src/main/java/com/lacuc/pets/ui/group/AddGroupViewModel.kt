@@ -26,4 +26,8 @@ class AddGroupViewModel @Inject constructor(private val addGroupUseCase: AddGrou
         )
         groupUpdated.value = true
     }
+
+    fun setImage(dataString: String?) {
+        image.value = dataString
+    }
 }
