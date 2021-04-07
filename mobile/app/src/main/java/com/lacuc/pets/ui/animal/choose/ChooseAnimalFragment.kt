@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.customview.widget.Openable
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
@@ -45,6 +46,9 @@ class ChooseAnimalFragment : DaggerFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupToolbar()
+
+        setupDrawer()
+
         binding.recyclerViewChooseAnimal.apply {
             adapter = ChooseAnimalAdapter()
             layoutManager = object : LinearLayoutManager(context) {
@@ -64,8 +68,15 @@ class ChooseAnimalFragment : DaggerFragment() {
     }
 
     private fun setupToolbar() {
-        val appBarConfiguration = AppBarConfiguration(setOf(R.id.chooseAnimalFragment))
+        val appBarConfiguration =
+            AppBarConfiguration(setOf(R.id.chooseAnimalFragment), binding.root as Openable)
         binding.toolbarChooseAnimal.setupWithNavController(navController, appBarConfiguration)
+
+        binding.toolbarChooseAnimal.inflateMenu(R.menu.menu_group)
+    }
+
+    private fun setupDrawer() {
+        binding.drawerChooseAnimal.setupWithNavController(navController)
     }
 
     override fun onDestroyView() {

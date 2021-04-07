@@ -61,7 +61,11 @@
     <fragment
         android:id="@+id/chooseAnimalFragment"
         android:name="com.lacuc.pets.ui.animal.choose.ChooseAnimalFragment"
-        android:label="fragment_choose_animal"
-        tools:layout="@layout/fragment_choose_animal" />
+        android:label="{groupName}"
+        tools:layout="@layout/fragment_choose_animal" >
+        <argument
+            android:name="groupName"
+            app:argType="string" />
+    </fragment>
 
 </navigation>
