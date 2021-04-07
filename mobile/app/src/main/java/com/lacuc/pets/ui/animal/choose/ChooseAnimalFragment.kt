@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
@@ -42,6 +43,12 @@ class ChooseAnimalFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupToolbar()
+
+        viewModel.loadGroups()
+
+        viewModel.clickItem.observe(viewLifecycleOwner) {
+            Toast.makeText(context, "click: $it", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun setupToolbar() {
