@@ -4,12 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.lacuc.pets.R
 import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.FragmentChooseGroupBinding
@@ -43,12 +44,22 @@ class ChooseGroupFragment : DaggerFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupToolbar()
-
+        binding.recyclerViewChooseGroup.apply {
+            adapter = ChooseGroupAdapter()
+            layoutManager = object : LinearLayoutManager(context) {
+                override fun generateDefaultLayoutParams(): RecyclerView.LayoutParams =
+                    RecyclerView.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT
+                    )
+            }
+        }
         viewModel.loadGroups()
 
         viewModel.clickItem.observe(viewLifecycleOwner) {
-            // SingleLiveEvent가 필요한가?
-            Toast.makeText(context, "clicked: $it", Toast.LENGTH_SHORT).show()
+            val action =
+                ChooseGroupFragmentDirections.actionChooseGroupFragmentToChooseAnimalFragment()
+            navController.navigate(action)
         }
     }
 

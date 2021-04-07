@@ -5,18 +5,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.lacuc.pets.R
 import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.FragmentChooseAnimalBinding
+import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-class ChooseAnimalFragment : Fragment() {
+class ChooseAnimalFragment : DaggerFragment() {
     private var _binding: FragmentChooseAnimalBinding? = null
     private val binding get() = _binding!!
 
@@ -43,6 +45,16 @@ class ChooseAnimalFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupToolbar()
+        binding.recyclerViewChooseAnimal.apply {
+            adapter = ChooseAnimalAdapter()
+            layoutManager = object : LinearLayoutManager(context) {
+                override fun generateDefaultLayoutParams(): RecyclerView.LayoutParams =
+                    RecyclerView.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.WRAP_CONTENT
+                    )
+            }
+        }
 
         viewModel.loadGroups()
 
