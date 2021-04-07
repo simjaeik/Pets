@@ -43,6 +43,9 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_chooseGroupFragment_to_chooseAnimalFragment"
+            app:destination="@id/chooseAnimalFragment" />
     </fragment>
 
     <fragment
@@ -54,5 +57,11 @@
             android:name="toolbar_title"
             app:argType="string" />
     </fragment>
+
+    <fragment
+        android:id="@+id/chooseAnimalFragment"
+        android:name="com.lacuc.pets.ui.animal.choose.ChooseAnimalFragment"
+        android:label="fragment_choose_animal"
+        tools:layout="@layout/fragment_choose_animal" />
 
 </navigation>
