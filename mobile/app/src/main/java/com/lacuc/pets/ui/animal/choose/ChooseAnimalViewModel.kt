@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.lacuc.pets.domain.animal.AnimalItem
 import com.lacuc.pets.domain.animal.GetAnimalUseCase
+import com.lacuc.pets.util.SingleLiveEvent
 import javax.inject.Inject
 
 class ChooseAnimalViewModel @Inject constructor(
@@ -12,7 +13,7 @@ class ChooseAnimalViewModel @Inject constructor(
 
     val animalItems = MutableLiveData<List<AnimalItem>>()
 
-    val clickItem = MutableLiveData<AnimalItem>()
+    val clickItem = SingleLiveEvent<AnimalItem>()
 
     fun loadGroups() {
         animalItems.value = getAnimalUseCase(1) {
