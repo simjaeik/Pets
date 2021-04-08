@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <title>join.html</title>
+    <!--라이브러리-->
+    <link rel="stylesheet" href="../boot_css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  
+    <!--css 연결-->
+    <link rel="stylesheet" href="../boot_css/login.css">
+    <link rel="stylesheet" href="join.css"></style>
+
+    <!--javascript 파일 연결-->
+    <script src="join.js"></script>
+    
+  </head>
+
+  <body>
+    <div class="container">
+        <div class="row">
+            <div class="col xs-12">
+            <form method="post" action="./community.html">
+                
+                <!--id-->
+                <div class="form-group row">
+                    <label class="col-lg-2 col-form-label form-control-label text-muted">ID</label>
+                        <div class="col-lg-10">
+                            <label> <p class="label-txt"></p> 
+                            <input type="text" id="ID" autofocus placeholder="아이디를 입력하세요" class="input" required>
+                            <div class="line-box"> <div class="line"></div></div> 
+                    </label> </div>
+                </div>
+                
+                <!--pw-->
+                <div class="form-group row">
+                    <label class="col-lg-2 col-form-label form-control-label text-muted">PW</label>
+                        <div class="col-lg-10">
+                            <label> <p class="label-txt"></p> 
+                            <input type="password" id="PW" placeholder="비밀번호를 입력하세요" class="input" required> 
+                            <div class="line-box"> <div class="line"></div></div> 
+                    </label> </div>
+                </div>
+
+                 <!--pw re-->
+                 <div class="form-group row">
+                    <label class="col-lg-2 col-form-label form-control-label text-muted">PW re</label>
+                        <div class="col-lg-10">
+                            <label> <p class="label-txt"></p> 
+                            <input type="password" id="PWRE" placeholder="비밀번호를 재입력하세요" class="input" onfocus="eqaul_pw()"; required> 
+                            <div class="line-box"> <div class="line"></div></div> 
+                            <!--비밀번호 일치여부를 알려줌-->
+                            <div id="equal">비밀번호가 일치합니다.</div>
+                            <div id="no_equal">비밀번호가 일치하지 않습니다.</div>
+                    </label> </div>
+                </div>
+
+                 <!--email-->
+                 <div class="form-group row">
+                    <label class="col-lg-2 col-form-label form-control-label text-muted">E-mail</label>
+                        <div class="col-lg-10">
+                            <label> <p class="label-txt"></p> 
+                            <input type="text" id="EMAIL" placeholder="이메일을 입력하세요" class="input" onfocus="eqaul_pw()"; required> 
+                            <div class="line-box"> <div class="line"></div></div> 
+                    </label> </div>
+                </div>
+
+                <button type="button" class="btn btn-outline-primary btn-lg" onclick="check_join()";>회원가입</button>   
+            </form>
+           </div>
+        </div>
+      </div>
+    <!--javascript-->
+    
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="../boot_js/bootstrap.min.js"></script>
+
+    </body>
+</html>
+
+

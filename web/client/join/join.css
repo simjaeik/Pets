@@ -1,0 +1,13 @@
+#warning{
+    text-align: left;
+}
+
+#equal{
+    display:none;
+    color:blue;
+}
+
+#no_equal{
+    display:none;
+    color:red;
+}
