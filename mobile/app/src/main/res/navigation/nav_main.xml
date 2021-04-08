@@ -45,7 +45,11 @@
             app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_chooseGroupFragment_to_chooseAnimalFragment"
-            app:destination="@id/chooseAnimalFragment" />
+            app:destination="@id/chooseAnimalFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 
     <fragment
@@ -62,7 +66,7 @@
         android:id="@+id/chooseAnimalFragment"
         android:name="com.lacuc.pets.ui.animal.choose.ChooseAnimalFragment"
         android:label="{groupName}"
-        tools:layout="@layout/fragment_choose_animal" >
+        tools:layout="@layout/fragment_choose_animal">
         <argument
             android:name="groupName"
             app:argType="string" />
