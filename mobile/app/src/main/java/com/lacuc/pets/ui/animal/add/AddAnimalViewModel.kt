@@ -14,7 +14,7 @@ class AddAnimalViewModel @Inject constructor(private val addAnimalUseCase: AddAn
 
     val image = MutableLiveData("")
 
-    val age = MutableLiveData("")
+    val age = MutableLiveData<String>()
 
     val sex = MutableLiveData("")
 
@@ -22,7 +22,7 @@ class AddAnimalViewModel @Inject constructor(private val addAnimalUseCase: AddAn
 
     val subspecies = MutableLiveData("")
 
-    val weight = MutableLiveData("")
+    val weight = MutableLiveData<String>()
 
     val number = MutableLiveData("")
 
@@ -38,11 +38,11 @@ class AddAnimalViewModel @Inject constructor(private val addAnimalUseCase: AddAn
                 1,
                 name.safeValue,
                 image.safeValue,
-                age.safeValue.toInt(),
+                if (age.value.isNullOrEmpty()) 0 else age.safeValue.toInt(),
                 sex.safeValue,
                 species.safeValue,
                 subspecies.safeValue,
-                weight.safeValue.toDouble(),
+                if (weight.value.isNullOrEmpty()) 0.0 else age.safeValue.toDouble(),
                 number.safeValue
             )
         )
