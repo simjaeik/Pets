@@ -33,8 +33,22 @@ li a {
   align-items: center;
   color: #fff;
 }
+.item{
+    background-color: #fdfade;
+    font-weight:bold;
+    font-size: 30px;
+    margin:20px;
+}
+.cover {
+    display: flex;
+    justify-content: space-between;
+}
+.reaction{
+    font-size:20px;
+}
 #search{
     flex-direction: row-reverse;
+    padding:40px;
 }
 #title{
     text-align: center;
@@ -54,4 +68,9 @@ li a {
 }
 #community{
     color:#469efc;
+}
+#write_type{
+    border-bottom-color:tomato;
+    border-bottom-style:outset;
+    border-width:1px 1px 3px 1px;
 }
