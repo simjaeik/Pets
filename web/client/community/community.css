@@ -3,6 +3,9 @@ body {
   background-color: white;
   font-family: "Noto Sans KR", Helvetica, sans-serif;
 }
+text{
+    font-size:20px;
+}
 #icon{
     width:50%;
     height:50%;
