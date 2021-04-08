@@ -30,7 +30,7 @@ class AddAnimalFragment : DaggerFragment() {
 
     private val requestActivity =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-
+            viewModel.setImage(it.data?.dataString)
         }
 
     override fun onCreateView(
@@ -53,6 +53,10 @@ class AddAnimalFragment : DaggerFragment() {
         binding.btnAddAnimalPickImage.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
             requestActivity.launch(intent)
+        }
+
+        viewModel.animalUpdated.observe(viewLifecycleOwner) {
+            navController.navigateUp()
         }
     }
 
