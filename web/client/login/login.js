@@ -7,6 +7,6 @@ function check_blank(){
     if ( checkid.value === "") { alert(" 아이디가 입력되지 않았습니다. "); }
     else if ( checkpw.value === "") { alert(" 비밀번호가 입력되지 않았습니다. "); }
     else{
-        location.href="community.html";
+        location.href="../community/community.html";
     }
 }
