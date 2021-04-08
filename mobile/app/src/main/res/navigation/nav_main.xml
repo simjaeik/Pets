@@ -70,6 +70,19 @@
         <argument
             android:name="groupName"
             app:argType="string" />
+        <action
+            android:id="@+id/action_chooseAnimalFragment_to_addAnimalFragment"
+            app:destination="@id/addAnimalFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
+
+    <fragment
+        android:id="@+id/addAnimalFragment"
+        android:name="com.lacuc.pets.ui.animal.add.AddAnimalFragment"
+        android:label="AddAnimalFragment"
+        tools:layout="@layout/fragment_add_animal" />
 
 </navigation>

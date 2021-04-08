@@ -73,6 +73,13 @@ class ChooseAnimalFragment : DaggerFragment() {
         binding.toolbarChooseAnimal.setupWithNavController(navController, appBarConfiguration)
 
         binding.toolbarChooseAnimal.inflateMenu(R.menu.menu_group)
+
+        binding.toolbarChooseAnimal.setOnMenuItemClickListener {
+            val action =
+                ChooseAnimalFragmentDirections.actionChooseAnimalFragmentToAddAnimalFragment()
+            navController.navigate(action)
+            true
+        }
     }
 
     private fun setupDrawer() {
