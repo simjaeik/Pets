@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'androidx.navigation.safeargs.kotlin'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -23,23 +25,89 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    flavorDimensions "default"
+
+    productFlavors {
+        mock {
+            dimension "default"
+            applicationIdSuffix ".mock"
+            manifestPlaceholders = [appLabel: "Pets(mock)"]
+        }
+        prod {
+            dimension "default"
+            manifestPlaceholders = [appLabel: "Pets(prod)"]
+        }
+    }
+
+    variantFilter { variant ->
+        if (variant.buildType.name == 'release' && variant.getFlavors().get(0).name == 'mock') {
+            setIgnore(true)
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        viewBinding true
+        dataBinding true
     }
 }
 
 dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.3.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation "androidx.core:core-ktx:$core_version"
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
+    implementation "com.google.android.material:material:$material_version"
+    implementation "androidx.constraintlayout:constraintlayout:$constarintlayout_version"
+    testImplementation "junit:junit:$junit_version"
+    androidTestImplementation "androidx.test.ext:junit:$testjunit_version"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
+
+    // Mockito
+    testImplementation "org.mockito:mockito-core:$mockito_version"
+    testImplementation "org.mockito:mockito-inline:$mockito_version"
+
+    // for test
+    testImplementation "androidx.arch.core:core-testing:$archtesting_version"
+
+    // Lifecycle
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+
+    // RxJava
+    implementation "io.reactivex.rxjava3:rxkotlin:$rxjava_version"
+    implementation "io.reactivex.rxjava3:rxandroid:$rxjava_version"
+    implementation "com.jakewharton.rxbinding4:rxbinding:$rxbinding_version"
+
+    // Fragment
+    implementation "androidx.fragment:fragment-ktx:$fragment_version"
+
+    // Navigation component
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    // Glide
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
+
+    // Timber
+    implementation "com.jakewharton.timber:timber:$timber_version"
+
+    // Dagger2
+    implementation "com.google.dagger:dagger-android:$dagger_version"
+    implementation "com.google.dagger:dagger-android-support:$dagger_version"
+    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+
+    // LeakCanary
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakcanary_version"
 }
