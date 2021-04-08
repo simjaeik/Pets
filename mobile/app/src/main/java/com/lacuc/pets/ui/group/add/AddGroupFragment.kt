@@ -31,7 +31,9 @@ class AddGroupFragment : DaggerFragment() {
 
     private val requestActivity =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            viewModel.setImage(it.data?.dataString)
+            it.data?.let { intent ->
+                viewModel.setImage(intent.dataString)
+            }
         }
 
     override fun onCreateView(
