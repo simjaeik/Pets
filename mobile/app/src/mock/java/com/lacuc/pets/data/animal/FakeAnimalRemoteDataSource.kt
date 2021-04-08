@@ -34,4 +34,8 @@ class FakeAnimalRemoteDataSource @Inject constructor() : AnimalDataSource {
     }
 
     override fun loadAnimal(gid: Int): List<Animal> = animalData[gid] ?: emptyList()
+
+    override fun addAnimal(animal: Animal) {
+        animalData.getOrPut(animal.gid) { mutableListOf() }.add(animal)
+    }
 }

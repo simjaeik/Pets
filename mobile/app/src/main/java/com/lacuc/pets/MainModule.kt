@@ -1,5 +1,6 @@
 package com.lacuc.pets
 
+import com.lacuc.pets.ui.animal.add.AddAnimalFragment
 import com.lacuc.pets.ui.animal.choose.ChooseAnimalFragment
 import com.lacuc.pets.ui.group.add.AddGroupFragment
 import com.lacuc.pets.ui.group.choose.ChooseGroupFragment
@@ -21,4 +22,7 @@ abstract class MainModule {
 
     @ContributesAndroidInjector
     abstract fun getChooseAnimalFragment(): ChooseAnimalFragment
+
+    @ContributesAndroidInjector
+    abstract fun getAddAnimalFragment(): AddAnimalFragment
 }

@@ -12,7 +12,7 @@
     <string name="add">Add</string>
     <string name="group_name">그룹명</string>
     <string name="group_info">그룹 소개</string>
-    <string name="group_image">대표 이미지</string>
+    <string name="main_image">대표 이미지</string>
     <string name="is_share">공개 여부</string>
     <string name="_private">비공개</string>
     <string name="_public">공개</string>
@@ -26,4 +26,7 @@
     <string name="age">나이</string>
     <string name="sex">성별</string>
     <string name="weight">몸무게</string>
+    <string name="animal_number">동물등록번호</string>
+    <string name="subspecies">품종</string>
+    <string name="species">분류</string>
 </resources>
