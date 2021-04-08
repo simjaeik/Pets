@@ -77,3 +77,6 @@ li a {
     border-bottom-style:outset;
     border-width:1px 1px 3px 1px;
 }
+#tip{
+    display: flex;
+}
