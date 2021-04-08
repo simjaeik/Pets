@@ -6,9 +6,11 @@ import com.lacuc.pets.BR
 import com.lacuc.pets.R
 import com.lacuc.pets.databinding.ItemGroupBinding
 import com.lacuc.pets.domain.group.GroupItem
+import com.lacuc.pets.util.BindableAdapter
 import com.lacuc.pets.util.ViewBindingHolder
 
-class ChooseGroupAdapter : RecyclerView.Adapter<ViewBindingHolder<ItemGroupBinding>>() {
+class ChooseGroupAdapter : RecyclerView.Adapter<ViewBindingHolder<ItemGroupBinding>>(),
+    BindableAdapter<List<GroupItem>> {
 
     private val items = ArrayList<GroupItem>()
 
@@ -27,9 +29,9 @@ class ChooseGroupAdapter : RecyclerView.Adapter<ViewBindingHolder<ItemGroupBindi
 
     override fun getItemViewType(position: Int) = R.layout.item_group
 
-    fun addList(list: List<GroupItem>) {
+    override fun setData(data: List<GroupItem>) {
         items.clear()
-        items.addAll(list)
+        items.addAll(data)
         notifyDataSetChanged()
     }
 

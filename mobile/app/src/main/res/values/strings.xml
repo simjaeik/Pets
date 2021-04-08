@@ -16,4 +16,14 @@
     <string name="is_share">공개 여부</string>
     <string name="_private">비공개</string>
     <string name="_public">공개</string>
+    <string name="account">계정</string>
+    <string name="info_account">계정 정보</string>
+    <string name="info_group">그룹 정보</string>
+    <string name="manage_group">그룹 관리</string>
+    <string name="posts">게시글</string>
+    <string name="posts_add">작성한 글</string>
+    <string name="posts_favorite">좋아요한 글</string>
+    <string name="age">나이</string>
+    <string name="sex">성별</string>
+    <string name="weight">몸무게</string>
 </resources>
