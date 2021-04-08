@@ -3,6 +3,7 @@ package com.lacuc.pets.di
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.lacuc.pets.ViewModelFactory
+import com.lacuc.pets.ui.animal.add.AddAnimalViewModel
 import com.lacuc.pets.ui.animal.choose.ChooseAnimalViewModel
 import com.lacuc.pets.ui.group.add.AddGroupViewModel
 import com.lacuc.pets.ui.group.choose.ChooseGroupViewModel
@@ -42,4 +43,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ChooseAnimalViewModel::class)
     abstract fun bindChooseAnimalViewModel(viewModel: ChooseAnimalViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(AddAnimalViewModel::class)
+    abstract fun bindAddAnimalViewModel(viewModel: AddAnimalViewModel): ViewModel
 }
