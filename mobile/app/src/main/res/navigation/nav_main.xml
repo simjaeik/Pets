@@ -82,7 +82,7 @@
     <fragment
         android:id="@+id/addAnimalFragment"
         android:name="com.lacuc.pets.ui.animal.add.AddAnimalFragment"
-        android:label="AddAnimalFragment"
+        android:label="추가"
         tools:layout="@layout/fragment_add_animal" />
 
 </navigation>
