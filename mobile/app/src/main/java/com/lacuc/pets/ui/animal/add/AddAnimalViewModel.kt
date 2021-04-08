@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.lacuc.pets.data.animal.Animal
 import com.lacuc.pets.domain.animal.AddAnimalUseCase
+import com.lacuc.pets.util.SingleLiveEvent
 import com.lacuc.pets.util.safeValue
 import javax.inject.Inject
 
@@ -25,7 +26,7 @@ class AddAnimalViewModel @Inject constructor(private val addAnimalUseCase: AddAn
 
     val number = MutableLiveData("")
 
-    val animalUpdated = MutableLiveData<Boolean>()
+    val animalUpdated = SingleLiveEvent<Boolean>()
 
     fun setImage(dataString: String?) {
         image.value = dataString
