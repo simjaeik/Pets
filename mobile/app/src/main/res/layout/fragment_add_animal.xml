@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="vm"
             type="com.lacuc.pets.ui.animal.add.AddAnimalViewModel" />
@@ -42,7 +44,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|end"
                     android:layout_marginEnd="16dp"
+                    android:enabled="@{!vm.name.empty}"
                     android:minWidth="0dp"
+                    android:onClick="@{() -> vm.saveAnimal()}"
                     android:text="@string/complete"
                     android:textAppearance="?textAppearanceHeadline6" />
 
@@ -82,7 +86,8 @@
                         android:id="@+id/textInput_animalName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:text="@={vm.name}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -103,13 +108,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:backgroundTint="#7feeeeee"
-                        android:scaleType="centerCrop" />
+                        android:scaleType="centerCrop"
+                        app:image="@{vm.image}" />
 
                     <ImageView
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_baseline_camera_alt_24" />
+                        android:src="@drawable/ic_baseline_camera_alt_24"
+                        android:visibility="@{vm.image.empty ? View.VISIBLE : View.GONE}" />
 
                 </FrameLayout>
 
@@ -131,7 +138,8 @@
                         android:id="@+id/textInput_animalAge"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="text" />
+                        android:inputType="number"
+                        android:text="@={vm.age}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -152,7 +160,8 @@
                         android:id="@+id/textInput_animalSex"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="none" />
+                        android:inputType="none"
+                        android:text="@={vm.sex}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -173,7 +182,8 @@
                         android:id="@+id/textInput_animalSpecies"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:text="@={vm.species}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -194,7 +204,8 @@
                         android:id="@+id/textInput_animalSubspecies"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:text="@={vm.subspecies}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -216,7 +227,8 @@
                         android:id="@+id/textInput_animalWeight"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="numberDecimal" />
+                        android:inputType="numberDecimal"
+                        android:text="@={vm.weight}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -237,7 +249,8 @@
                         android:id="@+id/textInput_animalNumber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="text" />
+                        android:inputType="text"
+                        android:text="@={vm.number}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
