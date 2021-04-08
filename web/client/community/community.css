@@ -1,0 +1,56 @@
+body {
+  padding: 20px;
+  background-color: white;
+  font-family: "Noto Sans KR", Helvetica, sans-serif;
+}
+#icon{
+    width:50%;
+    height:50%;
+    color:white;
+}
+ul {
+    list-style-type: none;
+    margin:0;
+    padding:0;
+   
+}
+li { float: left; }
+li a {
+    display: block;
+    padding: 8px;
+    text-decoration: none;
+    text-align: center;
+    color:#d6eaff;
+    font-weight: bold;
+}
+.container {
+  width: 200px;
+  height: 180px;
+  margin-bottom: 10px;
+  display: flex;
+}
+.container-fulid {
+    display: flex;
+    margin: 4px;
+}
+.item-fulid {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  color: #fff;
+}
+#title{
+    text-align: center;
+    color: #d6eaff;
+    width:10%;
+}
+#nav{
+    width:70%;
+} 
+#writebtn{
+    width:5%;
+}
+#icon{
+    width:5%;
+}
