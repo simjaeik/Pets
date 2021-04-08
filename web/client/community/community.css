@@ -18,16 +18,10 @@ li { float: left; }
 li a {
     display: block;
     padding: 8px;
-    text-decoration: none;
     text-align: center;
     color:#d6eaff;
     font-weight: bold;
-}
-.container {
-  width: 200px;
-  height: 180px;
-  margin-bottom: 10px;
-  display: flex;
+    font-size: 40px;
 }
 .container-fulid {
     display: flex;
@@ -37,20 +31,27 @@ li a {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  font-size: 40px;
   color: #fff;
+}
+#search{
+    flex-direction: row-reverse;
 }
 #title{
     text-align: center;
     color: #d6eaff;
     width:10%;
+    font-size: 40px;
 }
 #nav{
     width:70%;
 } 
 #writebtn{
     width:5%;
+    font-size: 40px;
 }
 #icon{
     width:5%;
+}
+#community{
+    color:#469efc;
 }
