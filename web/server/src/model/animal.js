@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
       autoIncreament: true,
       primaryKey: true,
     },
-    name: { type: DataTypes.INTEGER, allowNull: false },
+    name: { type: DataTypes.STRING(30), allowNull: false },
     age: { type: DataTypes.INTEGER, allowNull: false },
     sex: { type: DataTypes.STRING(10), allowNull: false },
     species: { type: DataTypes.STRING(100), allowNull: false },
