@@ -29,4 +29,7 @@
     <string name="animal_number">동물등록번호</string>
     <string name="subspecies">품종</string>
     <string name="species">분류</string>
+    <string name="memo">메모</string>
+    <string name="medical">병원</string>
+    <string name="data">정보</string>
 </resources>
