@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
     },
     url: { type: DataTypes.STRING(100), allowNull: true },
+    tag: { type: DataTypes.STRING(50), allowNull: true },
   });
 
   const ItemHistory = sequelize.define("ItemHistory", {
