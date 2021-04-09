@@ -77,6 +77,13 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_chooseAnimalFragment_to_animalDetailFragment"
+            app:destination="@id/animalDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
@@ -84,5 +91,11 @@
         android:name="com.lacuc.pets.ui.animal.add.AddAnimalFragment"
         android:label="추가"
         tools:layout="@layout/fragment_add_animal" />
+
+    <fragment
+        android:id="@+id/animalDetailFragment"
+        android:name="com.lacuc.pets.ui.animal.detail.AnimalDetailFragment"
+        android:label="fragment_animal_detail"
+        tools:layout="@layout/fragment_animal_detail" />
 
 </navigation>
