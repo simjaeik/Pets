@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>community.html</title>
+    <title>comm_more.html</title>
     <!--라이브러리-->
     <link rel="stylesheet" href="../boot_css/bootstrap.min.css">
     <link rel="stylesheet" href="../boot_css/bootstrap-responsive.css">
@@ -13,28 +13,37 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!--css 연결-->
     <link rel="stylesheet" href="../boot_css/login.css">
-    <link rel="stylesheet" href="community.css"></style>
+    <link rel="stylesheet" href="comm_more.css"></style>
     <!--javascript 파일 연결-->
-    <script src="community.js"></script>
+    <script src="comm_more.js"></script>
   </head>
 
   <body>
     
     <!--상단바-->
-    <div class = "container-fluid">
-    
+    <div class = "container-fluid" id="firstcontainer">
+        
         <div class="row">
-      
             <!--pet title-->
-            <div class="item-fulid" id="title"> PETS</div>
+            <div class="item-fulid" id="title">PETS</div>
             <!--네비바-->
             <div class="item-fulid" id="nav">
                 <ul>
-                    <li><a href="community.html" id="community">커뮤니티</a></li>
+                    <li><a href="../community/community.html" id="community">커뮤니티</a></li>
                     <li><a href="../pets.html" >둘러보기</a></li>
                     <li><a href="../pets.html" >관리</a></li>
                 </ul>
             </div>
+
+            <!--검색창-->
+            <div class="item-fulid" id="search">
+                <!--입력창-->
+                <div class="input-append">
+                    <input class="span4" id="appendedInputButton" type="text">
+                    <button type="button" class="btn" onclick="location.href='../join/join.html'";>검색</button>         
+                </div>
+            </div>
+
             <!--글쓰기 버튼-->
             <div class="item-fulid" id="writebtn">
                 <button type="button" class="btn btn-outline-primary btn-lg" onclick="location.href='../join/join.html'";>글쓰기</button>   
@@ -42,24 +51,28 @@
         </div>
     </div>
 
-    <!--검색창-->
-    <div class = "container-fluid">
-
-        <div class="row" id="search">
-            
-            <div class="item-fulid">
-                <!--입력창-->
-                <div class="input-append">
-                    <input class="span5" id="appendedInputButton" type="text">
-                    <button type="button" class="btn" onclick="location.href='../join/join.html'";>검색</button>         
-                </div>
-            </div>
-        </div>
-
-    </div>
-
     
-    <!--베스트 게시글-->
+    <!--베스트,팁,후기,정렬-->
+    <div class = "container-fluid" id="firstcontainer">
+
+        <div class ="item" id="write_type">
+            <!--네비바-->
+            <div class='cover'>
+                <!--왼쪽 끝-->
+                <div class="item-fulid" id="nav">
+                    <ul>
+                        <li><a href="../community/community.html" id="community">베스트 게시글</a></li>
+                        <li><a href="../pets.html" >TIP</a></li>
+                        <li><a href="../pets.html" >후기</a></li>
+                    </ul>
+                </div>
+                <!--오른쪽 끝-->
+                버튼넣기
+            </div>
+
+        </div>
+    </div>
+    
     <div class = "container-fluid" >
         
         <!--베스트 게시글 title-->
@@ -68,7 +81,7 @@
                 <div>
                     <i class="icon-star"></i> 베스트 게시글
                 </div>
-                <button type="button" class="btn btn-outline-danger" onclick="location.href='../comm_more/comm_more.html'";>더보기</button>  
+                <button type="button" class="btn btn-outline-danger" onclick="location.href='../pets.html'";>더보기</button>  
             </div>
         </div>
 
