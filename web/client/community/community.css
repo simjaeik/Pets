@@ -1,0 +1,93 @@
+body {
+    padding: 20px;
+    background-color: white;
+    font-family: "Noto Sans KR", Helvetica, sans-serif;
+  }
+  text{
+      font-size:20px;
+  }
+  text:hover{
+      color:red;
+      cursor:default;
+  }
+  #icon{
+      width:50%;
+      height:50%;
+      color:white;
+  }
+  ul {
+      list-style-type: none;
+      margin:0;
+      padding:0;
+     
+  }
+  li { float: left; }
+  li a {
+      display: block;
+      padding: 8px;
+      text-align: center;
+      color:#d6eaff;
+      font-weight: bold;
+      font-size: 40px;
+  }
+  .container-fulid {
+      display: flex;
+      margin: 4px;
+  }
+  .item-fulid {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+  }
+  .item{
+      background-color: #faf7da;
+      font-weight:bold;
+      font-size: 30px;
+      margin:20px;
+  }
+  .cover {
+      display: flex;
+      justify-content: space-between;
+  }
+  .reaction{
+      font-size:20px;
+  }
+  #search{
+      flex-direction: row-reverse;
+      padding:40px;
+  }
+  #title{
+      text-align: center;
+      color: #d6eaff;
+      width:10%;
+      font-size: 40px;
+  }
+  #nav{
+      width:70%;
+  } 
+  #writebtn{
+      width:5%;
+      font-size: 40px;
+  }
+  #icon{
+      width:5%;
+  }
+  #community{
+      color:#469efc;
+  }
+  #tip_review{
+    display: flex;
+  }
+  #tip{
+      padding:0px 40px 0px 0px;
+  }
+  #review{
+      padding:0px 0px 0px 40px;
+  }
+  #write_type{
+    border-bottom-color:tomato;
+    border-bottom-style:outset;
+    border-width:1px 1px 3px 1px;
+    margin: 4px 4px 20px 4px;
+}
