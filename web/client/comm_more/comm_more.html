@@ -61,15 +61,30 @@
                 <!--왼쪽 끝-->
                 <div class="item-fulid" id="nav">
                     <ul>
-                        <li><a href="../community/community.html" id="community">베스트 게시글</a></li>
+                        <li><a href="comm_more.html" id="community">베스트 게시글</a></li>
                         <li><a href="../pets.html" >TIP</a></li>
                         <li><a href="../pets.html" >후기</a></li>
                     </ul>
                 </div>
                 <!--오른쪽 끝-->
-                버튼넣기
-            </div>
+                <div>
+                    <i class="icon-resize-vertical"></i>  <!--정렬 아이콘-->
+                    <div class="btn-group">
+                        
+                        <button class="btn"> 
+                            <text id="changesort1">추천순</text>
+                        </button>
 
+                        <button class="btn dropdown-toggle" data-toggle="dropdown"></button>
+                        <ul class="dropdown-menu">
+                            <button class="dropdown-item" onclick="changeSort()" href="#">
+                                <text id="changesort2">시간순</text>
+                            </button>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
     
