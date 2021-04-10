@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.tabs.TabLayout
 import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.FragmentAnimalDetailBinding
 import dagger.android.support.DaggerFragment
@@ -51,6 +52,20 @@ class AnimalDetailFragment : DaggerFragment() {
                     )
             }
         }
+
+        binding.tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                tab?.let {
+                    viewModel.switchItem(it.position)
+                }
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+            }
+        })
 
         viewModel.initItem(AnimalDetailDetailItem(args.animal))
     }
