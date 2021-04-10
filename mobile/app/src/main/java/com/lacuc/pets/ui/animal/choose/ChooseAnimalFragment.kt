@@ -63,7 +63,7 @@ class ChooseAnimalFragment : DaggerFragment() {
 
         viewModel.clickItem.observe(viewLifecycleOwner) {
             val action =
-                ChooseAnimalFragmentDirections.actionChooseAnimalFragmentToAnimalDetailFragment()
+                ChooseAnimalFragmentDirections.actionChooseAnimalFragmentToAnimalDetailFragment(it.animal)
             navController.navigate(action)
         }
     }

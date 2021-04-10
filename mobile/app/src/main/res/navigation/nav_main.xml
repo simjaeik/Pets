@@ -96,6 +96,10 @@
         android:id="@+id/animalDetailFragment"
         android:name="com.lacuc.pets.ui.animal.detail.AnimalDetailFragment"
         android:label="fragment_animal_detail"
-        tools:layout="@layout/fragment_animal_detail" />
+        tools:layout="@layout/fragment_animal_detail" >
+        <argument
+            android:name="animal"
+            app:argType="com.lacuc.pets.data.animal.Animal" />
+    </fragment>
 
 </navigation>
