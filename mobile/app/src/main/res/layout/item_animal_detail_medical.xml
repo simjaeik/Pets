@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.lacuc.pets.data.animal.Medical" />
+            type="com.lacuc.pets.ui.animal.detail.AnimalDetailMedicalItem" />
     </data>
 
     <LinearLayout
@@ -41,7 +41,7 @@
                     android:id="@+id/tv_medical_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{item.dateString}"
+                    android:text="@{item.date}"
                     android:textAppearance="?textAppearanceCaption"
                     app:layout_constraintBottom_toBottomOf="@id/tv_medical_hospital"
                     app:layout_constraintEnd_toEndOf="parent"

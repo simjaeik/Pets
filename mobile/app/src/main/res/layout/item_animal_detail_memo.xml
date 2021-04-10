@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.lacuc.pets.data.animal.Memo" />
+            type="com.lacuc.pets.ui.animal.detail.AnimalDetailMemoItem" />
     </data>
 
     <LinearLayout
