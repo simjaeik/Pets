@@ -5,4 +5,8 @@ data class Medical(
     val title: String,
     val content: String,
     val hospital: String
-)
+) {
+    val dateString: String
+        get() = date.toString()
+}
+
