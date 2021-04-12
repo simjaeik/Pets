@@ -5,7 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayout
@@ -26,6 +30,8 @@ class AnimalDetailFragment : DaggerFragment() {
 
     private val args: AnimalDetailFragmentArgs by navArgs()
 
+    private val navController: NavController by lazy { findNavController() }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -42,6 +48,8 @@ class AnimalDetailFragment : DaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupToolbar()
+
         binding.recyclerviewAnimalDetail.apply {
             adapter = AnimalDetailAdapter()
             layoutManager = object : LinearLayoutManager(context) {
@@ -53,7 +61,7 @@ class AnimalDetailFragment : DaggerFragment() {
             }
         }
 
-        binding.tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
+        binding.tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 tab?.let {
                     viewModel.switchItem(it.position)
@@ -68,6 +76,11 @@ class AnimalDetailFragment : DaggerFragment() {
         })
 
         viewModel.initItem(AnimalDetailDetailItem(args.animal))
+    }
+
+    private fun setupToolbar() {
+        val appBarConfiguration = AppBarConfiguration(navController.graph)
+        binding.toolbarAnimalDetail.setupWithNavController(navController, appBarConfiguration)
     }
 
     override fun onDestroyView() {
