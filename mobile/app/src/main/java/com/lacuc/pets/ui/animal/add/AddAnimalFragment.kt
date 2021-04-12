@@ -10,6 +10,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.lacuc.pets.ViewModelFactory
@@ -35,6 +36,8 @@ class AddAnimalFragment : DaggerFragment() {
             }
         }
 
+    private val args: AddAnimalFragmentArgs by navArgs()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -51,6 +54,12 @@ class AddAnimalFragment : DaggerFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupToolbar()
+
+        if (savedInstanceState == null) {
+            args.animal?.let {
+                viewModel.initData(it)
+            }
+        }
 
         binding.btnAddAnimalPickImage.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
