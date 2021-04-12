@@ -62,10 +62,9 @@ class AnimalDetailFragment : DaggerFragment() {
         }
 
         binding.tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-                tab?.let {
-                    viewModel.switchItem(it.position)
-                }
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                viewModel.switchItem(tab.position)
+                setFabClickListener(tab.position)
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
@@ -75,7 +74,25 @@ class AnimalDetailFragment : DaggerFragment() {
             }
         })
 
+        setFabClickListener()
+
         viewModel.initItem(AnimalDetailDetailItem(args.animal))
+    }
+
+    private fun setFabClickListener(position: Int = 0) {
+        when (position) {
+            0 -> {
+                binding.fabDetailAdd.setOnClickListener {
+                    val action = AnimalDetailFragmentDirections
+                        .actionAnimalDetailFragmentToAddAnimalFragment(args.animal)
+                    navController.navigate(action)
+                }
+            }
+            1 -> {
+            }
+            2 -> {
+            }
+        }
     }
 
     private fun setupToolbar() {
