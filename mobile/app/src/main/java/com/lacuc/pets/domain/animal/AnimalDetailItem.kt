@@ -6,23 +6,23 @@ import com.lacuc.pets.data.animal.Memo
 
 sealed class AnimalDetailItem
 
-class AnimalDetailDetailItem(private val animal: Animal) : AnimalDetailItem() {
-    fun getName() = animal.name
-    fun getAge() = animal.age.toString()
-    fun getSex() = animal.sex
-    fun getSpecies() = animal.species
-    fun getSubspecies() = animal.subspecies
-    fun getWeight() = animal.weight.toString()
-    fun getNumber() = animal.number
+class AnimalDetailDetailItem(animal: Animal) : AnimalDetailItem() {
+    val name = animal.name
+    val age = animal.age.toString()
+    val sex = animal.sex
+    val species = animal.species
+    val subspecies = animal.subspecies
+    val weight = animal.weight.toString()
+    val number = animal.number
 }
 
-class AnimalDetailMedicalItem(private val medical: Medical) : AnimalDetailItem() {
-    fun getTitle() = medical.title
-    fun getDate() = medical.date.toString()
-    fun getHospital() = medical.hospital
-    fun getContent() = medical.content
+class AnimalDetailMedicalItem(medical: Medical) : AnimalDetailItem() {
+    val title = medical.title
+    val date = medical.date.toString()
+    val hospital = medical.hospital
+    val content = medical.content
 }
 
-class AnimalDetailMemoItem(private val memo: Memo) : AnimalDetailItem() {
-    fun getContent() = memo.content
+class AnimalDetailMemoItem(memo: Memo) : AnimalDetailItem() {
+    val content = memo.content
 }
