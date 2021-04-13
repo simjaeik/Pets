@@ -89,7 +89,6 @@
     <fragment
         android:id="@+id/addAnimalFragment"
         android:name="com.lacuc.pets.ui.animal.add.AddAnimalFragment"
-        android:label="추가"
         tools:layout="@layout/fragment_add_animal">
         <argument
             android:name="animal"
@@ -116,7 +115,6 @@
     <fragment
         android:id="@+id/animalDetailAddMedicalFragment"
         android:name="com.lacuc.pets.ui.animal.detail.AnimalDetailAddMedicalFragment"
-        android:label="AnimalDetailAddMedicalFragment"
         tools:layout="@layout/fragment_add_medical" />
 
 </navigation>
