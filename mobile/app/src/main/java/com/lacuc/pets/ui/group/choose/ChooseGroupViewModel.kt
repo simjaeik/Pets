@@ -11,12 +11,12 @@ class ChooseGroupViewModel @Inject constructor(private val getGroupUseCase: GetG
 
     val groupItems = MutableLiveData<List<GroupItem>>()
 
-    val clickItem = SingleLiveEvent<GroupItem>()
+    val groupClickEvent = SingleLiveEvent<GroupItem>()
 
     fun loadGroups() {
         // TODO: 2021-04-01 먼저 서버에서 세션 등 사용자를 식별할 수단을 얻어야 한다. 여기서는 임시로 사용함.
         groupItems.value = getGroupUseCase("tempUser@lacuc.com") {
-            clickItem.value = it
+            groupClickEvent.value = it
         }
     }
 }

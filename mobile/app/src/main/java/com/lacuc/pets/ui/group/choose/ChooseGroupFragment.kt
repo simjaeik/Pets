@@ -9,11 +9,10 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.lacuc.pets.R
 import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.FragmentChooseGroupBinding
+import com.lacuc.pets.util.DefaultLayoutManager
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
@@ -34,8 +33,8 @@ class ChooseGroupFragment : DaggerFragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentChooseGroupBinding.inflate(inflater, container, false).apply {
-            vm = viewModel
             lifecycleOwner = viewLifecycleOwner
+            vm = viewModel
         }
         return binding.root
     }
@@ -44,36 +43,41 @@ class ChooseGroupFragment : DaggerFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupToolbar()
-        binding.recyclerViewChooseGroup.apply {
-            adapter = ChooseGroupAdapter()
-            layoutManager = object : LinearLayoutManager(context) {
-                override fun generateDefaultLayoutParams(): RecyclerView.LayoutParams =
-                    RecyclerView.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT
-                    )
-            }
-        }
+
+        setupRecyclerView()
+
         viewModel.loadGroups()
 
-        viewModel.clickItem.observe(viewLifecycleOwner) {
+        setItemClickObserver()
+    }
+
+    private fun setItemClickObserver() {
+        viewModel.groupClickEvent.observe(viewLifecycleOwner) {
             val action = ChooseGroupFragmentDirections
                 .actionChooseGroupFragmentToChooseAnimalFragment(it.name)
             navController.navigate(action)
         }
     }
 
+    private fun setupRecyclerView() {
+        binding.recyclerViewChooseGroup.apply {
+            adapter = ChooseGroupAdapter()
+            layoutManager = DefaultLayoutManager(context)
+        }
+    }
+
     private fun setupToolbar() {
         val appBarConfiguration = AppBarConfiguration(setOf(R.id.chooseGroupFragment))
-        binding.toolbarChooseGroup.setupWithNavController(navController, appBarConfiguration)
+        binding.toolbarChooseGroup.apply {
+            setupWithNavController(navController, appBarConfiguration)
 
-        binding.toolbarChooseGroup.inflateMenu(R.menu.menu_group)
-
-        binding.toolbarChooseGroup.setOnMenuItemClickListener {
-            val action =
-                ChooseGroupFragmentDirections.actionChooseGroupFragmentToAddGroupFragment("그룹 생성")
-            navController.navigate(action)
-            true
+            inflateMenu(R.menu.menu_group)
+            setOnMenuItemClickListener {
+                val action = ChooseGroupFragmentDirections
+                    .actionChooseGroupFragmentToAddGroupFragment("그룹 생성")
+                navController.navigate(action)
+                true
+            }
         }
     }
 

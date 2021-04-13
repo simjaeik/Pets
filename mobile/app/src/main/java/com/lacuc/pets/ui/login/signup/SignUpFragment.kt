@@ -5,12 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupWithNavController
 import com.jakewharton.rxbinding4.widget.textChanges
 import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.FragmentSignUpBinding
+import com.lacuc.pets.util.setupToolbar
 import dagger.android.support.DaggerFragment
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import javax.inject.Inject
@@ -27,23 +27,24 @@ class SignUpFragment : DaggerFragment() {
 
     private val disposables = CompositeDisposable()
 
+    private val navController: NavController by lazy { findNavController() }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentSignUpBinding.inflate(inflater, container, false)
+        _binding = FragmentSignUpBinding.inflate(inflater, container, false).apply {
+            lifecycleOwner = viewLifecycleOwner
+            vm = viewModel
+        }
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupToolbar()
 
-        binding.apply {
-            vm = viewModel
-            lifecycleOwner = viewLifecycleOwner
-        }
+        setupToolbar(navController, binding.toolbar)
 
         setPasswordConfirmErrorMessage()
 
@@ -72,13 +73,6 @@ class SignUpFragment : DaggerFragment() {
         viewModel.passwordConfirmError.observe(viewLifecycleOwner) {
             binding.inputLayoutPasswordConfirm.error = it
         }
-    }
-
-    private fun setupToolbar() {
-        val navController = findNavController()
-        val appBarConfiguration = AppBarConfiguration(navController.graph)
-
-        binding.toolbar.setupWithNavController(navController, appBarConfiguration)
     }
 
     override fun onDestroyView() {
