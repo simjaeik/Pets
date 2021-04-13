@@ -8,11 +8,13 @@ import androidx.fragment.app.viewModels
 import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.FragmentAddMedicalBinding
 import dagger.android.support.DaggerFragment
+import javax.inject.Inject
 
 class AnimalDetailAddMedicalFragment : DaggerFragment() {
     private var _binding: FragmentAddMedicalBinding? = null
     private val binding get() = _binding!!
 
+    @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
     private val viewModel: AnimalDetailAddMedicalViewModel by viewModels { viewModelFactory }
@@ -24,6 +26,7 @@ class AnimalDetailAddMedicalFragment : DaggerFragment() {
     ): View {
         _binding = FragmentAddMedicalBinding.inflate(inflater, container, false).apply {
             lifecycleOwner = viewLifecycleOwner
+            vm = viewModel
         }
         return binding.root
     }

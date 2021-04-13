@@ -2,8 +2,9 @@ package com.lacuc.pets.ui.animal.detail
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import javax.inject.Inject
 
-class AnimalDetailAddMedicalViewModel : ViewModel() {
+class AnimalDetailAddMedicalViewModel @Inject constructor() : ViewModel() {
 
     val title = MutableLiveData<String>()
     val hospital = MutableLiveData<String>()
