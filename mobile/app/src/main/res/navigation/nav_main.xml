@@ -110,11 +110,19 @@
         <action
             android:id="@+id/action_animalDetailFragment_to_animalDetailAddMedicalFragment"
             app:destination="@id/animalDetailAddMedicalFragment" />
+        <action
+            android:id="@+id/action_animalDetailFragment_to_animalDetailAddMemoFragment"
+            app:destination="@id/animalDetailAddMemoFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/animalDetailAddMedicalFragment"
         android:name="com.lacuc.pets.ui.animal.detail.AnimalDetailAddMedicalFragment"
         tools:layout="@layout/fragment_add_medical" />
+
+    <fragment
+        android:id="@+id/animalDetailAddMemoFragment"
+        android:name="com.lacuc.pets.ui.animal.detail.AnimalDetailAddMemoFragment"
+        tools:layout="@layout/fragment_add_memo" />
 
 </navigation>

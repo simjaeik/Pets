@@ -113,6 +113,14 @@ class AnimalDetailFragment : DaggerFragment() {
                 }
             }
             2 -> {
+                binding.fabDetailAdd.hide()
+                binding.fabDetailAdd.setImageResource(R.drawable.ic_baseline_add_24)
+                binding.fabDetailAdd.show()
+                binding.fabDetailAdd.setOnClickListener {
+                    val action = AnimalDetailFragmentDirections
+                        .actionAnimalDetailFragmentToAnimalDetailAddMemoFragment()
+                    navController.navigate(action)
+                }
             }
         }
     }
