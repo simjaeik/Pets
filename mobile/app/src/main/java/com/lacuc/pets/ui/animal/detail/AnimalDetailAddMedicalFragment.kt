@@ -41,6 +41,10 @@ class AnimalDetailAddMedicalFragment : DaggerFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupToolbar()
+
+        viewModel.completeEvent.observe(viewLifecycleOwner) {
+            navController.navigateUp()
+        }
     }
 
     private fun setupToolbar() {
