@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.lacuc.pets.ui.animal.detail.AnimalDetailMedicalItem" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginVertical="8dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="4dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/tv_medical_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{item.title}"
+                    android:textAppearance="?textAppearanceHeadline6"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="중성화 수술" />
+
+                <TextView
+                    android:id="@+id/tv_medical_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{item.date}"
+                    android:textAppearance="?textAppearanceCaption"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_medical_hospital"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:text="21/04/03" />
+
+                <TextView
+                    android:id="@+id/tv_medical_hospital"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{item.hospital}"
+                    android:textAppearance="?textAppearanceCaption"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_medical_title"
+                    tools:text="장산 동물 병원" />
+
+                <TextView
+                    android:id="@+id/tv_medical_content"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@{item.content}"
+                    android:textAppearance="?textAppearanceBody2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_medical_hospital"
+                    tools:text="우주 돈까스 먹으러 가는날." />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+
+</layout>

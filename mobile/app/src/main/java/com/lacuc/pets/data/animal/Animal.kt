@@ -1,5 +1,9 @@
 package com.lacuc.pets.data.animal
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Animal(
     val gid: Int,
     val name: String,
@@ -10,4 +14,4 @@ data class Animal(
     val subspecies: String,
     val weight: Double,
     val number: String,
-)
+) : Parcelable

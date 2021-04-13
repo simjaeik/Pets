@@ -5,6 +5,9 @@ import androidx.lifecycle.ViewModelProvider
 import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.ui.animal.add.AddAnimalViewModel
 import com.lacuc.pets.ui.animal.choose.ChooseAnimalViewModel
+import com.lacuc.pets.ui.animal.detail.AnimalDetailAddMedicalViewModel
+import com.lacuc.pets.ui.animal.detail.AnimalDetailAddMemoViewModel
+import com.lacuc.pets.ui.animal.detail.AnimalDetailViewModel
 import com.lacuc.pets.ui.group.add.AddGroupViewModel
 import com.lacuc.pets.ui.group.choose.ChooseGroupViewModel
 import com.lacuc.pets.ui.login.signup.SignUpViewModel
@@ -48,4 +51,19 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(AddAnimalViewModel::class)
     abstract fun bindAddAnimalViewModel(viewModel: AddAnimalViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(AnimalDetailViewModel::class)
+    abstract fun bindAnimalDetailViewModel(viewModel: AnimalDetailViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(AnimalDetailAddMedicalViewModel::class)
+    abstract fun bindAnimalDetailAddMedicalViewModel(viewModel: AnimalDetailAddMedicalViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(AnimalDetailAddMemoViewModel::class)
+    abstract fun bindAnimalDetailAddMemoViewModel(viewModel: AnimalDetailAddMemoViewModel): ViewModel
 }

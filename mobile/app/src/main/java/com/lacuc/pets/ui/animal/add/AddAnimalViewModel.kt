@@ -49,4 +49,15 @@ class AddAnimalViewModel @Inject constructor(private val addAnimalUseCase: AddAn
         animalUpdated.value = true
     }
 
+    fun initData(animal: Animal) {
+        name.value = animal.name
+        image.value = animal.image
+        age.value = animal.age.toString()
+        sex.value = animal.sex
+        species.value = animal.species
+        subspecies.value = animal.subspecies
+        weight.value = animal.weight.toString()
+        number.value = animal.number
+    }
+
 }

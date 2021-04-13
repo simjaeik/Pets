@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.customview.widget.Openable
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
@@ -63,7 +62,9 @@ class ChooseAnimalFragment : DaggerFragment() {
         viewModel.loadGroups()
 
         viewModel.clickItem.observe(viewLifecycleOwner) {
-            Toast.makeText(context, "click: $it", Toast.LENGTH_SHORT).show()
+            val action =
+                ChooseAnimalFragmentDirections.actionChooseAnimalFragmentToAnimalDetailFragment(it.animal)
+            navController.navigate(action)
         }
     }
 
@@ -76,7 +77,7 @@ class ChooseAnimalFragment : DaggerFragment() {
 
         binding.toolbarChooseAnimal.setOnMenuItemClickListener {
             val action =
-                ChooseAnimalFragmentDirections.actionChooseAnimalFragmentToAddAnimalFragment()
+                ChooseAnimalFragmentDirections.actionChooseAnimalFragmentToAddAnimalFragment(null)
             navController.navigate(action)
             true
         }
