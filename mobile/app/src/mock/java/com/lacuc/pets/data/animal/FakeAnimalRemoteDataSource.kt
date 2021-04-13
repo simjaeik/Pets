@@ -56,4 +56,8 @@ class FakeAnimalRemoteDataSource @Inject constructor() : AnimalDataSource {
     override fun loadMedical(aid: Int): List<Medical> = medicalData[aid] ?: emptyList()
 
     override fun loadMemo(aid: Int): List<Memo> = memoData[aid] ?: emptyList()
+
+    override fun addMedical(medical: Medical) {
+        medicalData[1]?.add(medical)
+    }
 }

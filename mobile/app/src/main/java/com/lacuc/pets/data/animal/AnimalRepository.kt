@@ -9,4 +9,6 @@ interface AnimalRepository {
 
     fun loadMemo(aid: Int): List<Memo>
 
+    fun addMedical(medical: Medical)
+
 }

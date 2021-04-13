@@ -14,4 +14,8 @@ class DefaultAnimalRepository @Inject constructor(
     override fun loadMedical(aid: Int): List<Medical> = animalRemoteDataSource.loadMedical(aid)
 
     override fun loadMemo(aid: Int): List<Memo> = animalRemoteDataSource.loadMemo(aid)
+
+    override fun addMedical(medical: Medical) {
+        animalRemoteDataSource.addMedical(medical)
+    }
 }
