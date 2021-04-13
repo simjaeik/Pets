@@ -4,6 +4,9 @@
 
     <data>
 
+        <variable
+            name="vm"
+            type="com.lacuc.pets.ui.animal.detail.AnimalDetailAddMedicalViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -70,7 +73,8 @@
                     android:id="@+id/textInput_medicalTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:text="@={vm.title}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -91,7 +95,8 @@
                     android:id="@+id/textInput_medicalHospital"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:text="@={vm.hospital}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -112,7 +117,8 @@
                     android:id="@+id/textInput_medicalTime"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:text="@={vm.time}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -133,7 +139,8 @@
                     android:id="@+id/textInput_medicalContent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:text="@={vm.content}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
