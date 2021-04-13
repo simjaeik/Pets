@@ -62,6 +62,8 @@ class AnimalDetailFragment : DaggerFragment() {
             }
         }
 
+        viewModel.refresh()
+
         binding.tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 viewModel.switchItem(tab.position)

@@ -14,8 +14,8 @@ class AnimalDetailViewModel @Inject constructor(
     val detailItems = MutableLiveData<List<AnimalDetailItem>>()
 
     private lateinit var detailItem: List<AnimalDetailDetailItem>
-    private val medicalItem: List<AnimalDetailMedicalItem> by lazy { getMedicalUseCase(1) }
-    private val memoItem: List<AnimalDetailMemoItem> by lazy { getMemoUseCase(1) }
+    private lateinit var medicalItem: List<AnimalDetailMedicalItem>
+    private lateinit var memoItem: List<AnimalDetailMemoItem>
 
     fun initItem(item: AnimalDetailDetailItem) {
         if (detailItems.value.isNullOrEmpty()) {
@@ -30,5 +30,10 @@ class AnimalDetailViewModel @Inject constructor(
             1 -> detailItems.value = medicalItem
             2 -> detailItems.value = memoItem
         }
+    }
+
+    fun refresh() {
+        medicalItem = getMedicalUseCase(1)
+        memoItem = getMemoUseCase(1)
     }
 }
