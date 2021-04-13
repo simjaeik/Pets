@@ -3,7 +3,7 @@ package com.lacuc.pets.ui.animal.detail
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.lacuc.pets.data.animal.Medical
-import com.lacuc.pets.domain.animal.AddMedicalUseCase
+import com.lacuc.pets.domain.animal.medical.AddMedicalUseCase
 import com.lacuc.pets.util.SingleLiveEvent
 import com.lacuc.pets.util.safeValue
 import javax.inject.Inject

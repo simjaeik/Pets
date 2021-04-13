@@ -5,6 +5,10 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.lacuc.pets.BR
 import com.lacuc.pets.R
+import com.lacuc.pets.domain.animal.AnimalDetailDetailItem
+import com.lacuc.pets.domain.animal.AnimalDetailItem
+import com.lacuc.pets.domain.animal.AnimalDetailMedicalItem
+import com.lacuc.pets.domain.animal.AnimalDetailMemoItem
 import com.lacuc.pets.util.BindableAdapter
 import com.lacuc.pets.util.ViewBindingHolder
 

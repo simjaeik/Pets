@@ -1,4 +1,4 @@
-package com.lacuc.pets.domain.animal
+package com.lacuc.pets.domain.animal.animal
 
 import com.lacuc.pets.data.animal.Animal
 import com.lacuc.pets.data.animal.AnimalRepository

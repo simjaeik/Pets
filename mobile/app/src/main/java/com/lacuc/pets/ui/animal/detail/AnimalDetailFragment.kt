@@ -16,6 +16,7 @@ import com.google.android.material.tabs.TabLayout
 import com.lacuc.pets.R
 import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.FragmentAnimalDetailBinding
+import com.lacuc.pets.domain.animal.AnimalDetailDetailItem
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 

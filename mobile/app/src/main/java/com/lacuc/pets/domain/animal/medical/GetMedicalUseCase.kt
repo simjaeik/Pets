@@ -1,7 +1,7 @@
-package com.lacuc.pets.domain.animal
+package com.lacuc.pets.domain.animal.medical
 
 import com.lacuc.pets.data.animal.AnimalRepository
-import com.lacuc.pets.ui.animal.detail.AnimalDetailMedicalItem
+import com.lacuc.pets.domain.animal.AnimalDetailMedicalItem
 import javax.inject.Inject
 
 class GetMedicalUseCase @Inject constructor(private val repository: AnimalRepository) {

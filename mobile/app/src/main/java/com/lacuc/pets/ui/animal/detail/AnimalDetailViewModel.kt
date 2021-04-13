@@ -2,8 +2,12 @@ package com.lacuc.pets.ui.animal.detail
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.lacuc.pets.domain.animal.GetMedicalUseCase
-import com.lacuc.pets.domain.animal.GetMemoUseCase
+import com.lacuc.pets.domain.animal.AnimalDetailDetailItem
+import com.lacuc.pets.domain.animal.AnimalDetailItem
+import com.lacuc.pets.domain.animal.AnimalDetailMedicalItem
+import com.lacuc.pets.domain.animal.AnimalDetailMemoItem
+import com.lacuc.pets.domain.animal.medical.GetMedicalUseCase
+import com.lacuc.pets.domain.animal.memo.GetMemoUseCase
 import javax.inject.Inject
 
 class AnimalDetailViewModel @Inject constructor(

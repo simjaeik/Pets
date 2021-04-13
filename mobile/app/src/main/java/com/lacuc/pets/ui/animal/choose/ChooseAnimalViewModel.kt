@@ -3,7 +3,7 @@ package com.lacuc.pets.ui.animal.choose
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.lacuc.pets.domain.animal.AnimalItem
-import com.lacuc.pets.domain.animal.GetAnimalUseCase
+import com.lacuc.pets.domain.animal.animal.GetAnimalUseCase
 import com.lacuc.pets.util.SingleLiveEvent
 import javax.inject.Inject
 

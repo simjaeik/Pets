@@ -1,4 +1,4 @@
-package com.lacuc.pets.domain.animal
+package com.lacuc.pets.domain.animal.medical
 
 import com.lacuc.pets.data.animal.AnimalRepository
 import com.lacuc.pets.data.animal.Medical
