@@ -66,6 +66,10 @@ class AnimalDetailFragment : DaggerFragment() {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 viewModel.switchItem(tab.position)
                 setFabClickListener(tab.position)
+                navController.currentBackStackEntry?.savedStateHandle?.set(
+                    "TabPosition",
+                    tab.position
+                )
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
@@ -78,6 +82,10 @@ class AnimalDetailFragment : DaggerFragment() {
         setFabClickListener()
 
         viewModel.initItem(AnimalDetailDetailItem(args.animal))
+
+        val currentTabPosition =
+            navController.currentBackStackEntry?.savedStateHandle?.get<Int>("TabPosition") ?: 0
+        binding.tabs.getTabAt(currentTabPosition)?.select()
     }
 
     private fun setFabClickListener(position: Int = 0) {
