@@ -90,7 +90,7 @@
         android:id="@+id/addAnimalFragment"
         android:name="com.lacuc.pets.ui.animal.add.AddAnimalFragment"
         android:label="추가"
-        tools:layout="@layout/fragment_add_animal" >
+        tools:layout="@layout/fragment_add_animal">
         <argument
             android:name="animal"
             app:argType="com.lacuc.pets.data.animal.Animal"
@@ -101,13 +101,22 @@
         android:id="@+id/animalDetailFragment"
         android:name="com.lacuc.pets.ui.animal.detail.AnimalDetailFragment"
         android:label="fragment_animal_detail"
-        tools:layout="@layout/fragment_animal_detail" >
+        tools:layout="@layout/fragment_animal_detail">
         <argument
             android:name="animal"
             app:argType="com.lacuc.pets.data.animal.Animal" />
         <action
             android:id="@+id/action_animalDetailFragment_to_addAnimalFragment"
             app:destination="@id/addAnimalFragment" />
+        <action
+            android:id="@+id/action_animalDetailFragment_to_animalDetailAddMedicalFragment"
+            app:destination="@id/animalDetailAddMedicalFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/animalDetailAddMedicalFragment"
+        android:name="com.lacuc.pets.ui.animal.detail.AnimalDetailAddMedicalFragment"
+        android:label="AnimalDetailAddMedicalFragment"
+        tools:layout="@layout/fragment_add_medical" />
 
 </navigation>

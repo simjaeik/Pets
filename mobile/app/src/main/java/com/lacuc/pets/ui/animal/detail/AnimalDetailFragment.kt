@@ -13,6 +13,7 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayout
+import com.lacuc.pets.R
 import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.FragmentAnimalDetailBinding
 import dagger.android.support.DaggerFragment
@@ -82,6 +83,9 @@ class AnimalDetailFragment : DaggerFragment() {
     private fun setFabClickListener(position: Int = 0) {
         when (position) {
             0 -> {
+                binding.fabDetailAdd.hide()
+                binding.fabDetailAdd.setImageResource(R.drawable.ic_baseline_edit_24)
+                binding.fabDetailAdd.show()
                 binding.fabDetailAdd.setOnClickListener {
                     val action = AnimalDetailFragmentDirections
                         .actionAnimalDetailFragmentToAddAnimalFragment(args.animal)
@@ -89,6 +93,14 @@ class AnimalDetailFragment : DaggerFragment() {
                 }
             }
             1 -> {
+                binding.fabDetailAdd.hide()
+                binding.fabDetailAdd.setImageResource(R.drawable.ic_baseline_add_24)
+                binding.fabDetailAdd.show()
+                binding.fabDetailAdd.setOnClickListener {
+                    val action = AnimalDetailFragmentDirections
+                        .actionAnimalDetailFragmentToAnimalDetailAddMedicalFragment()
+                    navController.navigate(action)
+                }
             }
             2 -> {
             }
