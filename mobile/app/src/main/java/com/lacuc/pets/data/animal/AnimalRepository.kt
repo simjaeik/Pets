@@ -11,4 +11,6 @@ interface AnimalRepository {
 
     fun addMedical(medical: Medical)
 
+    fun addMemo(memo: Memo)
+
 }

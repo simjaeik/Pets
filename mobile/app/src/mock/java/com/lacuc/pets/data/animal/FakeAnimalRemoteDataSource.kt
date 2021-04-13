@@ -60,4 +60,8 @@ class FakeAnimalRemoteDataSource @Inject constructor() : AnimalDataSource {
     override fun addMedical(medical: Medical) {
         medicalData[1]?.add(medical)
     }
+
+    override fun addMemo(memo: Memo) {
+        memoData[1]?.add(memo)
+    }
 }

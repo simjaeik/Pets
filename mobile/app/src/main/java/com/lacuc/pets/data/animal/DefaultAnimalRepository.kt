@@ -18,4 +18,8 @@ class DefaultAnimalRepository @Inject constructor(
     override fun addMedical(medical: Medical) {
         animalRemoteDataSource.addMedical(medical)
     }
+
+    override fun addMemo(memo: Memo) {
+        animalRemoteDataSource.addMemo(memo)
+    }
 }
