@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>community.html</title>
+    <!--라이브러리-->
+    <link rel="stylesheet" href="../boot_css/bootstrap.min.css">
+    <link rel="stylesheet" href="../boot_css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--css 연결-->
+    <link rel="stylesheet" href="../boot_css/login.css">
+    <link rel="stylesheet" href="community.css"></style>
+    <!--javascript 파일 연결-->
+    <script src="community.js"></script>
+  </head>
+
+  <body>
+    
+    <!--상단바-->
+    <div class = "container-fluid">
+    
+        <div class="row">
+      
+            <!--pet title-->
+            <div class="item-fulid" id="title"> PETS</div>
+            <!--네비바-->
+            <div class="item-fulid" id="nav">
+                <ul>
+                    <li><a href="community.html" id="community">커뮤니티</a></li>
+                    <li><a href="../pets.html" >둘러보기</a></li>
+                    <li><a href="../pets.html" >관리</a></li>
+                </ul>
+            </div>
+            <!--글쓰기 버튼-->
+            <div class="item-fulid" id="writebtn">
+                <button type="button" class="btn btn-outline-primary btn-lg" onclick="location.href='../join/join.html'";>글쓰기</button>   
+            </div>  
+        </div>
+    </div>
+
+    <!--검색창-->
+    <div class = "container-fluid">
+
+        <div class="row" id="search">
+            
+            <div class="item-fulid">
+                <!--입력창-->
+                <div class="input-append">
+                    <input class="span5" id="appendedInputButton" type="text">
+                    <button type="button" class="btn" onclick="location.href='../join/join.html'";>검색</button>         
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    
+    <!--베스트 게시글-->
+    <div class = "container-fluid" >
+        
+        <!--베스트 게시글 title-->
+        <div class="item" id="write_type">
+            <div class='cover'>
+                <div>
+                    <i class="icon-star"></i> 베스트 게시글
+                </div>
+                <button type="button" class="btn btn-outline-danger" onclick="location.href='../pets.html'";>더보기</button>  
+            </div>
+        </div>
+
+        <!--베스트 게시글 내용-->
+        <div class="item" id="write_type">
+            <!--게시글1-->
+            <div class="cover">
+                <!--왼쪽 끝-->
+                <div>
+                    <i class="icon-tag"></i> 
+                    <text onclick="location.href='../pets.html'";>게시글제목1</text>
+                </div>
+                <!--오른쪽 끝-->
+                <div class="reaction">
+                    <i class="icon-heart"></i>4  <!--추천수-->
+                    <i class="icon-comment"></i>3 <!--댓글수-->
+                </div>
+            </div>
+            
+            <!--게시글2-->
+            <div class="cover">
+                <!--왼쪽 끝-->
+                <div>
+                    <i class="icon-tag"></i> 
+                    <text onclick="location.href='../pets.html'";>게시글제목2</text>
+                </div>
+                <!--오른쪽 끝-->
+                <div class="reaction">
+                    <i class="icon-heart"></i>4  <!--추천수-->
+                    <i class="icon-comment"></i>2 <!--댓글수-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--TIP 게시글, 후기 게시글-->
+    <div class = "container-fluid" id="tip_review">
+        
+        <!--tip 게시물-->
+        <div class="container" id="tip">
+            <!--tip 게시글 title-->
+            <div class="item" id="write_type">
+                <div class='cover'>
+                    <div>
+                        <i class="icon-star"></i> TIP 게시글
+                    </div>
+                    <button type="button" class="btn btn-outline-danger" onclick="location.href='../pets.html'">더보기</button>  
+                </div>
+            </div>
+     
+            <!--tip 게시글 내용-->
+            <div class="item" id="write_type">
+                <!--게시글1-->
+                <div class="cover">
+                    <!--왼쪽 끝-->
+                    <div>
+                        <i class="icon-tag"></i> 
+                        <text onclick="location.href='../pets.html'";>게시글제목1</text>
+                    </div>
+                    <!--오른쪽 끝-->
+                    <div class="reaction">
+                        <i class="icon-heart"></i>4  <!--추천수-->
+                        <i class="icon-comment"></i>3 <!--댓글수-->
+                    </div>
+                </div>
+                
+                <!--게시글2-->
+                <div class="cover">
+                    <!--왼쪽 끝-->
+                    <div>
+                        <i class="icon-tag"></i>
+                        <text onclick="location.href='../pets.html'";>게시글제목2</text>
+                    </div>
+                    <!--오른쪽 끝-->
+                    <div class="reaction">
+                        <i class="icon-heart"></i>4  <!--추천수-->
+                        <i class="icon-comment"></i>2 <!--댓글수-->
+                    </div>
+                </div>
+                
+                <!--게시글3-->
+                <div class="cover">
+                    <!--왼쪽 끝-->
+                    <div>
+                        <i class="icon-tag"></i>
+                        <text onclick="location.href='../pets.html'";>게시글제목3</text>
+                    </div>
+                    <!--오른쪽 끝-->
+                    <div class="reaction">
+                        <i class="icon-heart"></i>4  <!--추천수-->
+                        <i class="icon-comment"></i>2 <!--댓글수-->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!--후기 게시글 title-->
+        <div class="container"  id="review">
+            <div class="item" id="write_type">
+                <div class='cover'>
+                    <div>
+                        <i class="icon-star"></i> 후기 게시글
+                    </div>
+                    <button type="button" class="btn btn-outline-danger" onclick="location.href='../pets.html'";>더보기</button>  
+                </div>
+            </div>
+           
+           <!--후기 게시글 내용-->
+           <div class="item" id="write_type">
+            <!--게시글1-->
+            <div class="cover">
+                <!--왼쪽 끝-->
+                <div>
+                    <i class="icon-tag"></i> 
+                    <text onclick="location.href='../pets.html'";>게시글제목1</text>
+                </div>
+                <!--오른쪽 끝-->
+                <div class="reaction">
+                    <i class="icon-heart"></i>4  <!--추천수-->
+                    <i class="icon-comment"></i>3 <!--댓글수-->
+                </div>
+            </div>
+            
+            <!--게시글2-->
+            <div class="cover">
+                <!--왼쪽 끝-->
+                <div>
+                    <i class="icon-tag"></i> 
+                    <text onclick="location.href='../pets.html'";>게시글제목2</text>
+                </div>
+                <!--오른쪽 끝-->
+                <div class="reaction">
+                    <i class="icon-heart"></i>4  <!--추천수-->
+                    <i class="icon-comment"></i>2 <!--댓글수-->
+                </div>
+                </div>
+
+                <!--게시글3-->
+                <div class="cover">
+                    <!--왼쪽 끝-->
+                    <div>
+                        <i class="icon-tag"></i> 
+                        <text onclick="location.href='../pets.html'";>게시글제목3</text>
+                    </div>
+                    <!--오른쪽 끝-->
+                    <div class="reaction">
+                        <i class="icon-heart"></i>4  <!--추천수-->
+                        <i class="icon-comment"></i>2 <!--댓글수-->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--javascript-->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="../boot_js/bootstrap.min.js"></script>
+
+    </body>
+</html>
