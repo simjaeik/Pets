@@ -124,13 +124,13 @@ class AnimalDetailFragment : DaggerFragment() {
 
     private fun navToAddMedical() {
         val action = AnimalDetailFragmentDirections
-            .actionAnimalDetailFragmentToAnimalDetailAddMedicalFragment()
+            .actionAnimalDetailFragmentToAddMedicalFragment()
         navController.navigate(action)
     }
 
     private fun navToAddMemo() {
         val action = AnimalDetailFragmentDirections
-            .actionAnimalDetailFragmentToAnimalDetailAddMemoFragment()
+            .actionAnimalDetailFragmentToAddMemoFragment()
         navController.navigate(action)
     }
 

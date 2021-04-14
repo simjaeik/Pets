@@ -2,34 +2,8 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_main.xml"
-    app:startDestination="@id/signInFragment">
-
-    <fragment
-        android:id="@+id/signUpFragment"
-        android:name="com.lacuc.pets.ui.login.signup.SignUpFragment"
-        android:label="회원가입"
-        tools:layout="@layout/fragment_sign_up" />
-
-    <fragment
-        android:id="@+id/signInFragment"
-        android:name="com.lacuc.pets.ui.login.signin.SignInFragment"
-        tools:layout="@layout/fragment_sign_in">
-        <action
-            android:id="@+id/action_signInFragment_to_signUpFragment"
-            app:destination="@id/signUpFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
-        <action
-            android:id="@+id/action_signInFragment_to_chooseGroupFragment"
-            app:destination="@id/chooseGroupFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-    </fragment>
+    android:id="@+id/nav_manage.xml"
+    app:startDestination="@id/chooseGroupFragment">
 
     <fragment
         android:id="@+id/chooseGroupFragment"
@@ -108,20 +82,20 @@
             android:id="@+id/action_animalDetailFragment_to_addAnimalFragment"
             app:destination="@id/addAnimalFragment" />
         <action
-            android:id="@+id/action_animalDetailFragment_to_animalDetailAddMedicalFragment"
-            app:destination="@id/animalDetailAddMedicalFragment" />
+            android:id="@+id/action_animalDetailFragment_to_addMedicalFragment"
+            app:destination="@id/addMedicalFragment" />
         <action
-            android:id="@+id/action_animalDetailFragment_to_animalDetailAddMemoFragment"
-            app:destination="@id/animalDetailAddMemoFragment" />
+            android:id="@+id/action_animalDetailFragment_to_addMemoFragment"
+            app:destination="@id/addMemoFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/animalDetailAddMedicalFragment"
+        android:id="@+id/addMedicalFragment"
         android:name="com.lacuc.pets.ui.manage.animal.detail.medical.AddMedicalFragment"
         tools:layout="@layout/fragment_add_medical" />
 
     <fragment
-        android:id="@+id/animalDetailAddMemoFragment"
+        android:id="@+id/addMemoFragment"
         android:name="com.lacuc.pets.ui.manage.animal.detail.memo.AddMemoFragment"
         tools:layout="@layout/fragment_add_memo" />
 
