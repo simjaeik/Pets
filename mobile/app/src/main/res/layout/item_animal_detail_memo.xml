@@ -23,7 +23,7 @@
             app:cardElevation="4dp">
 
             <TextView
-                android:id="@+id/tv_memo_content"
+                android:id="@+id/tv_itemMemo_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"

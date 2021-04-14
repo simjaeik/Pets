@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.animal.add.AddAnimalFragment">
 
     <data>
 
@@ -17,7 +18,7 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/content_toolbar_addAnimal"
+            android:id="@+id/toolbarLayout_addAnimal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -38,7 +39,7 @@
                     tools:title="추가" />
 
                 <Button
-                    android:id="@+id/btn_complete_addAnimal"
+                    android:id="@+id/btn_addAnimal_complete"
                     style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -62,7 +63,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/content_toolbar_addAnimal">
+            app:layout_constraintTop_toBottomOf="@id/toolbarLayout_addAnimal">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -83,7 +84,7 @@
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/textInput_animalName"
+                        android:id="@+id/textInput_addAnimal_animalName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
@@ -135,7 +136,7 @@
                     app:suffixText="세">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/textInput_animalAge"
+                        android:id="@+id/textInput_addAnimal_animalAge"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"
@@ -157,7 +158,7 @@
                     android:layout_height="wrap_content">
 
                     <AutoCompleteTextView
-                        android:id="@+id/textInput_animalSex"
+                        android:id="@+id/textInput_addAnimal_animalSex"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="none"
@@ -179,7 +180,7 @@
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/textInput_animalSpecies"
+                        android:id="@+id/textInput_addAnimal_animalSpecies"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
@@ -201,7 +202,7 @@
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/textInput_animalSubspecies"
+                        android:id="@+id/textInput_addAnimal_animalSubspecies"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
@@ -224,7 +225,7 @@
                     app:suffixText="kg">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/textInput_animalWeight"
+                        android:id="@+id/textInput_addAnimal_animalWeight"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal"
@@ -246,7 +247,7 @@
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/textInput_animalNumber"
+                        android:id="@+id/textInput_addAnimal_animalNumber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"

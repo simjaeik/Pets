@@ -16,7 +16,7 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/content_toolbar_addMedical"
+            android:id="@+id/toolbarLayout_addMedical"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -36,7 +36,7 @@
                     app:titleTextColor="@color/black" />
 
                 <Button
-                    android:id="@+id/btn_complete_addMedical"
+                    android:id="@+id/btn_addMedical_complete"
                     style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
             android:paddingVertical="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/content_toolbar_addMedical">
+            app:layout_constraintTop_toBottomOf="@id/toolbarLayout_addMedical">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textInput_medicalTitle"
+                    android:id="@+id/textInput_addMedical_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
@@ -97,7 +97,7 @@
                 android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textInput_medicalHospital"
+                    android:id="@+id/textInput_addMedical_hospital"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
@@ -119,7 +119,7 @@
                 android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textInput_medicalTime"
+                    android:id="@+id/textInput_addMedical_time"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
@@ -141,7 +141,7 @@
                 android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textInput_medicalContent"
+                    android:id="@+id/textInput_addMedical_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
