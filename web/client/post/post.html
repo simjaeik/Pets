@@ -69,20 +69,43 @@
                 <div>
                     <div class="form-group input-group">
                         <span class="input-group-addon">게시글 제목</span>
-                        <input type="text" class="form-control">
-                        <span class="input-group-addon">작성자 닉네임</span>
-                        <input type="password" class="form-control">
+                        <input type="text" class="form-control" id="posttitle">
+                        <span class="input-group-addon" >작성자 닉네임</span>
+                        <input type="text" class="form-control" id="writername">
                     </div>                
                 </div>
 
             </div>
+            
         </div>
+
+        
     </div>
-    
+
+  
+    <!--입력칸-->
+    <div class = "container-fluid" id="firstcontainer">
+
+        <div class ="item" id="writebottom_type">
+            <!--네비바-->
+        
+                <!--오른쪽 끝-->
+                <div>
+                    <div class="form-group">
+                    <textarea class="input-group-addon" rows="10" cols="20" id="content" placeholder="내용을 입력해주세요" required></textarea>
+                    </div>
+                </div>
+
+            </div>   
+    </div>
+           
     <!--javascript-->
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="../boot_js/bootstrap.min.js"></script>
 
+    <div class="upload">
+        <button type="button" class="btn btn-outline-primary btn-lg" onclick="check_blank()";>올리기</button>   
+    </div>
 
     </body>
 </html>
