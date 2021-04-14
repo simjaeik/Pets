@@ -70,6 +70,59 @@
         <argument
             android:name="groupName"
             app:argType="string" />
+        <action
+            android:id="@+id/action_chooseAnimalFragment_to_addAnimalFragment"
+            app:destination="@id/addAnimalFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_chooseAnimalFragment_to_animalDetailFragment"
+            app:destination="@id/animalDetailFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
+
+    <fragment
+        android:id="@+id/addAnimalFragment"
+        android:name="com.lacuc.pets.ui.animal.add.AddAnimalFragment"
+        tools:layout="@layout/fragment_add_animal">
+        <argument
+            android:name="animal"
+            app:argType="com.lacuc.pets.data.animal.Animal"
+            app:nullable="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/animalDetailFragment"
+        android:name="com.lacuc.pets.ui.animal.detail.AnimalDetailFragment"
+        android:label="fragment_animal_detail"
+        tools:layout="@layout/fragment_animal_detail">
+        <argument
+            android:name="animal"
+            app:argType="com.lacuc.pets.data.animal.Animal" />
+        <action
+            android:id="@+id/action_animalDetailFragment_to_addAnimalFragment"
+            app:destination="@id/addAnimalFragment" />
+        <action
+            android:id="@+id/action_animalDetailFragment_to_animalDetailAddMedicalFragment"
+            app:destination="@id/animalDetailAddMedicalFragment" />
+        <action
+            android:id="@+id/action_animalDetailFragment_to_animalDetailAddMemoFragment"
+            app:destination="@id/animalDetailAddMemoFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/animalDetailAddMedicalFragment"
+        android:name="com.lacuc.pets.ui.animal.detail.AnimalDetailAddMedicalFragment"
+        tools:layout="@layout/fragment_add_medical" />
+
+    <fragment
+        android:id="@+id/animalDetailAddMemoFragment"
+        android:name="com.lacuc.pets.ui.animal.detail.AnimalDetailAddMemoFragment"
+        tools:layout="@layout/fragment_add_memo" />
 
 </navigation>

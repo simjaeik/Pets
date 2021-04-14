@@ -6,6 +6,8 @@ class AnimalItem(val animal: Animal, val clickListener: (AnimalItem) -> Unit) {
 
     fun getName() = animal.name
 
+    fun getSpecies() = animal.species
+
     fun getSubspecies() = animal.subspecies
 
     fun getImage() = animal.image
@@ -15,5 +17,7 @@ class AnimalItem(val animal: Animal, val clickListener: (AnimalItem) -> Unit) {
     fun getSex() = animal.sex
 
     fun getWeight() = animal.weight.toString()
+
+    fun getNumber() = animal.number
 
 }
