@@ -1,0 +1,96 @@
+body {
+    padding: 20px;
+    background-color: white;
+    font-family: "Noto Sans KR", Helvetica, sans-serif;
+  }
+  text:hover{
+      color:red;
+      cursor:default;
+  }
+  #icon{
+      width:50%;
+      height:50%;
+      color:white;
+  }
+  ul {
+      list-style-type: none;
+      margin:0;
+      padding:0;
+  }
+  li { float: left; }
+  li a {
+      display: block;
+      padding: 8px;
+      text-align: center;
+      color:#d6eaff;
+      font-weight: bold;
+      font-size: 150%;
+  }
+  textarea{
+      width: 100%;
+      height: 100%;
+  }
+  .container-fulid {
+      display: flex;
+      flex-direction: row;
+      margin: 4px;
+  }
+  .item-fulid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+  }
+  .item{
+      font-weight:bold;
+      font-size: 100%;
+      margin:20px;
+  }
+  .cover {
+      display: flex;
+      justify-content: space-between;
+  }
+  #title{
+      text-align: center;
+      color: #d6eaff;
+      width:10%;
+      font-size: 150%;
+  }
+  #nav{
+      width:40%;
+  } 
+  #search{
+      width:40%;
+  }
+  #writebtn{
+      width:10%;
+      font-size: 40px;
+  }
+  #icon{
+      width:5%;
+  }
+  #community{
+      color:#469efc;
+  }
+  #tip_review{
+    display: flex;
+  }
+  #review{
+      padding:0px 0px 0px 40px;
+  }
+  #write_type{
+    border-bottom-color:tomato;
+    border-bottom-style:outset;
+    border-width:1px 1px 3px 1px;
+    margin: 4px 4px 20px 4px;
+}
+#firstcontainer{
+    padding: 0px 0px 20px 0px;
+    margin: 0px 0px 20px 0px;
+}
+#writebottom_type{
+    border-bottom-color: blue;
+    border-bottom-style:dotted;
+    border-width:1px 1px 3px 1px;
+    margin: 4px 4px 20px 4px;
+}
