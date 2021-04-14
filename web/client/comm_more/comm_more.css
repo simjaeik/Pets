@@ -39,7 +39,7 @@ body {
   }
   .item{
       font-weight:bold;
-      font-size: 150%;
+      font-size: 100%;
       margin:20px;
   }
   .cover {
@@ -48,6 +48,11 @@ body {
   }
   .reaction{
       font-size:100%;
+  }
+  .more{
+      display:flex;
+      justify-content:center;
+      font-weight:bold;
   }
   #title{
       text-align: center;
@@ -89,5 +94,10 @@ body {
 #firstcontainer{
     padding: 0px 0px 20px 0px;
     margin: 0px 0px 20px 0px;
-
+}
+#writebottom_type{
+    border-bottom-color: blue;
+    border-bottom-style:dotted;
+    border-width:1px 1px 3px 1px;
+    margin: 4px 4px 20px 4px;
 }

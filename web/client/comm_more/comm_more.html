@@ -59,7 +59,7 @@
             <!--네비바-->
             <div class='cover'>
                 <!--왼쪽 끝-->
-                <div class="item-fulid" id="nav">
+                <div class="item-fulid">
                     <ul>
                         <li><a href="comm_more.html" id="community">베스트 게시글</a></li>
                         <li><a href="../pets.html" >TIP</a></li>
@@ -88,174 +88,87 @@
         </div>
     </div>
     
-    <div class = "container-fluid" >
+    <!--게시물1-->
+    <div class = "container-fluid" id="post1">
         
-        <!--베스트 게시글 title-->
-        <div class="item" id="write_type">
-            <div class='cover'>
-                <div>
-                    <i class="icon-star"></i> 베스트 게시글
-                </div>
-                <button type="button" class="btn btn-outline-danger" onclick="location.href='../pets.html'";>더보기</button>  
-            </div>
+        <!--게시물 제목-->
+        <div class="item" id="writebottom_type">
+           <text>게시물 제목1</text>
         </div>
 
-        <!--베스트 게시글 내용-->
+        <!-- 게시물 1 내용-->
+        <div class="item" >
+            <p>
+                게시물의 내용 게시물의 내용 게시물의 내용 게시물의 내용 게시물의 내용 게시물의 내용 게시물의 내용 게시물의 내용 게시물의 내용
+                게시물의 내용 게시물의 내용 게시물의 내용 게시물의 내용 게시물의 내용
+            </p>
+        </div>
+
+        <!-- 게시물 1 하단-->
         <div class="item" id="write_type">
-            <!--게시글1-->
             <div class="cover">
                 <!--왼쪽 끝-->
-                <div>
-                    <i class="icon-tag"></i> 
-                    <text onclick="location.href='../pets.html'";>게시글제목1</text>
-                </div>
+                <div>작성자 닉네임1</div>
+
                 <!--오른쪽 끝-->
-                <div class="reaction">
-                    <i class="icon-heart"></i>4  <!--추천수-->
-                    <i class="icon-comment"></i>3 <!--댓글수-->
-                </div>
-            </div>
-            
-            <!--게시글2-->
-            <div class="cover">
-                <!--왼쪽 끝-->
                 <div>
-                    <i class="icon-tag"></i> 
-                    <text onclick="location.href='../pets.html'";>게시글제목2</text>
-                </div>
-                <!--오른쪽 끝-->
-                <div class="reaction">
-                    <i class="icon-heart"></i>4  <!--추천수-->
-                    <i class="icon-comment"></i>2 <!--댓글수-->
+                    <!--조회수, 추천수, 댓글수-->
+                    <i class="icon-eye-open"></i> 3
+                    <i class="icon-heart"></i> 2
+                    <i class="icon-comment"></i> 4
+                    <!--시간-->
+                    <text>  1시간 전</text>
                 </div>
             </div>
         </div>
     </div>
 
-    <!--TIP 게시글, 후기 게시글-->
-    <div class = "container-fluid" id="tip_review">
+     <!--게시물2-->
+    <div class = "container-fluid" id="post2">
         
-        <!--tip 게시물-->
-        <div class="container" id="tip">
-            <!--tip 게시글 title-->
-            <div class="item" id="write_type">
-                <div class='cover'>
-                    <div>
-                        <i class="icon-star"></i> TIP 게시글
-                    </div>
-                    <button type="button" class="btn btn-outline-danger" onclick="location.href='../pets.html'">더보기</button>  
-                </div>
-            </div>
-     
-            <!--tip 게시글 내용-->
-            <div class="item" id="write_type">
-                <!--게시글1-->
-                <div class="cover">
-                    <!--왼쪽 끝-->
-                    <div>
-                        <i class="icon-tag"></i> 
-                        <text onclick="location.href='../pets.html'";>게시글제목1</text>
-                    </div>
-                    <!--오른쪽 끝-->
-                    <div class="reaction">
-                        <i class="icon-heart"></i>4  <!--추천수-->
-                        <i class="icon-comment"></i>3 <!--댓글수-->
-                    </div>
-                </div>
-                
-                <!--게시글2-->
-                <div class="cover">
-                    <!--왼쪽 끝-->
-                    <div>
-                        <i class="icon-tag"></i>
-                        <text onclick="location.href='../pets.html'";>게시글제목2</text>
-                    </div>
-                    <!--오른쪽 끝-->
-                    <div class="reaction">
-                        <i class="icon-heart"></i>4  <!--추천수-->
-                        <i class="icon-comment"></i>2 <!--댓글수-->
-                    </div>
-                </div>
-                
-                <!--게시글3-->
-                <div class="cover">
-                    <!--왼쪽 끝-->
-                    <div>
-                        <i class="icon-tag"></i>
-                        <text onclick="location.href='../pets.html'";>게시글제목3</text>
-                    </div>
-                    <!--오른쪽 끝-->
-                    <div class="reaction">
-                        <i class="icon-heart"></i>4  <!--추천수-->
-                        <i class="icon-comment"></i>2 <!--댓글수-->
-                    </div>
-                </div>
-
-            </div>
+        <!--게시물 제목-->
+        <div class="item" id="writebottom_type">
+           <text>게시물 제목2</text>
         </div>
 
-        <!--후기 게시글 title-->
-        <div class="container"  id="review">
-            <div class="item" id="write_type">
-                <div class='cover'>
-                    <div>
-                        <i class="icon-star"></i> 후기 게시글
-                    </div>
-                    <button type="button" class="btn btn-outline-danger" onclick="location.href='../pets.html'";>더보기</button>  
-                </div>
-            </div>
-           
-           <!--후기 게시글 내용-->
-           <div class="item" id="write_type">
-            <!--게시글1-->
+        <!-- 게시물 2 내용-->
+        <div class="item" >
+            <p>
+                게시물의 내용 게시물의 내용 게시물의 내용 게시물의 내용 게시물의 내용 게시물의 내용 게시물의 내용 게시물의 내용 게시물의 내용
+                게시물의 내용 게시물의 내용 게시물의 내용 게시물의 내용 게시물의 내용
+            </p>
+        </div>
+
+        <!-- 게시물 2 하단-->
+        <div class="item" id="write_type">
             <div class="cover">
                 <!--왼쪽 끝-->
-                <div>
-                    <i class="icon-tag"></i> 
-                    <text onclick="location.href='../pets.html'";>게시글제목1</text>
-                </div>
-                <!--오른쪽 끝-->
-                <div class="reaction">
-                    <i class="icon-heart"></i>4  <!--추천수-->
-                    <i class="icon-comment"></i>3 <!--댓글수-->
-                </div>
-            </div>
-            
-            <!--게시글2-->
-            <div class="cover">
-                <!--왼쪽 끝-->
-                <div>
-                    <i class="icon-tag"></i> 
-                    <text onclick="location.href='../pets.html'";>게시글제목2</text>
-                </div>
-                <!--오른쪽 끝-->
-                <div class="reaction">
-                    <i class="icon-heart"></i>4  <!--추천수-->
-                    <i class="icon-comment"></i>2 <!--댓글수-->
-                </div>
-                </div>
+                <div>작성자 닉네임2</div>
 
-                <!--게시글3-->
-                <div class="cover">
-                    <!--왼쪽 끝-->
-                    <div>
-                        <i class="icon-tag"></i> 
-                        <text onclick="location.href='../pets.html'";>게시글제목3</text>
-                    </div>
-                    <!--오른쪽 끝-->
-                    <div class="reaction">
-                        <i class="icon-heart"></i>4  <!--추천수-->
-                        <i class="icon-comment"></i>2 <!--댓글수-->
-                    </div>
+                <!--오른쪽 끝-->
+                <div>
+                    <!--조회수, 추천수, 댓글수-->
+                    <i class="icon-eye-open"></i> 3
+                    <i class="icon-heart"></i> 2
+                    <i class="icon-comment"></i> 4
+                    <!--시간-->
+                    <text>  1시간 전</text>
                 </div>
-
             </div>
         </div>
     </div>
-
+ 
+    <div id="post3"></div>
+    
+    <div class="more">
+        <text onclick="clonenode()">더보기</text>
+        <i class="icon-plus"></i>
+    </div>
+ 
     <!--javascript-->
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="../boot_js/bootstrap.min.js"></script>
+
 
     </body>
 </html>
