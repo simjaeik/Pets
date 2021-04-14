@@ -47,7 +47,7 @@ class AnimalDetailAddMemoFragment : DaggerFragment() {
 
     private fun setOnCompleteEventObserver() {
         viewModel.completeEvent.observe(viewLifecycleOwner) {
-            navController.previousBackStackEntry?.savedStateHandle?.set("onCompleteEvent", true)
+            navController.previousBackStackEntry?.savedStateHandle?.set("onCompleteEvent", 2)
             navController.navigateUp()
         }
     }

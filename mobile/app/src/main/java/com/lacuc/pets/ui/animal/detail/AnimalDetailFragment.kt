@@ -71,9 +71,9 @@ class AnimalDetailFragment : DaggerFragment() {
     private fun setOnCompleteObserver() {
         navController.currentBackStackEntry
             ?.savedStateHandle
-            ?.getLiveData<Boolean>("onCompleteEvent")
+            ?.getLiveData<Int>("onCompleteEvent")
             ?.observe(viewLifecycleOwner) {
-                viewModel.refresh()
+                viewModel.refresh(it)
             }
     }
 

@@ -6,7 +6,6 @@ import com.lacuc.pets.domain.animal.AnimalDetailDetailItem
 import com.lacuc.pets.domain.animal.AnimalDetailItem
 import com.lacuc.pets.domain.animal.medical.GetMedicalUseCase
 import com.lacuc.pets.domain.animal.memo.GetMemoUseCase
-import timber.log.Timber
 import javax.inject.Inject
 
 class AnimalDetailViewModel @Inject constructor(
@@ -35,9 +34,11 @@ class AnimalDetailViewModel @Inject constructor(
         }
     }
 
-    fun refresh() {
-        Timber.d("refresh")
-        medicalItem = getMedicalUseCase(1)
-        memoItem = getMemoUseCase(1)
+    fun refresh(position: Int) {
+        when (position) {
+            1 -> medicalItem = getMedicalUseCase(1)
+            2 -> memoItem = getMemoUseCase(1)
+        }
+        switchItem(position)
     }
 }
