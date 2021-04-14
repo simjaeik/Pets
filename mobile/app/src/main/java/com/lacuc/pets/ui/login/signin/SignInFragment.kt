@@ -33,7 +33,7 @@ class SignInFragment : Fragment() {
     }
 
     private fun setSignInListener() {
-        binding.btnSignIn.setOnClickListener {
+        binding.btnSignInSignIn.setOnClickListener {
             // TODO: 2021-04-02 API가 준비되면 로그인을 요청하고 결과값에 따라 이동해야 함.
             val action = SignInFragmentDirections.actionSignInFragmentToChooseGroupFragment()
             navController.navigate(action)
@@ -41,7 +41,7 @@ class SignInFragment : Fragment() {
     }
 
     private fun setSignUpListener() {
-        binding.btnSignUp.setOnClickListener {
+        binding.btnSignInSignUp.setOnClickListener {
             val action = SignInFragmentDirections.actionSignInFragmentToSignUpFragment()
             navController.navigate(action)
         }

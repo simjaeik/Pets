@@ -89,7 +89,7 @@ class ChooseAnimalFragment : DaggerFragment() {
     }
 
     private fun setupDrawer() {
-        binding.drawerChooseAnimal.setupWithNavController(navController)
+        binding.navDrawerChooseAnimal.setupWithNavController(navController)
     }
 
     override fun onDestroyView() {

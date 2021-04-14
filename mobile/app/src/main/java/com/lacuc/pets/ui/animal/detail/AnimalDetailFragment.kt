@@ -58,14 +58,14 @@ class AnimalDetailFragment : DaggerFragment() {
 
         setOnCompleteObserver()
 
-        binding.tabs.doOnTabSelectedListener {
+        binding.tabLayoutAnimalDetail.doOnTabSelectedListener {
             viewModel.switchItem(it.position)
             setFabClickListener(it.position)
             saveCurrentTabPosition(it)
         }
 
         val currentTabPosition = restorePreviousTabPosition()
-        binding.tabs.getTabAt(currentTabPosition)?.select()
+        binding.tabLayoutAnimalDetail.getTabAt(currentTabPosition)?.select()
     }
 
     private fun setOnCompleteObserver() {
@@ -81,7 +81,7 @@ class AnimalDetailFragment : DaggerFragment() {
         ?.savedStateHandle
         ?.get<Int>("TabPosition")
         ?: let {
-            binding.fabDetailAdd.setOnClickListener { navToEditAnimal() }
+            binding.fabAnimalDetail.setOnClickListener { navToEditAnimal() }
             0
         }
 
@@ -95,21 +95,21 @@ class AnimalDetailFragment : DaggerFragment() {
         when (position) {
             0 -> {
                 fabIconChange(R.drawable.ic_baseline_edit_24)
-                binding.fabDetailAdd.setOnClickListener { navToEditAnimal() }
+                binding.fabAnimalDetail.setOnClickListener { navToEditAnimal() }
             }
             1 -> {
                 fabIconChange(R.drawable.ic_baseline_add_24)
-                binding.fabDetailAdd.setOnClickListener { navToAddMedical() }
+                binding.fabAnimalDetail.setOnClickListener { navToAddMedical() }
             }
             2 -> {
                 fabIconChange(R.drawable.ic_baseline_add_24)
-                binding.fabDetailAdd.setOnClickListener { navToAddMemo() }
+                binding.fabAnimalDetail.setOnClickListener { navToAddMemo() }
             }
         }
     }
 
     private fun fabIconChange(@DrawableRes id: Int) {
-        binding.fabDetailAdd.apply {
+        binding.fabAnimalDetail.apply {
             hide()
             setImageResource(id)
             show()

@@ -44,7 +44,7 @@ class SignUpFragment : DaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.toolbar.setupWithNavController(navController)
+        binding.toolbarSignUp.setupWithNavController(navController)
 
         setPasswordConfirmErrorMessage()
 
@@ -54,10 +54,10 @@ class SignUpFragment : DaggerFragment() {
     private fun setCompleteBtnEnable() {
         disposables.add(
             viewModel.bindCompleteBtnEnable(
-                binding.textInputName.textChanges(),
-                binding.textInputEmail.textChanges(),
-                binding.textInputPassword.textChanges(),
-                binding.textInputPasswordConfirm.textChanges()
+                binding.textInputSignUpName.textChanges(),
+                binding.textInputSignUpEmail.textChanges(),
+                binding.textInputSignUpPassword.textChanges(),
+                binding.textInputSignUpPasswordConfirm.textChanges()
             )
         )
     }
@@ -65,13 +65,13 @@ class SignUpFragment : DaggerFragment() {
     private fun setPasswordConfirmErrorMessage() {
         disposables.add(
             viewModel.bindPasswordConfirmError(
-                binding.textInputPassword.textChanges(),
-                binding.textInputPasswordConfirm.textChanges()
+                binding.textInputSignUpPassword.textChanges(),
+                binding.textInputSignUpPasswordConfirm.textChanges()
             )
         )
 
         viewModel.passwordConfirmError.observe(viewLifecycleOwner) {
-            binding.inputLayoutPasswordConfirm.error = it
+            binding.textInputLayoutSignUpPasswordConfirm.error = it
         }
     }
 
