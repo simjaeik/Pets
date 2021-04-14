@@ -1,4 +1,4 @@
-package com.lacuc.pets.ui.animal.detail
+package com.lacuc.pets.ui.animal.detail.medical
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,7 +8,7 @@ import com.lacuc.pets.util.SingleLiveEvent
 import com.lacuc.pets.util.safeValue
 import javax.inject.Inject
 
-class AnimalDetailAddMedicalViewModel @Inject constructor(
+class AddMedicalViewModel @Inject constructor(
     val addMedicalUseCase: AddMedicalUseCase
 ) : ViewModel() {
 

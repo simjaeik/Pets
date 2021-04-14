@@ -117,12 +117,12 @@
 
     <fragment
         android:id="@+id/animalDetailAddMedicalFragment"
-        android:name="com.lacuc.pets.ui.animal.detail.AnimalDetailAddMedicalFragment"
+        android:name="com.lacuc.pets.ui.animal.detail.medical.AddMedicalFragment"
         tools:layout="@layout/fragment_add_medical" />
 
     <fragment
         android:id="@+id/animalDetailAddMemoFragment"
-        android:name="com.lacuc.pets.ui.animal.detail.AnimalDetailAddMemoFragment"
+        android:name="com.lacuc.pets.ui.animal.detail.memo.AddMemoFragment"
         tools:layout="@layout/fragment_add_memo" />
 
 </navigation>

@@ -2,13 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.animal.detail.AnimalDetailAddMedicalFragment">
+    tools:context=".ui.animal.detail.medical.AddMedicalFragment">
 
     <data>
 
         <variable
             name="vm"
-            type="com.lacuc.pets.ui.animal.detail.AnimalDetailAddMedicalViewModel" />
+            type="com.lacuc.pets.ui.animal.detail.medical.AddMedicalViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
