@@ -46,9 +46,6 @@ body {
       display: flex;
       justify-content: space-between;
   }
-  .reaction{
-      font-size:100%;
-  }
   #title{
       text-align: center;
       color: #d6eaff;
