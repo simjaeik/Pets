@@ -2,13 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.animal.detail.AnimalDetailFragment">
+    tools:context=".ui.manage.animal.detail.AnimalDetailFragment">
 
     <data>
 
         <variable
             name="vm"
-            type="com.lacuc.pets.ui.animal.detail.AnimalDetailViewModel" />
+            type="com.lacuc.pets.ui.manage.animal.detail.AnimalDetailViewModel" />
 
         <variable
             name="item"

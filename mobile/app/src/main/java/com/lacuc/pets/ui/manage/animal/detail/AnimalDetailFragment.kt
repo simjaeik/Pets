@@ -1,4 +1,4 @@
-package com.lacuc.pets.ui.animal.detail
+package com.lacuc.pets.ui.manage.animal.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater

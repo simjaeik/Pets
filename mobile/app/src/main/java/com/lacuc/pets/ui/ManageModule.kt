@@ -1,22 +1,17 @@
-package com.lacuc.pets
+package com.lacuc.pets.ui
 
-import com.lacuc.pets.ui.animal.add.AddAnimalFragment
-import com.lacuc.pets.ui.animal.choose.ChooseAnimalFragment
-import com.lacuc.pets.ui.animal.detail.AnimalDetailFragment
-import com.lacuc.pets.ui.animal.detail.medical.AddMedicalFragment
-import com.lacuc.pets.ui.animal.detail.memo.AddMemoFragment
-import com.lacuc.pets.ui.group.add.AddGroupFragment
-import com.lacuc.pets.ui.group.choose.ChooseGroupFragment
-import com.lacuc.pets.ui.login.signup.SignUpFragment
+import com.lacuc.pets.ui.manage.animal.add.AddAnimalFragment
+import com.lacuc.pets.ui.manage.animal.choose.ChooseAnimalFragment
+import com.lacuc.pets.ui.manage.animal.detail.AnimalDetailFragment
+import com.lacuc.pets.ui.manage.animal.detail.medical.AddMedicalFragment
+import com.lacuc.pets.ui.manage.animal.detail.memo.AddMemoFragment
+import com.lacuc.pets.ui.manage.group.add.AddGroupFragment
+import com.lacuc.pets.ui.manage.group.choose.ChooseGroupFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module
-abstract class MainModule {
-
-    @ContributesAndroidInjector
-    abstract fun getSignUpFragment(): SignUpFragment
-
+abstract class ManageModule {
     @ContributesAndroidInjector
     abstract fun getChooseGroupFragment(): ChooseGroupFragment
 

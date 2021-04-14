@@ -1,4 +1,4 @@
-package com.lacuc.pets.ui.animal.detail.medical
+package com.lacuc.pets.ui.manage.animal.detail.medical
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

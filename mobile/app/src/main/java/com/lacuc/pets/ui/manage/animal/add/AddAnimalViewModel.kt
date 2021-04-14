@@ -1,4 +1,4 @@
-package com.lacuc.pets.ui.animal.add
+package com.lacuc.pets.ui.manage.animal.add
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

@@ -1,4 +1,4 @@
-package com.lacuc.pets.ui.group.choose
+package com.lacuc.pets.ui.manage.group.choose
 
 import android.os.Bundle
 import android.view.LayoutInflater

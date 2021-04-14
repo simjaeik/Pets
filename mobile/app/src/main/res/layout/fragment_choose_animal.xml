@@ -2,13 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.animal.choose.ChooseAnimalFragment">
+    tools:context=".ui.manage.animal.choose.ChooseAnimalFragment">
 
     <data>
 
         <variable
             name="vm"
-            type="com.lacuc.pets.ui.animal.choose.ChooseAnimalViewModel" />
+            type="com.lacuc.pets.ui.manage.animal.choose.ChooseAnimalViewModel" />
     </data>
 
     <androidx.drawerlayout.widget.DrawerLayout

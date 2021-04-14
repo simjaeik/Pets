@@ -33,7 +33,7 @@
 
     <fragment
         android:id="@+id/chooseGroupFragment"
-        android:name="com.lacuc.pets.ui.group.choose.ChooseGroupFragment"
+        android:name="com.lacuc.pets.ui.manage.group.choose.ChooseGroupFragment"
         android:label="Group"
         tools:layout="@layout/fragment_choose_group">
         <action
@@ -54,7 +54,7 @@
 
     <fragment
         android:id="@+id/addGroupFragment"
-        android:name="com.lacuc.pets.ui.group.add.AddGroupFragment"
+        android:name="com.lacuc.pets.ui.manage.group.add.AddGroupFragment"
         android:label="{toolbar_title}"
         tools:layout="@layout/fragment_add_group">
         <argument
@@ -64,7 +64,7 @@
 
     <fragment
         android:id="@+id/chooseAnimalFragment"
-        android:name="com.lacuc.pets.ui.animal.choose.ChooseAnimalFragment"
+        android:name="com.lacuc.pets.ui.manage.animal.choose.ChooseAnimalFragment"
         android:label="{groupName}"
         tools:layout="@layout/fragment_choose_animal">
         <argument
@@ -88,7 +88,7 @@
 
     <fragment
         android:id="@+id/addAnimalFragment"
-        android:name="com.lacuc.pets.ui.animal.add.AddAnimalFragment"
+        android:name="com.lacuc.pets.ui.manage.animal.add.AddAnimalFragment"
         tools:layout="@layout/fragment_add_animal">
         <argument
             android:name="animal"
@@ -98,7 +98,7 @@
 
     <fragment
         android:id="@+id/animalDetailFragment"
-        android:name="com.lacuc.pets.ui.animal.detail.AnimalDetailFragment"
+        android:name="com.lacuc.pets.ui.manage.animal.detail.AnimalDetailFragment"
         android:label="fragment_animal_detail"
         tools:layout="@layout/fragment_animal_detail">
         <argument
@@ -117,12 +117,12 @@
 
     <fragment
         android:id="@+id/animalDetailAddMedicalFragment"
-        android:name="com.lacuc.pets.ui.animal.detail.medical.AddMedicalFragment"
+        android:name="com.lacuc.pets.ui.manage.animal.detail.medical.AddMedicalFragment"
         tools:layout="@layout/fragment_add_medical" />
 
     <fragment
         android:id="@+id/animalDetailAddMemoFragment"
-        android:name="com.lacuc.pets.ui.animal.detail.memo.AddMemoFragment"
+        android:name="com.lacuc.pets.ui.manage.animal.detail.memo.AddMemoFragment"
         tools:layout="@layout/fragment_add_memo" />
 
 </navigation>

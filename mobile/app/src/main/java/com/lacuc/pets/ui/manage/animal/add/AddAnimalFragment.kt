@@ -1,4 +1,4 @@
-package com.lacuc.pets.ui.animal.add
+package com.lacuc.pets.ui.manage.animal.add
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,9 +11,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.navigation.ui.setupWithNavController
 import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.FragmentAddAnimalBinding
+import com.lacuc.pets.util.setupWithNavController
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 

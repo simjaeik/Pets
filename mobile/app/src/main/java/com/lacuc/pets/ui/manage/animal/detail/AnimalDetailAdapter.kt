@@ -1,4 +1,4 @@
-package com.lacuc.pets.ui.animal.detail
+package com.lacuc.pets.ui.manage.animal.detail
 
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding

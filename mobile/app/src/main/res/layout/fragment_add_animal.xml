@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.animal.add.AddAnimalFragment">
+    tools:context=".ui.manage.animal.add.AddAnimalFragment">
 
     <data>
 
@@ -10,7 +10,7 @@
 
         <variable
             name="vm"
-            type="com.lacuc.pets.ui.animal.add.AddAnimalViewModel" />
+            type="com.lacuc.pets.ui.manage.animal.add.AddAnimalViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

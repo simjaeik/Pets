@@ -1,4 +1,4 @@
-package com.lacuc.pets.ui.animal.choose
+package com.lacuc.pets.ui.manage.animal.choose
 
 import android.os.Bundle
 import android.view.LayoutInflater
