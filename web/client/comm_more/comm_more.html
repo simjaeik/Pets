@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>comm_more.html</title>
+    <!--라이브러리-->
+    <link rel="stylesheet" href="../boot_css/bootstrap.min.css">
+    <link rel="stylesheet" href="../boot_css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--css 연결-->
+    <link rel="stylesheet" href="../boot_css/login.css">
+    <link rel="stylesheet" href="comm_more.css"></style>
+    <!--javascript 파일 연결-->
+    <script src="comm_more.js"></script>
+  </head>
+
+  <body>
+    
+    <!--상단바-->
+    <div class = "container-fluid" id="firstcontainer">
+        
+        <div class="row">
+            <!--pet title-->
+            <div class="item-fulid" id="title">PETS</div>
+            <!--네비바-->
+            <div class="item-fulid" id="nav">
+                <ul>
+                    <li><a href="../community/community.html" id="community">커뮤니티</a></li>
+                    <li><a href="../pets.html" >둘러보기</a></li>
+                    <li><a href="../pets.html" >관리</a></li>
+                </ul>
+            </div>
+
+            <!--검색창-->
+            <div class="item-fulid" id="search">
+                <!--입력창-->
+                <div class="input-append">
+                    <input class="span4" id="appendedInputButton" type="text">
+                    <button type="button" class="btn" onclick="location.href='../join/join.html'";>검색</button>         
+                </div>
+            </div>
+
+            <!--글쓰기 버튼-->
+            <div class="item-fulid" id="writebtn">
+                <button type="button" class="btn btn-outline-primary btn-lg" onclick="location.href='../join/join.html'";>글쓰기</button>   
+            </div>  
+        </div>
+    </div>
+
+    
+    <!--베스트,팁,후기,정렬-->
+    <div class = "container-fluid" id="firstcontainer">
+
+        <div class ="item" id="write_type">
+            <!--네비바-->
+            <div class='cover'>
+                <!--왼쪽 끝-->
+                <div class="item-fulid">
+                    <ul>
+                        <li><a href="comm_more.html" id="community">베스트 게시글</a></li>
+                        <li><a href="../pets.html" >TIP</a></li>
+                        <li><a href="../pets.html" >후기</a></li>
+                    </ul>
+                </div>
+                <!--오른쪽 끝-->
+                <div>
+                    <i class="icon-resize-vertical"></i>  <!--정렬 아이콘-->
+                    <div class="btn-group">
+                        
+                        <button class="btn"> 
+                            <text id="changesort1">추천순</text>
+                        </button>
+
+                        <button class="btn dropdown-toggle" data-toggle="dropdown"></button>
+                        <ul class="dropdown-menu">
+                            <button class="dropdown-item" onclick="changeSort()" href="#">
+                                <text id="changesort2">시간순</text>
+                            </button>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+    <!--게시물1-->
+    <div class = "container-fluid" id="post1">
+        
+        <!--게시물 제목-->
+        <div class="item" id="writebottom_type">
+           <text>게시물 제목1</text>
+        </div>
+
+        <!-- 게시물 1 내용-->
+        <div class="item" >
+            <p>
+                게시물의 내용 게시물의 내용 게시물의 내용 게시물의 내용 게시물의 내용 게시물의 내용 게시물의 내용 게시물의 내용 게시물의 내용
+                게시물의 내용 게시물의 내용 게시물의 내용 게시물의 내용 게시물의 내용
+            </p>
+        </div>
+
+        <!-- 게시물 1 하단-->
+        <div class="item" id="write_type">
+            <div class="cover">
+                <!--왼쪽 끝-->
+                <div>작성자 닉네임1</div>
+
+                <!--오른쪽 끝-->
+                <div>
+                    <!--조회수, 추천수, 댓글수-->
+                    <i class="icon-eye-open"></i> 3
+                    <i class="icon-heart"></i> 2
+                    <i class="icon-comment"></i> 4
+                    <!--시간-->
+                    <text>  1시간 전</text>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <!--게시물2-->
+    <div class = "container-fluid" id="post2">
+        
+        <!--게시물 제목-->
+        <div class="item" id="writebottom_type">
+           <text>게시물 제목2</text>
+        </div>
+
+        <!-- 게시물 2 내용-->
+        <div class="item" >
+            <p>
+                게시물의 내용 게시물의 내용 게시물의 내용 게시물의 내용 게시물의 내용 게시물의 내용 게시물의 내용 게시물의 내용 게시물의 내용
+                게시물의 내용 게시물의 내용 게시물의 내용 게시물의 내용 게시물의 내용
+            </p>
+        </div>
+
+        <!-- 게시물 2 하단-->
+        <div class="item" id="write_type">
+            <div class="cover">
+                <!--왼쪽 끝-->
+                <div>작성자 닉네임2</div>
+
+                <!--오른쪽 끝-->
+                <div>
+                    <!--조회수, 추천수, 댓글수-->
+                    <i class="icon-eye-open"></i> 3
+                    <i class="icon-heart"></i> 2
+                    <i class="icon-comment"></i> 4
+                    <!--시간-->
+                    <text>  1시간 전</text>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+    <div id="post3"></div>
+    
+    <div class="more">
+        <text onclick="clonenode()">더보기</text>
+        <i class="icon-plus"></i>
+    </div>
+ 
+    <!--javascript-->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="../boot_js/bootstrap.min.js"></script>
+
+
+    </body>
+</html>
+
+
