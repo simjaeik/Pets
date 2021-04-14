@@ -13,10 +13,10 @@ class AnimalDetailAddMemoViewModel @Inject constructor(val addMemoUseCase: AddMe
 
     val content = MutableLiveData("")
 
-    val completeEvent = SingleLiveEvent<Boolean>()
+    val completeEvent = SingleLiveEvent<Unit>()
 
     fun onCompleteClick() {
         addMemoUseCase(Memo(content.safeValue))
-        completeEvent.value = true
+        completeEvent.value = Unit
     }
 }

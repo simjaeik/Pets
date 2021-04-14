@@ -12,7 +12,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.lacuc.pets.R
 import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.FragmentChooseGroupBinding
-import com.lacuc.pets.util.DefaultLayoutManager
+import com.lacuc.pets.util.setup
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
@@ -44,14 +44,14 @@ class ChooseGroupFragment : DaggerFragment() {
 
         setupToolbar()
 
-        setupRecyclerView()
+        binding.recyclerViewChooseGroup.setup(ChooseGroupAdapter())
 
-        viewModel.loadGroups()
+        setGroupClickEventObserver()
 
-        setItemClickObserver()
+        setOnCompleteObserver()
     }
 
-    private fun setItemClickObserver() {
+    private fun setGroupClickEventObserver() {
         viewModel.groupClickEvent.observe(viewLifecycleOwner) {
             val action = ChooseGroupFragmentDirections
                 .actionChooseGroupFragmentToChooseAnimalFragment(it.name)
@@ -59,11 +59,13 @@ class ChooseGroupFragment : DaggerFragment() {
         }
     }
 
-    private fun setupRecyclerView() {
-        binding.recyclerViewChooseGroup.apply {
-            adapter = ChooseGroupAdapter()
-            layoutManager = DefaultLayoutManager(context)
-        }
+    private fun setOnCompleteObserver() {
+        navController.currentBackStackEntry
+            ?.savedStateHandle
+            ?.getLiveData<Boolean>("onCompleteEvent")
+            ?.observe(viewLifecycleOwner) {
+                viewModel.loadGroups()
+            }
     }
 
     private fun setupToolbar() {

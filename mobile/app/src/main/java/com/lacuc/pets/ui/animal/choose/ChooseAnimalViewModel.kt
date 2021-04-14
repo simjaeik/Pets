@@ -13,11 +13,15 @@ class ChooseAnimalViewModel @Inject constructor(
 
     val animalItems = MutableLiveData<List<AnimalItem>>()
 
-    val clickItem = SingleLiveEvent<AnimalItem>()
+    val animalClickEvent = SingleLiveEvent<AnimalItem>()
+
+    init {
+        loadGroups()
+    }
 
     fun loadGroups() {
         animalItems.value = getAnimalUseCase(1) {
-            clickItem.value = it
+            animalClickEvent.value = it
         }
     }
 }

@@ -11,7 +11,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.FragmentAddAnimalBinding
@@ -19,6 +18,7 @@ import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
 class AddAnimalFragment : DaggerFragment() {
+
     private var _binding: FragmentAddAnimalBinding? = null
     private val binding get() = _binding!!
 
@@ -29,14 +29,12 @@ class AddAnimalFragment : DaggerFragment() {
 
     private val navController: NavController by lazy { findNavController() }
 
-    private val requestActivity =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            it.data?.let { intent ->
-                viewModel.setImage(intent.dataString)
-            }
-        }
-
     private val args: AddAnimalFragmentArgs by navArgs()
+
+    private val requestImageLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            it.data?.let { intent -> viewModel.setImage(intent.dataString) }
+        }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,27 +51,27 @@ class AddAnimalFragment : DaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupToolbar()
+        binding.toolbarAddAnimal.setupWithNavController(navController)
 
-        if (savedInstanceState == null) {
-            args.animal?.let {
-                viewModel.initData(it)
-            }
-        }
+        viewModel.initData(args.animal)
 
         binding.btnAddAnimalPickImage.setOnClickListener {
-            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
-            requestActivity.launch(intent)
+            requestImage()
         }
 
-        viewModel.animalUpdated.observe(viewLifecycleOwner) {
+        setOnCompleteEventObserver()
+    }
+
+    private fun setOnCompleteEventObserver() {
+        viewModel.completeEvent.observe(viewLifecycleOwner) {
+            navController.previousBackStackEntry?.savedStateHandle?.set("onCompleteEvent", true)
             navController.navigateUp()
         }
     }
 
-    private fun setupToolbar() {
-        val appBarConfiguration = AppBarConfiguration(navController.graph)
-        binding.toolbarAddAnimal.setupWithNavController(navController, appBarConfiguration)
+    private fun requestImage() {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+        requestImageLauncher.launch(intent)
     }
 
     override fun onDestroyView() {

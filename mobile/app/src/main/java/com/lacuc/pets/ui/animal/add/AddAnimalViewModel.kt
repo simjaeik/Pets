@@ -8,25 +8,20 @@ import com.lacuc.pets.util.SingleLiveEvent
 import com.lacuc.pets.util.safeValue
 import javax.inject.Inject
 
-class AddAnimalViewModel @Inject constructor(private val addAnimalUseCase: AddAnimalUseCase) :
-    ViewModel() {
+class AddAnimalViewModel @Inject constructor(
+    private val addAnimalUseCase: AddAnimalUseCase
+) : ViewModel() {
+
     val name = MutableLiveData("")
-
     val image = MutableLiveData("")
-
     val age = MutableLiveData<String>()
-
     val sex = MutableLiveData("")
-
     val species = MutableLiveData("")
-
     val subspecies = MutableLiveData("")
-
     val weight = MutableLiveData<String>()
-
     val number = MutableLiveData("")
 
-    val animalUpdated = SingleLiveEvent<Boolean>()
+    val completeEvent = SingleLiveEvent<Unit>()
 
     fun setImage(dataString: String?) {
         image.value = dataString
@@ -46,10 +41,13 @@ class AddAnimalViewModel @Inject constructor(private val addAnimalUseCase: AddAn
                 number.safeValue
             )
         )
-        animalUpdated.value = true
+        completeEvent.value = Unit
     }
 
-    fun initData(animal: Animal) {
+    fun initData(animal: Animal?) {
+        if (animal == null)
+            return
+
         name.value = animal.name
         image.value = animal.image
         age.value = animal.age.toString()

@@ -10,10 +10,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupWithNavController
 import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.FragmentAddGroupBinding
+import com.lacuc.pets.util.setupWithNavController
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
@@ -22,18 +21,16 @@ class AddGroupFragment : DaggerFragment() {
     private var _binding: FragmentAddGroupBinding? = null
     private val binding get() = _binding!!
 
-    private val navController: NavController by lazy { findNavController() }
-
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
     private val viewModel: AddGroupViewModel by viewModels { viewModelFactory }
 
-    private val requestActivity =
+    private val navController: NavController by lazy { findNavController() }
+
+    private val requestImageLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            it.data?.let { intent ->
-                viewModel.setImage(intent.dataString)
-            }
+            it.data?.let { intent -> viewModel.setImage(intent.dataString) }
         }
 
     override fun onCreateView(
@@ -51,25 +48,29 @@ class AddGroupFragment : DaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.groupUpdated.observe(viewLifecycleOwner) {
-            navController.navigateUp()
-        }
+        binding.toolbarAddGroup.setupWithNavController(navController)
 
-        setupToolbar()
+        setOnCompleteEventObserver()
 
         binding.btnAddGroupPickImage.setOnClickListener {
-            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
-            requestActivity.launch(intent)
+            requestImage()
         }
     }
 
-    private fun setupToolbar() {
-        val appBarConfiguration = AppBarConfiguration(navController.graph)
-        binding.toolbarAddGroup.setupWithNavController(navController, appBarConfiguration)
+    private fun requestImage() {
+        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+        requestImageLauncher.launch(intent)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    private fun setOnCompleteEventObserver() {
+        viewModel.completeEvent.observe(viewLifecycleOwner) {
+            navController.previousBackStackEntry?.savedStateHandle?.set("onCompleteEvent", true)
+            navController.navigateUp()
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding = null
     }
 }

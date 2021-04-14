@@ -12,21 +12,18 @@ class AddGroupViewModel @Inject constructor(private val addGroupUseCase: AddGrou
     ViewModel() {
 
     val name = MutableLiveData("")
-
     val info = MutableLiveData("")
-
     val image = MutableLiveData("")
-
     val isShare = MutableLiveData(false)
 
-    val groupUpdated = SingleLiveEvent<Boolean>()
+    val completeEvent = SingleLiveEvent<Unit>()
 
     fun saveGroup() {
         addGroupUseCase(
             "tempUser@lacuc.com",
             Group(name.safeValue, info.safeValue, image.safeValue, isShare.safeValue)
         )
-        groupUpdated.value = true
+        completeEvent.value = Unit
     }
 
     fun setImage(dataString: String?) {

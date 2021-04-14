@@ -8,15 +8,16 @@ import com.lacuc.pets.util.SingleLiveEvent
 import com.lacuc.pets.util.safeValue
 import javax.inject.Inject
 
-class AnimalDetailAddMedicalViewModel @Inject constructor(val addMedicalUseCase: AddMedicalUseCase) :
-    ViewModel() {
+class AnimalDetailAddMedicalViewModel @Inject constructor(
+    val addMedicalUseCase: AddMedicalUseCase
+) : ViewModel() {
 
     val title = MutableLiveData("")
     val hospital = MutableLiveData("")
     val time = MutableLiveData("")
     val content = MutableLiveData("")
 
-    val completeEvent = SingleLiveEvent<Boolean>()
+    val completeEvent = SingleLiveEvent<Unit>()
 
     fun onCompleteClick() {
         addMedicalUseCase(
@@ -27,6 +28,6 @@ class AnimalDetailAddMedicalViewModel @Inject constructor(val addMedicalUseCase:
                 hospital.safeValue
             )
         )
-        completeEvent.value = true
+        completeEvent.value = Unit
     }
 }

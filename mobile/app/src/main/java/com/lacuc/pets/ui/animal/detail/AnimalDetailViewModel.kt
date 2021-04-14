@@ -4,10 +4,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.lacuc.pets.domain.animal.AnimalDetailDetailItem
 import com.lacuc.pets.domain.animal.AnimalDetailItem
-import com.lacuc.pets.domain.animal.AnimalDetailMedicalItem
-import com.lacuc.pets.domain.animal.AnimalDetailMemoItem
 import com.lacuc.pets.domain.animal.medical.GetMedicalUseCase
 import com.lacuc.pets.domain.animal.memo.GetMemoUseCase
+import timber.log.Timber
 import javax.inject.Inject
 
 class AnimalDetailViewModel @Inject constructor(
@@ -18,8 +17,8 @@ class AnimalDetailViewModel @Inject constructor(
     val detailItems = MutableLiveData<List<AnimalDetailItem>>()
 
     private lateinit var detailItem: List<AnimalDetailDetailItem>
-    private lateinit var medicalItem: List<AnimalDetailMedicalItem>
-    private lateinit var memoItem: List<AnimalDetailMemoItem>
+    private var medicalItem = getMedicalUseCase(1)
+    private var memoItem = getMemoUseCase(1)
 
     fun initItem(item: AnimalDetailDetailItem) {
         if (detailItems.value.isNullOrEmpty()) {
@@ -37,6 +36,7 @@ class AnimalDetailViewModel @Inject constructor(
     }
 
     fun refresh() {
+        Timber.d("refresh")
         medicalItem = getMedicalUseCase(1)
         memoItem = getMemoUseCase(1)
     }

@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.jakewharton.rxbinding4.widget.textChanges
 import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.FragmentSignUpBinding
-import com.lacuc.pets.util.setupToolbar
+import com.lacuc.pets.util.setupWithNavController
 import dagger.android.support.DaggerFragment
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import javax.inject.Inject
@@ -44,7 +44,7 @@ class SignUpFragment : DaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupToolbar(navController, binding.toolbar)
+        binding.toolbar.setupWithNavController(navController)
 
         setPasswordConfirmErrorMessage()
 

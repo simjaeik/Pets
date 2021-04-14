@@ -10,15 +10,15 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.lacuc.pets.R
 import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.FragmentChooseAnimalBinding
+import com.lacuc.pets.util.setup
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
 class ChooseAnimalFragment : DaggerFragment() {
+
     private var _binding: FragmentChooseAnimalBinding? = null
     private val binding get() = _binding!!
 
@@ -35,8 +35,8 @@ class ChooseAnimalFragment : DaggerFragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentChooseAnimalBinding.inflate(inflater, container, false).apply {
-            vm = viewModel
             lifecycleOwner = viewLifecycleOwner
+            vm = viewModel
         }
         return binding.root
     }
@@ -45,41 +45,46 @@ class ChooseAnimalFragment : DaggerFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupToolbar()
-
         setupDrawer()
 
-        binding.recyclerViewChooseAnimal.apply {
-            adapter = ChooseAnimalAdapter()
-            layoutManager = object : LinearLayoutManager(context) {
-                override fun generateDefaultLayoutParams(): RecyclerView.LayoutParams =
-                    RecyclerView.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT
-                    )
+        binding.recyclerViewChooseAnimal.setup(ChooseAnimalAdapter())
+
+        setOnClickEventObserver()
+
+        setOnCompleteObserver()
+    }
+
+    private fun setOnCompleteObserver() {
+        navController.currentBackStackEntry
+            ?.savedStateHandle
+            ?.getLiveData<Boolean>("onCompleteEvent")
+            ?.observe(viewLifecycleOwner) {
+                viewModel.loadGroups()
             }
-        }
+    }
 
-        viewModel.loadGroups()
-
-        viewModel.clickItem.observe(viewLifecycleOwner) {
-            val action =
-                ChooseAnimalFragmentDirections.actionChooseAnimalFragmentToAnimalDetailFragment(it.animal)
+    private fun setOnClickEventObserver() {
+        viewModel.animalClickEvent.observe(viewLifecycleOwner) {
+            val action = ChooseAnimalFragmentDirections
+                .actionChooseAnimalFragmentToAnimalDetailFragment(it.animal)
             navController.navigate(action)
         }
     }
 
     private fun setupToolbar() {
-        val appBarConfiguration =
-            AppBarConfiguration(setOf(R.id.chooseAnimalFragment), binding.root as Openable)
-        binding.toolbarChooseAnimal.setupWithNavController(navController, appBarConfiguration)
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(R.id.chooseAnimalFragment), binding.root as Openable
+        )
+        binding.toolbarChooseAnimal.apply {
+            setupWithNavController(navController, appBarConfiguration)
 
-        binding.toolbarChooseAnimal.inflateMenu(R.menu.menu_group)
-
-        binding.toolbarChooseAnimal.setOnMenuItemClickListener {
-            val action =
-                ChooseAnimalFragmentDirections.actionChooseAnimalFragmentToAddAnimalFragment(null)
-            navController.navigate(action)
-            true
+            inflateMenu(R.menu.menu_group)
+            setOnMenuItemClickListener {
+                val action = ChooseAnimalFragmentDirections
+                    .actionChooseAnimalFragmentToAddAnimalFragment(null)
+                navController.navigate(action)
+                true
+            }
         }
     }
 
