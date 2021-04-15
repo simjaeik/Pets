@@ -29,7 +29,7 @@
                 android:padding="16dp">
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/card_imageAnimal"
+                    android:id="@+id/card_itemAnimal_image"
                     android:layout_width="112dp"
                     android:layout_height="0dp"
                     app:cardCornerRadius="16dp"
@@ -55,7 +55,7 @@
                     android:text="@{item.name}"
                     android:textAppearance="?textAppearanceHeadline6"
                     android:textStyle="bold"
-                    app:layout_constraintStart_toEndOf="@id/card_imageAnimal"
+                    app:layout_constraintStart_toEndOf="@id/card_itemAnimal_image"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="우주" />
 
@@ -67,12 +67,12 @@
                     android:text="@{item.subspecies}"
                     android:textAppearance="?textAppearanceBody2"
                     android:textColor="@color/material_on_surface_emphasis_medium"
-                    app:layout_constraintStart_toEndOf="@id/card_imageAnimal"
+                    app:layout_constraintStart_toEndOf="@id/card_itemAnimal_image"
                     app:layout_constraintTop_toBottomOf="@id/tv_itemAnimal_name"
                     tools:text="노르웨이 숲 고양이" />
 
                 <LinearLayout
-                    android:id="@+id/content_age"
+                    android:id="@+id/layout_itemAnimal_ageCard"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -83,8 +83,8 @@
                     android:orientation="vertical"
                     android:paddingVertical="12dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/content_sex"
-                    app:layout_constraintStart_toEndOf="@id/card_imageAnimal">
+                    app:layout_constraintEnd_toStartOf="@id/layout_itemAnimal_sexCard"
+                    app:layout_constraintStart_toEndOf="@id/card_itemAnimal_image">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -102,7 +102,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/content_sex"
+                    android:id="@+id/layout_itemAnimal_sexCard"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
@@ -112,8 +112,8 @@
                     android:orientation="vertical"
                     android:paddingVertical="12dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/content_weight"
-                    app:layout_constraintStart_toEndOf="@id/content_age">
+                    app:layout_constraintEnd_toStartOf="@id/layout_itemAnimal_weightCard"
+                    app:layout_constraintStart_toEndOf="@id/layout_itemAnimal_ageCard">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -131,7 +131,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/content_weight"
+                    android:id="@+id/layout_itemAnimal_weightCard"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:background="@drawable/rect_stroke_rad16"
@@ -141,7 +141,7 @@
                     android:paddingVertical="12dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/content_sex">
+                    app:layout_constraintStart_toEndOf="@id/layout_itemAnimal_sexCard">
 
                     <TextView
                         android:layout_width="wrap_content"

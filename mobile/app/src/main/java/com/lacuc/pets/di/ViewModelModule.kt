@@ -3,14 +3,14 @@ package com.lacuc.pets.di
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.lacuc.pets.ViewModelFactory
-import com.lacuc.pets.ui.animal.add.AddAnimalViewModel
-import com.lacuc.pets.ui.animal.choose.ChooseAnimalViewModel
-import com.lacuc.pets.ui.animal.detail.AnimalDetailAddMedicalViewModel
-import com.lacuc.pets.ui.animal.detail.AnimalDetailAddMemoViewModel
-import com.lacuc.pets.ui.animal.detail.AnimalDetailViewModel
-import com.lacuc.pets.ui.group.add.AddGroupViewModel
-import com.lacuc.pets.ui.group.choose.ChooseGroupViewModel
 import com.lacuc.pets.ui.login.signup.SignUpViewModel
+import com.lacuc.pets.ui.manage.animal.add.AddAnimalViewModel
+import com.lacuc.pets.ui.manage.animal.choose.ChooseAnimalViewModel
+import com.lacuc.pets.ui.manage.animal.detail.AnimalDetailViewModel
+import com.lacuc.pets.ui.manage.animal.detail.medical.AddMedicalViewModel
+import com.lacuc.pets.ui.manage.animal.detail.memo.AddMemoViewModel
+import com.lacuc.pets.ui.manage.group.add.AddGroupViewModel
+import com.lacuc.pets.ui.manage.group.choose.ChooseGroupViewModel
 import dagger.Binds
 import dagger.MapKey
 import dagger.Module
@@ -59,11 +59,11 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(AnimalDetailAddMedicalViewModel::class)
-    abstract fun bindAnimalDetailAddMedicalViewModel(viewModel: AnimalDetailAddMedicalViewModel): ViewModel
+    @ViewModelKey(AddMedicalViewModel::class)
+    abstract fun bindAddMedicalViewModel(viewModel: AddMedicalViewModel): ViewModel
 
     @Binds
     @IntoMap
-    @ViewModelKey(AnimalDetailAddMemoViewModel::class)
-    abstract fun bindAnimalDetailAddMemoViewModel(viewModel: AnimalDetailAddMemoViewModel): ViewModel
+    @ViewModelKey(AddMemoViewModel::class)
+    abstract fun bindAddMemoViewModel(viewModel: AddMemoViewModel): ViewModel
 }

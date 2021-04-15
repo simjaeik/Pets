@@ -17,13 +17,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:id="@+id/content_login"
+        android:id="@+id/layout_signIn_input"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="20dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@id/btn_signIn"
+        app:layout_constraintBottom_toTopOf="@id/btn_signIn_signIn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -59,7 +59,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btn_signIn"
+        android:id="@+id/btn_signIn_signIn"
         style="@style/Widget.App.Button.Rounded"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -69,12 +69,12 @@
         android:paddingVertical="8dp"
         android:text="@string/signIn"
         android:textAppearance="?textAppearanceHeadline6"
-        app:layout_constraintBottom_toTopOf="@id/content_socialLogin"
-        app:layout_constraintEnd_toStartOf="@id/btn_signUp"
+        app:layout_constraintBottom_toTopOf="@id/layout_signIn_socialLogin"
+        app:layout_constraintEnd_toStartOf="@id/btn_signIn_signUp"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btn_signUp"
+        android:id="@+id/btn_signIn_signUp"
         style="@style/Widget.App.Button.Rounded"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -85,15 +85,15 @@
         android:text="@string/signUp"
         android:textAppearance="?textAppearanceHeadline6"
         android:textColor="?colorPrimary"
-        app:layout_constraintBottom_toTopOf="@id/content_socialLogin"
+        app:layout_constraintBottom_toTopOf="@id/layout_signIn_socialLogin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btn_signIn"
+        app:layout_constraintStart_toEndOf="@id/btn_signIn_signIn"
         app:rippleColor="?colorPrimary"
         app:strokeColor="?colorPrimary"
         app:strokeWidth="1dp" />
 
     <LinearLayout
-        android:id="@+id/content_socialLogin"
+        android:id="@+id/layout_signIn_socialLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
@@ -102,28 +102,28 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
-            android:id="@+id/btn_login_kakao"
+            android:id="@+id/btn_signIn_kakao"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:padding="10dp"
             android:src="@drawable/ic_login_kakao" />
 
         <ImageView
-            android:id="@+id/btn_login_naver"
+            android:id="@+id/btn_signIn_naver"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:padding="10dp"
             android:src="@drawable/ic_login_naver" />
 
         <ImageView
-            android:id="@+id/btn_login_google"
+            android:id="@+id/btn_signIn_google"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:padding="10dp"
             android:src="@drawable/ic_login_google" />
 
         <ImageView
-            android:id="@+id/btn_login_github"
+            android:id="@+id/btn_signIn_github"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:padding="10dp"

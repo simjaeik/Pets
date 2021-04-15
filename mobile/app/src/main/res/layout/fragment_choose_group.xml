@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.group.choose.ChooseGroupFragment">
+    tools:context=".ui.manage.group.choose.ChooseGroupFragment">
 
     <data>
 
@@ -10,7 +10,7 @@
 
         <variable
             name="vm"
-            type="com.lacuc.pets.ui.group.choose.ChooseGroupViewModel" />
+            type="com.lacuc.pets.ui.manage.group.choose.ChooseGroupViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,7 +18,7 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/content_toolbar_chooseGroup"
+            android:id="@+id/toolbarLayout_chooseGroup"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -44,7 +44,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/content_toolbar_chooseGroup"
+            app:layout_constraintTop_toBottomOf="@id/toolbarLayout_chooseGroup"
             tools:listitem="@layout/item_group" />
 
         <TextView
@@ -56,7 +56,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/content_toolbar_chooseGroup"
+            app:layout_constraintTop_toBottomOf="@id/toolbarLayout_chooseGroup"
             tools:visibility="gone" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

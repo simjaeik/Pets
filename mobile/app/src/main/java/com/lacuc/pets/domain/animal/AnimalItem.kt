@@ -3,21 +3,12 @@ package com.lacuc.pets.domain.animal
 import com.lacuc.pets.data.animal.Animal
 
 class AnimalItem(val animal: Animal, val clickListener: (AnimalItem) -> Unit) {
-
-    fun getName() = animal.name
-
-    fun getSpecies() = animal.species
-
-    fun getSubspecies() = animal.subspecies
-
-    fun getImage() = animal.image
-
-    fun getAge() = "${animal.age}세"
-
-    fun getSex() = animal.sex
-
-    fun getWeight() = animal.weight.toString()
-
-    fun getNumber() = animal.number
-
+    val name = animal.name
+    val species = animal.species
+    val subspecies = animal.subspecies
+    val image = animal.image
+    val age = "${animal.age}세"
+    val sex = animal.sex
+    val weight = animal.weight.toString()
+    val number = animal.number
 }

@@ -2,13 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.animal.detail.AnimalDetailFragment">
+    tools:context=".ui.manage.animal.detail.AnimalDetailFragment">
 
     <data>
 
         <variable
             name="vm"
-            type="com.lacuc.pets.ui.animal.detail.AnimalDetailViewModel" />
+            type="com.lacuc.pets.ui.manage.animal.detail.AnimalDetailViewModel" />
 
         <variable
             name="item"
@@ -20,7 +20,7 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/content_toolbar_animalDetail"
+            android:id="@+id/toolbarLayout_animalDetail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -61,7 +61,7 @@
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
             <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabs"
+                android:id="@+id/tabLayout_animalDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:tabMode="fixed">
@@ -93,7 +93,7 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_detail_add"
+            android:id="@+id/fab_animalDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"

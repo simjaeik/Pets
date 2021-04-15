@@ -2,13 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.animal.detail.AnimalDetailAddMemoFragment">
+    tools:context=".ui.manage.animal.detail.memo.AddMemoFragment">
 
     <data>
 
         <variable
             name="vm"
-            type="com.lacuc.pets.ui.animal.detail.AnimalDetailAddMemoViewModel" />
+            type="com.lacuc.pets.ui.manage.animal.detail.memo.AddMemoViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,7 +16,7 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/content_toolbar_addMemo"
+            android:id="@+id/toolbarLayout_addMemo"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -36,7 +36,7 @@
                     app:titleTextColor="@color/black" />
 
                 <Button
-                    android:id="@+id/btn_complete_addMemo"
+                    android:id="@+id/btn_addMemo_complete"
                     style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -60,7 +60,7 @@
             android:paddingVertical="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/content_toolbar_addMemo">
+            app:layout_constraintTop_toBottomOf="@id/toolbarLayout_addMemo">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textInput_memoContent"
+                    android:id="@+id/textInput_addMemo_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textMultiLine"

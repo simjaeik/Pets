@@ -10,10 +10,11 @@ import androidx.navigation.fragment.findNavController
 import com.lacuc.pets.databinding.FragmentSignInBinding
 
 class SignInFragment : Fragment() {
+
     private var _binding: FragmentSignInBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var navController: NavController
+    private val navController: NavController by lazy { findNavController() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,19 +22,28 @@ class SignInFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSignInBinding.inflate(inflater, container, false)
-        navController = findNavController()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.btnSignUp.setOnClickListener {
-            val action = SignInFragmentDirections.actionSignInFragmentToSignUpFragment()
-            navController.navigate(action)
-        }
-        binding.btnSignIn.setOnClickListener {
+
+        setSignUpListener()
+        setSignInListener()
+    }
+
+    private fun setSignInListener() {
+        binding.btnSignInSignIn.setOnClickListener {
             // TODO: 2021-04-02 API가 준비되면 로그인을 요청하고 결과값에 따라 이동해야 함.
-            val action = SignInFragmentDirections.actionSignInFragmentToChooseGroupFragment()
+            val action = SignInFragmentDirections.actionSignInFragmentToMainActivity()
+            navController.navigate(action)
+            requireActivity().finish()
+        }
+    }
+
+    private fun setSignUpListener() {
+        binding.btnSignInSignUp.setOnClickListener {
+            val action = SignInFragmentDirections.actionSignInFragmentToSignUpFragment()
             navController.navigate(action)
         }
     }
