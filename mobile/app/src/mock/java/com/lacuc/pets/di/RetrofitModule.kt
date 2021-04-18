@@ -23,8 +23,18 @@ class RetrofitModule {
     @Provides
     @Reusable
     fun provideLoginService() = object : LoginService {
-        override fun signUp(param: Map<String, String>): Boolean = true
-
         override fun signIn(param: Map<String, String>): Boolean = true
+
+        override fun checkUserInfo(userID: String, userPW: String) {
+            TODO("Not yet implemented")
+        }
+
+        override fun isIDExist(id: Int) {
+            TODO("Not yet implemented")
+        }
+
+        override fun signUp(signUpParams: Map<String, String>) {
+            TODO("Not yet implemented")
+        }
     }
 }
