@@ -1,6 +1,6 @@
 package com.lacuc.pets.domain.group
 
-import com.lacuc.pets.data.group.Group
+import com.lacuc.pets.data.group.entity.Group
 
 class GroupItem(group: Group, val clickListener: (GroupItem) -> Unit) {
     val name = group.name

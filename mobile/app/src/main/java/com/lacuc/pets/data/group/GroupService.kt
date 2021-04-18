@@ -1,6 +1,6 @@
-package com.lacuc.pets.data
+package com.lacuc.pets.data.group
 
-import com.lacuc.pets.data.group.Group
+import com.lacuc.pets.data.group.entity.Group
 import retrofit2.http.*
 
 interface GroupService {

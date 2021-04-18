@@ -2,7 +2,7 @@ package com.lacuc.pets.ui.manage.group.add
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.lacuc.pets.data.group.Group
+import com.lacuc.pets.data.group.entity.Group
 import com.lacuc.pets.domain.group.AddGroupUseCase
 import com.lacuc.pets.util.SingleLiveEvent
 import com.lacuc.pets.util.safeValue

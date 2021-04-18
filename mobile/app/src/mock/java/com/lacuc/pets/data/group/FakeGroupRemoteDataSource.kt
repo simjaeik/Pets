@@ -1,5 +1,6 @@
 package com.lacuc.pets.data.group
 
+import com.lacuc.pets.data.group.entity.Group
 import javax.inject.Inject
 
 class FakeGroupRemoteDataSource @Inject constructor() : GroupDataSource {
