@@ -1,7 +1,7 @@
 package com.lacuc.pets.ui.login
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.lacuc.pets.data.LoginService
+import com.lacuc.pets.data.login.LoginService
 import com.lacuc.pets.domain.login.SignUpUseCase
 import com.lacuc.pets.ui.login.signup.SignUpViewModel
 import com.lacuc.pets.util.LiveDataTestUtil.getOrAwaitValue

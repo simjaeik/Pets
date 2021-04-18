@@ -1,4 +1,4 @@
-package com.lacuc.pets.data
+package com.lacuc.pets.data.login
 
 import retrofit2.http.*
 

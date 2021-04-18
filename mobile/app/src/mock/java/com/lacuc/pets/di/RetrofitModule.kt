@@ -1,6 +1,6 @@
 package com.lacuc.pets.di
 
-import com.lacuc.pets.data.LoginService
+import com.lacuc.pets.data.login.LoginService
 import com.lacuc.pets.util.retrofit.ResultCallAdapter
 import dagger.Module
 import dagger.Provides

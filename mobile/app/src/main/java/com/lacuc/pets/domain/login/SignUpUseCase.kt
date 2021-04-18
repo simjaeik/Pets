@@ -1,6 +1,6 @@
 package com.lacuc.pets.domain.login
 
-import com.lacuc.pets.data.LoginService
+import com.lacuc.pets.data.login.LoginService
 import javax.inject.Inject
 
 class SignUpUseCase @Inject constructor(private val loginService: LoginService) {
