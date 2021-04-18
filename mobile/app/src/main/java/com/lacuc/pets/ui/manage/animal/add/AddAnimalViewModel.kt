@@ -2,7 +2,7 @@ package com.lacuc.pets.ui.manage.animal.add
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.lacuc.pets.data.animal.Animal
+import com.lacuc.pets.data.animal.entity.Animal
 import com.lacuc.pets.domain.animal.animal.AddAnimalUseCase
 import com.lacuc.pets.util.SingleLiveEvent
 import com.lacuc.pets.util.safeValue

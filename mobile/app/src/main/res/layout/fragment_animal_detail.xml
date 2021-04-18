@@ -12,7 +12,7 @@
 
         <variable
             name="item"
-            type="com.lacuc.pets.data.animal.Animal" />
+            type="com.lacuc.pets.data.animal.entity.Animal" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout

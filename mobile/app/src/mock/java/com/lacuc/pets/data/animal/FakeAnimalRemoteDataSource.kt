@@ -1,5 +1,8 @@
 package com.lacuc.pets.data.animal
 
+import com.lacuc.pets.data.animal.entity.Animal
+import com.lacuc.pets.data.animal.entity.Medical
+import com.lacuc.pets.data.animal.entity.Memo
 import javax.inject.Inject
 
 class FakeAnimalRemoteDataSource @Inject constructor() : AnimalDataSource {

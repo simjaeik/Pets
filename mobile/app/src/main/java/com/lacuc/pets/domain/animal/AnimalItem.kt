@@ -1,6 +1,6 @@
 package com.lacuc.pets.domain.animal
 
-import com.lacuc.pets.data.animal.Animal
+import com.lacuc.pets.data.animal.entity.Animal
 
 class AnimalItem(val animal: Animal, val clickListener: (AnimalItem) -> Unit) {
     val name = animal.name

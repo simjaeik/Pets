@@ -1,7 +1,7 @@
 package com.lacuc.pets.domain.animal
 
-import com.lacuc.pets.data.animal.Animal
 import com.lacuc.pets.data.animal.AnimalRepository
+import com.lacuc.pets.data.animal.entity.Animal
 import com.lacuc.pets.domain.animal.animal.GetAnimalUseCase
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue

@@ -1,4 +1,4 @@
-package com.lacuc.pets.data.animal
+package com.lacuc.pets.data.animal.entity
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

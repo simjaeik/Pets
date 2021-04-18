@@ -1,7 +1,7 @@
-package com.lacuc.pets.data
+package com.lacuc.pets.data.animal
 
-import com.lacuc.pets.data.animal.Animal
-import com.lacuc.pets.data.animal.Memo
+import com.lacuc.pets.data.animal.entity.Animal
+import com.lacuc.pets.data.animal.entity.Memo
 import retrofit2.http.*
 
 interface AnimalService {

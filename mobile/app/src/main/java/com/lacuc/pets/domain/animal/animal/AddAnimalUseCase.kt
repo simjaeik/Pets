@@ -1,7 +1,7 @@
 package com.lacuc.pets.domain.animal.animal
 
-import com.lacuc.pets.data.animal.Animal
 import com.lacuc.pets.data.animal.AnimalRepository
+import com.lacuc.pets.data.animal.entity.Animal
 import javax.inject.Inject
 
 class AddAnimalUseCase @Inject constructor(private val repository: AnimalRepository) {

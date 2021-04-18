@@ -2,7 +2,7 @@ package com.lacuc.pets.ui.manage.animal.detail.medical
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.lacuc.pets.data.animal.Medical
+import com.lacuc.pets.data.animal.entity.Medical
 import com.lacuc.pets.domain.animal.medical.AddMedicalUseCase
 import com.lacuc.pets.util.SingleLiveEvent
 import com.lacuc.pets.util.safeValue
