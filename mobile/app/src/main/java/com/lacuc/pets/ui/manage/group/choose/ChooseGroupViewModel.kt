@@ -30,7 +30,7 @@ class ChooseGroupViewModel @Inject constructor(private val getGroupUseCase: GetG
             loading.value = false
 
             when (groupList) {
-                is Result.Success -> groupItems.value = groupList.body
+                is Result.Success -> groupList.body?.let { groupItems.value = it }
                 else -> TODO("Not Implemented")
             }
         }
