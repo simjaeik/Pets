@@ -6,6 +6,6 @@ import javax.inject.Inject
 
 class AddGroupUseCase @Inject constructor(private val repository: GroupRepository) {
     suspend operator fun invoke(group: Group) {
-        repository.saveGroup(group)
+        repository.setGroup(group)
     }
 }

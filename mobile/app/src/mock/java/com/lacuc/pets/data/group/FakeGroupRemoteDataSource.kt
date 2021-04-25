@@ -37,17 +37,64 @@ class FakeGroupRemoteDataSource @Inject constructor() : GroupDataSource {
         )
     }
 
-    override suspend fun loadGroup(): Result<List<Group>> = withContext(Dispatchers.IO) {
+    override suspend fun getMyGroups(): Result<List<Group>> = withContext(Dispatchers.IO) {
         delay(1000)
         groupData[tempToken]?.let {
             Result.Success(it)
         } ?: Result.Success(emptyList())
     }
 
-    override suspend fun saveGroup(group: Group) {
-        withContext(Dispatchers.IO) {
-            delay(500)
-            groupData[tempToken] = groupData.getOrPut(tempToken) { listOf() } + group
-        }
+    override suspend fun getGroupsNear(latitude: Double, longitude: Double): Result<List<Group>> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun deleteGroup(gid: Int): Result<Void> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun setGroup(group: Group): Result<Void> = withContext(Dispatchers.IO) {
+        delay(500)
+        groupData[tempToken] = groupData.getOrPut(tempToken) { listOf() } + group
+        Result.Success(null)
+    }
+
+    override suspend fun getGroup(gid: Int): Result<Group> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun addGroupMember(memberParams: Map<String, Any>): Result<Void> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getGroupMembers(gid: Int): Result<List<Unit>> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun deleteGroupMember(gid: Int): Result<Void> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getGroupImages(gid: Int): Result<List<Unit>> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun setGroupImage(imageParams: Map<String, Any>): Result<List<Unit>> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getItems(gid: Int): Result<List<Unit>> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun setItem(item: Any): Result<Void> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun updateItem(iid: Int, item: Any): Result<Void> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun deleteItem(iid: Int): Result<Void> {
+        TODO("Not yet implemented")
     }
 }
