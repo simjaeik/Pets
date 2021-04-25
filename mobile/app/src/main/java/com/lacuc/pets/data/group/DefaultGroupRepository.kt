@@ -9,7 +9,7 @@ class DefaultGroupRepository @Inject constructor(
 ) : GroupRepository {
     override suspend fun loadGroup(): Result<List<Group>> = groupRemoteDataSource.loadGroup()
 
-    override fun saveGroup(email: String, group: Group) {
-        groupRemoteDataSource.saveGroup(email, group)
+    override suspend fun saveGroup(group: Group) {
+        groupRemoteDataSource.saveGroup(group)
     }
 }

@@ -44,7 +44,10 @@ class FakeGroupRemoteDataSource @Inject constructor() : GroupDataSource {
         } ?: Result.Success(emptyList())
     }
 
-    override fun saveGroup(email: String, group: Group) {
-        groupData[email] = groupData.getOrPut(email) { listOf() } + group
+    override suspend fun saveGroup(group: Group) {
+        withContext(Dispatchers.IO) {
+            delay(500)
+            groupData[tempToken] = groupData.getOrPut(tempToken) { listOf() } + group
+        }
     }
 }
