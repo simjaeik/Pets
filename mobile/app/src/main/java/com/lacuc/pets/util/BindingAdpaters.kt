@@ -15,7 +15,7 @@ fun setImage(imageView: ImageView, url: String) {
 @BindingAdapter("items")
 @Suppress("UNCHECKED_CAST")
 fun <T> setItems(listView: RecyclerView, items: T) {
-    if (listView.adapter is BindableAdapter<*>) {
+    if (items != null && listView.adapter is BindableAdapter<*>) {
         (listView.adapter as BindableAdapter<T>).setData(items)
     }
 }
