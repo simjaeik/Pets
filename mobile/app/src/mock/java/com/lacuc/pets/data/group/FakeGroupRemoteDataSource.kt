@@ -1,15 +1,21 @@
 package com.lacuc.pets.data.group
 
+import com.lacuc.pets.data.Result
 import com.lacuc.pets.data.group.entity.Group
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class FakeGroupRemoteDataSource @Inject constructor() : GroupDataSource {
 
+    private val tempToken = "tempToken"
+
     private val groupData =
-        mutableMapOf<String, MutableList<Group>>()
+        mutableMapOf<String, List<Group>>()
 
     init {
-        groupData["tempUser@lacuc.com"] = mutableListOf(
+        groupData[tempToken] = mutableListOf(
             Group(
                 "Group1",
                 "그룹 1 소개",
@@ -31,9 +37,14 @@ class FakeGroupRemoteDataSource @Inject constructor() : GroupDataSource {
         )
     }
 
-    override fun loadGroup(email: String): List<Group> = groupData[email] ?: emptyList()
+    override suspend fun loadGroup(): Result<List<Group>> = withContext(Dispatchers.IO) {
+        delay(1000)
+        groupData[tempToken]?.let {
+            Result.Success(it)
+        } ?: Result.Success(emptyList())
+    }
 
     override fun saveGroup(email: String, group: Group) {
-        groupData.getOrPut(email) { mutableListOf() }.add(group)
+        groupData[email] = groupData.getOrPut(email) { listOf() } + group
     }
 }
