@@ -2,10 +2,13 @@ package com.lacuc.pets.ui.manage.animal.detail
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.lacuc.pets.data.Result
 import com.lacuc.pets.domain.animal.AnimalDetailDetailItem
 import com.lacuc.pets.domain.animal.AnimalDetailItem
 import com.lacuc.pets.domain.animal.medical.GetMedicalUseCase
 import com.lacuc.pets.domain.animal.memo.GetMemoUseCase
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class AnimalDetailViewModel @Inject constructor(
@@ -16,8 +19,6 @@ class AnimalDetailViewModel @Inject constructor(
     val detailItems = MutableLiveData<List<AnimalDetailItem>>()
 
     private lateinit var detailItem: List<AnimalDetailDetailItem>
-    private var medicalItem = getMedicalUseCase(1)
-    private var memoItem = getMemoUseCase(1)
 
     fun initItem(item: AnimalDetailDetailItem) {
         if (detailItems.value.isNullOrEmpty()) {
@@ -26,19 +27,19 @@ class AnimalDetailViewModel @Inject constructor(
         }
     }
 
-    fun switchItem(position: Int) {
-        when (position) {
-            0 -> detailItems.value = detailItem
-            1 -> detailItems.value = medicalItem
-            2 -> detailItems.value = memoItem
-        }
-    }
+    fun loadDetailItem(position: Int) {
+        viewModelScope.launch {
+            val itemList = when (position) {
+                0 -> Result.Success(detailItem)
+                1 -> getMedicalUseCase(1)
+                2 -> getMemoUseCase(1)
+                else -> return@launch
+            }
 
-    fun refresh(position: Int) {
-        when (position) {
-            1 -> medicalItem = getMedicalUseCase(1)
-            2 -> memoItem = getMemoUseCase(1)
+            when (itemList) {
+                is Result.Success -> itemList.body?.let { detailItems.value = it }
+                else -> TODO("Not Implemented")
+            }
         }
-        switchItem(position)
     }
 }

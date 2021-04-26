@@ -3,6 +3,7 @@ package com.lacuc.pets.ui.manage.group.add
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.lacuc.pets.data.Result
 import com.lacuc.pets.data.group.entity.Group
 import com.lacuc.pets.domain.group.AddGroupUseCase
 import com.lacuc.pets.util.SingleLiveEvent
@@ -22,10 +23,14 @@ class AddGroupViewModel @Inject constructor(private val addGroupUseCase: AddGrou
 
     fun saveGroup() {
         viewModelScope.launch {
-            addGroupUseCase(
+            val result = addGroupUseCase(
                 Group(name.safeValue, info.safeValue, image.safeValue, isShare.safeValue)
             )
-            completeEvent.value = Unit
+
+            when (result) {
+                is Result.Success -> completeEvent.value = Unit
+                else -> TODO("Not Implemented")
+            }
         }
     }
 
