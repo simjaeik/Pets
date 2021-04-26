@@ -1,20 +1,24 @@
 package com.lacuc.pets.data.animal
 
+import com.lacuc.pets.data.Result
 import com.lacuc.pets.data.animal.entity.Animal
 import com.lacuc.pets.data.animal.entity.Medical
 import com.lacuc.pets.data.animal.entity.Memo
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class FakeAnimalRemoteDataSource @Inject constructor() : AnimalDataSource {
 
-    private val animalData = mutableMapOf<Int, MutableList<Animal>>()
+    private val animalData = mutableMapOf<Int, List<Animal>>()
 
-    private val medicalData = mutableMapOf<Int, MutableList<Medical>>()
+    private val medicalData = mutableMapOf<Int, List<Medical>>()
 
-    private val memoData = mutableMapOf<Int, MutableList<Memo>>()
+    private val memoData = mutableMapOf<Int, List<Memo>>()
 
     init {
-        animalData[1] = mutableListOf(
+        animalData[1] = listOf(
             Animal(
                 1,
                 "보리",
@@ -39,32 +43,71 @@ class FakeAnimalRemoteDataSource @Inject constructor() : AnimalDataSource {
             ),
         )
 
-        medicalData[1] = mutableListOf(
+        medicalData[1] = listOf(
             Medical(100000, "중성화 수술", "우주 돈까스 먹으로 가는 날", "장산 동물 병원"),
             Medical(200000, "정기 건강검진", "우주 주사 맞으러 가는 날", "장산 동물 병원"),
         )
 
-        memoData[1] = mutableListOf(
+        memoData[1] = listOf(
             Memo("고양이 모래 사야됨"),
             Memo("캣타워 사야됨"),
         )
     }
 
-    override fun loadAnimal(gid: Int): List<Animal> = animalData[gid] ?: emptyList()
-
-    override fun addAnimal(animal: Animal) {
-        animalData.getOrPut(animal.gid) { mutableListOf() }.add(animal)
+    override suspend fun addAnimal(animal: Animal): Result<Void> = withContext(Dispatchers.IO) {
+        delay(500)
+        animalData[animal.gid] = animalData.getOrPut(animal.gid) { listOf() } + animal
+        Result.Success(null)
     }
 
-    override fun loadMedical(aid: Int): List<Medical> = medicalData[aid] ?: emptyList()
+    override suspend fun loadMedical(aid: Int): Result<List<Medical>> =
+        withContext(Dispatchers.IO) {
+            delay(1000)
+            Result.Success(medicalData[aid] ?: emptyList())
+        }
 
-    override fun loadMemo(aid: Int): List<Memo> = memoData[aid] ?: emptyList()
+    override suspend fun addMedical(aid: Int, medical: Medical): Result<Void> =
+        withContext(Dispatchers.IO) {
+            delay(500)
+            medicalData[aid] = medicalData.getOrPut(aid) { listOf() } + medical
+            Result.Success(null)
+        }
 
-    override fun addMedical(medical: Medical) {
-        medicalData[1]?.add(medical)
+    override suspend fun getAnimalByGroup(gid: Int): Result<List<Animal>> =
+        withContext(Dispatchers.IO) {
+            delay(1000)
+            Result.Success(animalData[gid] ?: emptyList())
+        }
+
+
+    override suspend fun deleteAnimal(aid: Int): Result<Void> {
+        TODO("Not yet implemented")
     }
 
-    override fun addMemo(memo: Memo) {
-        memoData[1]?.add(memo)
+    override suspend fun getAnimal(aid: Int): Result<Animal> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun updateAnimalDetail(aid: Int, animal: Animal): Result<Void> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getMemos(aid: Int): Result<List<Memo>> = withContext(Dispatchers.IO) {
+        delay(1000)
+        Result.Success(memoData[aid] ?: emptyList())
+    }
+
+    override suspend fun setMemo(aid: Int, memo: Memo): Result<Void> = withContext(Dispatchers.IO) {
+        delay(500)
+        memoData[aid] = memoData.getOrPut(aid) { listOf() } + memo
+        Result.Success(null)
+    }
+
+    override suspend fun updateMemo(mid: Int, memo: Memo): Result<Void> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun deleteMemo(mid: Int): Result<Void> {
+        TODO("Not yet implemented")
     }
 }
