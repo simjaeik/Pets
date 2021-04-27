@@ -22,7 +22,6 @@ class ResultCallAdapter<R : Any>(private val responseType: Type) : CallAdapter<R
             annotations: Array<out Annotation>,
             retrofit: Retrofit
         ): CallAdapter<*, *>? {
-            // TODO: 2021-04-16 매커니즘 공부하기
             if (getRawType(returnType) != Call::class.java) {
                 return null
             }

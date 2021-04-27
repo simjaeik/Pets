@@ -27,17 +27,15 @@ class ResultCall<T : Any>(private val call: Call<T>) : Call<Result<T>> {
                         Response.success(Result.Success(response.body()))
                     )
                 } else {
-                    response.errorBody()?.let {
-                        callback.onResponse(
-                            this@ResultCall,
-                            Response.success(Result.Failure(response.code(), it.string()))
+                    callback.onResponse(
+                        this@ResultCall,
+                        Response.success(
+                            Result.Failure(
+                                response.code(),
+                                response.errorBody()?.string()
+                            )
                         )
-                    } ?: run {
-                        callback.onResponse(
-                            this@ResultCall,
-                            Response.success(Result.Unexpected(null))
-                        )
-                    }
+                    )
                 }
             }
 
