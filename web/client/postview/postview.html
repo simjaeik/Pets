@@ -104,29 +104,33 @@
         <div class="item" id="write_type">
             <div class="cover">
                 <!--왼쪽 끝-->
-                <div id="comment-count">댓글 <span id="count">0</span></div> 
+                <div id="comment-count">댓글 <span id="comments-count">0</span>개</div> 
                 <!--오른쪽 끝-->
                 <div>
                     <i class="icon-heart"></i> 2
-                    <i class="icon-comment"></i> 4
                 </div>
             </div>
         </div>
-
     </div>
 
-    <!--댓글-->
-    <div class="container-fluid">
-        
-        <div class="item">
-            <input id="comment-input" placeholder="댓글을 입력해 주세요."> 
-            <button type="button" class="btn btn-outline-primary btn-lg" id="submit">등록</button>   
+
+    <div id="comments">
+        <!--댓글쓰기-->
+        <div class="comment-row">
+            <textarea id="new-comment" rows=5 placeholder="내용을 입력해주세요"></textarea>
+            <button type="button" class="btn btn-outline-primary btn-lg" onclick="submitComment()">작성</button>
         </div>
-       
-        <div id=comments> </div>
-    </div>
+        <!--댓글리스트-->
+        <div class="comment-row"> 
+            <div class="comment-content"></div>
+            <div class="comment-date"></div>
+        </div>
 
-       
+    </div>
+  
+
+ 
+
 
     <!--javascript-->
     <script src="https://code.jquery.com/jquery.js"></script>
