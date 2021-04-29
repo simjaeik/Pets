@@ -94,3 +94,14 @@ body {
     border-width:1px 1px 3px 1px;
     margin: 4px 4px 20px 4px;
 }
+#posttitle{
+  color:red;
+  font-size:large;
+}
+#writername{
+    font-weight:lighter;
+}
+#comment-count{ margin-bottom: 10px; } 
+#comment-input{ width: 100%;  }
+
+

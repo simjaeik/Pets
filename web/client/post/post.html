@@ -64,39 +64,28 @@
                     <input type="radio" name="chk_info" value="TIP"> TIP
                     <input type="radio" name="chk_info" value="Review"> Review
                 </div>
-               
-                <!--오른쪽 끝-->
-                <div>
-                    <div class="form-group input-group">
-                        <span class="input-group-addon">게시글 제목</span>
-                        <input type="text" class="form-control" id="posttitle">
-                        <span class="input-group-addon" >작성자 닉네임</span>
-                        <input type="text" class="form-control" id="writername">
-                    </div>                
-                </div>
-
-            </div>
-            
-        </div>
-
-        
+            </div>         
+        </div>      
     </div>
 
   
     <!--입력칸-->
     <div class = "container-fluid" id="firstcontainer">
-
-        <div class ="item" id="writebottom_type">
-            <!--네비바-->
         
-                <!--오른쪽 끝-->
-                <div>
-                    <div class="form-group">
-                    <textarea class="input-group-addon" rows="10" cols="20" id="content" placeholder="내용을 입력해주세요" required></textarea>
-                    </div>
-                </div>
-
-            </div>   
+        <!--제목입력칸-->
+        <div class="item">
+            <div class="form-group input-group">
+                <span class="input-group-addon" placeholder="내용을 입력해주세요" required>게시글 제목 : </span>
+                <input type="text" class="form-control" id="posttitle">
+            </div>      
+        </div>
+        <!--내용입력칸-->
+        <div class ="item" id="writebottom_type">     
+            <div class="form-group">
+                <textarea class="input-group-addon" rows="10" cols="20" id="content" placeholder="내용을 입력해주세요" required></textarea>
+            </div>
+        </div>
+         
     </div>
            
     <!--javascript-->

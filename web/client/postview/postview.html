@@ -51,9 +51,26 @@
         </div>
     </div>
 
+    <!--게시글 종류, 제목, 닉네임-->
+    <div class = "container-fluid">
+        
+        <div class ="item" id="writebottom_type">
+            <!--네비바-->
+            <div class='cover'>
+               
+                <!--왼쪽 끝-->
+                <div>  TIP / Review</div> 
+                <!--가운데-->
+                <div id="posttitle"> 게시물제목1</div>
+                <!--오른쪽 끝-->
+                <div id="writername">닉네임: 냥이</div>
+
+            </div>
+        </div>
+    </div>
 
      <!--조회수, 시간-->
-    <div class = "container-fluid" id="post2">
+    <div class = "container-fluid">
         
         <!-- 게시물 2 하단-->
         <div class="item" id="write_type">
@@ -71,30 +88,7 @@
     <!--입력제목-->
     <div class = "container-fluid" id="firstcontainer">
 
-        <div class ="item" id="writebottom_type">
-            <!--네비바-->
-            <div class='cover'>
-               
-                <!--왼쪽 끝-->
-                <div>
-                    TIP / Review
-                </div>
-               
-                <!--오른쪽 끝-->
-                <div>
-                    <div class="form-group input-group">
-                        <span class="input-group-addon">게시글 제목</span>
-                        <input type="text" class="form-control" id="posttitle">
-                        <span class="input-group-addon" >작성자 닉네임</span>
-                        <input type="text" class="form-control" id="writername">
-                    </div>                
-                </div>
-
-            </div>
-            
-        </div>
-    
-         <!-- 게시물 2 내용-->
+         <!-- 게시물 내용-->
          <div class="item" >
             <p>
                 게시물의 내용 게시물의 내용 게시물의 내용 게시물의 내용 게시물의 내용 게시물의 내용 게시물의 내용 게시물의 내용 게시물의 내용
@@ -103,16 +97,14 @@
         </div>
     </div>
 
-     <!--게시물2-->
-     <div class = "container-fluid" id="post2">
+     <!--게시물-->
+     <div class = "container-fluid" >
         
-      
         <!-- 댓글수, 추천수-->
         <div class="item" id="write_type">
             <div class="cover">
                 <!--왼쪽 끝-->
-                <div></div>
-
+                <div id="comment-count">댓글 <span id="count">0</span></div> 
                 <!--오른쪽 끝-->
                 <div>
                     <i class="icon-heart"></i> 2
@@ -120,14 +112,25 @@
                 </div>
             </div>
         </div>
+
     </div>
 
+    <!--댓글-->
+    <div class="container-fluid">
+        
+        <div class="item">
+            <input id="comment-input" placeholder="댓글을 입력해 주세요."> 
+            <button type="button" class="btn btn-outline-primary btn-lg" id="submit">등록</button>   
+        </div>
+       
+        <div id=comments> </div>
+    </div>
 
-           
+       
+
     <!--javascript-->
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="../boot_js/bootstrap.min.js"></script>
-
 
 
     </body>
