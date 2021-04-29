@@ -2,6 +2,9 @@ package com.lacuc.pets.data.group
 
 import com.lacuc.pets.data.Result
 import com.lacuc.pets.data.group.entity.Group
+import com.lacuc.pets.data.group.entity.GroupImage
+import com.lacuc.pets.data.group.entity.ItemHistory
+import com.lacuc.pets.data.group.entity.Member
 import retrofit2.http.*
 
 interface GroupService {
@@ -28,27 +31,27 @@ interface GroupService {
     suspend fun addGroupMember(@FieldMap memberParams: Map<String, Any>): Result<Void>
 
     @GET("api/group/member/{id}")
-    suspend fun getGroupMembers(@Path("id") gid: Int): Result<List<Unit>> // TODO: 2021-04-25 리턴 타입: Member
+    suspend fun getGroupMembers(@Path("id") gid: Int): Result<List<Member>>
 
     @DELETE("api/group/members/{id}")
     suspend fun deleteGroupMember(@Path("id") gid: Int): Result<Void>
 
     @GET("api/group/images/{id}")
-    suspend fun getGroupImages(@Path("id") gid: Int): Result<List<Unit>> // TODO: 2021-04-25 리턴 타입: GroupImage
+    suspend fun getGroupImages(@Path("id") gid: Int): Result<List<GroupImage>>
     // 그룹 단위 갤러리의 이미지를 가져오는 함수
 
     @FormUrlEncoded
     @POST("api/group/images")
-    suspend fun setGroupImage(@FieldMap imageParams: Map<String, Any>): Result<List<Unit>>
+    suspend fun setGroupImage(@FieldMap imageParams: Map<String, Any>): Result<Void>
 
     @GET("api/item/{id}")
-    suspend fun getItems(@Path("id") gid: Int): Result<List<Unit>> // TODO: 2021-04-25 리턴 타입: Item
+    suspend fun getItems(@Path("id") gid: Int): Result<List<ItemHistory>>
 
     @POST("api/item")
-    suspend fun setItem(@Body item: Any): Result<Void> // TODO: 2021-04-18 파라미터 타입을 Item으로 변경해야 함
+    suspend fun setItem(@Body itemHistory: ItemHistory): Result<Void>
 
     @PATCH("api/item/{id}")
-    suspend fun updateItem(@Path("id") iid: Int, @Body item: Any): Result<Void>
+    suspend fun updateItem(@Path("id") iid: Int, @Body itemHistory: ItemHistory): Result<Void>
 
     @DELETE("api/item/{id}")
     suspend fun deleteItem(@Path("id") iid: Int): Result<Void>

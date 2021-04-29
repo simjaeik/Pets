@@ -2,6 +2,9 @@ package com.lacuc.pets.data.group
 
 import com.lacuc.pets.data.Result
 import com.lacuc.pets.data.group.entity.Group
+import com.lacuc.pets.data.group.entity.GroupImage
+import com.lacuc.pets.data.group.entity.ItemHistory
+import com.lacuc.pets.data.group.entity.Member
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
@@ -66,7 +69,7 @@ class FakeGroupRemoteDataSource @Inject constructor() : GroupDataSource {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getGroupMembers(gid: Int): Result<List<Unit>> {
+    override suspend fun getGroupMembers(gid: Int): Result<List<Member>> {
         TODO("Not yet implemented")
     }
 
@@ -74,23 +77,23 @@ class FakeGroupRemoteDataSource @Inject constructor() : GroupDataSource {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getGroupImages(gid: Int): Result<List<Unit>> {
+    override suspend fun getGroupImages(gid: Int): Result<List<GroupImage>> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun setGroupImage(imageParams: Map<String, Any>): Result<List<Unit>> {
+    override suspend fun setGroupImage(imageParams: Map<String, Any>): Result<Void> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getItems(gid: Int): Result<List<Unit>> {
+    override suspend fun getItems(gid: Int): Result<List<ItemHistory>> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun setItem(item: Any): Result<Void> {
+    override suspend fun setItem(itemHistory: ItemHistory): Result<Void> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun updateItem(iid: Int, item: Any): Result<Void> {
+    override suspend fun updateItem(iid: Int, itemHistory: ItemHistory): Result<Void> {
         TODO("Not yet implemented")
     }
 
