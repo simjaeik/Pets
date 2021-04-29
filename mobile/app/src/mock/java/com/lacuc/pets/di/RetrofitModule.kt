@@ -15,7 +15,7 @@ class RetrofitModule {
     @Provides
     @Singleton
     fun provideRetrofit(): Retrofit = Retrofit.Builder()
-        .baseUrl("") // TODO: 2021-04-16 도메인 입력
+        .baseUrl("http://203.247.166.230:8080/")
         .addCallAdapterFactory(ResultCallAdapter.Factory())
         .addConverterFactory(GsonConverterFactory.create())
         .build()
@@ -37,4 +37,19 @@ class RetrofitModule {
             TODO("Not yet implemented")
         }
     }
+
+    @Provides
+    @Reusable
+    fun provideGroupService(retrofit: Retrofit): GroupService =
+        retrofit.create(GroupService::class.java)
+
+    @Provides
+    @Reusable
+    fun provideAnimalService(retrofit: Retrofit): AnimalService =
+        retrofit.create(AnimalService::class.java)
+
+    @Provides
+    @Reusable
+    fun providePostService(retrofit: Retrofit): PostService =
+        retrofit.create(PostService::class.java)
 }
