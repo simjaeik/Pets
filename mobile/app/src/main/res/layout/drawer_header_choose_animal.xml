@@ -1,27 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <data>
+
+        <variable
+            name="item"
+            type="com.lacuc.pets.data.group.entity.Group" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        android:textAppearance="?textAppearanceHeadline6"
-        tools:text="그룹 이름" />
+        android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
-        android:textAppearance="?textAppearanceBody2"
-        android:textColor="@color/material_on_surface_emphasis_medium"
-        tools:text="그룹 소개 ..." />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@{item.name}"
+            android:textAppearance="?textAppearanceHeadline6"
+            tools:text="그룹 이름" />
 
-</LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{item.info}"
+            android:textAppearance="?textAppearanceBody2"
+            android:textColor="@color/material_on_surface_emphasis_medium"
+            tools:text="그룹 소개 ..." />
+
+    </LinearLayout>
+</layout>

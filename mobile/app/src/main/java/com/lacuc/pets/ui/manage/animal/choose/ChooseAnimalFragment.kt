@@ -8,10 +8,12 @@ import androidx.customview.widget.Openable
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.lacuc.pets.R
 import com.lacuc.pets.ViewModelFactory
+import com.lacuc.pets.databinding.DrawerHeaderChooseAnimalBinding
 import com.lacuc.pets.databinding.FragmentChooseAnimalBinding
 import com.lacuc.pets.util.setup
 import dagger.android.support.DaggerFragment
@@ -29,6 +31,8 @@ class ChooseAnimalFragment : DaggerFragment() {
 
     private val navController: NavController by lazy { findNavController() }
 
+    private val args: ChooseAnimalFragmentArgs by navArgs()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -38,7 +42,17 @@ class ChooseAnimalFragment : DaggerFragment() {
             lifecycleOwner = viewLifecycleOwner
             vm = viewModel
         }
+        setupDrawerHeader(inflater)
+
         return binding.root
+    }
+
+    private fun setupDrawerHeader(inflater: LayoutInflater) {
+        val navHeaderBinding =
+            DrawerHeaderChooseAnimalBinding.inflate(inflater, binding.navDrawerChooseAnimal, false)
+        navHeaderBinding.item = args.group
+
+        binding.navDrawerChooseAnimal.addHeaderView(navHeaderBinding.root)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -85,6 +99,8 @@ class ChooseAnimalFragment : DaggerFragment() {
                 navController.navigate(action)
                 true
             }
+
+            title = args.group.name
         }
     }
 
