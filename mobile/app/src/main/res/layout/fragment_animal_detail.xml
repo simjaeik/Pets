@@ -6,6 +6,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="vm"
             type="com.lacuc.pets.ui.manage.animal.detail.AnimalDetailViewModel" />
@@ -89,8 +91,15 @@
             android:id="@+id/recyclerview_animalDetail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:visibility="@{vm.loading ? View.INVISIBLE : View.VISIBLE}"
             app:items="@{vm.detailItems}"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="@{vm.loading ? View.VISIBLE : View.GONE}" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_animalDetail"

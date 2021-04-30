@@ -18,6 +18,8 @@ class AnimalDetailViewModel @Inject constructor(
 
     val detailItems = MutableLiveData<List<AnimalDetailItem>>()
 
+    val loading = MutableLiveData(false)
+
     private lateinit var detailItem: List<AnimalDetailDetailItem>
 
     fun initItem(item: AnimalDetailDetailItem) {
@@ -29,12 +31,17 @@ class AnimalDetailViewModel @Inject constructor(
 
     fun loadDetailItem(position: Int) {
         viewModelScope.launch {
+            loading.value = true
             val itemList = when (position) {
                 0 -> Result.Success(detailItem)
                 1 -> getMedicalUseCase(1)
                 2 -> getMemoUseCase(1)
-                else -> return@launch
+                else -> {
+                    loading.value = false
+                    return@launch
+                }
             }
+            loading.value = false
 
             when (itemList) {
                 is Result.Success -> itemList.body?.let { detailItems.value = it }
