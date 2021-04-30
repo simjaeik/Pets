@@ -8,12 +8,15 @@ import com.lacuc.pets.domain.animal.AnimalDetailDetailItem
 import com.lacuc.pets.domain.animal.AnimalDetailItem
 import com.lacuc.pets.domain.animal.medical.GetMedicalUseCase
 import com.lacuc.pets.domain.animal.memo.GetMemoUseCase
+import com.lacuc.pets.util.SingleLiveEvent
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 class AnimalDetailViewModel @Inject constructor(
     private val getMedicalUseCase: GetMedicalUseCase,
     private val getMemoUseCase: GetMemoUseCase,
+    private val errorEvent: SingleLiveEvent<String>
 ) : ViewModel() {
 
     val detailItems = MutableLiveData<List<AnimalDetailItem>>()
@@ -45,7 +48,13 @@ class AnimalDetailViewModel @Inject constructor(
 
             when (itemList) {
                 is Result.Success -> itemList.body?.let { detailItems.value = it }
-                else -> TODO("Not Implemented")
+                is Result.Failure -> errorEvent.value =
+                    "code: ${itemList.code} message: ${itemList.error}"
+                is Result.NetworkError -> errorEvent.value = "네트워크 문제가 발생했습니다."
+                is Result.Unexpected -> {
+                    Timber.d(itemList.t.toString())
+                    errorEvent.value = "알수없는 오류가 발생했습니다."
+                }
             }
         }
     }

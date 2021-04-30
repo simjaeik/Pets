@@ -8,9 +8,13 @@ import com.lacuc.pets.domain.group.GetGroupUseCase
 import com.lacuc.pets.domain.group.GroupItem
 import com.lacuc.pets.util.SingleLiveEvent
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
-class ChooseGroupViewModel @Inject constructor(private val getGroupUseCase: GetGroupUseCase) :
+class ChooseGroupViewModel @Inject constructor(
+    private val getGroupUseCase: GetGroupUseCase,
+    private val errorEvent: SingleLiveEvent<String>
+) :
     ViewModel() {
 
     val groupItems = MutableLiveData<List<GroupItem>>()
@@ -31,7 +35,13 @@ class ChooseGroupViewModel @Inject constructor(private val getGroupUseCase: GetG
 
             when (groupList) {
                 is Result.Success -> groupList.body?.let { groupItems.value = it }
-                else -> TODO("Not Implemented")
+                is Result.Failure -> errorEvent.value =
+                    "code: ${groupList.code} message: ${groupList.error}"
+                is Result.NetworkError -> errorEvent.value = "네트워크 문제가 발생했습니다."
+                is Result.Unexpected -> {
+                    Timber.d(groupList.t.toString())
+                    errorEvent.value = "알수없는 오류가 발생했습니다."
+                }
             }
         }
     }
