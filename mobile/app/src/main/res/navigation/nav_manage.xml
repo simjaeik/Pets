@@ -39,11 +39,10 @@
     <fragment
         android:id="@+id/chooseAnimalFragment"
         android:name="com.lacuc.pets.ui.manage.animal.choose.ChooseAnimalFragment"
-        android:label="{groupName}"
         tools:layout="@layout/fragment_choose_animal">
         <argument
-            android:name="groupName"
-            app:argType="string" />
+            android:name="group"
+            app:argType="com.lacuc.pets.data.group.entity.Group" />
         <action
             android:id="@+id/action_chooseAnimalFragment_to_addAnimalFragment"
             app:destination="@id/addAnimalFragment"
