@@ -1,11 +1,12 @@
 package com.lacuc.pets.domain.group
 
-import com.lacuc.pets.data.group.Group
+import com.lacuc.pets.data.Result
 import com.lacuc.pets.data.group.GroupRepository
+import com.lacuc.pets.data.group.entity.Group
 import javax.inject.Inject
 
 class AddGroupUseCase @Inject constructor(private val repository: GroupRepository) {
-    operator fun invoke(email: String, group: Group) {
-        repository.saveGroup(email, group)
+    suspend operator fun invoke(group: Group): Result<Void> {
+        return repository.setGroup(group)
     }
 }

@@ -1,8 +1,8 @@
 package com.lacuc.pets.domain.animal
 
-import com.lacuc.pets.data.animal.Animal
-import com.lacuc.pets.data.animal.Medical
-import com.lacuc.pets.data.animal.Memo
+import com.lacuc.pets.data.animal.entity.Animal
+import com.lacuc.pets.data.animal.entity.Medical
+import com.lacuc.pets.data.animal.entity.Memo
 
 sealed class AnimalDetailItem
 

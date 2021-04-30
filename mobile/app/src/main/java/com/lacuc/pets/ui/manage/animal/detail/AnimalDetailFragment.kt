@@ -59,7 +59,7 @@ class AnimalDetailFragment : DaggerFragment() {
         setOnCompleteObserver()
 
         binding.tabLayoutAnimalDetail.doOnTabSelectedListener {
-            viewModel.switchItem(it.position)
+            viewModel.loadDetailItem(it.position)
             setFabClickListener(it.position)
             saveCurrentTabPosition(it)
         }
@@ -73,7 +73,7 @@ class AnimalDetailFragment : DaggerFragment() {
             ?.savedStateHandle
             ?.getLiveData<Int>("onCompleteEvent")
             ?.observe(viewLifecycleOwner) {
-                viewModel.refresh(it)
+                viewModel.loadDetailItem(it)
             }
     }
 

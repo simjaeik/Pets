@@ -1,6 +1,6 @@
 package com.lacuc.pets.domain.login
 
-import com.lacuc.pets.data.LoginService
+import com.lacuc.pets.data.login.LoginService
 
 class SignInUseCase(private val loginService: LoginService) {
     operator fun invoke(email: String, password: String): Boolean {

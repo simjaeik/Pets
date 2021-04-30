@@ -1,9 +1,10 @@
 package com.lacuc.pets.domain.group
 
-import com.lacuc.pets.data.group.Group
+import com.lacuc.pets.data.Result
 import com.lacuc.pets.data.group.GroupRepository
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertTrue
+import com.lacuc.pets.data.group.entity.Group
+import kotlinx.coroutines.runBlocking
+import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -24,27 +25,40 @@ class GetGroupUseCaseTest {
     }
 
     @Test
-    fun loadGroup_empty() {
-        val result = useCase("user@lacuc.com") {}
+    fun loadGroup_empty(): Unit = runBlocking {
+        `when`(repository.getMyGroups()).thenReturn(Result.Success(emptyList()))
 
-        assertTrue(result.isEmpty())
-        verify(repository).loadGroup(anyString())
+        when (val result = useCase {}) {
+            is Result.Success -> {
+                assertNotNull(result.body)
+                assertTrue(result.body?.isEmpty() ?: false)
+                verify(repository).getMyGroups()
+            }
+            else -> assert(false)
+        }
     }
 
     @Test
-    fun loadGroup() {
-        `when`(repository.loadGroup("user@lacuc.com")).thenReturn(
-            listOf(
-                Group("", "", "", false),
-                Group("", "", "", false),
-                Group("", "", "", false)
+    fun loadGroup(): Unit = runBlocking {
+        `when`(repository.getMyGroups()).thenReturn(
+            Result.Success(
+                listOf(
+                    Group("", "", "", false),
+                    Group("", "", "", false),
+                    Group("", "", "", false)
+                )
             )
         )
 
-        val result = useCase("user@lacuc.com") {}
+        when (val result = useCase {}) {
+            is Result.Success -> {
+                assertNotNull(result.body)
+                assertEquals(result.body?.size, 3)
+                verify(repository).getMyGroups()
+            }
+            else -> assert(false)
+        }
 
-        assertEquals(result.size, 3)
-        verify(repository).loadGroup(anyString())
     }
 
 }

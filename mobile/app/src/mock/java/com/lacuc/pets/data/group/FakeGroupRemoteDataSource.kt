@@ -1,14 +1,24 @@
 package com.lacuc.pets.data.group
 
+import com.lacuc.pets.data.Result
+import com.lacuc.pets.data.group.entity.Group
+import com.lacuc.pets.data.group.entity.GroupImage
+import com.lacuc.pets.data.group.entity.ItemHistory
+import com.lacuc.pets.data.group.entity.Member
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class FakeGroupRemoteDataSource @Inject constructor() : GroupDataSource {
 
+    private val tempToken = "tempToken"
+
     private val groupData =
-        mutableMapOf<String, MutableList<Group>>()
+        mutableMapOf<String, List<Group>>()
 
     init {
-        groupData["tempUser@lacuc.com"] = mutableListOf(
+        groupData[tempToken] = mutableListOf(
             Group(
                 "Group1",
                 "그룹 1 소개",
@@ -30,9 +40,64 @@ class FakeGroupRemoteDataSource @Inject constructor() : GroupDataSource {
         )
     }
 
-    override fun loadGroup(email: String): List<Group> = groupData[email] ?: emptyList()
+    override suspend fun getMyGroups(): Result<List<Group>> = withContext(Dispatchers.IO) {
+        delay(1000)
+        groupData[tempToken]?.let {
+            Result.Success(it)
+        } ?: Result.Success(emptyList())
+    }
 
-    override fun saveGroup(email: String, group: Group) {
-        groupData.getOrPut(email) { mutableListOf() }.add(group)
+    override suspend fun getGroupsNear(latitude: Double, longitude: Double): Result<List<Group>> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun deleteGroup(gid: Int): Result<Void> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun setGroup(group: Group): Result<Void> = withContext(Dispatchers.IO) {
+        delay(500)
+        groupData[tempToken] = groupData.getOrPut(tempToken) { listOf() } + group
+        Result.Success(null)
+    }
+
+    override suspend fun getGroup(gid: Int): Result<Group> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun addGroupMember(memberParams: Map<String, Any>): Result<Void> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getGroupMembers(gid: Int): Result<List<Member>> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun deleteGroupMember(gid: Int): Result<Void> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getGroupImages(gid: Int): Result<List<GroupImage>> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun setGroupImage(imageParams: Map<String, Any>): Result<Void> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getItems(gid: Int): Result<List<ItemHistory>> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun setItem(itemHistory: ItemHistory): Result<Void> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun updateItem(iid: Int, itemHistory: ItemHistory): Result<Void> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun deleteItem(iid: Int): Result<Void> {
+        TODO("Not yet implemented")
     }
 }

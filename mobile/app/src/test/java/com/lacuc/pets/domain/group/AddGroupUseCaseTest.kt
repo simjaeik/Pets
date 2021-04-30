@@ -1,9 +1,11 @@
 package com.lacuc.pets.domain.group
 
+import com.lacuc.pets.data.Result
 import com.lacuc.pets.data.group.DefaultGroupRepository
 import com.lacuc.pets.data.group.FakeGroupRemoteDataSource
-import com.lacuc.pets.data.group.Group
 import com.lacuc.pets.data.group.GroupRepository
+import com.lacuc.pets.data.group.entity.Group
+import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
@@ -27,8 +29,13 @@ class AddGroupUseCaseTest {
         val userEmail = "newUser@lacuc.com"
         val newGroup = Group("newGroup", "Info", "image", false)
 
-        useCase(userEmail, newGroup)
+        runBlocking {
+            useCase(newGroup)
 
-        assertTrue(repository.loadGroup(userEmail).any { it == newGroup })
+            when (val result = repository.getMyGroups()) {
+                is Result.Success -> assertTrue(result.body?.any { it == newGroup } ?: false)
+                else -> assert(false)
+            }
+        }
     }
 }
