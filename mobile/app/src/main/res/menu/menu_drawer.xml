@@ -1,29 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:id="@+id/group_account">
+    <group android:id="@+id/menuGroup_info">
         <item
-            android:id="@+id/account"
-            android:title="@string/account">
+            android:id="@+id/menuItem_info"
+            android:title="@string/info">
             <menu>
                 <item
                     android:id="@+id/info_account"
                     android:icon="@drawable/ic_baseline_person_24"
-                    android:title="@string/info_account" />
+                    android:title="@string/info_profile" />
                 <item
                     android:id="@+id/info_group"
                     android:icon="@drawable/ic_baseline_group_24"
                     android:title="@string/info_group" />
-                <item
-                    android:id="@+id/manage_group"
-                    android:icon="@drawable/ic_baseline_group_add_24"
-                    android:title="@string/manage_group" />
             </menu>
         </item>
     </group>
 
-    <group android:id="@+id/group_posts">
+    <group android:id="@+id/menuGroup_group">
         <item
-            android:id="@+id/posts"
+            android:id="@+id/menuItem_group"
+            android:title="@string/group">
+            <menu>
+                <item
+                    android:id="@+id/manage_member"
+                    android:icon="@drawable/ic_baseline_group_add_24"
+                    android:title="@string/member" />
+                <item
+                    android:id="@+id/manage_gallery"
+                    android:icon="@drawable/ic_baseline_photo_album_24"
+                    android:title="@string/gallery" />
+                <item
+                    android:id="@+id/manage_item"
+                    android:icon="@drawable/ic_baseline_category_24"
+                    android:title="@string/item" />
+            </menu>
+        </item>
+    </group>
+
+    <group android:id="@+id/menuGroup_post">
+        <item
+            android:id="@+id/menuItem_post"
             android:title="@string/posts">
             <menu>
                 <item
