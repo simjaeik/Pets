@@ -10,6 +10,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.FragmentSaveGroupBinding
 import com.lacuc.pets.util.setupWithNavController
@@ -28,10 +29,17 @@ class SaveGroupFragment : DaggerFragment() {
 
     private val navController: NavController by lazy { findNavController() }
 
+    private val args: SaveGroupFragmentArgs by navArgs()
+
     private val requestImageLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             it.data?.let { intent -> viewModel.setImage(intent.dataString) }
         }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.initData(args.group)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
