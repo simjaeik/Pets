@@ -11,6 +11,7 @@ import com.lacuc.pets.ui.manage.animal.detail.medical.AddMedicalViewModel
 import com.lacuc.pets.ui.manage.animal.detail.memo.AddMemoViewModel
 import com.lacuc.pets.ui.manage.group.add.AddGroupViewModel
 import com.lacuc.pets.ui.manage.group.choose.ChooseGroupViewModel
+import com.lacuc.pets.ui.manage.group.info.UserProfileViewModel
 import dagger.Binds
 import dagger.MapKey
 import dagger.Module
@@ -66,4 +67,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(AddMemoViewModel::class)
     abstract fun bindAddMemoViewModel(viewModel: AddMemoViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(UserProfileViewModel::class)
+    abstract fun bindUserProfileViewModel(viewModel: UserProfileViewModel): ViewModel
 }

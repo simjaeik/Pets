@@ -57,6 +57,9 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_chooseAnimalFragment_to_userProfileFragment"
+            app:destination="@id/userProfileFragment" />
     </fragment>
 
     <fragment
@@ -97,5 +100,11 @@
         android:id="@+id/addMemoFragment"
         android:name="com.lacuc.pets.ui.manage.animal.detail.memo.AddMemoFragment"
         tools:layout="@layout/fragment_add_memo" />
+
+    <fragment
+        android:id="@+id/userProfileFragment"
+        android:name="com.lacuc.pets.ui.manage.group.info.UserProfileFragment"
+        android:label="프로필 수정"
+        tools:layout="@layout/fragment_user_profile" />
 
 </navigation>
