@@ -47,6 +47,13 @@ class UserProfileFragment : DaggerFragment() {
 
         setCompleteBtnEnable()
 
+        setCompleteEventObserver()
+    }
+
+    private fun setCompleteEventObserver() {
+        viewModel.completeEvent.observe(viewLifecycleOwner) {
+            navController.navigateUp()
+        }
     }
 
     private fun setCompleteBtnEnable() {

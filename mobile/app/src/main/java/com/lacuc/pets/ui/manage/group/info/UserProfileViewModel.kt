@@ -3,6 +3,7 @@ package com.lacuc.pets.ui.manage.group.info
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.jakewharton.rxbinding4.InitialValueObservable
+import com.lacuc.pets.util.SingleLiveEvent
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.Disposable
 import javax.inject.Inject
@@ -15,8 +16,11 @@ class UserProfileViewModel @Inject constructor(
 
     val completeBtnEnable = MutableLiveData(false)
 
+    val completeEvent = SingleLiveEvent<Unit>()
+
     fun updateProfile() {
         // TODO: 2021-05-02 call updateProfileUseCase
+        completeEvent.value = Unit
     }
 
     fun bindCompleteBtnEnable(
