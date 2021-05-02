@@ -117,6 +117,9 @@ class ChooseAnimalFragment : DaggerFragment() {
     private fun getActionByMenuId(menuId: Int) = when (menuId) {
         R.id.userProfileFragment ->
             ChooseAnimalFragmentDirections.actionChooseAnimalFragmentToUserProfileFragment()
+        R.id.saveGroupFragment ->
+            ChooseAnimalFragmentDirections
+                .actionChooseAnimalFragmentToSaveGroupFragment("그룹 정보 수정", args.group)
         else -> null
     }
 

@@ -10,7 +10,7 @@
                     android:icon="@drawable/ic_baseline_person_24"
                     android:title="@string/info_profile" />
                 <item
-                    android:id="@+id/info_group"
+                    android:id="@id/saveGroupFragment"
                     android:icon="@drawable/ic_baseline_group_24"
                     android:title="@string/info_group" />
             </menu>
