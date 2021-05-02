@@ -105,7 +105,19 @@ class ChooseAnimalFragment : DaggerFragment() {
     }
 
     private fun setupDrawer() {
-        binding.navDrawerChooseAnimal.setupWithNavController(navController)
+        binding.navDrawerChooseAnimal.setNavigationItemSelectedListener { menu ->
+            val action = getActionByMenuId(menu.itemId)
+            action?.let {
+                navController.navigate(action)
+                true
+            } ?: false
+        }
+    }
+
+    private fun getActionByMenuId(menuId: Int) = when (menuId) {
+        R.id.userProfileFragment ->
+            ChooseAnimalFragmentDirections.actionChooseAnimalFragmentToUserProfileFragment()
+        else -> null
     }
 
     override fun onDestroyView() {
