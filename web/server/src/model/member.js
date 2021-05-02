@@ -8,6 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     name: { type: DataTypes.STRING(30), allowNull: false },
     password: { type: DataTypes.STRING(100), allowNull: false },
     email: { type: DataTypes.STRING(50), allowNull: false },
+    nickName: { type: DataTypes.STRING(30), allowNull: false },
   });
 
   const DB = { Member };

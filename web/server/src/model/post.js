@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       autoIncreament: true,
       primaryKey: true,
     },
-    url: { type: DataTypes.STRING(50), allowNull: false },
+    url: { type: DataTypes.STRING(100), allowNull: false },
   });
 
   const Favorite = sequelize.define("Favorite", {
