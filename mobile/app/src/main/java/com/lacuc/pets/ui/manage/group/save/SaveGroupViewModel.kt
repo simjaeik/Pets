@@ -1,4 +1,4 @@
-package com.lacuc.pets.ui.manage.group.add
+package com.lacuc.pets.ui.manage.group.save
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
-class AddGroupViewModel @Inject constructor(
+class SaveGroupViewModel @Inject constructor(
     private val addGroupUseCase: AddGroupUseCase,
     private val errorEvent: SingleLiveEvent<String>
 ) :

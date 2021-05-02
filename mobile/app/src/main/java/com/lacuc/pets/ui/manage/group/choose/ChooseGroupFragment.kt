@@ -76,7 +76,7 @@ class ChooseGroupFragment : DaggerFragment() {
             inflateMenu(R.menu.menu_group)
             setOnMenuItemClickListener {
                 val action = ChooseGroupFragmentDirections
-                    .actionChooseGroupFragmentToAddGroupFragment("그룹 생성")
+                    .actionChooseGroupFragmentToSaveGroupFragment("그룹 생성")
                 navController.navigate(action)
                 true
             }

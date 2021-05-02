@@ -11,8 +11,8 @@
         android:label="Group"
         tools:layout="@layout/fragment_choose_group">
         <action
-            android:id="@+id/action_chooseGroupFragment_to_addGroupFragment"
-            app:destination="@id/addGroupFragment"
+            android:id="@+id/action_chooseGroupFragment_to_saveGroupFragment"
+            app:destination="@id/saveGroupFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -27,10 +27,10 @@
     </fragment>
 
     <fragment
-        android:id="@+id/addGroupFragment"
-        android:name="com.lacuc.pets.ui.manage.group.add.AddGroupFragment"
+        android:id="@+id/saveGroupFragment"
+        android:name="com.lacuc.pets.ui.manage.group.save.SaveGroupFragment"
         android:label="{toolbar_title}"
-        tools:layout="@layout/fragment_add_group">
+        tools:layout="@layout/fragment_save_group">
         <argument
             android:name="toolbar_title"
             app:argType="string" />

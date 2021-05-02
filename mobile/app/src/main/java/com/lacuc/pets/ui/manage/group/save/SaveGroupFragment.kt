@@ -1,4 +1,4 @@
-package com.lacuc.pets.ui.manage.group.add
+package com.lacuc.pets.ui.manage.group.save
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,20 +11,20 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.lacuc.pets.ViewModelFactory
-import com.lacuc.pets.databinding.FragmentAddGroupBinding
+import com.lacuc.pets.databinding.FragmentSaveGroupBinding
 import com.lacuc.pets.util.setupWithNavController
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-class AddGroupFragment : DaggerFragment() {
+class SaveGroupFragment : DaggerFragment() {
 
-    private var _binding: FragmentAddGroupBinding? = null
+    private var _binding: FragmentSaveGroupBinding? = null
     private val binding get() = _binding!!
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private val viewModel: AddGroupViewModel by viewModels { viewModelFactory }
+    private val viewModel: SaveGroupViewModel by viewModels { viewModelFactory }
 
     private val navController: NavController by lazy { findNavController() }
 
@@ -38,7 +38,7 @@ class AddGroupFragment : DaggerFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentAddGroupBinding.inflate(inflater, container, false).apply {
+        _binding = FragmentSaveGroupBinding.inflate(inflater, container, false).apply {
             vm = viewModel
             lifecycleOwner = viewLifecycleOwner
         }
