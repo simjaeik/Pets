@@ -5,6 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Group(
+    val gid: Int,
     val name: String,
     val info: String,
     val image: String,

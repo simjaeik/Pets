@@ -27,6 +27,9 @@ class DefaultGroupRepository @Inject constructor(
         TODO("Not yet implemented")
     }
 
+    override suspend fun updateGroup(group: Group): Result<Void> =
+        groupRemoteDataSource.updateGroup(group)
+
     override suspend fun addGroupMember(memberParams: Map<String, Any>): Result<Void> {
         TODO("Not yet implemented")
     }

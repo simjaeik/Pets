@@ -17,6 +17,8 @@ interface GroupRepository {
 
     suspend fun getGroup(gid: Int): Result<Group>
 
+    suspend fun updateGroup(group: Group): Result<Void>
+
     suspend fun addGroupMember(memberParams: Map<String, Any>): Result<Void>
 
     suspend fun getGroupMembers(gid: Int): Result<List<Member>>

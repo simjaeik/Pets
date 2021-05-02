@@ -55,27 +55,27 @@ class FakeAnimalRemoteDataSource @Inject constructor() : AnimalDataSource {
     }
 
     override suspend fun addAnimal(animal: Animal): Result<Void> = withContext(Dispatchers.IO) {
-        delay(500)
+        delay(100)
         animalData[animal.gid] = animalData.getOrPut(animal.gid) { listOf() } + animal
         Result.Success(null)
     }
 
     override suspend fun loadMedical(aid: Int): Result<List<Medical>> =
         withContext(Dispatchers.IO) {
-            delay(1000)
+            delay(100)
             Result.Success(medicalData[aid] ?: emptyList())
         }
 
     override suspend fun addMedical(aid: Int, medical: Medical): Result<Void> =
         withContext(Dispatchers.IO) {
-            delay(500)
+            delay(100)
             medicalData[aid] = medicalData.getOrPut(aid) { listOf() } + medical
             Result.Success(null)
         }
 
     override suspend fun getAnimalByGroup(gid: Int): Result<List<Animal>> =
         withContext(Dispatchers.IO) {
-            delay(1000)
+            delay(100)
             Result.Success(animalData[gid] ?: emptyList())
         }
 
@@ -93,12 +93,12 @@ class FakeAnimalRemoteDataSource @Inject constructor() : AnimalDataSource {
     }
 
     override suspend fun getMemos(aid: Int): Result<List<Memo>> = withContext(Dispatchers.IO) {
-        delay(1000)
+        delay(100)
         Result.Success(memoData[aid] ?: emptyList())
     }
 
     override suspend fun setMemo(aid: Int, memo: Memo): Result<Void> = withContext(Dispatchers.IO) {
-        delay(500)
+        delay(100)
         memoData[aid] = memoData.getOrPut(aid) { listOf() } + memo
         Result.Success(null)
     }
