@@ -6,7 +6,10 @@ const { dbConfig } = require("../config");
 
 // DB
 const sequelize = new Sequelize(dbConfig);
-const { Animal, MedicalHistory } = require("./animal")(sequelize, Sequelize);
+const { Animal, MedicalHistory, Memo } = require("./animal")(
+  sequelize,
+  Sequelize
+);
 const { Post, PostImage, Comment, Favorite } = require("./post")(
   sequelize,
   Sequelize
@@ -28,6 +31,7 @@ const initDB = { aniaml, post, group, member };
 const db = {
   Animal,
   MedicalHistory,
+  Memo,
   Post,
   PostImage,
   Comment,
