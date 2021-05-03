@@ -41,4 +41,10 @@
     <string name="gallery">갤러리</string>
     <string name="item">물품</string>
     <string name="add_member">멤버 추가</string>
+
+    <string-array name="member_authority_array">
+        <item>관리자</item>
+        <item>매니저</item>
+        <item>멤버</item>
+    </string-array>
 </resources>
