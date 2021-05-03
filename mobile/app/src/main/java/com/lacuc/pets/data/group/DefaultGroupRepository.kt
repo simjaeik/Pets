@@ -34,9 +34,8 @@ class DefaultGroupRepository @Inject constructor(
         TODO("Not yet implemented")
     }
 
-    override suspend fun getGroupMembers(gid: Int): Result<List<Member>> {
-        TODO("Not yet implemented")
-    }
+    override suspend fun getGroupMembers(gid: Int): Result<List<Member>> =
+        groupRemoteDataSource.getGroupMembers(gid)
 
     override suspend fun deleteGroupMember(gid: Int): Result<Void> {
         TODO("Not yet implemented")
