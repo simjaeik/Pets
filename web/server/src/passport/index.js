@@ -1,7 +1,7 @@
-const jwtStrategy = require("./jwt");
+const loginStrategy = require("./login");
 
 const initStrategy = () => {
-  jwtStrategy();
+  loginStrategy();
 };
 
 module.exports = initStrategy;
