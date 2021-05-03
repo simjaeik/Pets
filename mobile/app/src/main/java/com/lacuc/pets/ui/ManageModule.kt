@@ -7,6 +7,7 @@ import com.lacuc.pets.ui.manage.animal.detail.medical.AddMedicalFragment
 import com.lacuc.pets.ui.manage.animal.detail.memo.AddMemoFragment
 import com.lacuc.pets.ui.manage.group.choose.ChooseGroupFragment
 import com.lacuc.pets.ui.manage.group.info.UserProfileFragment
+import com.lacuc.pets.ui.manage.group.member.ManageMemberFragment
 import com.lacuc.pets.ui.manage.group.save.SaveGroupFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -36,4 +37,7 @@ abstract class ManageModule {
 
     @ContributesAndroidInjector
     abstract fun getUserProfileFragment(): UserProfileFragment
+
+    @ContributesAndroidInjector
+    abstract fun getManageMemberFragment(): ManageMemberFragment
 }
