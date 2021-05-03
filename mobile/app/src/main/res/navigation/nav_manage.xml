@@ -68,6 +68,9 @@
         <action
             android:id="@+id/action_chooseAnimalFragment_to_saveGroupFragment"
             app:destination="@id/saveGroupFragment" />
+        <action
+            android:id="@+id/action_chooseAnimalFragment_to_manageMemberFragment"
+            app:destination="@id/manageMemberFragment" />
     </fragment>
 
     <fragment
@@ -114,5 +117,10 @@
         android:name="com.lacuc.pets.ui.manage.group.info.UserProfileFragment"
         android:label="프로필 수정"
         tools:layout="@layout/fragment_user_profile" />
+
+    <fragment
+        android:id="@+id/manageMemberFragment"
+        android:name="com.lacuc.pets.ui.manage.group.member.ManageMemberFragment"
+        android:label="멤버 관리" />
 
 </navigation>
