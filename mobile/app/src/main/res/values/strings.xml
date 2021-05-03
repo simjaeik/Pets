@@ -40,4 +40,5 @@
     <string name="group">그룹</string>
     <string name="gallery">갤러리</string>
     <string name="item">물품</string>
+    <string name="add_member">멤버 추가</string>
 </resources>
