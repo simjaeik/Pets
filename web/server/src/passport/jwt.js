@@ -11,12 +11,12 @@ module.exports = () => {
   passport.use(
     new JwtStrategy(options, async function (jwt_payload, done) {
       try {
-        const user = await Member.findOne({
+        const member = await Member.findOne({
           where: { id: jwt_payload.id },
         });
 
-        if (user) {
-          return done(null, user);
+        if (member) {
+          return done(null, member);
         }
 
         return done(null, false);
