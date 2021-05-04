@@ -1,7 +1,8 @@
 body {
     padding: 20px;
+    text-align: center;
+    color:#999;
     background-color: white;
-    font-family: "Noto Sans KR", Helvetica, sans-serif;
   }
 img {
     border:3px solid gold;
@@ -11,9 +12,25 @@ img {
 p{
     text-align:center;
 }
+h1{ 
+    font-family: 'Oswald', sans-serif; 
+    font-size: 30px; 
+    color: #216182; 
+} 
 text{
     color:#0660c0;
 }
+input, textarea { 
+    width: 439px; 
+    height: 27px; 
+    background-color: #efefef; 
+    border-radius: 6px; 
+    border: 1px solid #dedede; 
+    padding: 10px; 
+    margin-top: 3px; 
+    font-size: 0.9em; 
+    color: #3a3a3a; 
+} 
 #icon{
     width:50%;
     height:50%;
@@ -70,10 +87,10 @@ li a {
     color:#469efc;
 }
 #write_type{
-border-bottom-color:tomato;
-border-bottom-style:outset;
-border-width:1px 1px 3px 1px;
-margin: 4px 4px 20px 4px;
+    border-bottom-color:tomato;
+    border-bottom-style:outset;
+    border-width:1px 1px 3px 1px;
+    margin: 4px 4px 20px 4px;
 }
 #firstcontainer{
     padding: 0px 0px 20px 0px;
@@ -85,4 +102,29 @@ margin: 4px 4px 20px 4px;
     border-width:1px 1px 3px 1px;
     margin: 4px 4px 20px 4px;
 }
-
+#my_modal {
+    display: none;
+    left: 0; top: 0; width: 50%; height: 50%;
+    padding: 20px 60px;
+    background-color: #fefefe;
+    border: 1px solid #888;
+    border-radius: 3px;
+}
+#my_modal .modal_close_btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+#submit{ 
+    width: 127px; 
+    height: 48px; 
+    text-align: center; 
+    border: none; 
+    margin-top: 20px; 
+    cursor: pointer; 
+} 
+#submit:hover{ 
+    color: #fff; 
+    background-color: #216282; 
+    opacity: 0.9; 
+}

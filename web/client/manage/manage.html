@@ -15,11 +15,11 @@
     <link rel="stylesheet" href="../boot_css/login.css">
     <link rel="stylesheet" href="manage.css"></style>
     <!--javascript 파일 연결-->
-    <script src="postview.js"></script>
+    <script src="manage.js"></script>
   </head>
 
   <body>
-    
+
     <!--상단바-->
     <div class = "container-fluid" id="firstcontainer">
         
@@ -31,23 +31,23 @@
                 <ul>
                     <li><a href="../community/community.html">커뮤니티</a></li>
                     <li><a href="../pets.html" >둘러보기</a></li>
-                    <li><a href="../pets.html" id="manage">관리</a></li>
+                    <li><a href="manage.html" id="manage">관리</a></li>
                 </ul>
             </div>
 
-            <!--그룹추가 버튼-->
-            <div class="item-fulid" id="writebtn">
-                <button type="button" class="btn btn-outline-primary btn-lg" onclick="location.href='../post/post.html'";>그룹추가</button>   
-            </div>  
+            <div></div>
         </div>
     </div>
 
     <!--그룹-->
-    <div  class="container-fluid">
+    <div class="container-fluid">
+        
         <div class="cover">
             <!--본인이 속한 그룹-->
             <div class="item">
-                <p><img src="../img/cat.jpg" alt="../img/logo.jpg"></p>
+                <p>
+                    <img src="../img/cat.jpg" alt="../img/logo.jpg">
+                </p>
                 <p><text>우리가족</text></p>
             </div>
 
@@ -60,18 +60,52 @@
                 <p><img src="../img/rabbit.jpg" alt="../img/logo.jpg"></p>
                 <p><text>ㅇㅇ 대학교</text></p>
             </div>
+
+            <!--추가할 그룹-->
+            <div class="item" id="addgroup">
+                <p><img id="groupImage"></p>
+                <p><text id="groupName"></text></p>
+            </div>
+
         </div>
     </div>
 
+    <!--모달창-->
+    <div id="my_modal">
+        <h1 class="modal_title">새로운 그룹 만들기</h1>
+        <!--그룹이름-->
+        <div class="form-group row">
+            <label class="col-lg-2 col-form-label form-control-label text-muted">그룹이름</label>
+                <div class="col-lg-10">
+                    <label> <p class="label-txt"></p> 
+                    <input type="text" class="input" required>
+                    <div class="line-box"> <div class="line"></div></div> 
+            </label> </div>
+        </div>
+        <label></label> 
 
-
-
+        <!--이미지-->
+        <div class="form-group row">
+            <label class="col-lg-2 col-form-label form-control-label text-muted">대표사진등록</label>
+                <div class="col-lg-10">
+                    <label> <p class="label-txt"></p> 
+                    <input type="image" class="input" required>
+                    <div class="line-box"> <div class="line"></div></div> 
+            </label> </div>
+        </div>
+        <label></label> 
+     
+        <button type="button" class="btn btn-outline-primary btn-lg" onclick="location.href='manage.html'">취소</button>   
+        <button type="button" class="btn btn-outline-primary btn-lg" onclick="addGroup()">만들기</button>   
+        <a class="modal_close_btn">닫기</a>
+    </div>
+    <!--버튼-->
+    <button id="popup_open_btn" class="btn btn-outline-danger" onclick="modal()">새로운 그룹 만들기</button>
 
     <!--javascript-->
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="../boot_js/bootstrap.min.js"></script>
-
-
+    
     </body>
 </html>
 
