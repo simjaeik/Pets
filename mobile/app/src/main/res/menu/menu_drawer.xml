@@ -27,7 +27,7 @@
                     android:icon="@drawable/ic_baseline_group_add_24"
                     android:title="@string/member" />
                 <item
-                    android:id="@+id/manage_gallery"
+                    android:id="@id/galleryFragment"
                     android:icon="@drawable/ic_baseline_photo_album_24"
                     android:title="@string/gallery" />
                 <item

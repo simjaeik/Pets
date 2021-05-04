@@ -122,6 +122,8 @@ class ChooseAnimalFragment : DaggerFragment() {
                 .actionChooseAnimalFragmentToSaveGroupFragment("그룹 정보 수정", args.group)
         R.id.manageMemberFragment ->
             ChooseAnimalFragmentDirections.actionChooseAnimalFragmentToManageMemberFragment(args.group.gid)
+        R.id.galleryFragment ->
+            ChooseAnimalFragmentDirections.actionChooseAnimalFragmentToGalleryFragment(args.group.gid)
         else -> null
     }
 

@@ -71,6 +71,9 @@
         <action
             android:id="@+id/action_chooseAnimalFragment_to_manageMemberFragment"
             app:destination="@id/manageMemberFragment" />
+        <action
+            android:id="@+id/action_chooseAnimalFragment_to_galleryFragment"
+            app:destination="@id/galleryFragment" />
     </fragment>
 
     <fragment
@@ -122,7 +125,17 @@
         android:id="@+id/manageMemberFragment"
         android:name="com.lacuc.pets.ui.manage.group.member.ManageMemberFragment"
         android:label="멤버 관리"
-        tools:layout="@layout/fragment_manage_member" >
+        tools:layout="@layout/fragment_manage_member">
+        <argument
+            android:name="gid"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/galleryFragment"
+        android:name="com.lacuc.pets.ui.manage.group.gallery.GalleryFragment"
+        android:label="갤러리"
+        tools:layout="@layout/fragment_gallery" >
         <argument
             android:name="gid"
             app:argType="integer" />
