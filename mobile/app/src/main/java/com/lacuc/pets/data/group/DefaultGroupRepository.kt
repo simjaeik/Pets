@@ -41,9 +41,8 @@ class DefaultGroupRepository @Inject constructor(
         TODO("Not yet implemented")
     }
 
-    override suspend fun getGroupImages(gid: Int): Result<List<GroupImage>> {
-        TODO("Not yet implemented")
-    }
+    override suspend fun getGroupImages(gid: Int): Result<List<GroupImage>> =
+        groupRemoteDataSource.getGroupImages(gid)
 
     override suspend fun setGroupImage(imageParams: Map<String, Any>): Result<Void> {
         TODO("Not yet implemented")

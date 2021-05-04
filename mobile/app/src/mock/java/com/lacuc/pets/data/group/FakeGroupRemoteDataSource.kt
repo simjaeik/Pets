@@ -18,9 +18,12 @@ class FakeGroupRemoteDataSource @Inject constructor() : GroupDataSource {
 
     private val memberData = mutableListOf<Pair<Int, Member>>()
 
+    private val imageData = mutableListOf<GroupImage>()
+
     init {
         initGroup()
         initMember()
+        initImage()
     }
 
     override suspend fun getMyGroups(): Result<List<Group>> = withContext(Dispatchers.IO) {
@@ -68,9 +71,11 @@ class FakeGroupRemoteDataSource @Inject constructor() : GroupDataSource {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getGroupImages(gid: Int): Result<List<GroupImage>> {
-        TODO("Not yet implemented")
-    }
+    override suspend fun getGroupImages(gid: Int): Result<List<GroupImage>> =
+        withContext(Dispatchers.IO) {
+            delay(100)
+            Result.Success(imageData.filter { it.gid == gid })
+        }
 
     override suspend fun setGroupImage(imageParams: Map<String, Any>): Result<Void> {
         TODO("Not yet implemented")
@@ -124,4 +129,62 @@ class FakeGroupRemoteDataSource @Inject constructor() : GroupDataSource {
         memberData.add(0 to Member(2, "Arch", "admin", "mail", "A"))
     }
 
+    private fun initImage() {
+        imageData.add(
+            GroupImage(
+                0,
+                0,
+                "https://images.unsplash.com/photo-1529933037705-0d537317ae7b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1271&q=80",
+                "cat"
+            )
+        )
+        imageData.add(
+            GroupImage(
+                1,
+                0,
+                "https://images.unsplash.com/photo-1517451330947-7809dead78d5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80",
+                "cat"
+            )
+        )
+        imageData.add(
+            GroupImage(
+                2,
+                0,
+                "https://images.unsplash.com/photo-1478958813546-b8bd142c3202?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1332&q=80",
+                "cat"
+            )
+        )
+        imageData.add(
+            GroupImage(
+                3,
+                0,
+                "https://images.unsplash.com/photo-1609859159443-5dda6401ebdf?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1164&q=80",
+                "cat"
+            )
+        )
+        imageData.add(
+            GroupImage(
+                4,
+                0,
+                "https://images.unsplash.com/photo-1572360620839-a02312482daf?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1234&q=80",
+                "cat"
+            )
+        )
+        imageData.add(
+            GroupImage(
+                5,
+                0,
+                "https://images.unsplash.com/photo-1568307970720-a8c50b644a7c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+                "cat"
+            )
+        )
+        imageData.add(
+            GroupImage(
+                6,
+                0,
+                "https://images.unsplash.com/photo-1612607323373-4614b03146b4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1233&q=80",
+                "cat"
+            )
+        )
+    }
 }
