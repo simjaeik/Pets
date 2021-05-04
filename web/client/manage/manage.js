@@ -1,10 +1,10 @@
 function modal() {
 
-    let zIndex = 9999;
-    let modal = document.getElementById('my_modal');
-
+    const zIndex = 9999;   
+    const bg = document.createElement('div');
+    const modal = document.getElementById('my_modal');
+   
     // 모달 div 뒤에 희끄무레한 레이어
-    var bg = document.createElement('div');
     bg.setStyle({
         position: 'fixed',
         zIndex: zIndex,
@@ -19,7 +19,7 @@ function modal() {
     document.body.append(bg);
 
     // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
-    modal.querySelector('.modal_close_btn').addEventListener('click', function() {
+    modal.querySelector('.modal_btn').addEventListener('click', function() {
         bg.remove();
         modal.style.display = 'none';
     });
@@ -39,44 +39,50 @@ function modal() {
         msTransform: 'translate(-50%, -50%)',
         webkitTransform: 'translate(-50%, -50%)'
     });
-}
 
+}
 // Element 에 style 한번에 오브젝트로 설정하는 함수 추가
 Element.prototype.setStyle = function(styles) {
     for (var k in styles) this.style[k] = styles[k];
     return this;
 };
 
-function addGroup(){
+function initinput(){
+
+    const input = document.getElementsByClassName('input');
     
-    const group = document.getElementsByID("addgroup");
-
-    const newgroup = document.createElement('div');
-    newgroup.classList.add("item");
+    for(let i=0;i<input.length;i++){
+        input[i].value= "";
+    }
 }
-// const newcommentEL = document.getElementById("new-comment");
-//     const newcomment = newcommentEL.value.trim(); //trim() : 공백제거
 
-//     if(newcomment){
+function addGroup(){
+ 
+    const inputValue = document.querySelector(".input").value;
 
-//         const dateEL = document.createElement('div');
-//         dateEL.classList.add("comment-date");
-//         const dateString = dateToString(new Date());
-//         dateEL.innerText = dateString;
+    const group = document.createElement('text');
+    group.classList.add('managegroup');
+    group.innerText = inputValue;
 
-//         const contentEL = document.createElement('div');
-//         contentEL.classList.add('coment-content');
-//         contentEL.innerText = newcomment;
-  
-//         const commentEL = document.createElement('div');
-//         commentEL.classList.add('comment-content');
-//         commentEL.appendChild(contentEL);
-//         commentEL.appendChild(dateEL);
-       
+    const image = document.createElement('img');
+    //이미지 url 
+    const p = document.createElement('p');
+    
+    const addEL = document.createElement('div');
+    addEL.classList.add('item');
+    addEL.appendChild(image);
+    addEL.appendChild(p);
+    addEL.appendChild(group);
 
-//         document.getElementById('comments').appendChild(commentEL);
-//         newcommentEL.value="";     
+    document.getElementById('groups').appendChild(addEL);
 
-//         const countEL = document.getElementById('comments-count');
-//         const count = countEL.innerText;
-//         countEL.innerText = parseInt(count) + 1;
+    location.href="manage.html";
+
+}
+
+function exitModal(){
+    const modal = document.getElementById('my_modal');
+
+    modal.display="hide";
+
+}

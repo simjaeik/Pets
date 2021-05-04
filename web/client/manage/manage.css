@@ -17,7 +17,12 @@ h1{
     font-size: 30px; 
     color: #216182; 
 } 
-text{
+h2{ 
+    font-family: 'Oswald', sans-serif; 
+    font-size: 15px; 
+    color: #216182; 
+}
+text, #groupName{
     color:#0660c0;
 }
 input, textarea { 
@@ -110,7 +115,7 @@ li a {
     border: 1px solid #888;
     border-radius: 3px;
 }
-#my_modal .modal_close_btn {
+#my_modal{
     position: absolute;
     top: 10px;
     right: 10px;

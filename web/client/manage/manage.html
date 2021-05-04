@@ -42,12 +42,10 @@
     <!--그룹-->
     <div class="container-fluid">
         
-        <div class="cover">
+        <div class="cover managegroup" id="groups">
             <!--본인이 속한 그룹-->
             <div class="item">
-                <p>
-                    <img src="../img/cat.jpg" alt="../img/logo.jpg">
-                </p>
+                <p><img src="../img/cat.jpg" alt="../img/logo.jpg"></p>
                 <p><text>우리가족</text></p>
             </div>
 
@@ -60,22 +58,23 @@
                 <p><img src="../img/rabbit.jpg" alt="../img/logo.jpg"></p>
                 <p><text>ㅇㅇ 대학교</text></p>
             </div>
-
-            <!--추가할 그룹-->
-            <div class="item" id="addgroup">
-                <p><img id="groupImage"></p>
-                <p><text id="groupName"></text></p>
-            </div>
-
+        
+            
         </div>
     </div>
 
+    <!--버튼-->
+    <button id="popup_open_btn" class="btn btn-outline-danger" onclick="modal(); initinput();">새로운 그룹 만들기</button>
+
     <!--모달창-->
     <div id="my_modal">
-        <h1 class="modal_title">새로운 그룹 만들기</h1>
+        <div class="cover">
+            <h1 class="modal_title">새로운 그룹 만들기</h1>
+            <button class="modal_btn">닫기</button>
+        </div>
         <!--그룹이름-->
         <div class="form-group row">
-            <label class="col-lg-2 col-form-label form-control-label text-muted">그룹이름</label>
+            <label class="col-lg-2 col-form-label form-control-label text-muted"><h2>그룹이름</h2></label>
                 <div class="col-lg-10">
                     <label> <p class="label-txt"></p> 
                     <input type="text" class="input" required>
@@ -86,7 +85,7 @@
 
         <!--이미지-->
         <div class="form-group row">
-            <label class="col-lg-2 col-form-label form-control-label text-muted">대표사진등록</label>
+            <label class="col-lg-2 col-form-label form-control-label text-muted"><h2>대표사진등록</h2></label>
                 <div class="col-lg-10">
                     <label> <p class="label-txt"></p> 
                     <input type="image" class="input" required>
@@ -95,13 +94,9 @@
         </div>
         <label></label> 
      
-        <button type="button" class="btn btn-outline-primary btn-lg" onclick="location.href='manage.html'">취소</button>   
-        <button type="button" class="btn btn-outline-primary btn-lg" onclick="addGroup()">만들기</button>   
-        <a class="modal_close_btn">닫기</a>
+        <button type="button" class="btn btn-outline-primary btn-lg" id="addgroup_btn" onclick="addGroup()">만들기</button>   
     </div>
-    <!--버튼-->
-    <button id="popup_open_btn" class="btn btn-outline-danger" onclick="modal()">새로운 그룹 만들기</button>
-
+  
     <!--javascript-->
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="../boot_js/bootstrap.min.js"></script>
