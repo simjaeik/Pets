@@ -1,4 +1,7 @@
 const { createJWT } = require("../lib/utill/jwt");
+const Member = require("../model/index").Member;
+const bcrypt = require("bcrypt");
+
 const checkUserValid = async ({ name, password, email, nickName }) => {
   const existEmail = await Member.findOne({ where: { email } });
   const existNickName = await Member.findOne({ where: { nickName } });
