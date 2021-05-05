@@ -76,13 +76,20 @@ function addGroup(){
 
     document.getElementById('groups').appendChild(addEL);
 
-    location.href="manage.html";
-
+    initinput();
+    //exitModal();
 }
 
 function exitModal(){
+    
     const modal = document.getElementById('my_modal');
+    const bg = document.createElement('div');
 
-    modal.display="hide";
+    // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
+    modal.querySelector('#addgroup_btn').addEventListener('click', function() {
+        bg.remove();
+        modal.style.display = 'none';
+    });
 
+   // const modal = document.getElementById('my_modal');
 }
