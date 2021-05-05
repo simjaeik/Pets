@@ -21,6 +21,30 @@ const checkUserValid = async ({ name, password, email, nickName }) => {
 };
 
 module.exports = {
+  signUp: async (data) => {
+    const { name, password, email, nickName } = data;
+    const hasError = await checkUserValid(data);
+
+    if (hasError) {
+      return hasError;
+    }
+
+    const salt = 10;
+    const encryptPWD = await bcrypt.hash(password, salt);
+
+    try {
+      const member = await Member.create({
+        name,
+        password: encryptPWD,
+        email,
+        nickName,
+      });
+      return member;
+    } catch (er) {
+      return { error: er };
+    }
+  },
+
   login: async (member) => {
     const jwtToken = createJWT(member);
 
