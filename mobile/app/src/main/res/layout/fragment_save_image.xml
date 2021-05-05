@@ -36,17 +36,6 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <TextView
-            android:id="@+id/tv_saveImage_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/image"
-            android:textAppearance="?textAppearanceHeadline6"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbarLayout_saveImage" />
-
         <ImageButton
             android:id="@+id/btn_saveImage_pickImage"
             android:layout_width="0dp"
@@ -56,7 +45,7 @@
             app:image="@{vm.image}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_saveImage_image" />
+            app:layout_constraintTop_toBottomOf="@id/toolbarLayout_saveImage" />
 
         <ImageView
             android:layout_width="80dp"
@@ -68,33 +57,31 @@
             app:layout_constraintStart_toStartOf="@id/btn_saveImage_pickImage"
             app:layout_constraintTop_toTopOf="@id/btn_saveImage_pickImage" />
 
-        <TextView
-            android:id="@+id/tv_saveImage_tag"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/tag"
-            android:textAppearance="?textAppearanceHeadline6"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_saveImage_pickImage" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup_saveImage"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            app:chipSpacingHorizontal="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_saveImage_tag">
+            app:layout_constraintTop_toBottomOf="@id/btn_saveImage_pickImage" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/textInput_saveImage_tag"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="text" />
-
-        </com.google.android.material.textfield.TextInputLayout>
+        <AutoCompleteTextView
+            android:id="@+id/textInput_saveImage_tag"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            android:completionThreshold="1"
+            android:hint="@string/hint_inputTag"
+            android:inputType="text"
+            android:singleLine="true"
+            android:text="@={vm.tagString}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chipGroup_saveImage" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

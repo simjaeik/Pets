@@ -6,10 +6,16 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
+import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.chip.Chip
+import com.lacuc.pets.R
 import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.FragmentSaveImageBinding
 import com.lacuc.pets.util.setupWithNavController
@@ -52,6 +58,55 @@ class SaveImageFragment : DaggerFragment() {
 
         binding.btnSaveImagePickImage.setOnClickListener {
             requestImage()
+        }
+
+        setupTagChips()
+    }
+
+    private fun setupTagChips() {
+        for (tag in viewModel.addedTagList) {
+            addChip(tag)
+        }
+
+        binding.textInputSaveImageTag.apply {
+            setupTagAdapter()
+
+            setOnItemClickListener { _, view, _, _ ->
+                val text = (view as? TextView)?.text?.toString() ?: ""
+                if (viewModel.addTag(text)) {
+                    addChip(text)
+                }
+            }
+        }
+    }
+
+    private fun addChip(text: String) {
+        val chip = createTagChip(text)
+        binding.chipGroupSaveImage.addView(chip)
+    }
+
+    private fun createTagChip(text: String): Chip = Chip(context).apply {
+        setChipBackgroundColorResource(R.color.primary_50)
+        setCloseIconTintResource(R.color.primary_300)
+        this.text = text
+        isCloseIconVisible = true
+        setOnCloseIconClickListener { tag ->
+            if (viewModel.removeTag((tag as Chip).text.toString()))
+                binding.chipGroupSaveImage.removeView(tag)
+        }
+    }
+
+    private fun AutoCompleteTextView.setupTagAdapter() {
+        // 텍스트가 입력될 때 마다, 기존의 태그 목록에서 사용자가
+        // 입력중인 태그를 상단에 보여주기 위해 어댑터를 재등록
+        doOnTextChanged { text, _, _, _ ->
+            setAdapter(
+                ArrayAdapter(
+                    context,
+                    R.layout.item_menu_dropdown,
+                    (setOf(text.toString()) + viewModel.tagSet).toList()
+                )
+            )
         }
     }
 
