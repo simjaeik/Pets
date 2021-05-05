@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
     GID: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
-      autoIncreament: true,
+      allowNull: false,
       primaryKey: true,
     },
     name: { type: DataTypes.STRING(30), allowNull: false },
@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     IID: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
-      autoIncreament: true,
+      allowNull: false,
       primaryKey: true,
     },
     url: { type: DataTypes.STRING(100), allowNull: true },
@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
     HID: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
-      autoIncreament: true,
+      allowNull: false,
       primaryKey: true,
     },
     name: { type: DataTypes.STRING(50), allowNull: false },

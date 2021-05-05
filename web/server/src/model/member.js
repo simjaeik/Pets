@@ -1,5 +1,3 @@
-const uuid = require("uuid");
-
 module.exports = (sequelize, DataTypes) => {
   const Member = sequelize.define("Member", {
     UID: {

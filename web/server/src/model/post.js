@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
     PID: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
-      autoIncreament: true,
+      allowNull: false,
       primaryKey: true,
     },
     title: { type: DataTypes.STRING(50), allowNull: false },
@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     IID: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
-      autoIncreament: true,
+      allowNull: false,
       primaryKey: true,
     },
     url: { type: DataTypes.STRING(100), allowNull: false },
