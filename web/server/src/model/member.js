@@ -1,9 +1,12 @@
+const uuid = require("uuid");
+
 module.exports = (sequelize, DataTypes) => {
   const Member = sequelize.define("Member", {
     UID: {
-      type: DataTypes.INTEGER,
-      autoIncreament: true,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
+      allowNull: false,
     },
     name: { type: DataTypes.STRING(30), allowNull: false },
     password: { type: DataTypes.STRING(100), allowNull: false },

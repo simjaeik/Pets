@@ -1,7 +1,8 @@
 module.exports = (sequelize, DataTypes) => {
   const Animal = sequelize.define("Animal", {
     AID: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
       autoIncreament: true,
       primaryKey: true,
     },
@@ -14,9 +15,11 @@ module.exports = (sequelize, DataTypes) => {
     number: { type: DataTypes.STRING(100), allowNull: false },
     image: { type: DataTypes.STRING(100), allowNull: false },
   });
+
   const MedicalHistory = sequelize.define("MedicalHistory", {
     HID: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
       autoIncreament: true,
       primaryKey: true,
     },
@@ -28,7 +31,8 @@ module.exports = (sequelize, DataTypes) => {
 
   const Memo = sequelize.define("Memo", {
     MID: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
       autoIncreament: true,
       primaryKey: true,
     },
