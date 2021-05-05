@@ -9,6 +9,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
+import com.lacuc.pets.R
 import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.FragmentGalleryBinding
 import com.lacuc.pets.util.setupWithNavController
@@ -47,7 +48,7 @@ class GalleryFragment : DaggerFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.toolbarGallery.setupWithNavController(navController)
+        setupToolbar()
 
         binding.recyclerviewGallery.apply {
             adapter = GalleryAdapter()
@@ -55,4 +56,17 @@ class GalleryFragment : DaggerFragment() {
         }
     }
 
+    private fun setupToolbar() {
+        binding.toolbarGallery.apply {
+            setupWithNavController(navController)
+
+            inflateMenu(R.menu.menu_add)
+            setOnMenuItemClickListener {
+                val action = GalleryFragmentDirections
+                    .actionGalleryFragmentToSaveImageFragment()
+                navController.navigate(action)
+                true
+            }
+        }
+    }
 }

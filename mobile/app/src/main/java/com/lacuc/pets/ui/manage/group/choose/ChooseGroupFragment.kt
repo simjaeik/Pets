@@ -73,7 +73,7 @@ class ChooseGroupFragment : DaggerFragment() {
         binding.toolbarChooseGroup.apply {
             setupWithNavController(navController, appBarConfiguration)
 
-            inflateMenu(R.menu.menu_group)
+            inflateMenu(R.menu.menu_add)
             setOnMenuItemClickListener {
                 val action = ChooseGroupFragmentDirections
                     .actionChooseGroupFragmentToSaveGroupFragment("그룹 생성")

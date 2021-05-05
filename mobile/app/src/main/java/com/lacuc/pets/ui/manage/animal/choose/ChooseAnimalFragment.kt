@@ -92,7 +92,7 @@ class ChooseAnimalFragment : DaggerFragment() {
         binding.toolbarChooseAnimal.apply {
             setupWithNavController(navController, appBarConfiguration)
 
-            inflateMenu(R.menu.menu_group)
+            inflateMenu(R.menu.menu_add)
             setOnMenuItemClickListener {
                 val action = ChooseAnimalFragmentDirections
                     .actionChooseAnimalFragmentToAddAnimalFragment(null)
