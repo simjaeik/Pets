@@ -41,6 +41,8 @@
     <string name="gallery">갤러리</string>
     <string name="item">물품</string>
     <string name="add_member">멤버 추가</string>
+    <string name="image">이미지</string>
+    <string name="tag">태그</string>
 
     <string-array name="member_authority_array">
         <item>관리자</item>

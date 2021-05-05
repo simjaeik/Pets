@@ -11,6 +11,7 @@ import com.lacuc.pets.ui.manage.animal.detail.medical.AddMedicalViewModel
 import com.lacuc.pets.ui.manage.animal.detail.memo.AddMemoViewModel
 import com.lacuc.pets.ui.manage.group.choose.ChooseGroupViewModel
 import com.lacuc.pets.ui.manage.group.gallery.GalleryViewModel
+import com.lacuc.pets.ui.manage.group.gallery.save.SaveImageViewModel
 import com.lacuc.pets.ui.manage.group.info.UserProfileViewModel
 import com.lacuc.pets.ui.manage.group.member.ManageMemberViewModel
 import com.lacuc.pets.ui.manage.group.save.SaveGroupViewModel
@@ -84,4 +85,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(GalleryViewModel::class)
     abstract fun bindGalleryViewModel(viewModel: GalleryViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SaveImageViewModel::class)
+    abstract fun bindSaveImageViewModel(viewModel: SaveImageViewModel): ViewModel
 }
