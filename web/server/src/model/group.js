@@ -1,8 +1,9 @@
 module.exports = (sequelize, DataTypes) => {
   const Group = sequelize.define("Group", {
     GID: {
-      type: DataTypes.INTEGER,
-      autoIncreament: true,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      allowNull: false,
       primaryKey: true,
     },
     name: { type: DataTypes.STRING(30), allowNull: false },
@@ -15,8 +16,9 @@ module.exports = (sequelize, DataTypes) => {
 
   const GalleryImage = sequelize.define("GalleryImage", {
     IID: {
-      type: DataTypes.INTEGER,
-      autoIncreament: true,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      allowNull: false,
       primaryKey: true,
     },
     url: { type: DataTypes.STRING(100), allowNull: true },
@@ -25,8 +27,9 @@ module.exports = (sequelize, DataTypes) => {
 
   const ItemHistory = sequelize.define("ItemHistory", {
     HID: {
-      type: DataTypes.INTEGER,
-      autoIncreament: true,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      allowNull: false,
       primaryKey: true,
     },
     name: { type: DataTypes.STRING(50), allowNull: false },

@@ -1,8 +1,9 @@
 module.exports = (sequelize, DataTypes) => {
   const Post = sequelize.define("Post", {
     PID: {
-      type: DataTypes.INTEGER,
-      autoIncreament: true,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      allowNull: false,
       primaryKey: true,
     },
     title: { type: DataTypes.STRING(50), allowNull: false },
@@ -14,8 +15,9 @@ module.exports = (sequelize, DataTypes) => {
 
   const PostImage = sequelize.define("PostImage", {
     IID: {
-      type: DataTypes.INTEGER,
-      autoIncreament: true,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      allowNull: false,
       primaryKey: true,
     },
     url: { type: DataTypes.STRING(100), allowNull: false },
@@ -36,7 +38,8 @@ module.exports = (sequelize, DataTypes) => {
 
   const Comment = sequelize.define("Comment", {
     CID: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       primaryKey: true,
     },
