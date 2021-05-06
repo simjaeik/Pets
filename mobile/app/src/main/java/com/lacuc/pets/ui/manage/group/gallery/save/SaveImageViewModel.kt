@@ -2,9 +2,19 @@ package com.lacuc.pets.ui.manage.group.gallery.save
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.lacuc.pets.data.Result
+import com.lacuc.pets.domain.group.UploadImageUseCase
+import com.lacuc.pets.util.SingleLiveEvent
+import com.lacuc.pets.util.safeValue
+import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
-class SaveImageViewModel @Inject constructor() : ViewModel() {
+class SaveImageViewModel @Inject constructor(
+    private val uploadImageUseCase: UploadImageUseCase,
+    private val errorEvent: SingleLiveEvent<String>
+) : ViewModel() {
 
     val image = MutableLiveData("")
 
@@ -15,6 +25,8 @@ class SaveImageViewModel @Inject constructor() : ViewModel() {
         private set
 
     val addedTagList = mutableListOf<String>()
+
+    val completeEvent = SingleLiveEvent<Unit>()
 
     fun setImage(dataString: String?) {
         image.value = dataString
@@ -31,4 +43,28 @@ class SaveImageViewModel @Inject constructor() : ViewModel() {
     }
 
     fun removeTag(tag: String): Boolean = addedTagList.remove(tag)
+
+    fun saveImage() {
+        viewModelScope.launch {
+            val result = uploadImageUseCase(
+                mapOf(
+                    // TODO: 2021-05-06 실제 선택한 그룹의 GID를 얻어야 함
+                    "GID" to 0,
+                    "url" to image.safeValue,
+                    "tag" to addedTagList.toString()
+                )
+            )
+
+            when (result) {
+                is Result.Success -> completeEvent.value = Unit
+                is Result.Failure -> errorEvent.value =
+                    "code: ${result.code} message: ${result.error}"
+                is Result.NetworkError -> errorEvent.value = "네트워크 문제가 발생했습니다."
+                is Result.Unexpected -> {
+                    Timber.d(result.t.toString())
+                    errorEvent.value = "알수없는 오류가 발생했습니다."
+                }
+            }
+        }
+    }
 }

@@ -61,6 +61,10 @@ class SaveImageFragment : DaggerFragment() {
         }
 
         setupTagChips()
+
+        viewModel.completeEvent.observe(viewLifecycleOwner) {
+            navController.navigateUp()
+        }
     }
 
     private fun setupTagChips() {

@@ -25,14 +25,33 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolbar_saveImage"
-                style="@style/Widget.MaterialComponents.Toolbar.Surface"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="?actionBarSize"
-                app:titleTextAppearance="?textAppearanceHeadline6"
-                app:titleTextColor="@color/black"
-                tools:title="이미지 추가" />
+                android:layout_height="?actionBarSize">
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/toolbar_saveImage"
+                    style="@style/Widget.MaterialComponents.Toolbar.Surface"
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize"
+                    app:titleTextAppearance="?textAppearanceHeadline6"
+                    app:titleTextColor="@color/black"
+                    tools:title="이미지 추가" />
+
+                <Button
+                    android:id="@+id/btn_saveImage_complete"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|end"
+                    android:layout_marginEnd="16dp"
+                    android:enabled="@{!vm.image.empty}"
+                    android:minWidth="0dp"
+                    android:onClick="@{() -> vm.saveImage()}"
+                    android:text="@string/complete"
+                    android:textAppearance="?textAppearanceHeadline6" />
+
+            </FrameLayout>
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -41,6 +60,7 @@
             android:layout_width="0dp"
             android:layout_height="194dp"
             android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
             android:background="#7feeeeee"
             app:image="@{vm.image}"
             app:layout_constraintEnd_toEndOf="parent"

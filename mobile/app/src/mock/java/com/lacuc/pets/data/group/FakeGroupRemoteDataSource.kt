@@ -77,9 +77,18 @@ class FakeGroupRemoteDataSource @Inject constructor() : GroupDataSource {
             Result.Success(imageData.filter { it.gid == gid })
         }
 
-    override suspend fun setGroupImage(imageParams: Map<String, Any>): Result<Void> {
-        TODO("Not yet implemented")
-    }
+    override suspend fun setGroupImage(imageParams: Map<String, Any>): Result<Void> =
+        withContext(Dispatchers.IO) {
+            imageData.add(
+                GroupImage(
+                    imageData.size,
+                    imageParams["GID"] as Int,
+                    imageParams["url"] as String,
+                    imageParams["tag"] as String
+                )
+            )
+            Result.Success(null)
+        }
 
     override suspend fun getItems(gid: Int): Result<List<ItemHistory>> {
         TODO("Not yet implemented")
