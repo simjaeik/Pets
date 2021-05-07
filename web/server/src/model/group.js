@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const Group = sequelize.define("Group", {
+  const Group = sequelize.define("_Group", {
     GID: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
@@ -40,12 +40,12 @@ module.exports = (sequelize, DataTypes) => {
 
   const MemberGroup = sequelize.define("MemberGroup", {
     MID: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
       allowNull: false,
       primaryKey: true,
     },
     GID: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
       allowNull: false,
       primaryKey: true,
     },
