@@ -54,6 +54,17 @@ class GalleryFragment : DaggerFragment() {
             adapter = GalleryAdapter()
             layoutManager = GridLayoutManager(view.context, 3)
         }
+
+        setOnCompleteObserver()
+    }
+
+    private fun setOnCompleteObserver() {
+        navController.currentBackStackEntry
+            ?.savedStateHandle
+            ?.getLiveData<Boolean>("onCompleteEvent")
+            ?.observe(viewLifecycleOwner) {
+                viewModel.loadImage(args.gid)
+            }
     }
 
     private fun setupToolbar() {

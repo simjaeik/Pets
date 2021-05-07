@@ -70,7 +70,12 @@ class SaveImageFragment : DaggerFragment() {
 
         setupTagChips()
 
+        setOnCompleteEventObserver()
+    }
+
+    private fun setOnCompleteEventObserver() {
         viewModel.completeEvent.observe(viewLifecycleOwner) {
+            navController.previousBackStackEntry?.savedStateHandle?.set("onCompleteEvent", true)
             navController.navigateUp()
         }
     }
