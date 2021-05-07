@@ -32,6 +32,7 @@
             android:background="@android:color/transparent"
             android:paddingHorizontal="16dp"
             android:src="@drawable/ic_baseline_navigate_before_24"
+            android:visibility="invisible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -42,6 +43,7 @@
             android:background="#20FFFFFF"
             android:paddingHorizontal="16dp"
             android:paddingVertical="4dp"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

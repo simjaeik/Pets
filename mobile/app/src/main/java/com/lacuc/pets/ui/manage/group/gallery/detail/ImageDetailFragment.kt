@@ -8,6 +8,8 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.chip.Chip
+import com.lacuc.pets.R
 import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.FragmentImageDetailBinding
 import dagger.android.support.DaggerFragment
@@ -49,6 +51,12 @@ class ImageDetailFragment : DaggerFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setImageTabListener()
+
+        addImageTags()
+
+        binding.btnImageDetailUp.setOnClickListener {
+            navController.navigateUp()
+        }
     }
 
     private fun setImageTabListener() {
@@ -64,6 +72,18 @@ class ImageDetailFragment : DaggerFragment() {
         )
     }
 
+    private fun addImageTags() {
+        viewModel.image.observe(viewLifecycleOwner) {
+            val tag = createTagChip(it.tag)
+            binding.chipGroupImageDetail.addView(tag)
+        }
+    }
+
+    private fun createTagChip(text: String): Chip = Chip(context).apply {
+        setChipBackgroundColorResource(R.color.primary_50)
+        setCloseIconTintResource(R.color.primary_300)
+        this.text = text
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
