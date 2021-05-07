@@ -151,7 +151,7 @@
         android:id="@+id/saveImageFragment"
         android:name="com.lacuc.pets.ui.manage.group.gallery.save.SaveImageFragment"
         android:label="이미지 추가"
-        tools:layout="@layout/fragment_save_image" >
+        tools:layout="@layout/fragment_save_image">
         <argument
             android:name="gid"
             app:argType="integer" />
@@ -160,6 +160,11 @@
     <fragment
         android:id="@+id/imageDetailFragment"
         android:name="com.lacuc.pets.ui.manage.group.gallery.detail.ImageDetailFragment"
-        android:label="ImageDetailFragment" />
+        android:label="ImageDetailFragment"
+        tools:layout="@layout/fragment_image_detail" >
+        <argument
+            android:name="image"
+            app:argType="com.lacuc.pets.data.group.entity.GroupImage" />
+    </fragment>
 
 </navigation>

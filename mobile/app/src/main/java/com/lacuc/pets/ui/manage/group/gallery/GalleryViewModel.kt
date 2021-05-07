@@ -4,8 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lacuc.pets.data.Result
-import com.lacuc.pets.data.group.entity.GroupImage
 import com.lacuc.pets.domain.image.GetGroupImagesUseCase
+import com.lacuc.pets.domain.image.ImageItem
 import com.lacuc.pets.util.SingleLiveEvent
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -16,11 +16,13 @@ class GalleryViewModel @Inject constructor(
     private val errorEvent: SingleLiveEvent<String>
 ) : ViewModel() {
 
-    val images = MutableLiveData<List<GroupImage>>()
+    val images = MutableLiveData<List<ImageItem>>()
+
+    val imageClickEvent = SingleLiveEvent<ImageItem>()
 
     fun loadImage(gid: Int) {
         viewModelScope.launch {
-            val imageList = getGroupImagesUseCase(gid)
+            val imageList = getGroupImagesUseCase(gid) { imageClickEvent.value = it }
 
             when (imageList) {
                 is Result.Success -> imageList.body?.let { images.value = it }

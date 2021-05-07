@@ -56,6 +56,12 @@ class GalleryFragment : DaggerFragment() {
         }
 
         setOnCompleteObserver()
+
+        viewModel.imageClickEvent.observe(viewLifecycleOwner) {
+            val action = GalleryFragmentDirections
+                .actionGalleryFragmentToImageDetailFragment(it.image)
+            navController.navigate(action)
+        }
     }
 
     private fun setOnCompleteObserver() {
