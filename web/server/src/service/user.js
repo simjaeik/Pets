@@ -1,6 +1,7 @@
 const { createJWT } = require("../lib/utill/jwt");
-const Member = require("../model/index").Member;
+const { Member, MemberGroup } = require("../model/index");
 const bcrypt = require("bcrypt");
+const { raw } = require("express");
 
 const checkUserValid = async ({ name, password, email, nickName }) => {
   const existEmail = await Member.findOne({ where: { email } });
@@ -45,8 +46,19 @@ module.exports = {
     }
   },
 
-  login: async (member) => {
-    const jwtToken = createJWT(member);
+  login: async ({ email }) => {
+    try {
+      const { UID } = await Member.findOne({
+        raw: true,
+        where: { email: email },
+      });
+
+      data = { UID };
+    } catch (error) {
+      return { error };
+    }
+
+    const jwtToken = createJWT(data);
 
     return { token: jwtToken };
   },

@@ -25,12 +25,12 @@ module.exports = (sequelize, DataTypes) => {
 
   const Favorite = sequelize.define("Favorite", {
     GID: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
       allowNull: false,
       primaryKey: true,
     },
     PID: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
       allowNull: false,
       primaryKey: true,
     },
