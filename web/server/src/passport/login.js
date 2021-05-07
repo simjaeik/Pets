@@ -1,7 +1,7 @@
 // Dependencies
 const passport = require("passport");
 const { Strategy: LocalStrategy } = require("passport-local");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 
 // DB
 const Member = require("../model").Member;
