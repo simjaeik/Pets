@@ -1,7 +1,6 @@
 const { createJWT } = require("../lib/utill/jwt");
 const { Member, MemberGroup } = require("../model/index");
-const bcrypt = require("bcrypt");
-const { raw } = require("express");
+const bcrypt = require("bcryptjs");
 
 const checkUserValid = async ({ name, password, email, nickName }) => {
   const existEmail = await Member.findOne({ where: { email } });
