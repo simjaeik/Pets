@@ -11,6 +11,7 @@ import androidx.navigation.fragment.navArgs
 import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.FragmentImageDetailBinding
 import dagger.android.support.DaggerFragment
+import io.reactivex.rxjava3.disposables.CompositeDisposable
 import javax.inject.Inject
 
 class ImageDetailFragment : DaggerFragment() {
@@ -26,6 +27,8 @@ class ImageDetailFragment : DaggerFragment() {
     private val navController: NavController by lazy { findNavController() }
 
     private val args: ImageDetailFragmentArgs by navArgs()
+
+    private val disposables = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,8 +47,27 @@ class ImageDetailFragment : DaggerFragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        setImageTabListener()
+    }
+
+    private fun setImageTabListener() {
+        disposables.add(
+            binding.ivImageDetailImage.tabEvent.subscribe {
+                val visibility = if (binding.btnImageDetailUp.visibility == View.VISIBLE)
+                    View.INVISIBLE
+                else View.VISIBLE
+
+                binding.btnImageDetailUp.visibility = visibility
+                binding.chipGroupImageDetail.visibility = visibility
+            }
+        )
+    }
+
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        disposables.dispose()
     }
 }
