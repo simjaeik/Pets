@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lacuc.pets.data.Result
 import com.lacuc.pets.data.group.entity.GroupImage
-import com.lacuc.pets.domain.group.GetGroupImagesUseCase
+import com.lacuc.pets.domain.image.GetGroupImagesUseCase
 import com.lacuc.pets.util.SingleLiveEvent
 import kotlinx.coroutines.launch
 import timber.log.Timber

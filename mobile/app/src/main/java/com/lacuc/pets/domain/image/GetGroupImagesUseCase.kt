@@ -1,4 +1,4 @@
-package com.lacuc.pets.domain.group
+package com.lacuc.pets.domain.image
 
 import com.lacuc.pets.data.Result
 import com.lacuc.pets.data.group.GroupRepository
