@@ -7,6 +7,7 @@ import com.lacuc.pets.ui.manage.animal.detail.medical.AddMedicalFragment
 import com.lacuc.pets.ui.manage.animal.detail.memo.AddMemoFragment
 import com.lacuc.pets.ui.manage.group.choose.ChooseGroupFragment
 import com.lacuc.pets.ui.manage.group.gallery.GalleryFragment
+import com.lacuc.pets.ui.manage.group.gallery.detail.ImageDetailFragment
 import com.lacuc.pets.ui.manage.group.gallery.save.SaveImageFragment
 import com.lacuc.pets.ui.manage.group.info.UserProfileFragment
 import com.lacuc.pets.ui.manage.group.member.ManageMemberFragment
@@ -48,4 +49,7 @@ abstract class ManageModule {
 
     @ContributesAndroidInjector
     abstract fun getSaveImageFragment(): SaveImageFragment
+
+    @ContributesAndroidInjector
+    abstract fun getImageDetailFragment(): ImageDetailFragment
 }

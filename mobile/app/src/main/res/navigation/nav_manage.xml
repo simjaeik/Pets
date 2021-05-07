@@ -142,6 +142,9 @@
         <action
             android:id="@+id/action_galleryFragment_to_saveImageFragment"
             app:destination="@id/saveImageFragment" />
+        <action
+            android:id="@+id/action_galleryFragment_to_imageDetailFragment"
+            app:destination="@id/imageDetailFragment" />
     </fragment>
 
     <fragment
@@ -153,5 +156,10 @@
             android:name="gid"
             app:argType="integer" />
     </fragment>
+
+    <fragment
+        android:id="@+id/imageDetailFragment"
+        android:name="com.lacuc.pets.ui.manage.group.gallery.detail.ImageDetailFragment"
+        android:label="ImageDetailFragment" />
 
 </navigation>
