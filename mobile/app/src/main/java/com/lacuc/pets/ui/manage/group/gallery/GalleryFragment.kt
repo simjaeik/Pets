@@ -63,7 +63,7 @@ class GalleryFragment : DaggerFragment() {
             inflateMenu(R.menu.menu_add)
             setOnMenuItemClickListener {
                 val action = GalleryFragmentDirections
-                    .actionGalleryFragmentToSaveImageFragment()
+                    .actionGalleryFragmentToSaveImageFragment(args.gid)
                 navController.navigate(action)
                 true
             }

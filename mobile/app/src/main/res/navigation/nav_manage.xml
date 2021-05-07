@@ -148,6 +148,10 @@
         android:id="@+id/saveImageFragment"
         android:name="com.lacuc.pets.ui.manage.group.gallery.save.SaveImageFragment"
         android:label="이미지 추가"
-        tools:layout="@layout/fragment_save_image" />
+        tools:layout="@layout/fragment_save_image" >
+        <argument
+            android:name="gid"
+            app:argType="integer" />
+    </fragment>
 
 </navigation>

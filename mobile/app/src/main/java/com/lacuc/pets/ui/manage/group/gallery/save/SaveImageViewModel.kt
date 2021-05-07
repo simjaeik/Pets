@@ -16,6 +16,8 @@ class SaveImageViewModel @Inject constructor(
     private val errorEvent: SingleLiveEvent<String>
 ) : ViewModel() {
 
+    var gid: Int = -1
+
     val image = MutableLiveData("")
 
     val tagString = MutableLiveData("")
@@ -48,8 +50,7 @@ class SaveImageViewModel @Inject constructor(
         viewModelScope.launch {
             val result = uploadImageUseCase(
                 mapOf(
-                    // TODO: 2021-05-06 실제 선택한 그룹의 GID를 얻어야 함
-                    "GID" to 0,
+                    "GID" to gid,
                     "url" to image.safeValue,
                     "tag" to addedTagList.toString()
                 )

@@ -14,6 +14,7 @@ import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.google.android.material.chip.Chip
 import com.lacuc.pets.R
 import com.lacuc.pets.ViewModelFactory
@@ -34,10 +35,17 @@ class SaveImageFragment : DaggerFragment() {
 
     private val navController: NavController by lazy { findNavController() }
 
+    private val args: SaveImageFragmentArgs by navArgs()
+
     private val requestImageLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             it.data?.let { intent -> viewModel.setImage(intent.dataString) }
         }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.gid = args.gid
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
