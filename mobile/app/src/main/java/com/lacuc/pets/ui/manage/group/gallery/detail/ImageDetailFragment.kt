@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.FragmentImageDetailBinding
 import dagger.android.support.DaggerFragment
@@ -23,6 +24,13 @@ class ImageDetailFragment : DaggerFragment() {
     private val viewModel: ImageDetailViewModel by viewModels { viewModelFactory }
 
     private val navController: NavController by lazy { findNavController() }
+
+    private val args: ImageDetailFragmentArgs by navArgs()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.setImage(args.image)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
