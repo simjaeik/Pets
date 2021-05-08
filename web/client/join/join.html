@@ -17,7 +17,6 @@
 
     <!--javascript 파일 연결-->
     <script src="join.js"></script>
-    
   </head>
 
   <body>
@@ -41,8 +40,12 @@
                     <label class="col-lg-2 col-form-label form-control-label text-muted">PW</label>
                         <div class="col-lg-10">
                             <label> <p class="label-txt"></p> 
-                            <input type="password" id="PW" placeholder="비밀번호를 입력하세요" class="input" required> 
-                            <div class="line-box"> <div class="line"></div></div> 
+                            <input type="password" id="PW" placeholder="비밀번호를 입력하세요" class="input" onfocus="goodpw();"required> 
+                            <div class="line-box"> <div class="line"></div></div>
+                             <!--비밀번호 조건-->
+                            <div id="badpw">비밀번호 강도:</div><div id="badpwoption">낮음</div>
+                            <div id="normalpw">비밀번호 강도:</div><div id="normalpwoption">보통</div>
+                            <div id="goodpw">비밀번호 강도:</div><div id="goodpwoption">높음</div>
                     </label> </div>
                 </div>
 
@@ -51,7 +54,7 @@
                     <label class="col-lg-2 col-form-label form-control-label text-muted">PW re</label>
                         <div class="col-lg-10">
                             <label> <p class="label-txt"></p> 
-                            <input type="password" id="PWRE" placeholder="비밀번호를 재입력하세요" class="input" onfocus="eqaul_pw()"; required> 
+                            <input type="password" id="PWRE" placeholder="비밀번호를 재입력하세요" class="input" onfocus="eqaul_pw(); goodpw();"; required> 
                             <div class="line-box"> <div class="line"></div></div> 
                             <!--비밀번호 일치여부를 알려줌-->
                             <div id="equal">비밀번호가 일치합니다.</div>
@@ -68,7 +71,6 @@
                             <div class="line-box"> <div class="line"></div></div> 
                     </label> </div>
                 </div>
-
                 <button type="button" class="btn btn-outline-primary btn-lg" onclick="check_join()";>회원가입</button>   
             </form>
            </div>

@@ -11,3 +11,18 @@
     display:none;
     color:red;
 }
+#badpw, #normalpw, #goodpw{
+    display:none;
+}
+#badpwoption{
+    display:none;
+    color:red;
+}
+#normalpwoption{
+    display:none;
+    color:orange;
+}
+#goodpwoption{
+    display:none;
+    color:blue;
+}
