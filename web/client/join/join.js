@@ -1,4 +1,16 @@
-//import axios from 'axios';
+import axios from 'axios';
+         
+const checkid = document.getElementById("ID");
+const checkpw = document.getElementById("PW");
+const checkpwre = document.getElementById("PWRE");
+const checkemail = document.getElementById("EMAIL");
+const nickname = document.getElementById("nickname");
+axios.post('http://host:ec2-54-180-91-27.ap-northeast-2.compute.amazonaws.com:3000/api/user/signUp' ,{
+    name : checkid.value,
+    password : checkpw.value,
+    email : checkemail.value,
+    nickName : checkid.value,
+});
 
 function check_join(){
            
