@@ -77,6 +77,11 @@ class FakeGroupRemoteDataSource @Inject constructor() : GroupDataSource {
             Result.Success(imageData.filter { it.gid == gid })
         }
 
+    override suspend fun getGroupImage(gid: Int, iid: Int): Result<GroupImage> =
+        withContext(Dispatchers.IO) {
+            Result.Success(imageData.find { it.gid == gid && it.iid == iid })
+        }
+
     override suspend fun setGroupImage(imageParams: Map<String, Any>): Result<Void> =
         withContext(Dispatchers.IO) {
             imageData.add(

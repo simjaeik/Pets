@@ -33,7 +33,8 @@ class SaveImageViewModel @Inject constructor(
 
     val addedTagList = mutableListOf<String>()
 
-    val completeEvent = SingleLiveEvent<Int>()
+    val completeEvent = SingleLiveEvent<Unit>()
+    val updateEvent = SingleLiveEvent<Int>()
 
     private var isUpdate = false
 
@@ -69,7 +70,12 @@ class SaveImageViewModel @Inject constructor(
             }
 
             when (result) {
-                is Result.Success -> completeEvent.value = iid
+                is Result.Success -> {
+                    if (isUpdate)
+                        updateEvent.value = iid
+                    else
+                        completeEvent.value = Unit
+                }
                 is Result.Failure -> errorEvent.value =
                     "code: ${result.code} message: ${result.error}"
                 is Result.NetworkError -> errorEvent.value = "네트워크 문제가 발생했습니다."

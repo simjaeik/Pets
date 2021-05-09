@@ -44,6 +44,9 @@ class DefaultGroupRepository @Inject constructor(
     override suspend fun getGroupImages(gid: Int): Result<List<GroupImage>> =
         groupRemoteDataSource.getGroupImages(gid)
 
+    override suspend fun getGroupImage(gid: Int, iid: Int): Result<GroupImage> =
+        groupRemoteDataSource.getGroupImage(gid, iid)
+
     override suspend fun setGroupImage(imageParams: Map<String, Any>): Result<Void> =
         groupRemoteDataSource.setGroupImage(imageParams)
 

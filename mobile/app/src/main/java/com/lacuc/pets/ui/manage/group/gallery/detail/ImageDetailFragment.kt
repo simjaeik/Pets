@@ -58,16 +58,15 @@ class ImageDetailFragment : DaggerFragment() {
 
         addImageTags()
 
-        setOnCompleteEventObserver()
-
+        setOnUpdateEventObserver()
     }
 
-    private fun setOnCompleteEventObserver() {
+    private fun setOnUpdateEventObserver() {
         navController.currentBackStackEntry
             ?.savedStateHandle
-            ?.getLiveData<Int>("onCompleteEvent")
-            ?.observe(viewLifecycleOwner) {
-                viewModel.loadImage(it)
+            ?.getLiveData<Int>("onUpdateEvent")
+            ?.observe(viewLifecycleOwner) { iid ->
+                viewModel.loadImage(args.gid, iid)
             }
         navController.previousBackStackEntry?.savedStateHandle?.set("onCompleteEvent", true)
     }
@@ -91,7 +90,7 @@ class ImageDetailFragment : DaggerFragment() {
 
     private fun navigateToSaveImageFragment() {
         val action = ImageDetailFragmentDirections
-            .actionImageDetailFragmentToSaveImageFragment(args.gid, args.image)
+            .actionImageDetailFragmentToSaveImageFragment(args.gid, viewModel.image.value)
         navController.navigate(action)
     }
 
@@ -111,6 +110,7 @@ class ImageDetailFragment : DaggerFragment() {
 
     private fun addImageTags() {
         viewModel.image.observe(viewLifecycleOwner) {
+            binding.chipGroupImageDetail.removeAllViews()
             val tagList = it.tag.split(",")
             for (tag in tagList) {
                 val chip = createTagChip(tag)
