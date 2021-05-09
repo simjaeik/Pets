@@ -45,6 +45,7 @@
     <string name="tag">태그</string>
     <string name="hint_inputTag">태그를 입력하세요</string>
     <string name="edit">편집</string>
+    <string name="shortcut">바로가기</string>
 
     <string-array name="member_authority_array">
         <item>관리자</item>

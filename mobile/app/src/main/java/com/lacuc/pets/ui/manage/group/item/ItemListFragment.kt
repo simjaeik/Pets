@@ -7,8 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.FragmentItemListBinding
+import com.lacuc.pets.util.setup
+import com.lacuc.pets.util.setupWithNavController
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
@@ -23,6 +26,14 @@ class ItemListFragment : DaggerFragment() {
 
     private val navController: NavController by lazy { findNavController() }
 
+    private val args: ItemListFragmentArgs by navArgs()
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.loadItems(args.gid)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -33,6 +44,12 @@ class ItemListFragment : DaggerFragment() {
             vm = viewModel
         }
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.toolbarItemList.setupWithNavController(navController)
+
+        binding.recyclerviewItemList.setup(ItemListAdapter())
     }
 
     override fun onDestroyView() {

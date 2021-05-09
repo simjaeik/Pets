@@ -183,6 +183,10 @@
         android:id="@+id/itemListFragment"
         android:name="com.lacuc.pets.ui.manage.group.item.ItemListFragment"
         android:label="물품 목록"
-        tools:layout="@layout/fragment_item_list" />
+        tools:layout="@layout/fragment_item_list" >
+        <argument
+            android:name="gid"
+            app:argType="integer" />
+    </fragment>
 
 </navigation>

@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="com.lacuc.pets.data.group.entity.ItemHistory" />
+            type="com.lacuc.pets.domain.item.ItemHistoryItem" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -18,13 +18,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
-            android:layout_marginTop="8dp">
+            android:layout_marginVertical="8dp"
+            app:cardElevation="4dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingHorizontal="8dp"
-                android:paddingVertical="4dp">
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="8dp">
 
                 <TextView
                     android:id="@+id/tv_itemItem_name"
@@ -60,13 +61,14 @@
 
                 <TextView
                     android:id="@+id/tv_itemItem_link"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="@{item.link}"
+                    android:text="@string/shortcut"
                     android:textAppearance="?textAppearanceBody2"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_itemItem_price"
-                    tools:text="https://lacuc.store.com/1314" />
+                    android:textColorLink="@color/primary_300"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_itemItem_price"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:link="@{item.link}" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

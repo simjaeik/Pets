@@ -21,6 +21,7 @@ class ItemListAdapter : RecyclerView.Adapter<ViewBindingHolder<ItemItemBinding>>
 
     override fun onBindViewHolder(holder: ViewBindingHolder<ItemItemBinding>, position: Int) {
         holder.binding.setVariable(BR.item, items[position])
+        holder.binding.executePendingBindings()
     }
 
     override fun getItemCount(): Int = items.size

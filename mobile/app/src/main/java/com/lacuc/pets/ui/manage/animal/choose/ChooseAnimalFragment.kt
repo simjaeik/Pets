@@ -125,7 +125,7 @@ class ChooseAnimalFragment : DaggerFragment() {
         R.id.galleryFragment ->
             ChooseAnimalFragmentDirections.actionChooseAnimalFragmentToGalleryFragment(args.group.gid)
         R.id.itemListFragment ->
-            ChooseAnimalFragmentDirections.actionChooseAnimalFragmentToItemListFragment()
+            ChooseAnimalFragmentDirections.actionChooseAnimalFragmentToItemListFragment(args.group.gid)
         else -> null
     }
 
