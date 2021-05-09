@@ -59,7 +59,7 @@ class GalleryFragment : DaggerFragment() {
 
         viewModel.imageClickEvent.observe(viewLifecycleOwner) {
             val action = GalleryFragmentDirections
-                .actionGalleryFragmentToImageDetailFragment(it.image)
+                .actionGalleryFragmentToImageDetailFragment(args.gid, it.image)
             navController.navigate(action)
         }
     }
@@ -80,10 +80,15 @@ class GalleryFragment : DaggerFragment() {
             inflateMenu(R.menu.menu_add)
             setOnMenuItemClickListener {
                 val action = GalleryFragmentDirections
-                    .actionGalleryFragmentToSaveImageFragment(args.gid)
+                    .actionGalleryFragmentToSaveImageFragment(args.gid, null)
                 navController.navigate(action)
                 true
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

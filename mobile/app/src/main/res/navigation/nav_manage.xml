@@ -155,6 +155,10 @@
         <argument
             android:name="gid"
             app:argType="integer" />
+        <argument
+            android:name="image"
+            app:argType="com.lacuc.pets.data.group.entity.GroupImage"
+            app:nullable="true" />
     </fragment>
 
     <fragment
@@ -163,8 +167,14 @@
         android:label="ImageDetailFragment"
         tools:layout="@layout/fragment_image_detail" >
         <argument
+            android:name="gid"
+            app:argType="integer" />
+        <argument
             android:name="image"
             app:argType="com.lacuc.pets.data.group.entity.GroupImage" />
+        <action
+            android:id="@+id/action_imageDetailFragment_to_saveImageFragment"
+            app:destination="@id/saveImageFragment" />
     </fragment>
 
 </navigation>

@@ -51,12 +51,35 @@ class ImageDetailFragment : DaggerFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.toolbarImageDetail.setupWithNavController(navController)
+        setupToolbar()
 
         setImageTabListener()
 
         addImageTags()
 
+    }
+
+    private fun setupToolbar() {
+        binding.toolbarImageDetail.apply {
+            setupWithNavController(navController)
+
+            setOnMenuItemClickListener {
+                when (it.itemId) {
+                    R.id.menu_edit -> {
+                        navigateToSaveImageFragment()
+                        return@setOnMenuItemClickListener true
+                    }
+                }
+                false
+            }
+        }
+
+    }
+
+    private fun navigateToSaveImageFragment() {
+        val action = ImageDetailFragmentDirections
+            .actionImageDetailFragmentToSaveImageFragment(args.gid, args.image)
+        navController.navigate(action)
     }
 
     private fun setImageTabListener() {
