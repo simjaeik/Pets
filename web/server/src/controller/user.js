@@ -2,6 +2,25 @@ const userService = require("../service/user");
 const control = require("../lib/controller");
 
 module.exports = {
+  isEmailExist: async (req, res) => {
+    console.log(req.params);
+    const { status, result } = await control(
+      userService.isEmailExist,
+      req.params
+    );
+
+    return res.status(status).json(result);
+  },
+
+  isNicknameExist: async (req, res) => {
+    const { status, result } = await control(
+      userService.isNicknameExist,
+      req.params
+    );
+
+    return res.status(status).json(result);
+  },
+
   signUp: async (req, res) => {
     const { status, result } = await control(userService.signUp, req.body);
 
