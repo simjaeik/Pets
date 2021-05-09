@@ -30,6 +30,15 @@ module.exports = {
     return { result: false };
   },
 
+  isNicknameExist: async ({ nickname }) => {
+    const exist = await Member.findOne({ where: { nickname: nickname } });
+
+    if (exist) {
+      return { result: true };
+    }
+    return { result: false };
+  },
+
   signUp: async (data) => {
     const { name, password, email, nickName } = data;
     const hasError = await checkUserValid(data);
