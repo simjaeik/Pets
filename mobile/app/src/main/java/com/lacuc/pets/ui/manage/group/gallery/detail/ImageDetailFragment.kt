@@ -12,6 +12,7 @@ import com.google.android.material.chip.Chip
 import com.lacuc.pets.R
 import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.FragmentImageDetailBinding
+import com.lacuc.pets.util.setupWithNavController
 import dagger.android.support.DaggerFragment
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import javax.inject.Inject
@@ -50,23 +51,22 @@ class ImageDetailFragment : DaggerFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.toolbarImageDetail.setupWithNavController(navController)
+
         setImageTabListener()
 
         addImageTags()
 
-        binding.btnImageDetailUp.setOnClickListener {
-            navController.navigateUp()
-        }
     }
 
     private fun setImageTabListener() {
         disposables.add(
             binding.ivImageDetailImage.tabEvent.subscribe {
-                val visibility = if (binding.btnImageDetailUp.visibility == View.VISIBLE)
+                val visibility = if (binding.toolbarLayoutImageDetail.visibility == View.VISIBLE)
                     View.INVISIBLE
                 else View.VISIBLE
 
-                binding.btnImageDetailUp.visibility = visibility
+                binding.toolbarLayoutImageDetail.visibility = visibility
                 binding.chipGroupImageDetail.visibility = visibility
             }
         )

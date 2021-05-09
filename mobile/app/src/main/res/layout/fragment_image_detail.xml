@@ -25,16 +25,26 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageButton
-            android:id="@+id/btn_imageDetail_up"
-            android:layout_width="wrap_content"
-            android:layout_height="?actionBarSize"
-            android:background="@android:color/transparent"
-            android:paddingHorizontal="16dp"
-            android:src="@drawable/ic_baseline_navigate_before_24"
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/toolbarLayout_imageDetail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/transparent"
             android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar_imageDetail"
+                android:theme="@style/ToolbarColoredBright"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                app:menu="@menu/menu_overflow"
+                app:titleTextAppearance="?textAppearanceHeadline6"
+                app:titleTextColor="@color/black" />
+
+        </com.google.android.material.appbar.AppBarLayout>
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/chipGroup_imageDetail"

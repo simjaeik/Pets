@@ -24,4 +24,8 @@
         <item name="cornerSize">50%</item>
     </style>
 
+    <style name="ToolbarColoredBright" parent="Theme.Pets">
+        <item name="colorControlNormal">#606060</item>
+    </style>
+
 </resources>
