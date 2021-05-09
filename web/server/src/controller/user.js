@@ -12,6 +12,15 @@ module.exports = {
     return res.status(status).json(result);
   },
 
+  isNicknameExist: async (req, res) => {
+    const { status, result } = await control(
+      userService.isNicknameExist,
+      req.params
+    );
+
+    return res.status(status).json(result);
+  },
+
   signUp: async (req, res) => {
     const { status, result } = await control(userService.signUp, req.body);
 
