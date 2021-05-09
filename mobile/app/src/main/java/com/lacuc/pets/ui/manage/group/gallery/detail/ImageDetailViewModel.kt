@@ -11,4 +11,8 @@ class ImageDetailViewModel @Inject constructor() : ViewModel() {
     fun setImage(groupImage: GroupImage) {
         image.value = groupImage
     }
+
+    fun loadImage(gid: Int) {
+        TODO("Not yet implemented")
+    }
 }

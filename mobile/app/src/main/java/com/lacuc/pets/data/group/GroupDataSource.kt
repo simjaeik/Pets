@@ -29,6 +29,8 @@ interface GroupDataSource {
 
     suspend fun setGroupImage(imageParams: Map<String, Any>): Result<Void>
 
+    suspend fun updateGroupImage(imageParams: Map<String, Any>): Result<Void>
+
     suspend fun getItems(gid: Int): Result<List<ItemHistory>>
 
     suspend fun setItem(itemHistory: ItemHistory): Result<Void>

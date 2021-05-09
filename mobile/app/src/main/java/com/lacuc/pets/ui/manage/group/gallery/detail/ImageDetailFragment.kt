@@ -58,6 +58,18 @@ class ImageDetailFragment : DaggerFragment() {
 
         addImageTags()
 
+        setOnCompleteEventObserver()
+
+    }
+
+    private fun setOnCompleteEventObserver() {
+        navController.currentBackStackEntry
+            ?.savedStateHandle
+            ?.getLiveData<Int>("onCompleteEvent")
+            ?.observe(viewLifecycleOwner) {
+                viewModel.loadImage(it)
+            }
+        navController.previousBackStackEntry?.savedStateHandle?.set("onCompleteEvent", true)
     }
 
     private fun setupToolbar() {

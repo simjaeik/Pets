@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lacuc.pets.data.Result
 import com.lacuc.pets.data.group.entity.GroupImage
+import com.lacuc.pets.domain.image.UpdateImageUseCase
 import com.lacuc.pets.domain.image.UploadImageUseCase
 import com.lacuc.pets.util.SingleLiveEvent
 import com.lacuc.pets.util.safeValue
@@ -14,8 +15,11 @@ import javax.inject.Inject
 
 class SaveImageViewModel @Inject constructor(
     private val uploadImageUseCase: UploadImageUseCase,
+    private val updateImageUseCase: UpdateImageUseCase,
     private val errorEvent: SingleLiveEvent<String>
 ) : ViewModel() {
+
+    var iid = -1
 
     var gid: Int = -1
 
@@ -29,9 +33,13 @@ class SaveImageViewModel @Inject constructor(
 
     val addedTagList = mutableListOf<String>()
 
-    val completeEvent = SingleLiveEvent<Unit>()
+    val completeEvent = SingleLiveEvent<Int>()
+
+    private var isUpdate = false
 
     fun initImage(groupImage: GroupImage) {
+        isUpdate = true
+        iid = groupImage.iid
         image.value = groupImage.url
         addedTagList.addAll(groupImage.tag.split(","))
     }
@@ -54,16 +62,14 @@ class SaveImageViewModel @Inject constructor(
 
     fun saveImage() {
         viewModelScope.launch {
-            val result = uploadImageUseCase(
-                mapOf(
-                    "GID" to gid,
-                    "url" to image.safeValue,
-                    "tag" to addedTagList.joinToString(",")
-                )
-            )
+            val result = if (isUpdate) {
+                updateImage()
+            } else {
+                uploadImage()
+            }
 
             when (result) {
-                is Result.Success -> completeEvent.value = Unit
+                is Result.Success -> completeEvent.value = iid
                 is Result.Failure -> errorEvent.value =
                     "code: ${result.code} message: ${result.error}"
                 is Result.NetworkError -> errorEvent.value = "네트워크 문제가 발생했습니다."
@@ -74,4 +80,23 @@ class SaveImageViewModel @Inject constructor(
             }
         }
     }
+
+    private suspend fun updateImage() = updateImageUseCase(
+        mapOf(
+            "IID" to iid,
+            "GID" to gid,
+            "url" to image.safeValue,
+            "tag" to addedTagList.joinToString(",")
+        )
+    )
+
+
+    private suspend fun uploadImage() = uploadImageUseCase(
+        mapOf(
+            "GID" to gid,
+            "url" to image.safeValue,
+            "tag" to addedTagList.joinToString(",")
+        )
+    )
+
 }
