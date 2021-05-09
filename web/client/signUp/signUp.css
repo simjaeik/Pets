@@ -1,7 +1,6 @@
 #warning{
     text-align: left;
 }
-
 #equal{
     display:none;
     color:blue;
@@ -25,4 +24,8 @@
 #goodpwoption{
     display:none;
     color:blue;
+}
+.cover {
+    display: flex;
+    justify-content: space-between;
 }
