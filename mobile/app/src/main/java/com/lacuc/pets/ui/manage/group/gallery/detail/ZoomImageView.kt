@@ -6,7 +6,6 @@ import android.view.GestureDetector
 import android.view.MotionEvent
 import androidx.appcompat.widget.AppCompatImageView
 import io.reactivex.rxjava3.subjects.PublishSubject
-import timber.log.Timber
 
 class ZoomImageView(
     val container: Context,
@@ -21,7 +20,7 @@ class ZoomImageView(
 
     private val detector = GestureDetector(container, this)
 
-    val tabEvent = PublishSubject.create<Unit>()
+    val tabEvent: PublishSubject<Unit> = PublishSubject.create()
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         return detector.onTouchEvent(event)
@@ -36,7 +35,6 @@ class ZoomImageView(
     }
 
     override fun onSingleTapUp(e: MotionEvent?): Boolean {
-        Timber.d("SingleTapUp")
         tabEvent.onNext(Unit)
         return true
     }

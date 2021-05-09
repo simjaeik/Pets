@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lacuc.pets.data.Result
+import com.lacuc.pets.data.group.entity.GroupImage
 import com.lacuc.pets.domain.image.UploadImageUseCase
 import com.lacuc.pets.util.SingleLiveEvent
 import com.lacuc.pets.util.safeValue
@@ -30,6 +31,11 @@ class SaveImageViewModel @Inject constructor(
 
     val completeEvent = SingleLiveEvent<Unit>()
 
+    fun initImage(groupImage: GroupImage) {
+        image.value = groupImage.url
+        addedTagList.addAll(groupImage.tag.split(","))
+    }
+
     fun setImage(dataString: String?) {
         image.value = dataString
     }
@@ -52,7 +58,7 @@ class SaveImageViewModel @Inject constructor(
                 mapOf(
                     "GID" to gid,
                     "url" to image.safeValue,
-                    "tag" to addedTagList.toString()
+                    "tag" to addedTagList.joinToString(",")
                 )
             )
 

@@ -31,7 +31,7 @@ class ImageDetailFragment : DaggerFragment() {
 
     private val args: ImageDetailFragmentArgs by navArgs()
 
-    private val disposables = CompositeDisposable()
+    private lateinit var disposables: CompositeDisposable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +47,7 @@ class ImageDetailFragment : DaggerFragment() {
             lifecycleOwner = viewLifecycleOwner
             vm = viewModel
         }
+        disposables = CompositeDisposable()
         return binding.root
     }
 
@@ -85,11 +86,12 @@ class ImageDetailFragment : DaggerFragment() {
     private fun setImageTabListener() {
         disposables.add(
             binding.ivImageDetailImage.tabEvent.subscribe {
-                val visibility = if (binding.toolbarLayoutImageDetail.visibility == View.VISIBLE)
-                    View.INVISIBLE
-                else View.VISIBLE
+                val visibility =
+                    if (binding.toolbarImageDetail.visibility == View.VISIBLE)
+                        View.INVISIBLE
+                    else View.VISIBLE
 
-                binding.toolbarLayoutImageDetail.visibility = visibility
+                binding.toolbarImageDetail.visibility = visibility
                 binding.chipGroupImageDetail.visibility = visibility
             }
         )
@@ -97,8 +99,11 @@ class ImageDetailFragment : DaggerFragment() {
 
     private fun addImageTags() {
         viewModel.image.observe(viewLifecycleOwner) {
-            val tag = createTagChip(it.tag)
-            binding.chipGroupImageDetail.addView(tag)
+            val tagList = it.tag.split(",")
+            for (tag in tagList) {
+                val chip = createTagChip(tag)
+                binding.chipGroupImageDetail.addView(chip)
+            }
         }
     }
 

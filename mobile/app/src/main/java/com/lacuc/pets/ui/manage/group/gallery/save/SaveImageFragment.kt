@@ -45,6 +45,9 @@ class SaveImageFragment : DaggerFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.gid = args.gid
+        args.image?.let {
+            viewModel.initImage(it)
+        }
     }
 
     override fun onCreateView(

@@ -164,7 +164,6 @@
     <fragment
         android:id="@+id/imageDetailFragment"
         android:name="com.lacuc.pets.ui.manage.group.gallery.detail.ImageDetailFragment"
-        android:label="ImageDetailFragment"
         tools:layout="@layout/fragment_image_detail" >
         <argument
             android:name="gid"
