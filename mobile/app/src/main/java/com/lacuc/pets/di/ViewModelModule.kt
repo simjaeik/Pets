@@ -14,6 +14,7 @@ import com.lacuc.pets.ui.manage.group.gallery.GalleryViewModel
 import com.lacuc.pets.ui.manage.group.gallery.detail.ImageDetailViewModel
 import com.lacuc.pets.ui.manage.group.gallery.save.SaveImageViewModel
 import com.lacuc.pets.ui.manage.group.info.UserProfileViewModel
+import com.lacuc.pets.ui.manage.group.item.ItemListViewModel
 import com.lacuc.pets.ui.manage.group.member.ManageMemberViewModel
 import com.lacuc.pets.ui.manage.group.save.SaveGroupViewModel
 import dagger.Binds
@@ -96,4 +97,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ImageDetailViewModel::class)
     abstract fun bindImageDetailViewModel(viewModel: ImageDetailViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ItemListViewModel::class)
+    abstract fun bindItemListViewModel(viewModel: ItemListViewModel): ViewModel
 }

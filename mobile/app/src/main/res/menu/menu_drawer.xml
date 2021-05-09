@@ -31,26 +31,9 @@
                     android:icon="@drawable/ic_baseline_photo_album_24"
                     android:title="@string/gallery" />
                 <item
-                    android:id="@+id/manage_item"
+                    android:id="@+id/itemListFragment"
                     android:icon="@drawable/ic_baseline_category_24"
                     android:title="@string/item" />
-            </menu>
-        </item>
-    </group>
-
-    <group android:id="@+id/menuGroup_post">
-        <item
-            android:id="@+id/menuItem_post"
-            android:title="@string/posts">
-            <menu>
-                <item
-                    android:id="@+id/posts_add"
-                    android:icon="@drawable/ic_baseline_wysiwyg_24"
-                    android:title="@string/posts_add" />
-                <item
-                    android:id="@+id/posts_favorite"
-                    android:icon="@drawable/ic_baseline_favorite_24"
-                    android:title="@string/posts_favorite" />
             </menu>
         </item>
     </group>
