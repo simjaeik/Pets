@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.manage.group.gallery.save.SaveImageFragment">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="com.lacuc.pets.ui.manage.group.gallery.save.SaveImageViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/toolbarLayout_saveImage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize">
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/toolbar_saveImage"
+                    style="@style/Widget.MaterialComponents.Toolbar.Surface"
+                    android:layout_width="match_parent"
+                    android:layout_height="?actionBarSize"
+                    app:titleTextAppearance="?textAppearanceHeadline6"
+                    app:titleTextColor="@color/black"
+                    tools:title="이미지 추가" />
+
+                <Button
+                    android:id="@+id/btn_saveImage_complete"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|end"
+                    android:layout_marginEnd="16dp"
+                    android:enabled="@{!vm.image.empty}"
+                    android:minWidth="0dp"
+                    android:onClick="@{() -> vm.saveImage()}"
+                    android:text="@string/complete"
+                    android:textAppearance="?textAppearanceHeadline6" />
+
+            </FrameLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <ImageButton
+            android:id="@+id/btn_saveImage_pickImage"
+            android:layout_width="0dp"
+            android:layout_height="194dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:background="#7feeeeee"
+            app:image="@{vm.image}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbarLayout_saveImage" />
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_baseline_camera_alt_24"
+            android:visibility="@{vm.image.empty ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@id/btn_saveImage_pickImage"
+            app:layout_constraintEnd_toEndOf="@id/btn_saveImage_pickImage"
+            app:layout_constraintStart_toStartOf="@id/btn_saveImage_pickImage"
+            app:layout_constraintTop_toTopOf="@id/btn_saveImage_pickImage" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup_saveImage"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            app:chipSpacingHorizontal="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_saveImage_pickImage" />
+
+        <AutoCompleteTextView
+            android:id="@+id/textInput_saveImage_tag"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            android:completionThreshold="1"
+            android:hint="@string/hint_inputTag"
+            android:inputType="text"
+            android:singleLine="true"
+            android:text="@={vm.tagString}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chipGroup_saveImage" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

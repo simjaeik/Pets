@@ -27,29 +27,34 @@ class DefaultGroupRepository @Inject constructor(
         TODO("Not yet implemented")
     }
 
+    override suspend fun updateGroup(group: Group): Result<Void> =
+        groupRemoteDataSource.updateGroup(group)
+
     override suspend fun addGroupMember(memberParams: Map<String, Any>): Result<Void> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getGroupMembers(gid: Int): Result<List<Member>> {
-        TODO("Not yet implemented")
-    }
+    override suspend fun getGroupMembers(gid: Int): Result<List<Member>> =
+        groupRemoteDataSource.getGroupMembers(gid)
 
     override suspend fun deleteGroupMember(gid: Int): Result<Void> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getGroupImages(gid: Int): Result<List<GroupImage>> {
-        TODO("Not yet implemented")
-    }
+    override suspend fun getGroupImages(gid: Int): Result<List<GroupImage>> =
+        groupRemoteDataSource.getGroupImages(gid)
 
-    override suspend fun setGroupImage(imageParams: Map<String, Any>): Result<Void> {
-        TODO("Not yet implemented")
-    }
+    override suspend fun getGroupImage(gid: Int, iid: Int): Result<GroupImage> =
+        groupRemoteDataSource.getGroupImage(gid, iid)
 
-    override suspend fun getItems(gid: Int): Result<List<ItemHistory>> {
-        TODO("Not yet implemented")
-    }
+    override suspend fun setGroupImage(imageParams: Map<String, Any>): Result<Void> =
+        groupRemoteDataSource.setGroupImage(imageParams)
+
+    override suspend fun updateGroupImage(imageParams: Map<String, Any>): Result<Void> =
+        groupRemoteDataSource.updateGroupImage(imageParams)
+
+    override suspend fun getItems(gid: Int): Result<List<ItemHistory>> =
+        groupRemoteDataSource.getItems(gid)
 
     override suspend fun setItem(itemHistory: ItemHistory): Result<Void> {
         TODO("Not yet implemented")

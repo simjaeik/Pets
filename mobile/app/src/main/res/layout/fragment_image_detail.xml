@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.lacuc.pets.ui.manage.group.gallery.detail.ImageDetailViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black">
+
+        <com.lacuc.pets.ui.manage.group.gallery.detail.ZoomImageView
+            android:id="@+id/iv_imageDetail_image"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="fitCenter"
+            app:image="@{vm.image.url}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar_imageDetail"
+            android:layout_width="0dp"
+            android:layout_height="?actionBarSize"
+            android:backgroundTint="@android:color/transparent"
+            android:theme="@style/ToolbarColoredBright"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:menu="@menu/menu_overflow"
+            app:titleTextAppearance="?textAppearanceHeadline6"
+            app:titleTextColor="@color/black" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup_imageDetail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="#20FFFFFF"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="4dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

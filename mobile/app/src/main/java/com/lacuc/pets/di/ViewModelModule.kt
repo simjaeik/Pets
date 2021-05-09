@@ -9,8 +9,14 @@ import com.lacuc.pets.ui.manage.animal.choose.ChooseAnimalViewModel
 import com.lacuc.pets.ui.manage.animal.detail.AnimalDetailViewModel
 import com.lacuc.pets.ui.manage.animal.detail.medical.AddMedicalViewModel
 import com.lacuc.pets.ui.manage.animal.detail.memo.AddMemoViewModel
-import com.lacuc.pets.ui.manage.group.add.AddGroupViewModel
 import com.lacuc.pets.ui.manage.group.choose.ChooseGroupViewModel
+import com.lacuc.pets.ui.manage.group.gallery.GalleryViewModel
+import com.lacuc.pets.ui.manage.group.gallery.detail.ImageDetailViewModel
+import com.lacuc.pets.ui.manage.group.gallery.save.SaveImageViewModel
+import com.lacuc.pets.ui.manage.group.info.UserProfileViewModel
+import com.lacuc.pets.ui.manage.group.item.ItemListViewModel
+import com.lacuc.pets.ui.manage.group.member.ManageMemberViewModel
+import com.lacuc.pets.ui.manage.group.save.SaveGroupViewModel
 import dagger.Binds
 import dagger.MapKey
 import dagger.Module
@@ -39,8 +45,8 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(AddGroupViewModel::class)
-    abstract fun bindAddGroupViewModel(viewModel: AddGroupViewModel): ViewModel
+    @ViewModelKey(SaveGroupViewModel::class)
+    abstract fun bindSaveGroupViewModel(viewModel: SaveGroupViewModel): ViewModel
 
     @Binds
     @IntoMap
@@ -66,4 +72,34 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(AddMemoViewModel::class)
     abstract fun bindAddMemoViewModel(viewModel: AddMemoViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(UserProfileViewModel::class)
+    abstract fun bindUserProfileViewModel(viewModel: UserProfileViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ManageMemberViewModel::class)
+    abstract fun bindManageMemberViewModel(viewModel: ManageMemberViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(GalleryViewModel::class)
+    abstract fun bindGalleryViewModel(viewModel: GalleryViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SaveImageViewModel::class)
+    abstract fun bindSaveImageViewModel(viewModel: SaveImageViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ImageDetailViewModel::class)
+    abstract fun bindImageDetailViewModel(viewModel: ImageDetailViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ItemListViewModel::class)
+    abstract fun bindItemListViewModel(viewModel: ItemListViewModel): ViewModel
 }

@@ -17,9 +17,9 @@
     <string name="_private">비공개</string>
     <string name="_public">공개</string>
     <string name="account">계정</string>
-    <string name="info_account">계정 정보</string>
+    <string name="info_profile">프로필 정보</string>
     <string name="info_group">그룹 정보</string>
-    <string name="manage_group">그룹 관리</string>
+    <string name="member">멤버</string>
     <string name="posts">게시글</string>
     <string name="posts_add">작성한 글</string>
     <string name="posts_favorite">좋아요한 글</string>
@@ -36,4 +36,20 @@
     <string name="hospital">병원</string>
     <string name="time">시간</string>
     <string name="content">내용</string>
+    <string name="info">정보</string>
+    <string name="group">그룹</string>
+    <string name="gallery">갤러리</string>
+    <string name="item">물품</string>
+    <string name="add_member">멤버 추가</string>
+    <string name="image">이미지</string>
+    <string name="tag">태그</string>
+    <string name="hint_inputTag">태그를 입력하세요</string>
+    <string name="edit">편집</string>
+    <string name="shortcut">바로가기</string>
+
+    <string-array name="member_authority_array">
+        <item>관리자</item>
+        <item>매니저</item>
+        <item>멤버</item>
+    </string-array>
 </resources>

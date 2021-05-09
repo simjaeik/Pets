@@ -1,38 +1,32 @@
-package com.lacuc.pets.ui.manage.group.add
+package com.lacuc.pets.ui.manage.group.gallery.detail
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lacuc.pets.data.Result
-import com.lacuc.pets.data.group.entity.Group
-import com.lacuc.pets.domain.group.AddGroupUseCase
+import com.lacuc.pets.data.group.entity.GroupImage
+import com.lacuc.pets.domain.image.GetGroupImageUseCase
 import com.lacuc.pets.util.SingleLiveEvent
-import com.lacuc.pets.util.safeValue
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
-class AddGroupViewModel @Inject constructor(
-    private val addGroupUseCase: AddGroupUseCase,
+class ImageDetailViewModel @Inject constructor(
+    private val getGroupImageUseCase: GetGroupImageUseCase,
     private val errorEvent: SingleLiveEvent<String>
-) :
-    ViewModel() {
+) : ViewModel() {
+    val image = MutableLiveData<GroupImage>()
 
-    val name = MutableLiveData("")
-    val info = MutableLiveData("")
-    val image = MutableLiveData("")
-    val isShare = MutableLiveData(false)
+    fun setImage(groupImage: GroupImage) {
+        image.value = groupImage
+    }
 
-    val completeEvent = SingleLiveEvent<Unit>()
-
-    fun saveGroup() {
+    fun loadImage(gid: Int, iid: Int) {
         viewModelScope.launch {
-            val result = addGroupUseCase(
-                Group(name.safeValue, info.safeValue, image.safeValue, isShare.safeValue)
-            )
+            val result = getGroupImageUseCase(gid, iid)
 
             when (result) {
-                is Result.Success -> completeEvent.value = Unit
+                is Result.Success -> result.body?.let { image.value = it }
                 is Result.Failure -> errorEvent.value =
                     "code: ${result.code} message: ${result.error}"
                 is Result.NetworkError -> errorEvent.value = "네트워크 문제가 발생했습니다."
@@ -42,9 +36,5 @@ class AddGroupViewModel @Inject constructor(
                 }
             }
         }
-    }
-
-    fun setImage(dataString: String?) {
-        image.value = dataString
     }
 }

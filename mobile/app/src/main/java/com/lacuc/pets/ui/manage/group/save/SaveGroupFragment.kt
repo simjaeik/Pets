@@ -1,4 +1,4 @@
-package com.lacuc.pets.ui.manage.group.add
+package com.lacuc.pets.ui.manage.group.save
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,35 +10,43 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.lacuc.pets.ViewModelFactory
-import com.lacuc.pets.databinding.FragmentAddGroupBinding
+import com.lacuc.pets.databinding.FragmentSaveGroupBinding
 import com.lacuc.pets.util.setupWithNavController
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-class AddGroupFragment : DaggerFragment() {
+class SaveGroupFragment : DaggerFragment() {
 
-    private var _binding: FragmentAddGroupBinding? = null
+    private var _binding: FragmentSaveGroupBinding? = null
     private val binding get() = _binding!!
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private val viewModel: AddGroupViewModel by viewModels { viewModelFactory }
+    private val viewModel: SaveGroupViewModel by viewModels { viewModelFactory }
 
     private val navController: NavController by lazy { findNavController() }
+
+    private val args: SaveGroupFragmentArgs by navArgs()
 
     private val requestImageLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             it.data?.let { intent -> viewModel.setImage(intent.dataString) }
         }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.initData(args.group)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentAddGroupBinding.inflate(inflater, container, false).apply {
+        _binding = FragmentSaveGroupBinding.inflate(inflater, container, false).apply {
             vm = viewModel
             lifecycleOwner = viewLifecycleOwner
         }

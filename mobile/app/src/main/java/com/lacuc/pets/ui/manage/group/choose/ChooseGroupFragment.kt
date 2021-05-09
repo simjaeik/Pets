@@ -54,7 +54,7 @@ class ChooseGroupFragment : DaggerFragment() {
     private fun setGroupClickEventObserver() {
         viewModel.groupClickEvent.observe(viewLifecycleOwner) {
             val action = ChooseGroupFragmentDirections
-                .actionChooseGroupFragmentToChooseAnimalFragment(it.name)
+                .actionChooseGroupFragmentToChooseAnimalFragment(it.group)
             navController.navigate(action)
         }
     }
@@ -73,10 +73,10 @@ class ChooseGroupFragment : DaggerFragment() {
         binding.toolbarChooseGroup.apply {
             setupWithNavController(navController, appBarConfiguration)
 
-            inflateMenu(R.menu.menu_group)
+            inflateMenu(R.menu.menu_add)
             setOnMenuItemClickListener {
                 val action = ChooseGroupFragmentDirections
-                    .actionChooseGroupFragmentToAddGroupFragment("그룹 생성")
+                    .actionChooseGroupFragmentToSaveGroupFragment("그룹 생성")
                 navController.navigate(action)
                 true
             }

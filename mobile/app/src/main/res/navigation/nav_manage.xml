@@ -11,8 +11,8 @@
         android:label="Group"
         tools:layout="@layout/fragment_choose_group">
         <action
-            android:id="@+id/action_chooseGroupFragment_to_addGroupFragment"
-            app:destination="@id/addGroupFragment"
+            android:id="@+id/action_chooseGroupFragment_to_saveGroupFragment"
+            app:destination="@id/saveGroupFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -27,23 +27,27 @@
     </fragment>
 
     <fragment
-        android:id="@+id/addGroupFragment"
-        android:name="com.lacuc.pets.ui.manage.group.add.AddGroupFragment"
+        android:id="@+id/saveGroupFragment"
+        android:name="com.lacuc.pets.ui.manage.group.save.SaveGroupFragment"
         android:label="{toolbar_title}"
-        tools:layout="@layout/fragment_add_group">
+        tools:layout="@layout/fragment_save_group">
         <argument
             android:name="toolbar_title"
             app:argType="string" />
+        <argument
+            android:name="group"
+            android:defaultValue="@null"
+            app:argType="com.lacuc.pets.data.group.entity.Group"
+            app:nullable="true" />
     </fragment>
 
     <fragment
         android:id="@+id/chooseAnimalFragment"
         android:name="com.lacuc.pets.ui.manage.animal.choose.ChooseAnimalFragment"
-        android:label="{groupName}"
         tools:layout="@layout/fragment_choose_animal">
         <argument
-            android:name="groupName"
-            app:argType="string" />
+            android:name="group"
+            app:argType="com.lacuc.pets.data.group.entity.Group" />
         <action
             android:id="@+id/action_chooseAnimalFragment_to_addAnimalFragment"
             app:destination="@id/addAnimalFragment"
@@ -58,6 +62,21 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_chooseAnimalFragment_to_userProfileFragment"
+            app:destination="@id/userProfileFragment" />
+        <action
+            android:id="@+id/action_chooseAnimalFragment_to_saveGroupFragment"
+            app:destination="@id/saveGroupFragment" />
+        <action
+            android:id="@+id/action_chooseAnimalFragment_to_manageMemberFragment"
+            app:destination="@id/manageMemberFragment" />
+        <action
+            android:id="@+id/action_chooseAnimalFragment_to_galleryFragment"
+            app:destination="@id/galleryFragment" />
+        <action
+            android:id="@+id/action_chooseAnimalFragment_to_itemListFragment"
+            app:destination="@id/itemListFragment" />
     </fragment>
 
     <fragment
@@ -98,5 +117,76 @@
         android:id="@+id/addMemoFragment"
         android:name="com.lacuc.pets.ui.manage.animal.detail.memo.AddMemoFragment"
         tools:layout="@layout/fragment_add_memo" />
+
+    <fragment
+        android:id="@+id/userProfileFragment"
+        android:name="com.lacuc.pets.ui.manage.group.info.UserProfileFragment"
+        android:label="프로필 수정"
+        tools:layout="@layout/fragment_user_profile" />
+
+    <fragment
+        android:id="@+id/manageMemberFragment"
+        android:name="com.lacuc.pets.ui.manage.group.member.ManageMemberFragment"
+        android:label="멤버 관리"
+        tools:layout="@layout/fragment_manage_member">
+        <argument
+            android:name="gid"
+            app:argType="integer" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/galleryFragment"
+        android:name="com.lacuc.pets.ui.manage.group.gallery.GalleryFragment"
+        android:label="갤러리"
+        tools:layout="@layout/fragment_gallery">
+        <argument
+            android:name="gid"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_galleryFragment_to_saveImageFragment"
+            app:destination="@id/saveImageFragment" />
+        <action
+            android:id="@+id/action_galleryFragment_to_imageDetailFragment"
+            app:destination="@id/imageDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/saveImageFragment"
+        android:name="com.lacuc.pets.ui.manage.group.gallery.save.SaveImageFragment"
+        android:label="이미지 추가"
+        tools:layout="@layout/fragment_save_image">
+        <argument
+            android:name="gid"
+            app:argType="integer" />
+        <argument
+            android:name="image"
+            app:argType="com.lacuc.pets.data.group.entity.GroupImage"
+            app:nullable="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/imageDetailFragment"
+        android:name="com.lacuc.pets.ui.manage.group.gallery.detail.ImageDetailFragment"
+        tools:layout="@layout/fragment_image_detail">
+        <argument
+            android:name="gid"
+            app:argType="integer" />
+        <argument
+            android:name="image"
+            app:argType="com.lacuc.pets.data.group.entity.GroupImage" />
+        <action
+            android:id="@+id/action_imageDetailFragment_to_saveImageFragment"
+            app:destination="@id/saveImageFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/itemListFragment"
+        android:name="com.lacuc.pets.ui.manage.group.item.ItemListFragment"
+        android:label="물품 목록"
+        tools:layout="@layout/fragment_item_list" >
+        <argument
+            android:name="gid"
+            app:argType="integer" />
+    </fragment>
 
 </navigation>

@@ -17,6 +17,8 @@ interface GroupRepository {
 
     suspend fun getGroup(gid: Int): Result<Group>
 
+    suspend fun updateGroup(group: Group): Result<Void>
+
     suspend fun addGroupMember(memberParams: Map<String, Any>): Result<Void>
 
     suspend fun getGroupMembers(gid: Int): Result<List<Member>>
@@ -25,7 +27,11 @@ interface GroupRepository {
 
     suspend fun getGroupImages(gid: Int): Result<List<GroupImage>>
 
+    suspend fun getGroupImage(gid: Int, iid: Int): Result<GroupImage>
+
     suspend fun setGroupImage(imageParams: Map<String, Any>): Result<Void>
+
+    suspend fun updateGroupImage(imageParams: Map<String, Any>): Result<Void>
 
     suspend fun getItems(gid: Int): Result<List<ItemHistory>>
 
