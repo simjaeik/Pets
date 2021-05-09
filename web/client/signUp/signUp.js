@@ -1,4 +1,4 @@
-import axios from "axios"
+import axios from axios;
 const axios = require('axios');
 
 const checkname = document.getElementById("NAME");
@@ -8,8 +8,10 @@ const checkemail = document.getElementById("EMAIL");
 const checknickname = document.getElementById("NICKNAME");
 const checkbtn = document.getElementById("checkbtn");
 
-const isNicknameExist = () => {
-    axios.get(`http://host:3000/api/user/:${checknickname}`).then(response => {
+const URl = "http://ec2-54-180-91-27.ap-northeast-2.compute.amazonaws.com:3000/api";
+
+const signUp = () => {
+    axios.post(`${URL}/user/signUp`).then(response => {
         console.log(response);
     })
     .catch(function(error) {
@@ -18,7 +20,8 @@ const isNicknameExist = () => {
     .finally(function (){
     });
 };
-isNicknameExist();
+checkbtn.addEventListener('click', signUp);
+
 // const isNicknameExist = async()=>{
 //     try{
 //         const tickes = await axios.get(`http://host:3000/api/user/:${checkid}`);
@@ -59,14 +62,6 @@ isNicknameExist();
     // });
 
 //  }
-
-
-// axios.post('http://host:ec2-54-180-91-27.ap-northeast-2.compute.amazonaws.com:3000/api/user/signUp' ,{
-//     name : checkid.value,
-//     password : checkpw.value,
-//     email : checkemail.value,
-//     nickName : nickname.value,
-// });
 
 
 // function isNicknameExist(){
