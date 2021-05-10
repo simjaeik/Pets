@@ -1,5 +1,7 @@
-import axios from axios;
-const axios = require('axios');
+//import axios from axios;
+//const axios = require('axios');
+
+//const { default: axios } = require("axios");
 
 const checkname = document.getElementById("NAME");
 const checkpw = document.getElementById("PW");
@@ -7,20 +9,7 @@ const checkpwre = document.getElementById("PWRE");
 const checkemail = document.getElementById("EMAIL");
 const checknickname = document.getElementById("NICKNAME");
 const checkbtn = document.getElementById("checkbtn");
-
-const URl = "http://ec2-54-180-91-27.ap-northeast-2.compute.amazonaws.com:3000/api";
-
-const signUp = () => {
-    axios.post(`${URL}/user/signUp`).then(response => {
-        console.log(response);
-    })
-    .catch(function(error) {
-        console.log(error);
-    })
-    .finally(function (){
-    });
-};
-checkbtn.addEventListener('click', signUp);
+const URL = "http://ec2-54-180-91-27.ap-northeast-2.compute.amazonaws.com:3000/api";
 
 // const isNicknameExist = async()=>{
 //     try{
@@ -33,60 +22,21 @@ checkbtn.addEventListener('click', signUp);
 //     }
 // };
 
-// async function isNicknameExist(){
-//     try{
-//         const response = await axios.get(`http://host:3000/api/user/:${checknickname}`);
-//         console.log(response);
-//     }catch(error){
-//         console.error(error);
-//     }
-    // axios.get(`http://host:3000/api/user/:${checknickname}`)
-
-    //     .then(function (response){
-    //         console.log(response);
-    //     })
-    //     .catch(function (error){
-    //         console.log(error);
-    //     })
-    //     .then(function (){
-    //     });
-    // axios({
-    //     method : 'get',
-    //     url: `http://host:3000/api/user/:${checknickname}`,
-    //     data: {}
-    // }).then((res)=>{
-    //     console.log(res);
-    // }).catch(error=>{
-    //     console.log(error);
-    //     throw new Error(error);
-    // });
-
-//  }
-
-
-// function isNicknameExist(){
-//     axios({
-//         method : 'get',
-//         url: `http://host:3000/api/user/:${checkid}`,
-//         data: {}
-//     }).then((res)=>{
-//         console.log(res);
-//     }).catch(error=>{
-//         console.log(error);
-//         throw new Error(error);
-//     });
-// }
-// async function isNicknameExist() {
-//     const config = {
-//         mathod : 'get',
-//         url : `http://host:3000/api/user/:${nickname}`
-//     }
-//     let res = await axios(config)
-
-//     console.log(res.status);
-// }
-
-// isNicknameExist();
+function signUp(){
+    axios.post(`${URL}/user/signUp`, {
+        name : checkname.value,
+        password : checkpw.value,
+        email : checkemail.value,
+        nickName : checknickname.value
+    })
+    .then(response => {
+        console.log(response)
+        return true;
+    })
+    .catch(error => {
+        console.log(error.response)
+    });
+}
 
 //     const button = document.querySelector('#dog')
 //     button.addEventListener('click', function(event){
@@ -115,6 +65,7 @@ function check_join(){
     else if ( checkpwre.value === "") { alert(" 비밀번호가 입력되지 않았습니다. "); }
     else if ( checkemail.value === "") { alert(" 이메일이 입력되지 않았습니다. "); }
     else if ( checknickname.value === "") { alert("닉네임이 입력되지 않았습니다."); }
+    else if ( checkpwre.value !== checkpw.value) { alert("비밀번호가 일치하지 않습니다."); }
 
 }
 //const isNicknameExist = () => 
@@ -154,8 +105,7 @@ function goodpw() {
     }
 
 }
-
-function eqaul_pw(){
+ function eqaul_pw(){
    
     const pw = document.getElementById("PW");
     const pwre = document.getElementById("PWRE");

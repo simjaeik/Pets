@@ -15,11 +15,6 @@
     <link rel="stylesheet" href="../boot_css/login.css">
     <link rel="stylesheet" href="signUp.css"></style>
 
-    <!--javascript 파일 연결-->
-    <script src="signUp.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
-
   </head>
 
   <body>
@@ -86,7 +81,7 @@
                     </label> </div>
                 </div>
 
-                <button type="button" class="btn btn-outline-primary btn-lg" onclick="check_join()";>회원가입</button>   
+                <button type="button" class="btn btn-outline-primary btn-lg" onclick="check_join(), signUp()";>회원가입</button>   
             </form>
            </div>
         </div>
@@ -96,6 +91,9 @@
     
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="../boot_js/bootstrap.min.js"></script>
+     
+    <script src="signUp.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     </body>
 </html>
