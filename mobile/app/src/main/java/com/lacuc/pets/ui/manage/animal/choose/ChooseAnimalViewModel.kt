@@ -5,14 +5,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lacuc.pets.data.Result
 import com.lacuc.pets.domain.animal.AnimalItem
-import com.lacuc.pets.domain.animal.animal.GetAnimalUseCase
+import com.lacuc.pets.domain.animal.animal.GetAnimalsUseCase
 import com.lacuc.pets.util.SingleLiveEvent
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
 class ChooseAnimalViewModel @Inject constructor(
-    private val getAnimalUseCase: GetAnimalUseCase,
+    private val getAnimalsUseCase: GetAnimalsUseCase,
     private val errorEvent: SingleLiveEvent<String>
 ) : ViewModel() {
 
@@ -29,7 +29,7 @@ class ChooseAnimalViewModel @Inject constructor(
     fun loadGroups() {
         viewModelScope.launch {
             loading.value = true
-            val animalList = getAnimalUseCase(1) { animalClickEvent.value = it }
+            val animalList = getAnimalsUseCase(1) { animalClickEvent.value = it }
             loading.value = false
 
             when (animalList) {

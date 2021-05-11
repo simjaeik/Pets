@@ -7,12 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.FragmentAddAnimalBinding
+import com.lacuc.pets.ui.manage.ManageViewModel
 import com.lacuc.pets.util.setupWithNavController
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
@@ -27,14 +28,23 @@ class AddAnimalFragment : DaggerFragment() {
 
     private val viewModel: AddAnimalViewModel by viewModels { viewModelFactory }
 
-    private val navController: NavController by lazy { findNavController() }
+    private val activityViewModel: ManageViewModel by activityViewModels { viewModelFactory }
 
-    private val args: AddAnimalFragmentArgs by navArgs()
+    private val navController: NavController by lazy { findNavController() }
 
     private val requestImageLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             it.data?.let { intent -> viewModel.setImage(intent.dataString) }
         }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        activityViewModel.gid?.let { viewModel.gid = it }
+        activityViewModel.aid?.let {
+            viewModel.aid = it
+            viewModel.loadAnimal()
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,8 +62,6 @@ class AddAnimalFragment : DaggerFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.toolbarAddAnimal.setupWithNavController(navController)
-
-        viewModel.initData(args.animal)
 
         binding.btnAddAnimalPickImage.setOnClickListener {
             requestImage()
