@@ -5,15 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.DrawableRes
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.google.android.material.tabs.TabLayout
 import com.lacuc.pets.R
 import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.FragmentAnimalDetailBinding
-import com.lacuc.pets.domain.animal.AnimalDetailDetailItem
+import com.lacuc.pets.ui.manage.ManageViewModel
 import com.lacuc.pets.util.doOnTabSelectedListener
 import com.lacuc.pets.util.setup
 import com.lacuc.pets.util.setupWithNavController
@@ -30,9 +30,16 @@ class AnimalDetailFragment : DaggerFragment() {
 
     private val viewModel: AnimalDetailViewModel by viewModels { viewModelFactory }
 
+    private val activityViewModel: ManageViewModel by activityViewModels { viewModelFactory }
+
     private val navController: NavController by lazy { findNavController() }
 
-    private val args: AnimalDetailFragmentArgs by navArgs()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        activityViewModel.aid?. let { viewModel.aid = it }
+        viewModel.loadDetailItem(0)
+        viewModel.loadAnimal()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,7 +49,6 @@ class AnimalDetailFragment : DaggerFragment() {
         _binding = FragmentAnimalDetailBinding.inflate(inflater, container, false).apply {
             lifecycleOwner = viewLifecycleOwner
             vm = viewModel
-            item = args.animal
         }
         return binding.root
     }
@@ -54,14 +60,16 @@ class AnimalDetailFragment : DaggerFragment() {
 
         binding.recyclerviewAnimalDetail.setup(AnimalDetailAdapter())
 
-        viewModel.initItem(AnimalDetailDetailItem(args.animal))
-
         setOnCompleteObserver()
 
         binding.tabLayoutAnimalDetail.doOnTabSelectedListener {
             viewModel.loadDetailItem(it.position)
             setFabClickListener(it.position)
             saveCurrentTabPosition(it)
+        }
+
+        viewModel.animal.observe(viewLifecycleOwner) {
+            binding.item = it
         }
 
         val currentTabPosition = restorePreviousTabPosition()
@@ -118,7 +126,7 @@ class AnimalDetailFragment : DaggerFragment() {
 
     private fun navToEditAnimal() {
         val action = AnimalDetailFragmentDirections
-            .actionAnimalDetailFragmentToAddAnimalFragment(args.animal)
+            .actionAnimalDetailFragmentToAddAnimalFragment()
         navController.navigate(action)
     }
 
@@ -137,6 +145,11 @@ class AnimalDetailFragment : DaggerFragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        activityViewModel.aid = null
     }
 
 }

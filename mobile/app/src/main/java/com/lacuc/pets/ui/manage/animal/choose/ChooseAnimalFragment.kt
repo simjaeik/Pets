@@ -113,7 +113,6 @@ class ChooseAnimalFragment : DaggerFragment() {
             setOnMenuItemClickListener {
                 val action = ChooseAnimalFragmentDirections
                     .actionChooseAnimalFragmentToAddAnimalFragment()
-                activityViewModel.aid = null
                 navController.navigate(action)
                 true
             }
