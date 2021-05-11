@@ -5,8 +5,9 @@ const checkemail = document.getElementById("EMAIL");
 const checknickname = document.getElementById("NICKNAME");
 const checkbtn = document.getElementById("checkbtn");
 const URL = "http://ec2-54-180-91-27.ap-northeast-2.compute.amazonaws.com:3000/api";
-
+let exist = [0,0];
 function signUp(){
+
     axios.post(`${URL}/user/signUp`, {
         name : checkname.value,
         password : checkpw.value,
@@ -21,15 +22,24 @@ function signUp(){
         if(error.response.data === "중복된 닉네임입니다.")
             alert(error.response.data);
     });
-
+//이메일,닉네임 중복처리 했는지 여부
 }
 function isNicknameExist(){
 
     const nickName = checknickname.value;
-    axios.get(`${URL}/user/nickname/:${nickName}`, {
+    const goodnickname = document.getElementById("goodnickname");
+    axios.get(`${URL}/user/nickname/${nickName}`, {
     })
     .then(response => {
         console.log(response)
+        if (response.data.result === true){
+            alert("중복된 닉네임입니다.");
+            goodnickname.style.display="none";
+            exist[0]=1;
+        } else{
+            goodnickname.style.display="block";
+            exist[0]=0;
+        }
     })
     .catch(error => {
         console.log(error.response)
@@ -38,10 +48,19 @@ function isNicknameExist(){
 function isEmailExist(){
 
     const email = checkemail.value;
-    axios.get(`${URL}/user/email/:${email}`, {
+    const goodemail = document.getElementById("goodemail");
+    axios.get(`${URL}/user/email/${email}`, {
     })
     .then(response => {
         console.log(response)
+        if (response.data.result === true){
+            alert("중복된 이메일입니다.");
+            goodemail.style.display="none";
+            exist[1]=1;
+        } else{
+            goodemail.style.display="block";
+            exist[1]=0;
+        }
     })
     .catch(error => {
         console.log(error.response)
@@ -51,12 +70,12 @@ function check_join(){
    
     if ( checkname.value === "") { alert(" 이름이 입력되지 않았습니다. "); }
     else if ( checkpw.value=== "") { alert(" 비밀번호가 입력되지 않았습니다. "); }
-    else if ( checkpw.value === "") { alert(" 비밀번호가 입력되지 않았습니다. "); }
     else if ( checkpwre.value === "") { alert(" 비밀번호가 입력되지 않았습니다. "); }
     else if ( checkemail.value === "") { alert(" 이메일이 입력되지 않았습니다. "); }
     else if ( checknickname.value === "") { alert("닉네임이 입력되지 않았습니다."); }
     else if ( checkpwre.value!== checkpw.value) { alert("비밀번호가 일치하지 않습니다."); }
-
+    else if ( exist[0]===1){ alert("이미 존재하는 닉네임입니다. 다시 입력해주세요.")}
+    else if ( exist[1]===1){ alert("이미 존재하는 이메일주소입니다. 다시 입력해주세요.")}
 }
 function goodpw() {
 
@@ -99,7 +118,7 @@ function goodpw() {
     const success = document.getElementById("equal");
     const danger = document.getElementById("no_equal");
 
-    if ( checkpw.value === checkpwre.value ) { success.style.display = "block"; danger.style.display = "none"; }
+    if ( checkpwre.value !== "" && checkpw.value === checkpwre.value ) { success.style.display = "block"; danger.style.display = "none"; }
     else { danger.style.display = "block"; success.style.display = "none"; }
 
 }
