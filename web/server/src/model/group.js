@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   const MemberGroup = sequelize.define("MemberGroup", {
-    MID: {
+    UID: {
       type: DataTypes.UUID,
       allowNull: false,
       primaryKey: true,
