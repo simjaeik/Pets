@@ -118,4 +118,7 @@ dependencies {
 
     // Coroutine
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
+
+    // Activity
+    implementation "androidx.activity:activity-ktx:$activity_version"
 }
