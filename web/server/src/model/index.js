@@ -44,7 +44,6 @@ const db = {
 };
 
 Object.keys(initDB).forEach((modelName) => {
-  console.log(initDB[modelName]);
   if (initDB[modelName].associate) {
     initDB[modelName].associate(db);
   }

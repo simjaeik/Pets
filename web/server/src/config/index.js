@@ -19,4 +19,5 @@ exports.dbConfig = {
     collate: "utf8_general_ci",
     timestamps: false,
   },
+  logging: false,
 };

@@ -3,7 +3,6 @@ const control = require("../lib/controller");
 
 module.exports = {
   isEmailExist: async (req, res) => {
-    console.log(req.params);
     const { status, result } = await control(
       userService.isEmailExist,
       req.params
