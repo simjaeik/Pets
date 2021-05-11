@@ -4,14 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.lacuc.pets.R
 import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.FragmentGalleryBinding
+import com.lacuc.pets.ui.manage.ManageViewModel
 import com.lacuc.pets.util.setupWithNavController
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
@@ -26,13 +27,16 @@ class GalleryFragment : DaggerFragment() {
 
     private val viewModel: GalleryViewModel by viewModels { viewModelFactory }
 
-    private val navController: NavController by lazy { findNavController() }
+    private val activityViewModel: ManageViewModel by activityViewModels { viewModelFactory }
 
-    private val args: GalleryFragmentArgs by navArgs()
+    private val navController: NavController by lazy { findNavController() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.loadImage(args.gid)
+        activityViewModel.gid?.let {
+            viewModel.gid = it
+            viewModel.loadImages()
+        }
     }
 
     override fun onCreateView(
@@ -59,7 +63,8 @@ class GalleryFragment : DaggerFragment() {
 
         viewModel.imageClickEvent.observe(viewLifecycleOwner) {
             val action = GalleryFragmentDirections
-                .actionGalleryFragmentToImageDetailFragment(args.gid, it.image)
+                .actionGalleryFragmentToImageDetailFragment()
+            activityViewModel.iid = it.image.iid
             navController.navigate(action)
         }
     }
@@ -69,7 +74,7 @@ class GalleryFragment : DaggerFragment() {
             ?.savedStateHandle
             ?.getLiveData<Boolean>("onCompleteEvent")
             ?.observe(viewLifecycleOwner) {
-                viewModel.loadImage(args.gid)
+                viewModel.loadImages()
             }
     }
 
@@ -80,7 +85,7 @@ class GalleryFragment : DaggerFragment() {
             inflateMenu(R.menu.menu_add)
             setOnMenuItemClickListener {
                 val action = GalleryFragmentDirections
-                    .actionGalleryFragmentToSaveImageFragment(args.gid, null)
+                    .actionGalleryFragmentToSaveImageFragment()
                 navController.navigate(action)
                 true
             }

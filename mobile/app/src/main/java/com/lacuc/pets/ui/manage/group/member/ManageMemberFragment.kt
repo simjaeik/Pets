@@ -4,12 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.FragmentManageMemberBinding
+import com.lacuc.pets.ui.manage.ManageViewModel
 import com.lacuc.pets.util.setup
 import com.lacuc.pets.util.setupWithNavController
 import dagger.android.support.DaggerFragment
@@ -25,13 +26,16 @@ class ManageMemberFragment : DaggerFragment() {
 
     private val viewModel: ManageMemberViewModel by viewModels { viewModelFactory }
 
-    private val navController: NavController by lazy { findNavController() }
+    private val activityViewModel: ManageViewModel by activityViewModels { viewModelFactory }
 
-    private val args: ManageMemberFragmentArgs by navArgs()
+    private val navController: NavController by lazy { findNavController() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.loadMembers(args.gid)
+        activityViewModel.gid?.let {
+            viewModel.gid = it
+            viewModel.loadMembers()
+        }
     }
 
     override fun onCreateView(

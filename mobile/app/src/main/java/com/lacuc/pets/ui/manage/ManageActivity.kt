@@ -1,25 +1,32 @@
-package com.lacuc.pets.ui
+package com.lacuc.pets.ui.manage
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.snackbar.Snackbar
 import com.lacuc.pets.R
-import com.lacuc.pets.databinding.ActivityMainBinding
+import com.lacuc.pets.ViewModelFactory
+import com.lacuc.pets.databinding.ActivityManageBinding
 import com.lacuc.pets.util.SingleLiveEvent
 import dagger.android.support.DaggerAppCompatActivity
 import timber.log.Timber
 import javax.inject.Inject
 
-class MainActivity : DaggerAppCompatActivity() {
+class ManageActivity : DaggerAppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityManageBinding
 
     @Inject
     lateinit var errorEvent: SingleLiveEvent<String>
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val viewModel: ManageViewModel by viewModels { viewModelFactory }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityManageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setNavigationBackStackChangeListener()

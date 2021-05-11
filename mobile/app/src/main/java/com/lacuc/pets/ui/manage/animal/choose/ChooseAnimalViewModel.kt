@@ -4,17 +4,24 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lacuc.pets.data.Result
+import com.lacuc.pets.data.group.entity.Group
 import com.lacuc.pets.domain.animal.AnimalItem
-import com.lacuc.pets.domain.animal.animal.GetAnimalUseCase
+import com.lacuc.pets.domain.animal.animal.GetAnimalsUseCase
+import com.lacuc.pets.domain.group.GetGroupUseCase
 import com.lacuc.pets.util.SingleLiveEvent
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
 class ChooseAnimalViewModel @Inject constructor(
-    private val getAnimalUseCase: GetAnimalUseCase,
+    private val getAnimalsUseCase: GetAnimalsUseCase,
+    private val getGroupUseCase: GetGroupUseCase,
     private val errorEvent: SingleLiveEvent<String>
 ) : ViewModel() {
+
+    var gid = -1
+
+    val group = MutableLiveData<Group>()
 
     val animalItems = MutableLiveData<List<AnimalItem>>()
 
@@ -22,14 +29,27 @@ class ChooseAnimalViewModel @Inject constructor(
 
     val animalClickEvent = SingleLiveEvent<AnimalItem>()
 
-    init {
-        loadGroups()
+    fun loadGroup() {
+        viewModelScope.launch {
+            val _group = getGroupUseCase(gid)
+
+            when (_group) {
+                is Result.Success -> _group.body?.let { group.value = it }
+                is Result.Failure -> errorEvent.value =
+                    "code: ${_group.code} message: ${_group.error}"
+                is Result.NetworkError -> errorEvent.value = "네트워크 문제가 발생했습니다."
+                is Result.Unexpected -> {
+                    Timber.d(_group.t.toString())
+                    errorEvent.value = "알수없는 오류가 발생했습니다."
+                }
+            }
+        }
     }
 
-    fun loadGroups() {
+    fun loadAnimals() {
         viewModelScope.launch {
             loading.value = true
-            val animalList = getAnimalUseCase(1) { animalClickEvent.value = it }
+            val animalList = getAnimalsUseCase(gid) { animalClickEvent.value = it }
             loading.value = false
 
             when (animalList) {

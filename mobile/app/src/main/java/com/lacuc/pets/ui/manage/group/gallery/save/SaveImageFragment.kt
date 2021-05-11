@@ -11,14 +11,15 @@ import android.widget.AutoCompleteTextView
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.widget.doOnTextChanged
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.google.android.material.chip.Chip
 import com.lacuc.pets.R
 import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.FragmentSaveImageBinding
+import com.lacuc.pets.ui.manage.ManageViewModel
 import com.lacuc.pets.util.setupWithNavController
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
@@ -33,9 +34,9 @@ class SaveImageFragment : DaggerFragment() {
 
     private val viewModel: SaveImageViewModel by viewModels { viewModelFactory }
 
-    private val navController: NavController by lazy { findNavController() }
+    private val activityViewModel: ManageViewModel by activityViewModels { viewModelFactory }
 
-    private val args: SaveImageFragmentArgs by navArgs()
+    private val navController: NavController by lazy { findNavController() }
 
     private val requestImageLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
@@ -44,9 +45,10 @@ class SaveImageFragment : DaggerFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.gid = args.gid
-        args.image?.let {
-            viewModel.initImage(it)
+        activityViewModel.gid?.let { viewModel.gid = it }
+        activityViewModel.iid?.let {
+            viewModel.iid = it
+            viewModel.loadImage()
         }
     }
 
@@ -76,6 +78,16 @@ class SaveImageFragment : DaggerFragment() {
         setOnCompleteEventObserver()
 
         setOnUpdateEventObserver()
+
+        setOnLoadImageObserver()
+    }
+
+    private fun setOnLoadImageObserver() {
+        viewModel.loadImageEvent.observe(viewLifecycleOwner) {
+            for (tag in viewModel.addedTagList) {
+                addChip(tag)
+            }
+        }
     }
 
     private fun setOnCompleteEventObserver() {
@@ -87,16 +99,12 @@ class SaveImageFragment : DaggerFragment() {
 
     private fun setOnUpdateEventObserver() {
         viewModel.updateEvent.observe(viewLifecycleOwner) {
-            navController.previousBackStackEntry?.savedStateHandle?.set("onUpdateEvent", it)
+            navController.previousBackStackEntry?.savedStateHandle?.set("onUpdateEvent", true)
             navController.navigateUp()
         }
     }
 
     private fun setupTagChips() {
-        for (tag in viewModel.addedTagList) {
-            addChip(tag)
-        }
-
         binding.textInputSaveImageTag.apply {
             setupTagAdapter()
 

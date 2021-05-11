@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.jakewharton.rxbinding4.widget.textChanges
 import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.FragmentUserProfileBinding
+import com.lacuc.pets.ui.manage.ManageViewModel
 import com.lacuc.pets.util.setupWithNavController
 import dagger.android.support.DaggerFragment
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -24,9 +26,20 @@ class UserProfileFragment : DaggerFragment() {
 
     private val viewModel: UserProfileViewModel by viewModels { viewModelFactory }
 
+    private val activityViewModel: ManageViewModel by activityViewModels { viewModelFactory }
+
     private val navController: NavController by lazy { findNavController() }
 
     private val disposables = CompositeDisposable()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        activityViewModel.gid?.let { viewModel.gid = it }
+        activityViewModel.uid?.let {
+            viewModel.uid = it
+            viewModel.loadProfile()
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

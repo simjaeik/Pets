@@ -23,6 +23,10 @@ interface GroupDataSource {
 
     suspend fun getGroupMembers(gid: Int): Result<List<Member>>
 
+    suspend fun getGroupMember(gid: Int, uid: Int): Result<Member>
+
+    suspend fun updateGroupMember(gid: Int, uid: Int, name: String, email: String): Result<Void>
+
     suspend fun deleteGroupMember(gid: Int): Result<Void>
 
     suspend fun getGroupImages(gid: Int): Result<List<GroupImage>>

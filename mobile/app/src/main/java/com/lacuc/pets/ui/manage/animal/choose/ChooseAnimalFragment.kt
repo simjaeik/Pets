@@ -5,16 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.customview.widget.Openable
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.lacuc.pets.R
 import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.DrawerHeaderChooseAnimalBinding
 import com.lacuc.pets.databinding.FragmentChooseAnimalBinding
+import com.lacuc.pets.ui.manage.ManageViewModel
 import com.lacuc.pets.util.setup
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
@@ -24,14 +25,26 @@ class ChooseAnimalFragment : DaggerFragment() {
     private var _binding: FragmentChooseAnimalBinding? = null
     private val binding get() = _binding!!
 
+    private var _headerBinding: DrawerHeaderChooseAnimalBinding? = null
+    private val headerBinding get() = _headerBinding!!
+
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
     private val viewModel: ChooseAnimalViewModel by viewModels { viewModelFactory }
 
+    private val activityViewModel: ManageViewModel by activityViewModels { viewModelFactory }
+
     private val navController: NavController by lazy { findNavController() }
 
-    private val args: ChooseAnimalFragmentArgs by navArgs()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        activityViewModel.gid?.let {
+            viewModel.gid = it
+            viewModel.loadGroup()
+            viewModel.loadAnimals()
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,17 +55,11 @@ class ChooseAnimalFragment : DaggerFragment() {
             lifecycleOwner = viewLifecycleOwner
             vm = viewModel
         }
-        setupDrawerHeader(inflater)
+        _headerBinding =
+            DrawerHeaderChooseAnimalBinding.inflate(inflater, binding.navDrawerChooseAnimal, false)
+        binding.navDrawerChooseAnimal.addHeaderView(headerBinding.root)
 
         return binding.root
-    }
-
-    private fun setupDrawerHeader(inflater: LayoutInflater) {
-        val navHeaderBinding =
-            DrawerHeaderChooseAnimalBinding.inflate(inflater, binding.navDrawerChooseAnimal, false)
-        navHeaderBinding.item = args.group
-
-        binding.navDrawerChooseAnimal.addHeaderView(navHeaderBinding.root)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -66,6 +73,16 @@ class ChooseAnimalFragment : DaggerFragment() {
         setOnClickEventObserver()
 
         setOnCompleteObserver()
+
+        setupGroupObserver()
+    }
+
+    private fun setupGroupObserver() {
+        viewModel.group.observe(viewLifecycleOwner) {
+            headerBinding.item = it
+            headerBinding.notifyChange()
+            binding.toolbarChooseAnimal.title = it.name
+        }
     }
 
     private fun setOnCompleteObserver() {
@@ -73,14 +90,15 @@ class ChooseAnimalFragment : DaggerFragment() {
             ?.savedStateHandle
             ?.getLiveData<Boolean>("onCompleteEvent")
             ?.observe(viewLifecycleOwner) {
-                viewModel.loadGroups()
+                viewModel.loadAnimals()
             }
     }
 
     private fun setOnClickEventObserver() {
         viewModel.animalClickEvent.observe(viewLifecycleOwner) {
             val action = ChooseAnimalFragmentDirections
-                .actionChooseAnimalFragmentToAnimalDetailFragment(it.animal)
+                .actionChooseAnimalFragmentToAnimalDetailFragment()
+            activityViewModel.aid = it.aid
             navController.navigate(action)
         }
     }
@@ -95,12 +113,10 @@ class ChooseAnimalFragment : DaggerFragment() {
             inflateMenu(R.menu.menu_add)
             setOnMenuItemClickListener {
                 val action = ChooseAnimalFragmentDirections
-                    .actionChooseAnimalFragmentToAddAnimalFragment(null)
+                    .actionChooseAnimalFragmentToAddAnimalFragment()
                 navController.navigate(action)
                 true
             }
-
-            title = args.group.name
         }
     }
 
@@ -119,18 +135,19 @@ class ChooseAnimalFragment : DaggerFragment() {
             ChooseAnimalFragmentDirections.actionChooseAnimalFragmentToUserProfileFragment()
         R.id.saveGroupFragment ->
             ChooseAnimalFragmentDirections
-                .actionChooseAnimalFragmentToSaveGroupFragment("그룹 정보 수정", args.group)
+                .actionChooseAnimalFragmentToSaveGroupFragment("그룹 정보 수정")
         R.id.manageMemberFragment ->
-            ChooseAnimalFragmentDirections.actionChooseAnimalFragmentToManageMemberFragment(args.group.gid)
+            ChooseAnimalFragmentDirections.actionChooseAnimalFragmentToManageMemberFragment()
         R.id.galleryFragment ->
-            ChooseAnimalFragmentDirections.actionChooseAnimalFragmentToGalleryFragment(args.group.gid)
+            ChooseAnimalFragmentDirections.actionChooseAnimalFragmentToGalleryFragment()
         R.id.itemListFragment ->
-            ChooseAnimalFragmentDirections.actionChooseAnimalFragmentToItemListFragment(args.group.gid)
+            ChooseAnimalFragmentDirections.actionChooseAnimalFragmentToItemListFragment()
         else -> null
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        _headerBinding = null
     }
 }

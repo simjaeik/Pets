@@ -50,8 +50,8 @@ class FakeGroupRemoteDataSource @Inject constructor() : GroupDataSource {
         Result.Success(null)
     }
 
-    override suspend fun getGroup(gid: Int): Result<Group> {
-        TODO("Not yet implemented")
+    override suspend fun getGroup(gid: Int): Result<Group> = withContext(Dispatchers.IO) {
+        Result.Success(groupData[tempToken]?.find { it.gid == gid })
     }
 
     override suspend fun updateGroup(group: Group): Result<Void> = withContext(Dispatchers.IO) {
@@ -69,6 +69,27 @@ class FakeGroupRemoteDataSource @Inject constructor() : GroupDataSource {
             delay(100)
             Result.Success(memberData.filter { it.first == gid }.map { it.second })
         }
+
+    override suspend fun getGroupMember(gid: Int, uid: Int): Result<Member> =
+        withContext(Dispatchers.IO) {
+            val memberList = memberData.filter { it.first == gid }
+                .map { it.second }
+            Result.Success(memberList.find { it.uid == uid })
+        }
+
+    override suspend fun updateGroupMember(
+        gid: Int,
+        uid: Int,
+        name: String,
+        email: String
+    ): Result<Void> = withContext(Dispatchers.IO) {
+        val member = memberData.find { it.first == gid && it.second.uid == uid }
+        member?.let {
+            memberData.remove(member)
+            memberData.add(gid to Member(uid, name, it.second.password, email, it.second.nickName))
+        }
+        Result.Success(null)
+    }
 
     override suspend fun deleteGroupMember(gid: Int): Result<Void> {
         TODO("Not yet implemented")

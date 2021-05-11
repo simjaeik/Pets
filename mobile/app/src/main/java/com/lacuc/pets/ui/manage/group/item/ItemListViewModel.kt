@@ -16,11 +16,12 @@ class ItemListViewModel @Inject constructor(
     private val errorEvent: SingleLiveEvent<String>
 ) : ViewModel() {
 
+    var gid = -1
     val itemHistory = MutableLiveData<List<ItemHistoryItem>>()
 
     val itemClickEvent = SingleLiveEvent<ItemHistoryItem>()
 
-    fun loadItems(gid: Int) {
+    fun loadItems() {
         viewModelScope.launch {
             val items = getItemHistoryUseCase(gid) { itemClickEvent.value = it }
 

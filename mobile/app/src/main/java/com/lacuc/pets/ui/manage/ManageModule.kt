@@ -1,4 +1,4 @@
-package com.lacuc.pets.ui
+package com.lacuc.pets.ui.manage
 
 import com.lacuc.pets.ui.manage.animal.add.AddAnimalFragment
 import com.lacuc.pets.ui.manage.animal.choose.ChooseAnimalFragment

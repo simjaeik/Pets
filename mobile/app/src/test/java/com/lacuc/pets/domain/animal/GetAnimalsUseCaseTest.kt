@@ -3,7 +3,7 @@ package com.lacuc.pets.domain.animal
 import com.lacuc.pets.data.Result
 import com.lacuc.pets.data.animal.AnimalRepository
 import com.lacuc.pets.data.animal.entity.Animal
-import com.lacuc.pets.domain.animal.animal.GetAnimalUseCase
+import com.lacuc.pets.domain.animal.animal.GetAnimalsUseCase
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.*
 import org.junit.Before
@@ -11,16 +11,16 @@ import org.junit.Test
 import org.mockito.ArgumentMatchers
 import org.mockito.Mockito.*
 
-class GetAnimalUseCaseTest {
+class GetAnimalsUseCaseTest {
 
     lateinit var repository: AnimalRepository
 
-    lateinit var useCase: GetAnimalUseCase
+    lateinit var useCase: GetAnimalsUseCase
 
     @Before
     fun init_useCase() {
         repository = mock(AnimalRepository::class.java)
-        useCase = GetAnimalUseCase(repository)
+        useCase = GetAnimalsUseCase(repository)
     }
 
     @Test

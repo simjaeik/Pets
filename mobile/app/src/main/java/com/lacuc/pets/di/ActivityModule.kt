@@ -1,9 +1,9 @@
 package com.lacuc.pets.di
 
-import com.lacuc.pets.ui.MainActivity
-import com.lacuc.pets.ui.ManageModule
 import com.lacuc.pets.ui.login.LoginActivity
 import com.lacuc.pets.ui.login.LoginModule
+import com.lacuc.pets.ui.manage.ManageActivity
+import com.lacuc.pets.ui.manage.ManageModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -13,5 +13,5 @@ abstract class ActivityModule {
     abstract fun loginActivity(): LoginActivity
 
     @ContributesAndroidInjector(modules = [ManageModule::class])
-    abstract fun mainActivity(): MainActivity
+    abstract fun mainActivity(): ManageActivity
 }

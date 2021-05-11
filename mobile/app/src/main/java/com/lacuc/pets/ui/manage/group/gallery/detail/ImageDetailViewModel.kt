@@ -15,13 +15,14 @@ class ImageDetailViewModel @Inject constructor(
     private val getGroupImageUseCase: GetGroupImageUseCase,
     private val errorEvent: SingleLiveEvent<String>
 ) : ViewModel() {
+
+    var gid = -1
+
+    var iid = -1
+
     val image = MutableLiveData<GroupImage>()
 
-    fun setImage(groupImage: GroupImage) {
-        image.value = groupImage
-    }
-
-    fun loadImage(gid: Int, iid: Int) {
+    fun loadImage() {
         viewModelScope.launch {
             val result = getGroupImageUseCase(gid, iid)
 

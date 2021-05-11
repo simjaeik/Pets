@@ -31,8 +31,8 @@
 
     <activity
         android:id="@+id/mainActivity"
-        android:name="com.lacuc.pets.ui.MainActivity"
+        android:name="com.lacuc.pets.ui.manage.ManageActivity"
         android:label="activity_main"
-        tools:layout="@layout/activity_main" />
+        tools:layout="@layout/activity_manage" />
 
 </navigation>

@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lacuc.pets.data.Result
-import com.lacuc.pets.domain.group.GetGroupUseCase
+import com.lacuc.pets.domain.group.GetGroupsUseCase
 import com.lacuc.pets.domain.group.GroupItem
 import com.lacuc.pets.util.SingleLiveEvent
 import kotlinx.coroutines.launch
@@ -12,7 +12,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class ChooseGroupViewModel @Inject constructor(
-    private val getGroupUseCase: GetGroupUseCase,
+    private val getGroupsUseCase: GetGroupsUseCase,
     private val errorEvent: SingleLiveEvent<String>
 ) :
     ViewModel() {
@@ -30,7 +30,7 @@ class ChooseGroupViewModel @Inject constructor(
     fun loadGroups() {
         viewModelScope.launch {
             loading.value = true
-            val groupList = getGroupUseCase { groupClickEvent.value = it }
+            val groupList = getGroupsUseCase { groupClickEvent.value = it }
             loading.value = false
 
             when (groupList) {

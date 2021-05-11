@@ -12,16 +12,16 @@ import org.mockito.Mockito.*
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
-class GetGroupUseCaseTest {
+class GetGroupsUseCaseTest {
 
     lateinit var repository: GroupRepository
-    lateinit var useCase: GetGroupUseCase
+    lateinit var useCase: GetGroupsUseCase
 
     @Before
     fun init_useCase() {
         repository = mock(GroupRepository::class.java)
 
-        useCase = GetGroupUseCase(repository)
+        useCase = GetGroupsUseCase(repository)
     }
 
     @Test
