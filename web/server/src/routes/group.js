@@ -6,7 +6,7 @@ const controller = require("../controller/group");
 
 const router = express.Router();
 
-router.get("/", controller.getMyGoups);
+router.get("/", controller.getMyGroups);
 
 router.post("/", controller.setGroup);
 
