@@ -16,11 +16,13 @@ class GalleryViewModel @Inject constructor(
     private val errorEvent: SingleLiveEvent<String>
 ) : ViewModel() {
 
+    var gid = -1
+
     val images = MutableLiveData<List<ImageItem>>()
 
     val imageClickEvent = SingleLiveEvent<ImageItem>()
 
-    fun loadImage(gid: Int) {
+    fun loadImages() {
         viewModelScope.launch {
             val imageList = getGroupImagesUseCase(gid) { imageClickEvent.value = it }
 
