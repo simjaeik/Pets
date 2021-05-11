@@ -5,14 +5,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lacuc.pets.data.Result
 import com.lacuc.pets.data.group.entity.Member
-import com.lacuc.pets.domain.group.GetGroupMemberUseCase
+import com.lacuc.pets.domain.member.GetGroupMembersUseCase
 import com.lacuc.pets.util.SingleLiveEvent
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
 class ManageMemberViewModel @Inject constructor(
-    private val getGroupMemberUseCase: GetGroupMemberUseCase,
+    private val getGroupMembersUseCase: GetGroupMembersUseCase,
     private val errorEvent: SingleLiveEvent<String>
 ) : ViewModel() {
 
@@ -20,7 +20,7 @@ class ManageMemberViewModel @Inject constructor(
 
     fun loadMembers(gid: Int) {
         viewModelScope.launch {
-            val memberList = getGroupMemberUseCase(gid)
+            val memberList = getGroupMembersUseCase(gid)
 
             when (memberList) {
                 is Result.Success -> memberList.body?.let { members.value = it }
