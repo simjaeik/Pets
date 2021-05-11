@@ -34,20 +34,12 @@
         <argument
             android:name="toolbar_title"
             app:argType="string" />
-        <argument
-            android:name="group"
-            android:defaultValue="@null"
-            app:argType="com.lacuc.pets.data.group.entity.Group"
-            app:nullable="true" />
     </fragment>
 
     <fragment
         android:id="@+id/chooseAnimalFragment"
         android:name="com.lacuc.pets.ui.manage.animal.choose.ChooseAnimalFragment"
         tools:layout="@layout/fragment_choose_animal">
-        <argument
-            android:name="group"
-            app:argType="com.lacuc.pets.data.group.entity.Group" />
         <action
             android:id="@+id/action_chooseAnimalFragment_to_addAnimalFragment"
             app:destination="@id/addAnimalFragment"
@@ -82,21 +74,13 @@
     <fragment
         android:id="@+id/addAnimalFragment"
         android:name="com.lacuc.pets.ui.manage.animal.add.AddAnimalFragment"
-        tools:layout="@layout/fragment_add_animal">
-        <argument
-            android:name="animal"
-            app:argType="com.lacuc.pets.data.animal.entity.Animal"
-            app:nullable="true" />
-    </fragment>
+        tools:layout="@layout/fragment_add_animal" />
 
     <fragment
         android:id="@+id/animalDetailFragment"
         android:name="com.lacuc.pets.ui.manage.animal.detail.AnimalDetailFragment"
         android:label="fragment_animal_detail"
         tools:layout="@layout/fragment_animal_detail">
-        <argument
-            android:name="animal"
-            app:argType="com.lacuc.pets.data.animal.entity.Animal" />
         <action
             android:id="@+id/action_animalDetailFragment_to_addAnimalFragment"
             app:destination="@id/addAnimalFragment" />
@@ -128,20 +112,13 @@
         android:id="@+id/manageMemberFragment"
         android:name="com.lacuc.pets.ui.manage.group.member.ManageMemberFragment"
         android:label="멤버 관리"
-        tools:layout="@layout/fragment_manage_member">
-        <argument
-            android:name="gid"
-            app:argType="integer" />
-    </fragment>
+        tools:layout="@layout/fragment_manage_member" />
 
     <fragment
         android:id="@+id/galleryFragment"
         android:name="com.lacuc.pets.ui.manage.group.gallery.GalleryFragment"
         android:label="갤러리"
         tools:layout="@layout/fragment_gallery">
-        <argument
-            android:name="gid"
-            app:argType="integer" />
         <action
             android:id="@+id/action_galleryFragment_to_saveImageFragment"
             app:destination="@id/saveImageFragment" />
@@ -154,26 +131,12 @@
         android:id="@+id/saveImageFragment"
         android:name="com.lacuc.pets.ui.manage.group.gallery.save.SaveImageFragment"
         android:label="이미지 추가"
-        tools:layout="@layout/fragment_save_image">
-        <argument
-            android:name="gid"
-            app:argType="integer" />
-        <argument
-            android:name="image"
-            app:argType="com.lacuc.pets.data.group.entity.GroupImage"
-            app:nullable="true" />
-    </fragment>
+        tools:layout="@layout/fragment_save_image" />
 
     <fragment
         android:id="@+id/imageDetailFragment"
         android:name="com.lacuc.pets.ui.manage.group.gallery.detail.ImageDetailFragment"
         tools:layout="@layout/fragment_image_detail">
-        <argument
-            android:name="gid"
-            app:argType="integer" />
-        <argument
-            android:name="image"
-            app:argType="com.lacuc.pets.data.group.entity.GroupImage" />
         <action
             android:id="@+id/action_imageDetailFragment_to_saveImageFragment"
             app:destination="@id/saveImageFragment" />
@@ -183,10 +146,6 @@
         android:id="@+id/itemListFragment"
         android:name="com.lacuc.pets.ui.manage.group.item.ItemListFragment"
         android:label="물품 목록"
-        tools:layout="@layout/fragment_item_list" >
-        <argument
-            android:name="gid"
-            app:argType="integer" />
-    </fragment>
+        tools:layout="@layout/fragment_item_list" />
 
 </navigation>
