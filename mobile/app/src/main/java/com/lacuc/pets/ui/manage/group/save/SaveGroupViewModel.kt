@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.lacuc.pets.data.Result
 import com.lacuc.pets.data.group.entity.Group
 import com.lacuc.pets.domain.group.AddGroupUseCase
+import com.lacuc.pets.domain.group.GetGroupUseCase
 import com.lacuc.pets.domain.group.UpdateGroupUseCase
 import com.lacuc.pets.util.SingleLiveEvent
 import com.lacuc.pets.util.safeValue
@@ -15,6 +16,7 @@ import javax.inject.Inject
 import kotlin.random.Random
 
 class SaveGroupViewModel @Inject constructor(
+    private val getGroupUseCase: GetGroupUseCase,
     private val addGroupUseCase: AddGroupUseCase,
     private val updateGroupUseCase: UpdateGroupUseCase,
     private val errorEvent: SingleLiveEvent<String>
@@ -31,15 +33,21 @@ class SaveGroupViewModel @Inject constructor(
 
     private var isUpdateGroup = false
 
-    fun initData(group: Group?) {
-        isUpdateGroup = group?.let {
-            gid = it.gid
-            name.value = it.name
-            info.value = it.info
-            image.value = it.image
-            isShare.value = it.share
-            true
-        } ?: false
+    fun loadGroup() {
+        viewModelScope.launch {
+            val group = getGroupUseCase(gid)
+
+            when (group) {
+                is Result.Success -> completeEvent.value = Unit
+                is Result.Failure -> errorEvent.value =
+                    "code: ${group.code} message: ${group.error}"
+                is Result.NetworkError -> errorEvent.value = "네트워크 문제가 발생했습니다."
+                is Result.Unexpected -> {
+                    Timber.d(group.t.toString())
+                    errorEvent.value = "알수없는 오류가 발생했습니다."
+                }
+            }
+        }
     }
 
     fun saveGroup() {

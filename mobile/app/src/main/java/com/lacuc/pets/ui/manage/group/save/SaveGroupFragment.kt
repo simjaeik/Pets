@@ -7,12 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.FragmentSaveGroupBinding
+import com.lacuc.pets.ui.manage.ManageViewModel
 import com.lacuc.pets.util.setupWithNavController
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
@@ -27,9 +28,9 @@ class SaveGroupFragment : DaggerFragment() {
 
     private val viewModel: SaveGroupViewModel by viewModels { viewModelFactory }
 
-    private val navController: NavController by lazy { findNavController() }
+    private val activityViewModel: ManageViewModel by activityViewModels { viewModelFactory }
 
-    private val args: SaveGroupFragmentArgs by navArgs()
+    private val navController: NavController by lazy { findNavController() }
 
     private val requestImageLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
@@ -38,7 +39,10 @@ class SaveGroupFragment : DaggerFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.initData(args.group)
+        activityViewModel.gid?.let {
+            viewModel.gid = it
+            viewModel.loadGroup()
+        }
     }
 
     override fun onCreateView(
