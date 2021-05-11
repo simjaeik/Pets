@@ -4,14 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.google.android.material.chip.Chip
 import com.lacuc.pets.R
 import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.FragmentImageDetailBinding
+import com.lacuc.pets.ui.manage.ManageViewModel
 import com.lacuc.pets.util.setupWithNavController
 import dagger.android.support.DaggerFragment
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -27,15 +28,19 @@ class ImageDetailFragment : DaggerFragment() {
 
     private val viewModel: ImageDetailViewModel by viewModels { viewModelFactory }
 
-    private val navController: NavController by lazy { findNavController() }
+    private val activityViewModel: ManageViewModel by activityViewModels { viewModelFactory }
 
-    private val args: ImageDetailFragmentArgs by navArgs()
+    private val navController: NavController by lazy { findNavController() }
 
     private lateinit var disposables: CompositeDisposable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.setImage(args.image)
+        activityViewModel.gid?.let { viewModel.gid = it }
+        activityViewModel.iid?.let {
+            viewModel.iid = it
+            viewModel.loadImage()
+        }
     }
 
     override fun onCreateView(
@@ -65,9 +70,7 @@ class ImageDetailFragment : DaggerFragment() {
         navController.currentBackStackEntry
             ?.savedStateHandle
             ?.getLiveData<Int>("onUpdateEvent")
-            ?.observe(viewLifecycleOwner) { iid ->
-                viewModel.loadImage(args.gid, iid)
-            }
+            ?.observe(viewLifecycleOwner) { viewModel.loadImage() }
         navController.previousBackStackEntry?.savedStateHandle?.set("onCompleteEvent", true)
     }
 
@@ -90,7 +93,7 @@ class ImageDetailFragment : DaggerFragment() {
 
     private fun navigateToSaveImageFragment() {
         val action = ImageDetailFragmentDirections
-            .actionImageDetailFragmentToSaveImageFragment(args.gid, viewModel.image.value)
+            .actionImageDetailFragmentToSaveImageFragment()
         navController.navigate(action)
     }
 
@@ -129,5 +132,10 @@ class ImageDetailFragment : DaggerFragment() {
         super.onDestroyView()
         _binding = null
         disposables.dispose()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        activityViewModel.iid = null
     }
 }
