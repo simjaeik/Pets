@@ -1,0 +1,35 @@
+form{
+    padding:5px 20px 5px 20px;
+    
+}
+#warning{
+    text-align: left;
+}
+#equal{
+    display:none;
+    color:blue;
+}
+
+#no_equal{
+    display:none;
+    color:red;
+}
+#badpw, #normalpw, #goodpw{
+    display:none;
+}
+#badpwoption{
+    display:none;
+    color:red;
+}
+#normalpwoption{
+    display:none;
+    color:orange;
+}
+#goodpwoption, #goodnickname, #goodemail{
+    display:none;
+    color:blue;
+}
+.cover {
+    display: flex;
+    justify-content: space-between;
+}

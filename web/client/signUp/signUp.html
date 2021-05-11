@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
-    <title>join.html</title>
+    <title>signUp.html</title>
     <!--라이브러리-->
     <link rel="stylesheet" href="../boot_css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
@@ -13,36 +13,50 @@
   
     <!--css 연결-->
     <link rel="stylesheet" href="../boot_css/login.css">
-    <link rel="stylesheet" href="join.css"></style>
+    <link rel="stylesheet" href="signUp.css"></style>
 
-    <!--javascript 파일 연결-->
-    <script src="join.js"></script>
-    
   </head>
 
   <body>
     <div class="container">
         <div class="row">
-            <div class="col xs-12">
-            <form method="post" action="./community.html">
-                
-                <!--id-->
+            
+            <form>
+                <!--이름-->
                 <div class="form-group row">
-                    <label class="col-lg-2 col-form-label form-control-label text-muted">ID</label>
+                    <label class="col-lg-2 col-form-label form-control-label text-muted">Name</label>
                         <div class="col-lg-10">
                             <label> <p class="label-txt"></p> 
-                            <input type="text" id="ID" autofocus placeholder="아이디를 입력하세요" class="input" required>
-                            <div class="line-box"> <div class="line"></div></div> 
+                            <input type="text" id="NAME" autofocus placeholder="이름을 입력하세요" class="input" required>
+                            <div class="line-box"> <div class="line"></div></div>   
+                    </label></div>
+                </div>
+
+                <!--닉네임-->
+                <div class="form-group row">
+                    <label class="col-lg-2 col-form-label form-control-label text-muted">NickName</label>
+                        <div class="col-lg-10">
+                            <label> <p class="label-txt"></p> 
+                            <input type="text" id="NICKNAME" placeholder="닉네임을 입력하세요" class="input" required> 
+                            <div class="line-box"> <div class="line"></div></div>
+                            <div id="goodnickname">사용가능한 닉네임입니다.</div>
+                            <button type="button" class="btn btn-outline-danger" onclick="isNicknameExist()";>닉네임중복확인</button>  
                     </label> </div>
                 </div>
+             
+               
                 
                 <!--pw-->
                 <div class="form-group row">
                     <label class="col-lg-2 col-form-label form-control-label text-muted">PW</label>
                         <div class="col-lg-10">
                             <label> <p class="label-txt"></p> 
-                            <input type="password" id="PW" placeholder="비밀번호를 입력하세요" class="input" required> 
-                            <div class="line-box"> <div class="line"></div></div> 
+                            <input type="password" id="PW" placeholder="비밀번호를 입력하세요" class="input" onfocus="goodpw();" required> 
+                            <div class="line-box"> <div class="line"></div></div>
+                             <!--비밀번호 조건-->
+                            <div id="badpw">비밀번호 강도:</div><div id="badpwoption">낮음</div>
+                            <div id="normalpw">비밀번호 강도:</div><div id="normalpwoption">보통</div>
+                            <div id="goodpw">비밀번호 강도:</div><div id="goodpwoption">높음</div>
                     </label> </div>
                 </div>
 
@@ -51,7 +65,7 @@
                     <label class="col-lg-2 col-form-label form-control-label text-muted">PW re</label>
                         <div class="col-lg-10">
                             <label> <p class="label-txt"></p> 
-                            <input type="password" id="PWRE" placeholder="비밀번호를 재입력하세요" class="input" onfocus="eqaul_pw()"; required> 
+                            <input type="password" id="PWRE" placeholder="비밀번호를 재입력하세요" class="input" onfocus="eqaul_pw(); goodpw();"; required> 
                             <div class="line-box"> <div class="line"></div></div> 
                             <!--비밀번호 일치여부를 알려줌-->
                             <div id="equal">비밀번호가 일치합니다.</div>
@@ -66,18 +80,24 @@
                             <label> <p class="label-txt"></p> 
                             <input type="text" id="EMAIL" placeholder="이메일을 입력하세요" class="input" onfocus="eqaul_pw()"; required> 
                             <div class="line-box"> <div class="line"></div></div> 
+                            <div id="goodemail">사용가능한 이메일주소입니다.</div>
+                            <button type="button" class="btn btn-outline-danger" onclick="isEmailExist()";>이메일중복확인</button> 
                     </label> </div>
                 </div>
 
-                <button type="button" class="btn btn-outline-primary btn-lg" onclick="check_join()";>회원가입</button>   
+                <button type="button" class="btn btn-outline-primary btn-lg" onclick="check_join(), signUp()";>회원가입</button>   
             </form>
            </div>
-        </div>
+        
       </div>
+    </body>
     <!--javascript-->
     
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="../boot_js/bootstrap.min.js"></script>
+     
+    <script src="signUp.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     </body>
 </html>
