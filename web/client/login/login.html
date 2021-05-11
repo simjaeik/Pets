@@ -13,8 +13,7 @@
     <!--css 연결-->
     <link rel="stylesheet" href="../boot_css/login.css">
     <link rel="stylesheet" href="login.css"></style>
-    <!--javascript 파일 연결-->
-    <script src="login.js"></script>
+  
   </head>
 
   <body>
@@ -24,10 +23,10 @@
             <form method="post" action="./community.html">
                 
                 <div class="form-group row">
-                    <label class="col-lg-2 col-form-label form-control-label text-muted">ID</label>
+                    <label class="col-lg-2 col-form-label form-control-label text-muted">E-mail</label>
                         <div class="col-lg-10">
                             <label> <p class="label-txt"></p> 
-                            <input type="text" id="ID" autofocus placeholder="아이디를 입력하세요" class="input" required>
+                            <input type="text" id="ID" autofocus placeholder="이메일을 입력하세요" class="input" required>
                             <div class="line-box"> <div class="line"></div></div> 
                     </label> </div>
                 </div>
@@ -40,7 +39,7 @@
                             <div class="line-box"> <div class="line"></div></div> 
                     </label> </div>
                 </div>
-                <button type="button" class="btn btn-outline-primary btn-lg" onclick="check_blank()";>로그인</button>  
+                <button type="button" class="btn btn-outline-primary btn-lg" onclick="login()";>로그인</button>  
             </form>
            </div>
         </div>
@@ -48,6 +47,9 @@
     <!--javascript-->
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="../boot_js/bootstrap.min.js"></script>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="login.js"></script>
 
     </body>
 </html>

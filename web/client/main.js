@@ -1,5 +1,6 @@
 var http = require('http');	// 서버 만드는 모듈 불러오기
 var fs = require('fs');
+
 var app = http.createServer(function(request,response){
     var url = request.url;
     if(request.url == '/'){
@@ -13,4 +14,3 @@ var app = http.createServer(function(request,response){
  
 });
 app.listen(8080);		// 실행할 port
-
