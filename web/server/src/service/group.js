@@ -29,4 +29,12 @@ module.exports = {
     }
   },
 
+  setGroup: async ({ data, body }) => {
+    if (!data) {
+      return { error: "invalid Token" };
+    }
+    if (checkInvalidData(body)) {
+      return { error: "모든 데이터를 입력해주세요." };
+    }
+  },
 };
