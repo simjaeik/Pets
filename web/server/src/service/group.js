@@ -36,5 +36,41 @@ module.exports = {
     if (checkInvalidData(body)) {
       return { error: "모든 데이터를 입력해주세요." };
     }
+    const { UID } = data;
+    const { name, info, image, share, latitude, longitude } = body;
+
+    const t = await sequelize.transaction();
+
+    try {
+      const group = await Group.create(
+        {
+          name,
+          info,
+          image,
+          share,
+          latitude,
+          longitude,
+        },
+        { transaction: t }
+      );
+      const { GID } = group.dataValues;
+
+      await MemberGroup.create(
+        {
+          UID,
+          GID,
+          authority: "수정권한",
+        },
+        { transaction: t }
+      );
+
+      await t.commit();
+
+      return { result: true };
+    } catch (error) {
+      await t.rollback();
+      console.log(error);
+      return { error };
+    }
   },
 };
