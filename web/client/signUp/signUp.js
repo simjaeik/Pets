@@ -6,6 +6,7 @@ const checknickname = document.getElementById("NICKNAME");
 const checkbtn = document.getElementById("checkbtn");
 const URL = "http://ec2-54-180-91-27.ap-northeast-2.compute.amazonaws.com:3000/api";
 let exist = [0,0];
+
 function signUp(){
 
     axios.post(`${URL}/user/signUp`, {
@@ -16,13 +17,17 @@ function signUp(){
     })
     .then(response => {
         console.log(response)
+        alert("회원가입이 완료되었습니다.");
+        location.href="../pets.html";
     })
     .catch(error => {
         console.log(error.response)
         if(error.response.data === "중복된 닉네임입니다.")
             alert(error.response.data);
+        else if(error.response.data === "중복된 email입니다.")
+            alert(error.response.data);
     });
-//이메일,닉네임 중복처리 했는지 여부
+
 }
 function isNicknameExist(){
 

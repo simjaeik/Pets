@@ -1,12 +1,23 @@
-//아이디나 비밀번호가 비어있으면 화면이동이 안되게 한다
-function check_blank(){
+//import Axios from 'axios';
+const URL = "http://ec2-54-180-91-27.ap-northeast-2.compute.amazonaws.com:3000/api";
+const checkid = document.getElementById("ID");
+const checkpw = document.getElementById("PW");
 
-    let checkid = document.getElementById("ID");
-    let checkpw = document.getElementById("PW");
-    
-    if ( checkid.value === "") { alert(" 아이디가 입력되지 않았습니다. "); }
-    else if ( checkpw.value === "") { alert(" 비밀번호가 입력되지 않았습니다. "); }
-    else{
+function login(){
+
+    axios.post(`${URL}/user/login`, {
+        email : checkid.value,
+        password : checkpw.value
+    })
+    .then(response => {
+        console.log(response)
         location.href="../community/community.html";
-    }
+    })
+    .catch(error => {
+        console.log(error.response)
+        if (error.response.data.message === "Missing credentials"){
+            alert("아이디 혹은 비밀번호가 틀렸습니다.");
+        }
+    });
 }
+//jwt -> header의 키의 authorization, value: jwt토큰
