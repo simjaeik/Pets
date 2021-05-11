@@ -18,9 +18,10 @@ class FakeAnimalRemoteDataSource @Inject constructor() : AnimalDataSource {
     private val memoData = mutableMapOf<Int, List<Memo>>()
 
     init {
-        animalData[1] = listOf(
+        animalData[0] = listOf(
             Animal(
-                1,
+                0,
+                0,
                 "보리",
                 "https://images.unsplash.com/photo-1495360010541-f48722b34f7d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1276&q=80",
                 2,
@@ -32,6 +33,7 @@ class FakeAnimalRemoteDataSource @Inject constructor() : AnimalDataSource {
             ),
             Animal(
                 1,
+                0,
                 "우주",
                 "https://images.unsplash.com/photo-1572632821054-b1bb7d7010c0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
                 2,
@@ -84,8 +86,8 @@ class FakeAnimalRemoteDataSource @Inject constructor() : AnimalDataSource {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getAnimal(aid: Int): Result<Animal> {
-        TODO("Not yet implemented")
+    override suspend fun getAnimal(aid: Int): Result<Animal> = withContext(Dispatchers.IO) {
+        Result.Success(animalData[0]?.find { it.aid == aid })
     }
 
     override suspend fun updateAnimalDetail(aid: Int, animal: Animal): Result<Void> {

@@ -42,6 +42,7 @@ class ChooseAnimalFragment : DaggerFragment() {
         activityViewModel.gid?.let {
             viewModel.gid = it
             viewModel.loadGroup()
+            viewModel.loadAnimals()
         }
     }
 

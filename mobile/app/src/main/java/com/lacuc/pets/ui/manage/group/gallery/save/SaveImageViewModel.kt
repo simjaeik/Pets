@@ -35,7 +35,8 @@ class SaveImageViewModel @Inject constructor(
     val addedTagList = mutableListOf<String>()
 
     val completeEvent = SingleLiveEvent<Unit>()
-    val updateEvent = SingleLiveEvent<Int>()
+    val updateEvent = SingleLiveEvent<Unit>()
+    val loadImageEvent = SingleLiveEvent<Unit>()
 
     private var isUpdate = false
 
@@ -48,6 +49,7 @@ class SaveImageViewModel @Inject constructor(
                 is Result.Success -> _image.body?.let {
                     image.value = it.url
                     addedTagList.addAll(it.tag.split(","))
+                    loadImageEvent.value = Unit
                 }
                 is Result.Failure -> errorEvent.value =
                     "code: ${_image.code} message: ${_image.error}"
@@ -88,7 +90,7 @@ class SaveImageViewModel @Inject constructor(
             when (result) {
                 is Result.Success -> {
                     if (isUpdate)
-                        updateEvent.value = iid
+                        updateEvent.value = Unit
                     else
                         completeEvent.value = Unit
                 }

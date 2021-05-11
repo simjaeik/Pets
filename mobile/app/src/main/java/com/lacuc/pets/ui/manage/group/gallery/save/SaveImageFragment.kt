@@ -78,6 +78,16 @@ class SaveImageFragment : DaggerFragment() {
         setOnCompleteEventObserver()
 
         setOnUpdateEventObserver()
+
+        setOnLoadImageObserver()
+    }
+
+    private fun setOnLoadImageObserver() {
+        viewModel.loadImageEvent.observe(viewLifecycleOwner) {
+            for (tag in viewModel.addedTagList) {
+                addChip(tag)
+            }
+        }
     }
 
     private fun setOnCompleteEventObserver() {
@@ -89,16 +99,12 @@ class SaveImageFragment : DaggerFragment() {
 
     private fun setOnUpdateEventObserver() {
         viewModel.updateEvent.observe(viewLifecycleOwner) {
-            navController.previousBackStackEntry?.savedStateHandle?.set("onUpdateEvent", it)
+            navController.previousBackStackEntry?.savedStateHandle?.set("onUpdateEvent", true)
             navController.navigateUp()
         }
     }
 
     private fun setupTagChips() {
-        for (tag in viewModel.addedTagList) {
-            addChip(tag)
-        }
-
         binding.textInputSaveImageTag.apply {
             setupTagAdapter()
 

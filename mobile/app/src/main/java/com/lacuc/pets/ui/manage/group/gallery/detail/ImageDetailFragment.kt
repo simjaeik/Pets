@@ -69,7 +69,7 @@ class ImageDetailFragment : DaggerFragment() {
     private fun setOnUpdateEventObserver() {
         navController.currentBackStackEntry
             ?.savedStateHandle
-            ?.getLiveData<Int>("onUpdateEvent")
+            ?.getLiveData<Boolean>("onUpdateEvent")
             ?.observe(viewLifecycleOwner) { viewModel.loadImage() }
         navController.previousBackStackEntry?.savedStateHandle?.set("onCompleteEvent", true)
     }

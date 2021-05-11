@@ -38,7 +38,7 @@ class SaveGroupViewModel @Inject constructor(
             val group = getGroupUseCase(gid)
 
             when (group) {
-                is Result.Success -> completeEvent.value = Unit
+                is Result.Success -> initData(group.body)
                 is Result.Failure -> errorEvent.value =
                     "code: ${group.code} message: ${group.error}"
                 is Result.NetworkError -> errorEvent.value = "네트워크 문제가 발생했습니다."
@@ -47,6 +47,15 @@ class SaveGroupViewModel @Inject constructor(
                     errorEvent.value = "알수없는 오류가 발생했습니다."
                 }
             }
+        }
+    }
+
+    private fun initData(group: Group?) {
+        group?.let {
+            name.value = group.name
+            info.value = group.info
+            image.value = group.image
+            isShare.value = group.share
         }
     }
 

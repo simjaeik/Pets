@@ -50,8 +50,8 @@ class FakeGroupRemoteDataSource @Inject constructor() : GroupDataSource {
         Result.Success(null)
     }
 
-    override suspend fun getGroup(gid: Int): Result<Group> {
-        TODO("Not yet implemented")
+    override suspend fun getGroup(gid: Int): Result<Group> = withContext(Dispatchers.IO) {
+        Result.Success(groupData[tempToken]?.find { it.gid == gid })
     }
 
     override suspend fun updateGroup(group: Group): Result<Void> = withContext(Dispatchers.IO) {

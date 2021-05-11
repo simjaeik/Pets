@@ -23,9 +23,7 @@ class DefaultGroupRepository @Inject constructor(
     override suspend fun setGroup(group: Group): Result<Void> =
         groupRemoteDataSource.setGroup(group)
 
-    override suspend fun getGroup(gid: Int): Result<Group> {
-        TODO("Not yet implemented")
-    }
+    override suspend fun getGroup(gid: Int): Result<Group> = groupRemoteDataSource.getGroup(gid)
 
     override suspend fun updateGroup(group: Group): Result<Void> =
         groupRemoteDataSource.updateGroup(group)
