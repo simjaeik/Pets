@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Pets"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.MainActivity" />
+        <activity android:name=".ui.manage.ManageActivity" />
         <activity
             android:name=".ui.login.LoginActivity"
             android:windowSoftInputMode="adjustResize">
