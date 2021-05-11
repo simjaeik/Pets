@@ -8,4 +8,12 @@ module.exports = {
     return res.status(status).json(result);
   },
 
+  setGroup: async (req, res) => {
+    const { status, result } = await control(service.setGroup, {
+      data: req.data,
+      body: req.body,
+    });
+
+    return res.status(status).json(result);
+  },
 };
