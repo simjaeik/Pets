@@ -16,9 +16,10 @@ class ManageMemberViewModel @Inject constructor(
     private val errorEvent: SingleLiveEvent<String>
 ) : ViewModel() {
 
+    var gid = -1
     val members = MutableLiveData<List<Member>>()
 
-    fun loadMembers(gid: Int) {
+    fun loadMembers() {
         viewModelScope.launch {
             val memberList = getGroupMembersUseCase(gid)
 
