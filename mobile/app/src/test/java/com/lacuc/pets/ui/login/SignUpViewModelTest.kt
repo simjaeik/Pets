@@ -53,7 +53,7 @@ class SignUpViewModelTest {
 
     @Test
     fun completeBtnEnable_emptyEmail() {
-        viewModel.bindCompleteBtnEnable(
+        viewModel.bindNameChanges(
             Observable.just("name"),
             Observable.just(""),
             Observable.just("password"),
@@ -65,7 +65,7 @@ class SignUpViewModelTest {
 
     @Test
     fun completeBtnEnable_emptyName() {
-        viewModel.bindCompleteBtnEnable(
+        viewModel.bindNameChanges(
             Observable.just(""),
             Observable.just("email@lacuc.com"),
             Observable.just("password"),
@@ -77,7 +77,7 @@ class SignUpViewModelTest {
 
     @Test
     fun completeBtnEnable_emptyPassword() {
-        viewModel.bindCompleteBtnEnable(
+        viewModel.bindNameChanges(
             Observable.just("name"),
             Observable.just("email@lacuc.com"),
             Observable.just(""),
@@ -89,7 +89,7 @@ class SignUpViewModelTest {
 
     @Test
     fun completeBtnEnable_emptyPasswordConfirm() {
-        viewModel.bindCompleteBtnEnable(
+        viewModel.bindNameChanges(
             Observable.just("name"),
             Observable.just("email@lacuc.com"),
             Observable.just("password"),
@@ -101,7 +101,7 @@ class SignUpViewModelTest {
 
     @Test
     fun completeBtnEnable_differentPassword() {
-        viewModel.bindCompleteBtnEnable(
+        viewModel.bindNameChanges(
             Observable.just("name"),
             Observable.just("email@lacuc.com"),
             Observable.just("password"),
@@ -113,7 +113,7 @@ class SignUpViewModelTest {
 
     @Test
     fun completeBtnEnable_validInput() {
-        viewModel.bindCompleteBtnEnable(
+        viewModel.bindNameChanges(
             Observable.just("name"),
             Observable.just("email@lacuc.com"),
             Observable.just("password"),

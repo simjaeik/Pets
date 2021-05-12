@@ -13,6 +13,7 @@ import com.lacuc.pets.util.SingleLiveEvent
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.ObservableSource
 import io.reactivex.rxjava3.disposables.Disposable
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.util.concurrent.TimeUnit
@@ -31,53 +32,30 @@ class SignUpViewModel @Inject constructor(
     val email = MutableLiveData("")
     val nickName = MutableLiveData("")
 
-    val completeBtnEnable = MutableLiveData(false)
+    val isEmailDuplicated = MutableLiveData<String?>()
+    val emailEndIcon = MutableLiveData<Int?>()
+
+    val isNickNameDuplicated = MutableLiveData<String?>()
+    val nickNameEndIcon = MutableLiveData<Int?>()
 
     val passwordConfirmError = MutableLiveData<String?>()
 
-    val isEmailDuplicated = MutableLiveData<String?>(null)
+    val completeBtnEnable = MutableLiveData(false)
 
-    val emailEndIcon = MutableLiveData<Int?>()
+    fun bindNameChanges(_name: InitialValueObservable<CharSequence>): Disposable =
+        _name.subscribe { checkBtnEnable() }
 
-    val isNickNameDuplicated = MutableLiveData<String?>(null)
+    fun bindEmailChanges(_email: InitialValueObservable<CharSequence>): Disposable =
+        _email.subscribe { completeBtnEnable.value = false }
 
-    val nickNameEndIcon = MutableLiveData<Int?>()
-
-    fun bindPasswordConfirmError(
-        password: ObservableSource<CharSequence>,
-        passwordConfirm: ObservableSource<CharSequence>
-    ): Disposable = Observable.combineLatest(password, passwordConfirm, { p, pc ->
-        p.toString() == pc.toString()
-    }).subscribe { isMatch ->
-        if (isMatch) {
-            passwordConfirmError.value = null
-        } else {
-            passwordConfirmError.value = "패스워드가 일치하지 않습니다"
-        }
-    }
-
-    fun bindCompleteBtnEnable(
-        name: ObservableSource<CharSequence>,
-        email: ObservableSource<CharSequence>,
-        password: ObservableSource<CharSequence>,
-        passwordConfirm: ObservableSource<CharSequence>
-    ): Disposable =
-        Observable.combineLatest(name, email, password, passwordConfirm, { n, e, p, pc ->
-            n.isNotEmpty() && e.isNotEmpty() && p.isNotEmpty() && pc.isNotEmpty() && p.toString() == pc.toString()
-        }).subscribe {
-            completeBtnEnable.value = it
-        }
+    fun bindNickNameChanges(_nickName: InitialValueObservable<CharSequence>): Disposable =
+        _nickName.subscribe { completeBtnEnable.value = false }
 
     fun bindEmailDuplicate(emailChanges: InitialValueObservable<CharSequence>): Disposable =
         emailChanges.debounce(500, TimeUnit.MILLISECONDS)
             .subscribe(this::checkEmailDuplication)
 
-    fun bindNickNameDuplicate(nickNameChanges: InitialValueObservable<CharSequence>): Disposable =
-        nickNameChanges.debounce(500, TimeUnit.MILLISECONDS)
-            .subscribe(this::checkNickNameDuplication)
-
     private fun checkEmailDuplication(email: CharSequence) {
-        Timber.d("이메일 중복 확인")
         if (email.isEmpty()) {
             isEmailDuplicated.postValue(null)
             emailEndIcon.postValue(null)
@@ -96,6 +74,7 @@ class SignUpViewModel @Inject constructor(
                         isEmailDuplicated.value = null
                         emailEndIcon.value = R.drawable.ic_baseline_check_24
                     }
+                    checkBtnEnable()
                 }
                 is Result.Failure -> errorEvent.value =
                     "code: ${result.code} message: ${result.error}"
@@ -107,6 +86,10 @@ class SignUpViewModel @Inject constructor(
             }
         }
     }
+
+    fun bindNickNameDuplicate(nickNameChanges: InitialValueObservable<CharSequence>): Disposable =
+        nickNameChanges.debounce(500, TimeUnit.MILLISECONDS)
+            .subscribe(this::checkNickNameDuplication)
 
     private fun checkNickNameDuplication(nickName: CharSequence) {
         Timber.d("이메일 중복 확인")
@@ -128,6 +111,7 @@ class SignUpViewModel @Inject constructor(
                         isNickNameDuplicated.value = null
                         nickNameEndIcon.value = R.drawable.ic_baseline_check_24
                     }
+                    checkBtnEnable()
                 }
                 is Result.Failure -> errorEvent.value =
                     "code: ${result.code} message: ${result.error}"
@@ -139,5 +123,33 @@ class SignUpViewModel @Inject constructor(
             }
         }
     }
+
+    fun bindPasswordConfirmError(
+        password: ObservableSource<CharSequence>,
+        passwordConfirm: ObservableSource<CharSequence>
+    ): Disposable = Observable.combineLatest(password, passwordConfirm, { p, pc ->
+        p.toString() == pc.toString()
+    }).subscribe { isMatch ->
+        passwordConfirmError.value = if (isMatch) null else "패스워드가 일치하지 않습니다"
+        checkBtnEnable()
+    }
+
+    private fun checkBtnEnable() {
+        viewModelScope.launch(Dispatchers.Default) {
+            val isEnable = !(hasEmptyField() || isDuplicatedInput() || isInconsistentPassword())
+            completeBtnEnable.postValue(isEnable)
+        }
+    }
+
+    private fun hasEmptyField() = (name.value.isNullOrEmpty()
+            || email.value.isNullOrEmpty()
+            || nickName.value.isNullOrEmpty()
+            || password.value.isNullOrEmpty()
+            || passwordConfirm.value.isNullOrEmpty())
+
+    private fun isDuplicatedInput() =
+        (isEmailDuplicated.value != null || isNickNameDuplicated.value != null)
+
+    private fun isInconsistentPassword() = passwordConfirmError.value != null
 
 }
