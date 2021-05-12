@@ -16,8 +16,8 @@ interface LoginService {
     suspend fun isEmailExist(@Path("email") email: String): Result<SimpleBoolResult>
 
     @FormUrlEncoded
-    @POST
-    fun signUp(@FieldMap signUpParams: Map<String, String>)
+    @POST("api/user/signUp")
+    suspend fun signUp(@FieldMap signUpParams: Map<String, String>): Result<SimpleBoolResult>
 
     @GET("api/user/nickName/{nickName}")
     suspend fun isNickNameExist(@Path("nickName") nickName: String): Result<SimpleBoolResult>

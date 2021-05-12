@@ -52,6 +52,8 @@ class SignUpFragment : DaggerFragment() {
         setNickNameDuplicateChecker()
 
         setPasswordConfirmChecker()
+
+        setOnCompleteEventObserver()
     }
 
     private fun setNickNameChanges() {
@@ -113,6 +115,12 @@ class SignUpFragment : DaggerFragment() {
 
         viewModel.passwordConfirmError.observe(viewLifecycleOwner) {
             binding.textInputLayoutSignUpPasswordConfirm.error = it
+        }
+    }
+
+    private fun setOnCompleteEventObserver() {
+        viewModel.completeEvent.observe(viewLifecycleOwner) {
+            navController.navigateUp()
         }
     }
 

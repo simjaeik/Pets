@@ -10,6 +10,7 @@ import com.lacuc.pets.domain.login.EmailCheckUseCase
 import com.lacuc.pets.domain.login.NickNameCheckUseCase
 import com.lacuc.pets.domain.login.SignUpUseCase
 import com.lacuc.pets.util.SingleLiveEvent
+import com.lacuc.pets.util.safeValue
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.ObservableSource
 import io.reactivex.rxjava3.disposables.Disposable
@@ -42,14 +43,22 @@ class SignUpViewModel @Inject constructor(
 
     val completeBtnEnable = MutableLiveData(false)
 
+    val completeEvent = SingleLiveEvent<Unit>()
+
     fun bindNameChanges(_name: InitialValueObservable<CharSequence>): Disposable =
         _name.subscribe { checkBtnEnable() }
 
     fun bindEmailChanges(_email: InitialValueObservable<CharSequence>): Disposable =
-        _email.subscribe { completeBtnEnable.value = false }
+        _email.subscribe {
+            completeBtnEnable.value = false
+            emailEndIcon.value = null
+        }
 
     fun bindNickNameChanges(_nickName: InitialValueObservable<CharSequence>): Disposable =
-        _nickName.subscribe { completeBtnEnable.value = false }
+        _nickName.subscribe {
+            completeBtnEnable.value = false
+            nickNameEndIcon.value = null
+        }
 
     fun bindEmailDuplicate(emailChanges: InitialValueObservable<CharSequence>): Disposable =
         emailChanges.debounce(500, TimeUnit.MILLISECONDS)
@@ -92,7 +101,6 @@ class SignUpViewModel @Inject constructor(
             .subscribe(this::checkNickNameDuplication)
 
     private fun checkNickNameDuplication(nickName: CharSequence) {
-        Timber.d("이메일 중복 확인")
         if (nickName.isEmpty()) {
             isNickNameDuplicated.postValue(null)
             nickNameEndIcon.postValue(null)
@@ -151,5 +159,30 @@ class SignUpViewModel @Inject constructor(
         (isEmailDuplicated.value != null || isNickNameDuplicated.value != null)
 
     private fun isInconsistentPassword() = passwordConfirmError.value != null
+
+    fun signUp() {
+        if ((hasEmptyField() || isDuplicatedInput() || isInconsistentPassword()))
+            return
+
+        viewModelScope.launch {
+            val result = signUpUseCase(
+                name.safeValue,
+                password.safeValue,
+                email.safeValue,
+                nickName.safeValue
+            )
+
+            when (result) {
+                is Result.Success -> completeEvent.value = Unit
+                is Result.Failure -> errorEvent.value =
+                    "code: ${result.code} message: ${result.error}"
+                is Result.NetworkError -> errorEvent.value = "네트워크 문제가 발생했습니다."
+                is Result.Unexpected -> {
+                    Timber.d(result.t.toString())
+                    errorEvent.value = "알수없는 오류가 발생했습니다."
+                }
+            }
+        }
+    }
 
 }
