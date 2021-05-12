@@ -8,6 +8,8 @@ import com.lacuc.pets.util.retrofit.ResultCallAdapter
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -17,10 +19,17 @@ class RetrofitModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(): Retrofit = Retrofit.Builder()
+    fun provideOkHttpClient(): OkHttpClient = OkHttpClient.Builder()
+        .addInterceptor(HttpLoggingInterceptor().apply { setLevel(HttpLoggingInterceptor.Level.BODY) })
+        .build()
+
+    @Provides
+    @Singleton
+    fun provideRetrofit(client: OkHttpClient): Retrofit = Retrofit.Builder()
         .baseUrl("http://ec2-54-180-91-27.ap-northeast-2.compute.amazonaws.com:3000/")
         .addCallAdapterFactory(ResultCallAdapter.Factory())
         .addConverterFactory(GsonConverterFactory.create())
+        .client(client)
         .build()
 
     @Provides
