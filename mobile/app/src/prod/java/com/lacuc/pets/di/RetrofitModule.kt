@@ -18,7 +18,7 @@ class RetrofitModule {
     @Provides
     @Singleton
     fun provideRetrofit(): Retrofit = Retrofit.Builder()
-        .baseUrl("http://203.247.166.230:8080/")
+        .baseUrl("http://ec2-54-180-91-27.ap-northeast-2.compute.amazonaws.com:3000/")
         .addCallAdapterFactory(ResultCallAdapter.Factory())
         .addConverterFactory(GsonConverterFactory.create())
         .build()

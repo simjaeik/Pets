@@ -49,6 +49,20 @@ class SignUpFragment : DaggerFragment() {
         setPasswordConfirmErrorMessage()
 
         setCompleteBtnEnable()
+
+        setEmailDuplicateChecker()
+
+        viewModel.isEmailDuplicated.observe(viewLifecycleOwner) {
+            binding.textInputLayoutSignUpEmail.error = it
+        }
+    }
+
+    private fun setEmailDuplicateChecker() {
+        disposables.add(
+            viewModel.bindEmailDuplicate(
+                binding.textInputSignUpEmail.textChanges()
+            )
+        )
     }
 
     private fun setCompleteBtnEnable() {

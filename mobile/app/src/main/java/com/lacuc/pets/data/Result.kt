@@ -11,3 +11,5 @@ sealed class Result<out T : Any> {
 
     data class Unexpected(val t: Throwable?) : Result<Nothing>()
 }
+
+data class SimpleBoolResult(val result: Boolean)
