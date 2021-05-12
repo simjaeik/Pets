@@ -52,9 +52,23 @@ class SignUpFragment : DaggerFragment() {
 
         setEmailDuplicateChecker()
 
+        setNickNameDuplicateChecker()
+
         viewModel.isEmailDuplicated.observe(viewLifecycleOwner) {
             binding.textInputLayoutSignUpEmail.error = it
         }
+
+        viewModel.isNickNameDuplicated.observe(viewLifecycleOwner) {
+            binding.textInputLayoutSignUpNickName.error = it
+        }
+    }
+
+    private fun setNickNameDuplicateChecker() {
+        disposables.add(
+            viewModel.bindNickNameDuplicate(
+                binding.textInputSignUpNickName.textChanges()
+            )
+        )
     }
 
     private fun setEmailDuplicateChecker() {

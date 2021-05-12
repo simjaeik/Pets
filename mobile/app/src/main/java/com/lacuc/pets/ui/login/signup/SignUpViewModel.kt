@@ -7,6 +7,7 @@ import com.jakewharton.rxbinding4.InitialValueObservable
 import com.lacuc.pets.R
 import com.lacuc.pets.data.Result
 import com.lacuc.pets.domain.login.EmailCheckUseCase
+import com.lacuc.pets.domain.login.NickNameCheckUseCase
 import com.lacuc.pets.domain.login.SignUpUseCase
 import com.lacuc.pets.util.SingleLiveEvent
 import io.reactivex.rxjava3.core.Observable
@@ -20,6 +21,7 @@ import javax.inject.Inject
 class SignUpViewModel @Inject constructor(
     private val signUpUseCase: SignUpUseCase,
     private val emailCheckUseCase: EmailCheckUseCase,
+    private val nickNameCheckUseCase: NickNameCheckUseCase,
     private val errorEvent: SingleLiveEvent<String>
 ) : ViewModel() {
 
@@ -36,6 +38,10 @@ class SignUpViewModel @Inject constructor(
     val isEmailDuplicated = MutableLiveData<String?>(null)
 
     val emailEndIcon = MutableLiveData<Int?>()
+
+    val isNickNameDuplicated = MutableLiveData<String?>(null)
+
+    val nickNameEndIcon = MutableLiveData<Int?>()
 
     fun bindPasswordConfirmError(
         password: ObservableSource<CharSequence>,
@@ -65,6 +71,10 @@ class SignUpViewModel @Inject constructor(
     fun bindEmailDuplicate(emailChanges: InitialValueObservable<CharSequence>): Disposable =
         emailChanges.debounce(500, TimeUnit.MILLISECONDS)
             .subscribe(this::checkEmailDuplication)
+
+    fun bindNickNameDuplicate(nickNameChanges: InitialValueObservable<CharSequence>): Disposable =
+        nickNameChanges.debounce(500, TimeUnit.MILLISECONDS)
+            .subscribe(this::checkNickNameDuplication)
 
     private fun checkEmailDuplication(email: CharSequence) {
         Timber.d("이메일 중복 확인")
@@ -97,4 +107,37 @@ class SignUpViewModel @Inject constructor(
             }
         }
     }
+
+    private fun checkNickNameDuplication(nickName: CharSequence) {
+        Timber.d("이메일 중복 확인")
+        if (nickName.isEmpty()) {
+            isNickNameDuplicated.postValue(null)
+            nickNameEndIcon.postValue(null)
+            return
+        }
+
+        viewModelScope.launch {
+            val result = nickNameCheckUseCase(nickName.toString())
+
+            when (result) {
+                is Result.Success -> result.body?.let {
+                    if (it.result) {
+                        isNickNameDuplicated.value = "이미 존재하는 닉네임입니다."
+                        nickNameEndIcon.value = null
+                    } else {
+                        isNickNameDuplicated.value = null
+                        nickNameEndIcon.value = R.drawable.ic_baseline_check_24
+                    }
+                }
+                is Result.Failure -> errorEvent.value =
+                    "code: ${result.code} message: ${result.error}"
+                is Result.NetworkError -> errorEvent.value = "네트워크 문제가 발생했습니다."
+                is Result.Unexpected -> {
+                    Timber.d(result.t.toString())
+                    errorEvent.value = "알수없는 오류가 발생했습니다."
+                }
+            }
+        }
+    }
+
 }

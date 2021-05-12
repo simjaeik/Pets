@@ -116,9 +116,13 @@
                 android:textSize="16sp" />
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout_signUp_nickName"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:endIconDrawable="@{vm.nickNameEndIcon}"
+                app:endIconMode="custom"
+                app:endIconTint="#14D003">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/textInput_signUp_nickName"
