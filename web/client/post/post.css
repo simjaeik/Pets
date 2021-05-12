@@ -3,10 +3,14 @@ body {
     background-color: white;
     font-family: "Noto Sans KR", Helvetica, sans-serif;
   }
-  text:hover{
-      color:red;
-      cursor:default;
-  }
+  h2{ 
+    font-family: 'Oswald', sans-serif; 
+    font-size: 20px; 
+    color: #216182; 
+} 
+text{
+    color:#0660c0;
+}
   #icon{
       width:50%;
       height:50%;
@@ -97,4 +101,17 @@ body {
     border-bottom-style:dotted;
     border-width:1px 1px 3px 1px;
     margin: 4px 4px 20px 4px;
+}
+#my_modal {
+    display: none;
+    left: 0; top: 0; width: 50%; height: 25%;
+    padding: 20px 60px;
+    background-color: #fefefe;
+    border: 1px solid #888;
+    border-radius: 3px;
+}
+#my_modal{
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }

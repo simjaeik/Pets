@@ -1,4 +1,3 @@
-//import Axios from 'axios';
 const URL = "http://ec2-54-180-91-27.ap-northeast-2.compute.amazonaws.com:3000/api";
 const checkid = document.getElementById("ID");
 const checkpw = document.getElementById("PW");
@@ -20,4 +19,3 @@ function login(){
         }
     });
 }
-//jwt -> header의 키의 authorization, value: jwt토큰
