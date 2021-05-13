@@ -40,22 +40,6 @@ module.exports = {
     }
   },
 
-  updateMemberInfo: async ({ data, body }) => {
-    const { UID } = data;
-    const bodySize = Object.keys(body).length;
-    if (!data || !body || bodySize <= 0) {
-      return { error: "모든 정보를 입력해주세요." };
-    }
-
-    try {
-      await Member.update(body, { where: { UID } });
-      return { result: true };
-    } catch (error) {
-      console.log(error);
-      return { result: false, error: "수정에 실패했습니다." };
-    }
-  },
-
   isEmailExist: async ({ email }) => {
     const exist = await Member.findOne({ where: { email: email } });
 
@@ -114,4 +98,21 @@ module.exports = {
 
     return { token: jwtToken };
   },
+
+  updateMemberInfo: async ({ data, body }) => {
+    const { UID } = data;
+    const bodySize = Object.keys(body).length;
+    if (!data || !body || bodySize <= 0) {
+      return { error: "모든 정보를 입력해주세요." };
+    }
+
+    try {
+      await Member.update(body, { where: { UID } });
+      return { result: true };
+    } catch (error) {
+      console.log(error);
+      return { result: false, error: "수정에 실패했습니다." };
+    }
+  },
+
 };
