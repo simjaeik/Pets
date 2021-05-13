@@ -14,7 +14,9 @@ class GroupRemoteDataSource @Inject constructor(
 
     override suspend fun deleteGroup(gid: String): Result<Void> = groupService.deleteGroup(gid)
 
-    override suspend fun setGroup(group: Group): Result<Void> = groupService.setGroup(group)
+    override suspend fun setGroup(
+        params: Map<String, String>
+    ): Result<Void> = groupService.setGroup(params)
 
     override suspend fun getGroup(gid: String): Result<Group> = groupService.getGroup(gid)
 

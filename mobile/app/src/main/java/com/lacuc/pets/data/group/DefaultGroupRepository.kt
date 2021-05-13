@@ -7,7 +7,8 @@ import javax.inject.Inject
 class DefaultGroupRepository @Inject constructor(
     private val groupRemoteDataSource: GroupDataSource
 ) : GroupRepository {
-    override suspend fun getMyGroups(): Result<List<GroupWrapper>> = groupRemoteDataSource.getMyGroups()
+    override suspend fun getMyGroups(): Result<List<GroupWrapper>> =
+        groupRemoteDataSource.getMyGroups()
 
     override suspend fun getGroupsNear(latitude: Double, longitude: Double): Result<List<Group>> {
         TODO("Not yet implemented")
@@ -17,8 +18,10 @@ class DefaultGroupRepository @Inject constructor(
         TODO("Not yet implemented")
     }
 
-    override suspend fun setGroup(group: Group): Result<Void> =
-        groupRemoteDataSource.setGroup(group)
+    override suspend fun setGroup(
+        params: Map<String, String>
+    ): Result<Void> =
+        groupRemoteDataSource.setGroup(params)
 
     override suspend fun getGroup(gid: String): Result<Group> = groupRemoteDataSource.getGroup(gid)
 

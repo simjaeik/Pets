@@ -17,8 +17,11 @@ interface GroupService {
     @DELETE("api/group/{id}")
     suspend fun deleteGroup(@Path("id") gid: String): Result<Void>
 
+    @Multipart
     @POST("api/group")
-    suspend fun setGroup(@Body group: Group): Result<Void>
+    suspend fun setGroup(
+        @PartMap params: Map<String, String>
+    ): Result<Void>
 
     @GET("api/group/{id}")
     suspend fun getGroup(@Path("id") gid: String): Result<Group>

@@ -83,13 +83,10 @@ class SaveGroupViewModel @Inject constructor(
     )
 
     private suspend fun addNewGroup(): Result<Void> = addGroupUseCase(
-        Group(
-            "",
-            name.safeValue,
-            info.safeValue,
-            image.safeValue,
-            isShare.safeValue
-        )
+        name.safeValue,
+        info.safeValue,
+        image.safeValue,
+        isShare.safeValue
     )
 
     fun setImage(dataString: String?) {

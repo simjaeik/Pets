@@ -10,7 +10,7 @@ interface GroupRepository {
 
     suspend fun deleteGroup(gid: String): Result<Void>
 
-    suspend fun setGroup(group: Group): Result<Void>
+    suspend fun setGroup(params: Map<String, String>): Result<Void>
 
     suspend fun getGroup(gid: String): Result<Group>
 
@@ -22,7 +22,12 @@ interface GroupRepository {
 
     suspend fun getGroupMember(gid: String, uid: String): Result<Member>
 
-    suspend fun updateGroupMember(gid: String, uid: String, name: String, email: String): Result<Void>
+    suspend fun updateGroupMember(
+        gid: String,
+        uid: String,
+        name: String,
+        email: String
+    ): Result<Void>
 
     suspend fun deleteGroupMember(gid: String): Result<Void>
 
