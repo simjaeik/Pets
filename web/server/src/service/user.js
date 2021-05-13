@@ -66,8 +66,7 @@ module.exports = {
       return hasError;
     }
 
-    const salt = 10;
-    const encryptPWD = await bcrypt.hash(password, salt);
+    const encryptPWD = await bcrypt.hash(password, SALT);
 
     try {
       const member = await Member.create({
@@ -127,5 +126,13 @@ module.exports = {
       return { error: "입력하신 두개의 비밀번호가 일치하지 않습니다." };
     }
 
+    try {
+      const updatePW = await bcrypt.hash(afterPassword, SALT);
+      await Member.update({ password: updatePW }, { where: { UID } });
+      return { result: true };
+    } catch (error) {
+      console.log(error);
+      return { result: false, error: "수정에 실패했습니다." };
+    }
   },
 };
