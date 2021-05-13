@@ -115,24 +115,31 @@ function getCategory(){
 function setGroup(group,groupinfo){
 
     const categoryvalue = getCategory();
-    axios.post(`${URL}/group`, {
-        name : group.value,
-        info : groupinfo.value,
-        image : 이미지,
-        share : categoryvalue,
-        latitude : 위도,
-        longitude : 경도,
-    })
-    .then(response => {
-        console.log(response)
-        alert("회원가입이 완료되었습니다.");
-        location.href="../pets.html";
-    })
-    .catch(error => {
-        console.log(error.response)
-        if(error.response.data === "중복된 닉네임입니다.")
-            alert(error.response.data);
-        else if(error.response.data === "중복된 email입니다.")
-            alert(error.response.data);
-    }); 
+    
+    window.navigator.geolocation.getCurrentPosition( function(position) { //OK
+       
+        const lat= position.coords.latitude;
+        const lng= position.coords.longitude;
+
+        axios.post(`${URL}/group`, {
+            name : group.value,
+            info : groupinfo.value,
+            image : 이미지,
+            share : categoryvalue,
+            latitude : lat,
+            longitude : lng,
+        })
+        .then(response => {
+            console.log(response)
+            alert("회원가입이 완료되었습니다.");
+            location.href="../pets.html";
+        })
+        .catch(error => {
+            console.log(error.response)
+            if(error.response.data === "중복된 닉네임입니다.")
+                alert(error.response.data);
+            else if(error.response.data === "중복된 email입니다.")
+                alert(error.response.data);
+        }); 
+    });
 }
