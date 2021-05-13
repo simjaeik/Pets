@@ -22,6 +22,11 @@ const checkUserValid = async ({ name, password, email, nickName }) => {
   return false;
 };
 
+const checkPWValid = async (pw, UID) => {
+  const member = await Member.findOne({ where: { UID } });
+  const pwValid = await bcrypt.compare(pw, member.password);
+  return pwValid ? true : false;
+};
 
 module.exports = {
   getMemberInfo: async ({ UID }) => {
