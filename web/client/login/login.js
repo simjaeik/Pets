@@ -10,7 +10,8 @@ function login(){
     })
     .then(response => {
         console.log(response)
-        location.href="../community/community.html";
+        localStorage.setItem(`${checkid.value}-token`,response.data.token);
+        //location.href="../community/community.html";
     })
     .catch(error => {
         console.log(error.response)

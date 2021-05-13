@@ -66,7 +66,6 @@ function check_blank(){
 
     if ( check === false) { alert("게시물을 선택해주세요. "); }
     else if ( checktitle.value === "") { alert(" 제목이 입력되지 않았습니다. "); }
-    else if ( checkname.value === "") { alert(" 닉네임이 입력되지 않았습니다. "); }
     else if ( checkcontent.value === "") { alert(" 내용이 입력되지 않았습니다. ")}
 
 }
