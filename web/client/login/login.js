@@ -11,7 +11,7 @@ function login(){
     .then(response => {
         console.log(response)
         localStorage.setItem(`${checkid.value}-token`,response.data.token);
-        //location.href="../community/community.html";
+        location.href="../community/community.html";
     })
     .catch(error => {
         console.log(error.response)

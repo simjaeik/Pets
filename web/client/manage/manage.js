@@ -31,7 +31,6 @@ function modal() {
 
         // 시꺼먼 레이어 보다 한칸 위에 보이기
         zIndex: zIndex + 1,
-
         // div center 정렬
         top: '50%',
         left: '50%',
@@ -58,28 +57,35 @@ function initinput(){
 
 function addGroup(){
  
-    const inputValue = document.querySelector(".input").value;
+    const nameinputValue = document.querySelector("#nameinput").value;
+    const infoinputValue = document.querySelector("#infoinput").value;
 
     const group = document.createElement('text');
     group.classList.add('managegroup');
-    group.innerText = inputValue;
+    group.innerText = nameinputValue;
+
+    const groupinfo = document.createElement('div');
+    groupinfo.classList.add('managegroup');
+    groupinfo.innerText = infoinputValue;
 
     const image = document.createElement('img');
     //이미지 url 
     const p = document.createElement('p');
     
     const addEL = document.createElement('div');
+    
     addEL.classList.add('item');
+    addEL.appendChild(p);
     addEL.appendChild(image);
     addEL.appendChild(p);
+    addEL.appendChild(groupinfo);
     addEL.appendChild(group);
 
     document.getElementById('groups').appendChild(addEL);
 
     initinput();
-
+    setGroup();
 }
-
 function exitModal(){
     
     const modal = document.getElementById('my_modal');
@@ -92,4 +98,7 @@ function exitModal(){
     });
 
    // const modal = document.getElementById('my_modal');
+}
+function setGroup(){
+
 }
