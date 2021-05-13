@@ -3,6 +3,7 @@ package com.lacuc.pets.di
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.lacuc.pets.ViewModelFactory
+import com.lacuc.pets.ui.login.signin.SignInViewModel
 import com.lacuc.pets.ui.login.signup.SignUpViewModel
 import com.lacuc.pets.ui.manage.ManageViewModel
 import com.lacuc.pets.ui.manage.animal.add.AddAnimalViewModel
@@ -43,6 +44,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(SignUpViewModel::class)
     abstract fun bindSignUpViewModel(viewModel: SignUpViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SignInViewModel::class)
+    abstract fun bindSignInViewModel(viewModel: SignInViewModel): ViewModel
 
     @Binds
     @IntoMap

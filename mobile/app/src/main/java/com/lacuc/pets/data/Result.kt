@@ -13,3 +13,5 @@ sealed class Result<out T : Any> {
 }
 
 data class SimpleBoolResult(val result: Boolean)
+
+data class TokenResponse(val token: String)
