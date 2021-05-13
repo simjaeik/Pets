@@ -18,4 +18,6 @@ router.post("/signUp", controller.signUp);
 
 router.post("/login", localAuth, controller.login);
 
+router.patch("/", jwtAuth, controller.updateMemberInfo);
+
 module.exports = router;
