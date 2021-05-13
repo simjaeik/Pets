@@ -22,6 +22,7 @@ const checkUserValid = async ({ name, password, email, nickName }) => {
   return false;
 };
 
+
 module.exports = {
   getMemberInfo: async ({ UID }) => {
     if (!UID) {
