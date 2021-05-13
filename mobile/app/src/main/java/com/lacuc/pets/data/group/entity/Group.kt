@@ -13,3 +13,7 @@ data class Group(
     val latitude: Double = 0.0,
     val longitude: Double = 0.0
 ) : Parcelable
+
+data class GroupWrapper(
+    val _Group: Group
+)

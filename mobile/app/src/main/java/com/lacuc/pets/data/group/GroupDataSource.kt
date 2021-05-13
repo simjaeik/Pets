@@ -1,13 +1,10 @@
 package com.lacuc.pets.data.group
 
 import com.lacuc.pets.data.Result
-import com.lacuc.pets.data.group.entity.Group
-import com.lacuc.pets.data.group.entity.GroupImage
-import com.lacuc.pets.data.group.entity.ItemHistory
-import com.lacuc.pets.data.group.entity.Member
+import com.lacuc.pets.data.group.entity.*
 
 interface GroupDataSource {
-    suspend fun getMyGroups(): Result<List<Group>>
+    suspend fun getMyGroups(): Result<List<GroupWrapper>>
 
     suspend fun getGroupsNear(latitude: Double, longitude: Double): Result<List<Group>>
 

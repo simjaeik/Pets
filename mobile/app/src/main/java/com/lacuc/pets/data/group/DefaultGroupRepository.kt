@@ -1,16 +1,13 @@
 package com.lacuc.pets.data.group
 
 import com.lacuc.pets.data.Result
-import com.lacuc.pets.data.group.entity.Group
-import com.lacuc.pets.data.group.entity.GroupImage
-import com.lacuc.pets.data.group.entity.ItemHistory
-import com.lacuc.pets.data.group.entity.Member
+import com.lacuc.pets.data.group.entity.*
 import javax.inject.Inject
 
 class DefaultGroupRepository @Inject constructor(
     private val groupRemoteDataSource: GroupDataSource
 ) : GroupRepository {
-    override suspend fun getMyGroups(): Result<List<Group>> = groupRemoteDataSource.getMyGroups()
+    override suspend fun getMyGroups(): Result<List<GroupWrapper>> = groupRemoteDataSource.getMyGroups()
 
     override suspend fun getGroupsNear(latitude: Double, longitude: Double): Result<List<Group>> {
         TODO("Not yet implemented")
