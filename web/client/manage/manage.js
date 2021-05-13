@@ -1,3 +1,4 @@
+const URL = "http://ec2-54-180-91-27.ap-northeast-2.compute.amazonaws.com:3000/api";
 function modal() {
 
     const zIndex = 9999;   
@@ -84,7 +85,7 @@ function addGroup(){
     document.getElementById('groups').appendChild(addEL);
 
     initinput();
-    setGroup();
+    setGroup(group,groupinfo);
 }
 function exitModal(){
     
@@ -99,6 +100,39 @@ function exitModal(){
 
    // const modal = document.getElementById('my_modal');
 }
-function setGroup(){
+function getCategory(){
+    
+    const option = [ document.getElementsByName("chk_info")[0],document.getElementsByName("chk_info")[1] ];
+    
+    if(option[0].checked == true){
+        return option[0].value;
+    }else if(option[1].checked == true){
+        return option[1].value;
+    }else{
+        alert("그룹 공개 여부를 선택해주세요.");
+    }
+}
+function setGroup(group,groupinfo){
 
+    const categoryvalue = getCategory();
+    axios.post(`${URL}/group`, {
+        name : group.value,
+        info : groupinfo.value,
+        image : 이미지,
+        share : categoryvalue,
+        latitude : 위도,
+        longitude : 경도,
+    })
+    .then(response => {
+        console.log(response)
+        alert("회원가입이 완료되었습니다.");
+        location.href="../pets.html";
+    })
+    .catch(error => {
+        console.log(error.response)
+        if(error.response.data === "중복된 닉네임입니다.")
+            alert(error.response.data);
+        else if(error.response.data === "중복된 email입니다.")
+            alert(error.response.data);
+    }); 
 }

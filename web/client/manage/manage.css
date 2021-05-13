@@ -109,7 +109,7 @@ li a {
 }
 #my_modal {
     display: none;
-    left: 0; top: 0; width: 50%; height: 50%;
+    left: 0; top: 0; width: 50%; height: 60%;
     padding: 20px 60px;
     background-color: #fefefe;
     border: 1px solid #888;
