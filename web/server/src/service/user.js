@@ -37,6 +37,15 @@ module.exports = {
     }
   },
 
+  updateMemberInfo: async ({ data, body }) => {
+    const { UID } = data;
+    const bodySize = Object.keys(body).length;
+    if (!data || !body || bodySize <= 0) {
+      return { error: "모든 정보를 입력해주세요." };
+    }
+
+  },
+
   isEmailExist: async ({ email }) => {
     const exist = await Member.findOne({ where: { email: email } });
 
