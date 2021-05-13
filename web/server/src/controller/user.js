@@ -5,7 +5,7 @@ module.exports = {
   getMemberInfo: async (req, res) => {
     const { status, result } = await control(
       userService.getMemberInfo,
-      req.headers
+      req.data
     );
 
     return res.status(status).json(result);
