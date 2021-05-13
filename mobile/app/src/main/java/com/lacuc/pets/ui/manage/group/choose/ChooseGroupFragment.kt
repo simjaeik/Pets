@@ -59,7 +59,7 @@ class ChooseGroupFragment : DaggerFragment() {
         viewModel.groupClickEvent.observe(viewLifecycleOwner) {
             val action = ChooseGroupFragmentDirections
                 .actionChooseGroupFragmentToChooseAnimalFragment()
-            activityViewModel.gid = it.group.gid
+            activityViewModel.gid = it.group.GID
             navController.navigate(action)
         }
     }

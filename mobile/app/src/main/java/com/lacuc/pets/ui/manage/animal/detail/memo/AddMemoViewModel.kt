@@ -15,8 +15,9 @@ import javax.inject.Inject
 class AddMemoViewModel @Inject constructor(
     private val addMemoUseCase: AddMemoUseCase,
     private val errorEvent: SingleLiveEvent<String>
-) :
-    ViewModel() {
+) : ViewModel() {
+
+    var aid = ""
 
     val content = MutableLiveData("")
 
@@ -24,7 +25,7 @@ class AddMemoViewModel @Inject constructor(
 
     fun onCompleteClick() {
         viewModelScope.launch {
-            val result = addMemoUseCase(1, Memo(content.safeValue))
+            val result = addMemoUseCase(aid, Memo(content.safeValue))
 
             when (result) {
                 is Result.Success -> completeEvent.value = Unit

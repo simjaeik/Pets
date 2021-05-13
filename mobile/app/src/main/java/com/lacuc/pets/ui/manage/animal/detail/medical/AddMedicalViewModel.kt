@@ -17,6 +17,7 @@ class AddMedicalViewModel @Inject constructor(
     private val errorEvent: SingleLiveEvent<String>
 ) : ViewModel() {
 
+    var aid = ""
     val title = MutableLiveData("")
     val hospital = MutableLiveData("")
     val time = MutableLiveData("")
@@ -27,7 +28,7 @@ class AddMedicalViewModel @Inject constructor(
     fun onCompleteClick() {
         viewModelScope.launch {
             val result = addMedicalUseCase(
-                1, Medical(
+                aid, Medical(
                     System.currentTimeMillis(),
                     title.safeValue,
                     content.safeValue,

@@ -13,7 +13,6 @@ import com.lacuc.pets.util.safeValue
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
-import kotlin.random.Random
 
 class SaveGroupViewModel @Inject constructor(
     private val getGroupUseCase: GetGroupUseCase,
@@ -23,7 +22,7 @@ class SaveGroupViewModel @Inject constructor(
 ) :
     ViewModel() {
 
-    var gid = -1
+    var gid = ""
     val name = MutableLiveData("")
     val info = MutableLiveData("")
     val image = MutableLiveData("")
@@ -85,7 +84,7 @@ class SaveGroupViewModel @Inject constructor(
 
     private suspend fun addNewGroup(): Result<Void> = addGroupUseCase(
         Group(
-            Random.nextInt(Int.MAX_VALUE),
+            "",
             name.safeValue,
             info.safeValue,
             image.safeValue,

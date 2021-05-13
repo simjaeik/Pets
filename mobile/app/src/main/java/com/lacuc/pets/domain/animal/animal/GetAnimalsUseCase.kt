@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class GetAnimalsUseCase @Inject constructor(private val repository: AnimalRepository) {
     suspend operator fun invoke(
-        gid: Int,
+        gid: String,
         listener: (AnimalItem) -> Unit
     ): Result<List<AnimalItem>> {
         return when (val animals = repository.getAnimalByGroup(gid)) {

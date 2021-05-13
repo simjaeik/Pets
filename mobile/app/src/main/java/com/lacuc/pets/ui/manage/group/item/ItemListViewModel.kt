@@ -16,7 +16,7 @@ class ItemListViewModel @Inject constructor(
     private val errorEvent: SingleLiveEvent<String>
 ) : ViewModel() {
 
-    var gid = -1
+    var gid = ""
     val itemHistory = MutableLiveData<List<ItemHistoryItem>>()
 
     val itemClickEvent = SingleLiveEvent<ItemHistoryItem>()

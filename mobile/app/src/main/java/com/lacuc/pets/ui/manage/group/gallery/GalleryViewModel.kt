@@ -16,7 +16,7 @@ class GalleryViewModel @Inject constructor(
     private val errorEvent: SingleLiveEvent<String>
 ) : ViewModel() {
 
-    var gid = -1
+    var gid = ""
 
     val images = MutableLiveData<List<ImageItem>>()
 

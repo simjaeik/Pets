@@ -16,9 +16,8 @@ class ImageDetailViewModel @Inject constructor(
     private val errorEvent: SingleLiveEvent<String>
 ) : ViewModel() {
 
-    var gid = -1
-
-    var iid = -1
+    var gid = ""
+    var iid = ""
 
     val image = MutableLiveData<GroupImage>()
 

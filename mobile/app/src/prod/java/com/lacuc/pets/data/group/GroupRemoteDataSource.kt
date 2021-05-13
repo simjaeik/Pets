@@ -15,11 +15,11 @@ class GroupRemoteDataSource @Inject constructor(
     override suspend fun getGroupsNear(latitude: Double, longitude: Double): Result<List<Group>> =
         groupService.getGroupsNear(latitude, longitude)
 
-    override suspend fun deleteGroup(gid: Int): Result<Void> = groupService.deleteGroup(gid)
+    override suspend fun deleteGroup(gid: String): Result<Void> = groupService.deleteGroup(gid)
 
     override suspend fun setGroup(group: Group): Result<Void> = groupService.setGroup(group)
 
-    override suspend fun getGroup(gid: Int): Result<Group> = groupService.getGroup(gid)
+    override suspend fun getGroup(gid: String): Result<Group> = groupService.getGroup(gid)
 
     override suspend fun updateGroup(group: Group): Result<Void> {
         TODO("Not yet implemented")
@@ -28,26 +28,26 @@ class GroupRemoteDataSource @Inject constructor(
     override suspend fun addGroupMember(memberParams: Map<String, Any>): Result<Void> =
         groupService.addGroupMember(memberParams)
 
-    override suspend fun getGroupMembers(gid: Int): Result<List<Member>> =
+    override suspend fun getGroupMembers(gid: String): Result<List<Member>> =
         groupService.getGroupMembers(gid)
 
-    override suspend fun getGroupMember(gid: Int, uid: Int): Result<Member> {
+    override suspend fun getGroupMember(gid: String, uid: String): Result<Member> {
         TODO("Not yet implemented")
     }
 
     override suspend fun updateGroupMember(
-        gid: Int, uid: Int, name: String, email: String
+        gid: String, uid: String, name: String, email: String
     ): Result<Void> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun deleteGroupMember(gid: Int): Result<Void> =
+    override suspend fun deleteGroupMember(gid: String): Result<Void> =
         groupService.deleteGroupMember(gid)
 
-    override suspend fun getGroupImages(gid: Int): Result<List<GroupImage>> =
+    override suspend fun getGroupImages(gid: String): Result<List<GroupImage>> =
         groupService.getGroupImages(gid)
 
-    override suspend fun getGroupImage(gid: Int, iid: Int): Result<GroupImage> {
+    override suspend fun getGroupImage(gid: String, iid: String): Result<GroupImage> {
         TODO("Not yet implemented")
     }
 
@@ -58,13 +58,13 @@ class GroupRemoteDataSource @Inject constructor(
         TODO("Not yet implemented")
     }
 
-    override suspend fun getItems(gid: Int): Result<List<ItemHistory>> = groupService.getItems(gid)
+    override suspend fun getItems(gid: String): Result<List<ItemHistory>> = groupService.getItems(gid)
 
     override suspend fun setItem(itemHistory: ItemHistory): Result<Void> =
         groupService.setItem(itemHistory)
 
-    override suspend fun updateItem(iid: Int, itemHistory: ItemHistory): Result<Void> =
+    override suspend fun updateItem(iid: String, itemHistory: ItemHistory): Result<Void> =
         groupService.updateItem(iid, itemHistory)
 
-    override suspend fun deleteItem(iid: Int): Result<Void> = groupService.deleteItem(iid)
+    override suspend fun deleteItem(iid: String): Result<Void> = groupService.deleteItem(iid)
 }
