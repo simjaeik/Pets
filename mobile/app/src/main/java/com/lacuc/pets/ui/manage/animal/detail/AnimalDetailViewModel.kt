@@ -23,7 +23,7 @@ class AnimalDetailViewModel @Inject constructor(
     private val errorEvent: SingleLiveEvent<String>
 ) : ViewModel() {
 
-    var aid = -1
+    var aid = ""
 
     val detailItems = MutableLiveData<List<AnimalDetailItem>>()
 

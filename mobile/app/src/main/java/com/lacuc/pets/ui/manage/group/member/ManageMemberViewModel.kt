@@ -16,7 +16,7 @@ class ManageMemberViewModel @Inject constructor(
     private val errorEvent: SingleLiveEvent<String>
 ) : ViewModel() {
 
-    var gid = -1
+    var gid = ""
     val members = MutableLiveData<List<Member>>()
 
     fun loadMembers() {

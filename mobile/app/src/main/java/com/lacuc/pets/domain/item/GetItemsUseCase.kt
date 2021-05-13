@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class GetItemHistoryUseCase @Inject constructor(private val repository: GroupRepository) {
     suspend operator fun invoke(
-        gid: Int,
+        gid: String,
         listener: (ItemHistoryItem) -> Unit
     ): Result<List<ItemHistoryItem>> {
         return when (val items = repository.getItems(gid)) {

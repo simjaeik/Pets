@@ -6,7 +6,7 @@ import com.lacuc.pets.data.group.entity.GroupImage
 import javax.inject.Inject
 
 class GetGroupImageUseCase @Inject constructor(private val repository: GroupRepository) {
-    suspend operator fun invoke(gid: Int, iid: Int): Result<GroupImage> {
+    suspend operator fun invoke(gid: String, iid: String): Result<GroupImage> {
         return repository.getGroupImage(gid, iid)
     }
 }

@@ -19,8 +19,8 @@ class AddAnimalViewModel @Inject constructor(
     private val errorEvent: SingleLiveEvent<String>
 ) : ViewModel() {
 
-    var gid = -1
-    var aid = -1
+    var gid = ""
+    var aid = ""
     val name = MutableLiveData("")
     val image = MutableLiveData("")
     val age = MutableLiveData<String>()

@@ -6,7 +6,7 @@ import com.lacuc.pets.data.group.entity.Group
 import javax.inject.Inject
 
 class GetGroupUseCase @Inject constructor(private val repository: GroupRepository) {
-    suspend operator fun invoke(gid: Int): Result<Group> {
+    suspend operator fun invoke(gid: String): Result<Group> {
         return repository.getGroup(gid)
     }
 }

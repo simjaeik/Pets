@@ -6,7 +6,7 @@ import com.lacuc.pets.data.animal.entity.Memo
 import javax.inject.Inject
 
 class AddMemoUseCase @Inject constructor(private val repository: AnimalRepository) {
-    suspend operator fun invoke(aid: Int, memo: Memo): Result<Void> {
+    suspend operator fun invoke(aid: String, memo: Memo): Result<Void> {
         return repository.setMemo(aid, memo)
     }
 }

@@ -21,8 +21,8 @@ class UserProfileViewModel @Inject constructor(
     private val errorEvent: SingleLiveEvent<String>
 ) : ViewModel() {
 
-    var gid = -1
-    var uid = -1
+    var gid = ""
+    var uid = ""
 
     val name = MutableLiveData("")
     val email = MutableLiveData("")

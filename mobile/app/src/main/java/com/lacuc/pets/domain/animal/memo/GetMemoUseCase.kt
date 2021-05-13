@@ -6,7 +6,7 @@ import com.lacuc.pets.domain.animal.AnimalDetailMemoItem
 import javax.inject.Inject
 
 class GetMemoUseCase @Inject constructor(private val repository: AnimalRepository) {
-    suspend operator fun invoke(aid: Int): Result<List<AnimalDetailMemoItem>> {
+    suspend operator fun invoke(aid: String): Result<List<AnimalDetailMemoItem>> {
         return when (val memos = repository.getMemos(aid)) {
             is Result.Success -> Result.Success(memos.body?.map { AnimalDetailMemoItem(it) })
             is Result.Failure -> memos

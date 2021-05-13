@@ -20,9 +20,8 @@ class SaveImageViewModel @Inject constructor(
     private val errorEvent: SingleLiveEvent<String>
 ) : ViewModel() {
 
-    var iid = -1
-
-    var gid: Int = -1
+    var iid = ""
+    var gid = ""
 
     val image = MutableLiveData("")
 

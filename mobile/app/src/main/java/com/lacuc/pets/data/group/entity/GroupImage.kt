@@ -5,8 +5,8 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class GroupImage(
-    val iid: Int,
-    val gid: Int,
+    val iid: String,
+    val gid: String,
     val url: String,
     val tag: String
 ) : Parcelable

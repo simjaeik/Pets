@@ -6,5 +6,5 @@ import com.lacuc.pets.data.animal.entity.Animal
 import javax.inject.Inject
 
 class GetAnimalUseCase @Inject constructor(private val repository: AnimalRepository) {
-    suspend operator fun invoke(aid: Int): Result<Animal> = repository.getAnimal(aid)
+    suspend operator fun invoke(aid: String): Result<Animal> = repository.getAnimal(aid)
 }

@@ -1,29 +1,31 @@
 package com.lacuc.pets.data.group
 
 import com.lacuc.pets.data.Result
-import com.lacuc.pets.data.group.entity.Group
-import com.lacuc.pets.data.group.entity.GroupImage
-import com.lacuc.pets.data.group.entity.ItemHistory
-import com.lacuc.pets.data.group.entity.Member
+import com.lacuc.pets.data.group.entity.*
+import okhttp3.MultipartBody
 import javax.inject.Inject
 
 class DefaultGroupRepository @Inject constructor(
     private val groupRemoteDataSource: GroupDataSource
 ) : GroupRepository {
-    override suspend fun getMyGroups(): Result<List<Group>> = groupRemoteDataSource.getMyGroups()
+    override suspend fun getMyGroups(): Result<List<GroupWrapper>> =
+        groupRemoteDataSource.getMyGroups()
 
     override suspend fun getGroupsNear(latitude: Double, longitude: Double): Result<List<Group>> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun deleteGroup(gid: Int): Result<Void> {
+    override suspend fun deleteGroup(gid: String): Result<Void> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun setGroup(group: Group): Result<Void> =
-        groupRemoteDataSource.setGroup(group)
+    override suspend fun setGroup(
+        params: Map<String, String>,
+        imageFile: MultipartBody.Part
+    ): Result<Void> =
+        groupRemoteDataSource.setGroup(params, imageFile)
 
-    override suspend fun getGroup(gid: Int): Result<Group> = groupRemoteDataSource.getGroup(gid)
+    override suspend fun getGroup(gid: String): Result<Group> = groupRemoteDataSource.getGroup(gid)
 
     override suspend fun updateGroup(group: Group): Result<Void> =
         groupRemoteDataSource.updateGroup(group)
@@ -32,24 +34,24 @@ class DefaultGroupRepository @Inject constructor(
         TODO("Not yet implemented")
     }
 
-    override suspend fun getGroupMembers(gid: Int): Result<List<Member>> =
+    override suspend fun getGroupMembers(gid: String): Result<List<Member>> =
         groupRemoteDataSource.getGroupMembers(gid)
 
-    override suspend fun getGroupMember(gid: Int, uid: Int): Result<Member> =
+    override suspend fun getGroupMember(gid: String, uid: String): Result<Member> =
         groupRemoteDataSource.getGroupMember(gid, uid)
 
     override suspend fun updateGroupMember(
-        gid: Int, uid: Int, name: String, email: String
+        gid: String, uid: String, name: String, email: String
     ): Result<Void> = groupRemoteDataSource.updateGroupMember(gid, uid, name, email)
 
-    override suspend fun deleteGroupMember(gid: Int): Result<Void> {
+    override suspend fun deleteGroupMember(gid: String): Result<Void> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun getGroupImages(gid: Int): Result<List<GroupImage>> =
+    override suspend fun getGroupImages(gid: String): Result<List<GroupImage>> =
         groupRemoteDataSource.getGroupImages(gid)
 
-    override suspend fun getGroupImage(gid: Int, iid: Int): Result<GroupImage> =
+    override suspend fun getGroupImage(gid: String, iid: String): Result<GroupImage> =
         groupRemoteDataSource.getGroupImage(gid, iid)
 
     override suspend fun setGroupImage(imageParams: Map<String, Any>): Result<Void> =
@@ -58,18 +60,18 @@ class DefaultGroupRepository @Inject constructor(
     override suspend fun updateGroupImage(imageParams: Map<String, Any>): Result<Void> =
         groupRemoteDataSource.updateGroupImage(imageParams)
 
-    override suspend fun getItems(gid: Int): Result<List<ItemHistory>> =
+    override suspend fun getItems(gid: String): Result<List<ItemHistory>> =
         groupRemoteDataSource.getItems(gid)
 
     override suspend fun setItem(itemHistory: ItemHistory): Result<Void> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun updateItem(iid: Int, itemHistory: ItemHistory): Result<Void> {
+    override suspend fun updateItem(iid: String, itemHistory: ItemHistory): Result<Void> {
         TODO("Not yet implemented")
     }
 
-    override suspend fun deleteItem(iid: Int): Result<Void> {
+    override suspend fun deleteItem(iid: String): Result<Void> {
         TODO("Not yet implemented")
     }
 }
