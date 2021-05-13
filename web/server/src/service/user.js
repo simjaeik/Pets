@@ -1,5 +1,5 @@
-const { createJWT, verifyJWT } = require("../lib/utill/jwt");
-const { Member, MemberGroup } = require("../model/index");
+const { createJWT } = require("../lib/utill/jwt");
+const { Member } = require("../model/index");
 const bcrypt = require("bcryptjs");
 
 const checkUserValid = async ({ name, password, email, nickName }) => {
@@ -44,6 +44,13 @@ module.exports = {
       return { error: "모든 정보를 입력해주세요." };
     }
 
+    try {
+      await Member.update(body, { where: { UID } });
+      return { result: true };
+    } catch (error) {
+      console.log(error);
+      return { result: false, error: "수정에 실패했습니다." };
+    }
   },
 
   isEmailExist: async ({ email }) => {
