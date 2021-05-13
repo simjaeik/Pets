@@ -7,6 +7,8 @@ const controller = require("../controller/user");
 
 const router = express.Router();
 
+router.get("/", controller.getMemberInfo);
+
 router.get("/email/:email", controller.isEmailExist);
 
 router.get("/nickname/:nickname", controller.isNicknameExist);
