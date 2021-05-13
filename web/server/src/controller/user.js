@@ -2,6 +2,15 @@ const userService = require("../service/user");
 const control = require("../lib/controller");
 
 module.exports = {
+  getMemberInfo: async (req, res) => {
+    const { status, result } = await control(
+      userService.getMemberInfo,
+      req.headers
+    );
+
+    return res.status(status).json(result);
+  },
+
   isEmailExist: async (req, res) => {
     const { status, result } = await control(
       userService.isEmailExist,
