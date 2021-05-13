@@ -115,4 +115,17 @@ module.exports = {
     }
   },
 
+  updateMemberPW: async ({ data, body }) => {
+    const { UID } = data;
+    const { password, afterPassword, afterRePassword } = body;
+
+    const check = await checkPWValid(password, UID);
+    if (!check) {
+      return { error: "기존 비밀번호가 일치하지 않습니다." };
+    }
+    if (afterPassword !== afterRePassword) {
+      return { error: "입력하신 두개의 비밀번호가 일치하지 않습니다." };
+    }
+
+  },
 };
