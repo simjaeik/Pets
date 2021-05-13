@@ -9,9 +9,11 @@ import dagger.android.ContributesAndroidInjector
 
 @Module
 abstract class ActivityModule {
+    @ActivityScope
     @ContributesAndroidInjector(modules = [LoginModule::class])
     abstract fun loginActivity(): LoginActivity
 
+    @ActivityScope
     @ContributesAndroidInjector(modules = [ManageModule::class])
     abstract fun mainActivity(): ManageActivity
 }

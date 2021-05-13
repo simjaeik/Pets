@@ -42,27 +42,70 @@ class SignUpFragment : DaggerFragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
         binding.toolbarSignUp.setupWithNavController(navController)
 
-        setPasswordConfirmErrorMessage()
+        setNameChanges()
+        setEmailChanges()
+        setNickNameChanges()
 
-        setCompleteBtnEnable()
+        setEmailDuplicateChecker()
+        setNickNameDuplicateChecker()
+
+        setPasswordConfirmChecker()
+
+        setOnCompleteEventObserver()
     }
 
-    private fun setCompleteBtnEnable() {
+    private fun setNickNameChanges() {
         disposables.add(
-            viewModel.bindCompleteBtnEnable(
-                binding.textInputSignUpName.textChanges(),
-                binding.textInputSignUpEmail.textChanges(),
-                binding.textInputSignUpPassword.textChanges(),
-                binding.textInputSignUpPasswordConfirm.textChanges()
+            viewModel.bindNickNameChanges(
+                binding.textInputSignUpNickName.textChanges()
             )
         )
     }
 
-    private fun setPasswordConfirmErrorMessage() {
+    private fun setEmailChanges() {
+        disposables.add(
+            viewModel.bindEmailChanges(
+                binding.textInputSignUpEmail.textChanges()
+            )
+        )
+    }
+
+    private fun setNickNameDuplicateChecker() {
+        disposables.add(
+            viewModel.bindNickNameDuplicate(
+                binding.textInputSignUpNickName.textChanges()
+            )
+        )
+
+        viewModel.isNickNameDuplicated.observe(viewLifecycleOwner) {
+            binding.textInputLayoutSignUpNickName.error = it
+        }
+    }
+
+    private fun setEmailDuplicateChecker() {
+        disposables.add(
+            viewModel.bindEmailDuplicate(
+                binding.textInputSignUpEmail.textChanges()
+            )
+        )
+
+        viewModel.isEmailDuplicated.observe(viewLifecycleOwner) {
+            binding.textInputLayoutSignUpEmail.error = it
+        }
+
+    }
+
+    private fun setNameChanges() {
+        disposables.add(
+            viewModel.bindNameChanges(
+                binding.textInputSignUpName.textChanges(),
+            )
+        )
+    }
+
+    private fun setPasswordConfirmChecker() {
         disposables.add(
             viewModel.bindPasswordConfirmError(
                 binding.textInputSignUpPassword.textChanges(),
@@ -72,6 +115,12 @@ class SignUpFragment : DaggerFragment() {
 
         viewModel.passwordConfirmError.observe(viewLifecycleOwner) {
             binding.textInputLayoutSignUpPasswordConfirm.error = it
+        }
+    }
+
+    private fun setOnCompleteEventObserver() {
+        viewModel.completeEvent.observe(viewLifecycleOwner) {
+            navController.navigateUp()
         }
     }
 

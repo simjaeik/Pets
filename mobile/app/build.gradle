@@ -121,4 +121,7 @@ dependencies {
 
     // Activity
     implementation "androidx.activity:activity-ktx:$activity_version"
+
+    // OkHttp HttpLoggingInterceptor
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
 }

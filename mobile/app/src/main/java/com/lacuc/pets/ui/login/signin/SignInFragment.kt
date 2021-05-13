@@ -4,15 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.FragmentSignInBinding
+import dagger.android.support.DaggerFragment
+import javax.inject.Inject
 
-class SignInFragment : Fragment() {
+class SignInFragment : DaggerFragment() {
 
     private var _binding: FragmentSignInBinding? = null
     private val binding get() = _binding!!
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val viewModel: SignInViewModel by viewModels { viewModelFactory }
 
     private val navController: NavController by lazy { findNavController() }
 
@@ -21,20 +29,20 @@ class SignInFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentSignInBinding.inflate(inflater, container, false)
+        _binding = FragmentSignInBinding.inflate(inflater, container, false).apply {
+            lifecycleOwner = viewLifecycleOwner
+            vm = viewModel
+        }
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
+        setOnCompleteObserver()
         setSignUpListener()
-        setSignInListener()
     }
 
-    private fun setSignInListener() {
-        binding.btnSignInSignIn.setOnClickListener {
-            // TODO: 2021-04-02 API가 준비되면 로그인을 요청하고 결과값에 따라 이동해야 함.
+    private fun setOnCompleteObserver() {
+        viewModel.completeEvent.observe(viewLifecycleOwner) {
             val action = SignInFragmentDirections.actionSignInFragmentToMainActivity()
             navController.navigate(action)
             requireActivity().finish()
