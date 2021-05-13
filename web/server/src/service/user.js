@@ -1,4 +1,4 @@
-const { createJWT } = require("../lib/utill/jwt");
+const { createJWT, verifyJWT } = require("../lib/utill/jwt");
 const { Member, MemberGroup } = require("../model/index");
 const bcrypt = require("bcryptjs");
 
@@ -21,6 +21,24 @@ const checkUserValid = async ({ name, password, email, nickName }) => {
 };
 
 module.exports = {
+  getMemberInfo: async ({ authorization }) => {
+    const { data } = await verifyJWT(authorization);
+    const { UID } = data;
+    if (!UID) {
+      return { error: "토큰이 존재하지 않습니다." };
+    }
+
+    try {
+      const member = await Member.findOne({
+        where: { UID },
+        attributes: ["name", "email", "nickname"],
+      });
+      return member;
+    } catch (error) {
+      return { error: "Token이 올바르지 않습니다." };
+    }
+  },
+
   isEmailExist: async ({ email }) => {
     const exist = await Member.findOne({ where: { email: email } });
 
