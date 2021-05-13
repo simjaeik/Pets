@@ -94,23 +94,35 @@ function leadingZeros(n, digits) {
     }
     return zero + n;
 }
-  
+function getCategory(){
+    
+    const option = [ document.getElementsByName("chk_info")[0],document.getElementsByName("chk_info")[1] ];
+    
+    if(option[0].checked == true){
+        return option[0].value;
+    }else if(option[1].checked == true){
+        return option[1].value;
+    }else{
+        alert("게시글 종류를 선택해주세요.");
+    }
+}
 function setPost(){
 
     const datevalue = getTime();
-    alert(datevalue);
-    // axios.post(`${URL}/post`, {
-    //     GID : 11,
-    //     title : checktitle.value,
-    //     content : checkcontent.value,
-    //     date : `${getTime()}`,
-    //     category : 
-    // })
-    // .then(response => {
-    //     console.log(response)
-    //     location.href="../community/community.html";
-    // })
-    // .catch(error => {
-    //     console.log(error.response)
-    // });
+    const categoryvalue = getCategory();
+  
+    axios.post(`${URL}/post`, {
+        GID : 11,
+        title : checktitle.value,
+        content : checkcontent.value,
+        date : datevalue,
+        category : categoryvalue
+    })
+    .then(response => {
+        console.log(response)
+        location.href="../community/community.html";
+    })
+    .catch(error => {
+        console.log(error.response)
+    });
 }
