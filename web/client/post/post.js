@@ -70,20 +70,47 @@ function check_blank(){
     else if ( checkcontent.value === "") { alert(" 내용이 입력되지 않았습니다. ")}
 
 }
-// function setPost(){
+function getTime() {
 
-//     axios.post(`${URL}/post`, {
-//         GID : 
-//         title : checktitle.value,
-//         content : checkcontent.value.
-//         date : 
-//         category : 
-//     })
-//     .then(response => {
-//         console.log(response)
-//         location.href="../community/community.html";
-//     })
-//     .catch(error => {
-//         console.log(error.response)
-//     });
-// }
+   const d = new Date();
+   const s =
+    leadingZeros(d.getFullYear(), 4) + '-' +
+    leadingZeros(d.getMonth() + 1, 2) + '-' +
+    leadingZeros(d.getDate(), 2) + ' ' +
+
+    leadingZeros(d.getHours(), 2) + ':' +
+    leadingZeros(d.getMinutes(), 2) + ':' +
+    leadingZeros(d.getSeconds(), 2);
+
+    return s;
+}
+function leadingZeros(n, digits) {
+    var zero = '';
+    n = n.toString();
+  
+    if (n.length < digits) {
+      for (i = 0; i < digits - n.length; i++)
+        zero += '0';
+    }
+    return zero + n;
+}
+  
+function setPost(){
+
+    const datevalue = getTime();
+    alert(datevalue);
+    // axios.post(`${URL}/post`, {
+    //     GID : 11,
+    //     title : checktitle.value,
+    //     content : checkcontent.value,
+    //     date : `${getTime()}`,
+    //     category : 
+    // })
+    // .then(response => {
+    //     console.log(response)
+    //     location.href="../community/community.html";
+    // })
+    // .catch(error => {
+    //     console.log(error.response)
+    // });
+}
