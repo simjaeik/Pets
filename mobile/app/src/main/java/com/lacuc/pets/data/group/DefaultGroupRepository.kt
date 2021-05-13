@@ -2,6 +2,7 @@ package com.lacuc.pets.data.group
 
 import com.lacuc.pets.data.Result
 import com.lacuc.pets.data.group.entity.*
+import okhttp3.MultipartBody
 import javax.inject.Inject
 
 class DefaultGroupRepository @Inject constructor(
@@ -19,9 +20,10 @@ class DefaultGroupRepository @Inject constructor(
     }
 
     override suspend fun setGroup(
-        params: Map<String, String>
+        params: Map<String, String>,
+        imageFile: MultipartBody.Part
     ): Result<Void> =
-        groupRemoteDataSource.setGroup(params)
+        groupRemoteDataSource.setGroup(params, imageFile)
 
     override suspend fun getGroup(gid: String): Result<Group> = groupRemoteDataSource.getGroup(gid)
 

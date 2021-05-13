@@ -2,6 +2,10 @@ package com.lacuc.pets.domain.group
 
 import com.lacuc.pets.data.Result
 import com.lacuc.pets.data.group.GroupRepository
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import java.io.File
 import javax.inject.Inject
 
 class AddGroupUseCase @Inject constructor(private val repository: GroupRepository) {
@@ -19,10 +23,10 @@ class AddGroupUseCase @Inject constructor(private val repository: GroupRepositor
             "longitude" to "0"
         )
 
-//        val imageFile = File(imageUri)
-//        val imagePart = imageFile.asRequestBody("image/*".toMediaTypeOrNull())
-//            .let { MultipartBody.Part.createFormData("image", imageFile.name, it) }
+        val imageFile = File(imageUri)
+        val imageBody = imageFile.asRequestBody("image/*".toMediaTypeOrNull())
+        val imagePart = MultipartBody.Part.createFormData("image", imageFile.name, imageBody)
 
-        return repository.setGroup(partMap)
+        return repository.setGroup(partMap, imagePart)
     }
 }

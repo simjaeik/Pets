@@ -2,6 +2,7 @@ package com.lacuc.pets.data.group
 
 import com.lacuc.pets.data.Result
 import com.lacuc.pets.data.group.entity.*
+import okhttp3.MultipartBody
 
 interface GroupDataSource {
     suspend fun getMyGroups(): Result<List<GroupWrapper>>
@@ -10,7 +11,7 @@ interface GroupDataSource {
 
     suspend fun deleteGroup(gid: String): Result<Void>
 
-    suspend fun setGroup(params: Map<String, String>): Result<Void>
+    suspend fun setGroup(params: Map<String, String>, imageFile: MultipartBody.Part): Result<Void>
 
     suspend fun getGroup(gid: String): Result<Group>
 

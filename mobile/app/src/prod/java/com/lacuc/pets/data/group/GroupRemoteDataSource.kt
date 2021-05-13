@@ -2,6 +2,7 @@ package com.lacuc.pets.data.group
 
 import com.lacuc.pets.data.Result
 import com.lacuc.pets.data.group.entity.*
+import okhttp3.MultipartBody
 import javax.inject.Inject
 
 class GroupRemoteDataSource @Inject constructor(
@@ -15,8 +16,9 @@ class GroupRemoteDataSource @Inject constructor(
     override suspend fun deleteGroup(gid: String): Result<Void> = groupService.deleteGroup(gid)
 
     override suspend fun setGroup(
-        params: Map<String, String>
-    ): Result<Void> = groupService.setGroup(params)
+        params: Map<String, String>,
+        imageFile: MultipartBody.Part
+    ): Result<Void> = groupService.setGroup(params, imageFile)
 
     override suspend fun getGroup(gid: String): Result<Group> = groupService.getGroup(gid)
 

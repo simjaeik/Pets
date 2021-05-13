@@ -2,6 +2,7 @@ package com.lacuc.pets.data.group
 
 import com.lacuc.pets.data.Result
 import com.lacuc.pets.data.group.entity.*
+import okhttp3.MultipartBody
 import retrofit2.http.*
 
 interface GroupService {
@@ -20,7 +21,8 @@ interface GroupService {
     @Multipart
     @POST("api/group")
     suspend fun setGroup(
-        @PartMap params: Map<String, String>
+        @PartMap params: Map<String, String>,
+        @Part imageFile: MultipartBody.Part
     ): Result<Void>
 
     @GET("api/group/{id}")
