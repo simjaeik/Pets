@@ -21,9 +21,7 @@ const checkUserValid = async ({ name, password, email, nickName }) => {
 };
 
 module.exports = {
-  getMemberInfo: async ({ authorization }) => {
-    const { data } = await verifyJWT(authorization);
-    const { UID } = data;
+  getMemberInfo: async ({ UID }) => {
     if (!UID) {
       return { error: "토큰이 존재하지 않습니다." };
     }
