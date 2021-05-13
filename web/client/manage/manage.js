@@ -77,7 +77,7 @@ function addGroup(){
     document.getElementById('groups').appendChild(addEL);
 
     initinput();
-    //exitModal();
+
 }
 
 function exitModal(){

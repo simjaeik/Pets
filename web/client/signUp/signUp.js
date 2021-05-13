@@ -7,13 +7,8 @@ const checkbtn = document.getElementById("checkbtn");
 const URL = "http://ec2-54-180-91-27.ap-northeast-2.compute.amazonaws.com:3000/api";
 let exist = [0,0];
 
-//const encryptPW = require('bcrypt');
-//const checkUserValid = async ({ name, password, email, nickName }) =>
-
 function signUp(){
-
-       // const hash = await encryptPW(checkpw.value);
-    // Store hash in your password DB.
+        
         axios.post(`${URL}/user/signUp`, {
             name : checkname.value,
             password : checkpw.value,
@@ -33,8 +28,8 @@ function signUp(){
                 alert(error.response.data);
         });
     
-    
 };
+
 function isNicknameExist(){
 
     const nickName = checknickname.value;
