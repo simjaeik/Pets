@@ -96,6 +96,8 @@ class SaveGroupFragment : DaggerFragment() {
 
         setOnCompleteEventObserver()
 
+        setOnUpdateEventObserver()
+
         binding.btnAddGroupPickImage.setOnClickListener {
             requestImage()
         }
@@ -118,6 +120,13 @@ class SaveGroupFragment : DaggerFragment() {
     private fun setOnCompleteEventObserver() {
         viewModel.completeEvent.observe(viewLifecycleOwner) {
             navController.previousBackStackEntry?.savedStateHandle?.set("onCompleteEvent", true)
+            navController.navigateUp()
+        }
+    }
+
+    private fun setOnUpdateEventObserver() {
+        viewModel.groupUpdateEvent.observe(viewLifecycleOwner) {
+            navController.previousBackStackEntry?.savedStateHandle?.set("onGroupUpdate", true)
             navController.navigateUp()
         }
     }
