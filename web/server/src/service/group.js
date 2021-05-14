@@ -2,7 +2,14 @@ const { Group, MemberGroup, sequelize, Member } = require("../model/index");
 
 const checkInvalidData = (data) => {
   const { name, info, image, share, latitude, longitude } = data;
-  if (!name || !info || !image || !share || !latitude || !longitude) {
+  if (
+    name === undefined ||
+    info === undefined ||
+    !image ||
+    share === undefined ||
+    latitude === undefined ||
+    longitude === undefined
+  ) {
     return true;
   }
   return false;
