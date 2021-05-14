@@ -22,4 +22,16 @@ module.exports = {
 
     return res.status(status).json(result);
   },
+
+  addGroupMember: async (req, res) => {
+    const { status, result } = await control(service.addGroupMember, {
+      GID: req.gid,
+      body: req.body,
+    });
+
+    return res.status(status).json(result);
+  },
+
+    return res.status(status).json(result);
+  },
 };
