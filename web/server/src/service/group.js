@@ -1,4 +1,4 @@
-const { Group, MemberGroup, sequelize } = require("../model/index");
+const { Group, MemberGroup, sequelize, Member } = require("../model/index");
 
 const checkInvalidData = (data) => {
   const { name, info, image, share, latitude, longitude } = data;
@@ -29,6 +29,19 @@ module.exports = {
     }
   },
 
+  getGroup: async ({ id }) => {
+    if (!id) {
+      return { error: "모든 정보를 입력해주세요." };
+    }
+
+    try {
+      const group = await Group.findOne({ where: { GID: id } });
+      return group;
+    } catch (error) {
+      console.log(error);
+      return { error };
+    }
+  },
   setGroup: async ({ data, body }) => {
     if (!data) {
       return { error: "invalid Token" };
