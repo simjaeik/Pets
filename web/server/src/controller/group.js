@@ -8,6 +8,12 @@ module.exports = {
     return res.status(status).json(result);
   },
 
+  getGroup: async (req, res) => {
+    const { status, result } = await control(service.getGroup, req.params);
+
+    return res.status(status).json(result);
+  },
+
   setGroup: async (req, res) => {
     const { status, result } = await control(service.setGroup, {
       data: req.data,
