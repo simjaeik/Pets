@@ -42,6 +42,7 @@ module.exports = {
       return { error };
     }
   },
+
   setGroup: async ({ data, body }) => {
     if (!data) {
       return { error: "invalid Token" };
@@ -86,4 +87,23 @@ module.exports = {
       return { error };
     }
   },
+
+  addGroupMember: async ({ GID, body }) => {
+    if (!GID || !body) {
+      return { error: "정보가 부족합니다" };
+    }
+
+    const { email, authority } = body;
+
+    try {
+      const { UID } = await Member.findOne({ where: { email }, raw: true });
+
+      const result = await MemberGroup.create({ GID, UID, authority });
+      return result;
+    } catch (error) {
+      console.log(error);
+      return { result: false, error };
+    }
+  },
+
 };
