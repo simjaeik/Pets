@@ -1,8 +1,6 @@
 const { createJWT } = require("../lib/utill/jwt");
 const { Member } = require("../model/index");
-const bcrypt = require("bcryptjs");
-
-const SALT = 10;
+const bcrypt = require("../lib/encrypt");
 
 const checkUserValid = async ({ name, password, email, nickName }) => {
   const existEmail = await Member.findOne({ where: { email } });
@@ -71,7 +69,7 @@ module.exports = {
       return hasError;
     }
 
-    const encryptPWD = await bcrypt.hash(password, SALT);
+    const encryptPWD = await bcrypt.hash(password);
 
     try {
       const member = await Member.create({
@@ -132,7 +130,7 @@ module.exports = {
     }
 
     try {
-      const updatePW = await bcrypt.hash(afterPassword, SALT);
+      const updatePW = await bcrypt.hash(afterPassword);
       await Member.update({ password: updatePW }, { where: { UID } });
       return { result: true };
     } catch (error) {
