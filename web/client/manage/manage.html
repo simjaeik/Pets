@@ -14,8 +14,7 @@
     <!--css 연결-->
     <link rel="stylesheet" href="../boot_css/login.css">
     <link rel="stylesheet" href="manage.css"></style>
-    <!--javascript 파일 연결-->
-    <script src="manage.js"></script>
+    
   </head>
 
   <body>
@@ -45,21 +44,10 @@
         <div class="cover managegroup" id="groups">
             <!--본인이 속한 그룹-->
             <div class="item">
-                <p><img src="../img/cat.jpg" alt="../img/logo.jpg"></p>
-                <p><text>우리가족</text></p>
+                <p><img src="../img/cat.jpg"></p>
+                <div>우리가족 info</div>
+                <p><text>우리가족</text></p>     
             </div>
-
-            <div class="item">
-                <p><img src="../img/dogandcat.png" alt="../img/logo.jpg"></p>
-                <p><text>ㅇㅇ 분양샵</text></p>
-            </div>
-
-            <div class="item">
-                <p><img src="../img/rabbit.jpg" alt="../img/logo.jpg"></p>
-                <p><text>ㅇㅇ 대학교</text></p>
-            </div>
-        
-            
         </div>
     </div>
 
@@ -77,9 +65,33 @@
             <label class="col-lg-2 col-form-label form-control-label text-muted"><h2>그룹이름</h2></label>
                 <div class="col-lg-10">
                     <label> <p class="label-txt"></p> 
-                    <input type="text" class="input" required>
+                    <input type="text" class="input" id="nameinput" required>
                     <div class="line-box"> <div class="line"></div></div> 
             </label> </div>
+        </div>
+        <label></label> 
+
+        <!--그룹소개-->
+        <div class="form-group row">
+            <label class="col-lg-2 col-form-label form-control-label text-muted"><h2>그룹소개</h2></label>
+                <div class="col-lg-10">
+                    <label> <p class="label-txt"></p> 
+                    <input type="text" class="input" id="infoinput" required>
+                    <div class="line-box"> <div class="line"></div></div> 
+            </label> </div>
+        </div>
+        <label></label> 
+
+         <!--공개여부-->
+         <div class="form-group row">
+            <label class="col-lg-2 col-form-label form-control-label text-muted"><h2>공개여부</h2></label>
+                <div class="col-lg-10">
+                <label> 
+                    <input type="radio" name="chk_info" value="public"> 공개
+                    <input type="radio" name="chk_info" value="private"> 비공개
+                    <div class="line-box"> <div class="line"></div></div> 
+                </label> 
+            </div>
         </div>
         <label></label> 
 
@@ -87,20 +99,23 @@
         <div class="form-group row">
             <label class="col-lg-2 col-form-label form-control-label text-muted"><h2>대표사진등록</h2></label>
                 <div class="col-lg-10">
-                    <label> <p class="label-txt"></p> 
-                    <input type="image" class="input" required>
-                    <div class="line-box"> <div class="line"></div></div> 
-            </label> </div>
+                <label>
+                    <input type="file" name="file" id="uploadImage" accept="image/*"  onchange="addGroup(event);"/>
+                </label>
+                </div>
         </div>
         <label></label> 
-     
-        <button type="button" class="btn btn-outline-primary btn-lg" id="addgroup_btn" onclick="addGroup();">만들기</button>   
+       
+        <button type="button" class="btn btn-outline-primary btn-lg" id="addgroup_btn">만들기</button>   
     </div>
   
     <!--javascript-->
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="../boot_js/bootstrap.min.js"></script>
-    
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="manage.js"></script>
+
     </body>
 </html>
 
