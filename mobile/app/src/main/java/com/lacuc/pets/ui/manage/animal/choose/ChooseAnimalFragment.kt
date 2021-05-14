@@ -74,8 +74,11 @@ class ChooseAnimalFragment : DaggerFragment() {
 
         setOnCompleteObserver()
 
+        setOnGroupUpdateObserver()
+
         setupGroupObserver()
     }
+
 
     private fun setupGroupObserver() {
         viewModel.group.observe(viewLifecycleOwner) {
@@ -91,6 +94,16 @@ class ChooseAnimalFragment : DaggerFragment() {
             ?.getLiveData<Boolean>("onCompleteEvent")
             ?.observe(viewLifecycleOwner) {
                 viewModel.loadAnimals()
+            }
+    }
+
+    private fun setOnGroupUpdateObserver() {
+        navController.currentBackStackEntry
+            ?.savedStateHandle
+            ?.getLiveData<Boolean>("onGroupUpdate")
+            ?.observe(viewLifecycleOwner) {
+                viewModel.loadGroup()
+                navController.previousBackStackEntry?.savedStateHandle?.set("onCompleteEvent", true)
             }
     }
 
