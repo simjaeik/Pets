@@ -4,9 +4,7 @@ function modal() {
     const zIndex = 9999;   
     const bg = document.createElement('div');
     const modal = document.getElementById('my_modal');
-    const nameinputValue = document.querySelector("#nameinput").value;
-    const infoinputValue = document.querySelector("#infoinput").value;
-
+    
     // 모달 div 뒤에 희끄무레한 레이어
     bg.setStyle({
         position: 'fixed',
@@ -28,10 +26,19 @@ function modal() {
     });
 
     modal.querySelector('#addgroup_btn').addEventListener('click', function() {
-   
-        bg.remove();
-        modal.style.display = 'none';
 
+        const name = document.querySelector("#nameinput").value;
+        const info = document.querySelector("#infoinput").value;
+        const postoption = getCategory();
+
+        if(name === "") { alert("그룹 이름을 입력해주세요. "); }
+        else if(info === "") { alert("그룹 소개를 입력해주세요. "); }
+        else if(postoption === -1) { alert("게시글 종류를 선택해주세요. ");}
+        else{
+            bg.remove();
+            console.log(postoption);
+            modal.style.display = 'none';
+        }// setGroup();
     });
 
     modal.setStyle({
@@ -63,9 +70,8 @@ function initinput(){
         input[i].value= "";
     }
 }
-
 function addGroup(event){
- 
+
     const nameinputValue = document.querySelector("#nameinput").value;
     const infoinputValue = document.querySelector("#infoinput").value;
 
@@ -93,7 +99,7 @@ function addGroup(event){
         addEL.appendChild(groupinfo);
         addEL.appendChild(group);
     }; 
-    reader.readAsDataURL(event.target.files[0]); 
+    reader.readAsDataURL(event.target.files[0]);
     document.getElementById('groups').appendChild(addEL);
 }
 
@@ -106,31 +112,31 @@ function getCategory(){
     }else if(option[1].checked == true){
         return option[1].value;
     }else{
-        alert("그룹 공개 여부를 선택해주세요.");
+       return -1;
     }
 }
-function setGroup(group,groupinfo){
+function setGroup(){
 
     const categoryvalue = getCategory();
     
-    window.navigator.geolocation.getCurrentPosition( function(position) { //OK
+    window.navigator.geolocation.getCurrentPosition( function(position) { 
        
         const lat= position.coords.latitude;
         const lng= position.coords.longitude;
-
-        axios.post(`${URL}/group`, {
-            name : group.value,
-            info : groupinfo.value,
-            image : 이미지,
-            share : categoryvalue,
-            latitude : lat,
-            longitude : lng,
-        })
-        .then(response => {
-            console.log(response)
-        })
-        .catch(error => {
-            console.log(error.response)
-        }); 
+        console.log(lat);
+    //     axios.post(`${URL}/group`, {
+    //         name : group.value,
+    //         info : groupinfo.value,
+    //         image : 이미지,
+    //         share : categoryvalue,
+    //         latitude : lat,
+    //         longitude : lng,
+    //     })
+    //     .then(response => {
+    //         console.log(response)
+    //     })
+    //     .catch(error => {
+    //         console.log(error.response)
+    //     }); 
     });
 }
