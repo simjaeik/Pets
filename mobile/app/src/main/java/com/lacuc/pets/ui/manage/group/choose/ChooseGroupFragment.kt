@@ -40,6 +40,7 @@ class ChooseGroupFragment : DaggerFragment() {
             lifecycleOwner = viewLifecycleOwner
             vm = viewModel
         }
+        activityViewModel.gid = null
         return binding.root
     }
 
