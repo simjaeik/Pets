@@ -8,12 +8,47 @@ module.exports = {
     return res.status(status).json(result);
   },
 
+  getGroup: async (req, res) => {
+    const { status, result } = await control(service.getGroup, req.params);
+
+    return res.status(status).json(result);
+  },
+
   setGroup: async (req, res) => {
     const { status, result } = await control(service.setGroup, {
       data: req.data,
       body: req.body,
     });
 
+    return res.status(status).json(result);
+  },
+
+  addGroupMember: async (req, res) => {
+    const { status, result } = await control(service.addGroupMember, {
+      GID: req.gid,
+      body: req.body,
+    });
+
+    return res.status(status).json(result);
+  },
+
+  updateGroup: async (req, res) => {
+    const { status, result } = await control(service.updateGroup, {
+      GID: req.gid,
+      body: req.body,
+    });
+
+    return res.status(status).json(result);
+  },
+
+  toggleShare: async (req, res) => {
+    const { status, result } = await control(service.toggleShare, {
+      GID: req.gid,
+      body: req.body,
+    });
+
+    return res.status(status).json(result);
+  },
     return res.status(status).json(result);
   },
 };
