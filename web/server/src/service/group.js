@@ -63,17 +63,7 @@ module.exports = {
     const t = await sequelize.transaction();
 
     try {
-      const group = await Group.create(
-        {
-          name,
-          info,
-          image,
-          share,
-          latitude,
-          longitude,
-        },
-        { transaction: t }
-      );
+      const group = await Group.create(body, { transaction: t });
       const { GID } = group.dataValues;
 
       await MemberGroup.create(
