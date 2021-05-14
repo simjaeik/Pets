@@ -41,6 +41,14 @@ module.exports = {
     return res.status(status).json(result);
   },
 
+  toggleShare: async (req, res) => {
+    const { status, result } = await control(service.toggleShare, {
+      GID: req.gid,
+      body: req.body,
+    });
+
+    return res.status(status).json(result);
+  },
     return res.status(status).json(result);
   },
 };
