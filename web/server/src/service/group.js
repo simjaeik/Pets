@@ -70,7 +70,7 @@ module.exports = {
         {
           UID,
           GID,
-          authority: "수정권한",
+          authority: "관리자",
         },
         { transaction: t }
       );
