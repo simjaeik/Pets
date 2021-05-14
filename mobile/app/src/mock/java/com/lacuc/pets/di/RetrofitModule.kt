@@ -1,5 +1,8 @@
 package com.lacuc.pets.di
 
+import com.lacuc.pets.data.Result
+import com.lacuc.pets.data.SimpleBoolResult
+import com.lacuc.pets.data.TokenResponse
 import com.lacuc.pets.data.animal.AnimalService
 import com.lacuc.pets.data.group.GroupService
 import com.lacuc.pets.data.login.LoginService
@@ -26,18 +29,20 @@ class RetrofitModule {
     @Provides
     @Reusable
     fun provideLoginService() = object : LoginService {
-        override fun signIn(param: Map<String, String>): Boolean = true
-
-        override fun checkUserInfo(userID: String, userPW: String) {
-            TODO("Not yet implemented")
+        override suspend fun signIn(email: String, password: String): Result<TokenResponse> {
+            return Result.Success(TokenResponse("fake token"))
         }
 
-        override fun isIDExist(id: Int) {
-            TODO("Not yet implemented")
+        override suspend fun isEmailExist(email: String): Result<SimpleBoolResult> {
+            return Result.Success(SimpleBoolResult(false))
         }
 
-        override fun signUp(signUpParams: Map<String, String>) {
-            TODO("Not yet implemented")
+        override suspend fun signUp(signUpParams: Map<String, String>): Result<SimpleBoolResult> {
+            return Result.Success(SimpleBoolResult(true))
+        }
+
+        override suspend fun isNickNameExist(nickName: String): Result<SimpleBoolResult> {
+            return Result.Success(SimpleBoolResult(false))
         }
     }
 

@@ -9,8 +9,8 @@ interface LoginService {
     @FormUrlEncoded
     @POST("api/user/login")
     suspend fun signIn(
-        @Field("email") userID: String,
-        @Field("password") userPW: String
+        @Field("email") email: String,
+        @Field("password") password: String
     ): Result<TokenResponse>
 
     @GET("api/user/email/{email}")
