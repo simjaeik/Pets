@@ -15,4 +15,6 @@ router.post("/", controller.setGroup);
 
 router.post("/member/:id", groupAuth, controller.addGroupMember);
 
+router.patch("/:id", groupAuth, controller.updateGroup);
+
 module.exports = router;
