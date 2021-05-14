@@ -120,4 +120,19 @@ module.exports = {
     }
   },
 
+  toggleShare: async ({ GID }) => {
+    if (!GID) {
+      return { error: "정보가 부족합니다." };
+    }
+    try {
+      let { share } = await Group.findOne({ where: { GID }, raw: true });
+      share = share === 1 ? 0 : 1;
+      await Group.update({ share }, { where: { GID } });
+      return { result: true };
+    } catch (error) {
+      console.log(error);
+      return { result: false, error };
+    }
+  },
+
 };
