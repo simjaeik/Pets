@@ -36,9 +36,8 @@ function modal() {
         else if(postoption === -1) { alert("게시글 종류를 선택해주세요. ");}
         else{
             bg.remove();
-            console.log(postoption);
             modal.style.display = 'none';
-        }// setGroup();
+        }
     });
 
     modal.setStyle({
@@ -84,59 +83,69 @@ function addGroup(event){
     groupinfo.innerText = infoinputValue;
 
     const img = document.createElement('img');
-    //이미지 url 
     const p = document.createElement('p');
-    
     const addEL = document.createElement('div');
     
     addEL.classList.add('item');
-    
+
     const reader = new FileReader(); 
     reader.onload = function(event) { 
+        //result : 이미지를 문자열로 
+        //const result = reader.result;
         img.setAttribute("src", event.target.result); 
         addEL.appendChild(img); 
         addEL.appendChild(p);
         addEL.appendChild(groupinfo);
         addEL.appendChild(group);
+        setGroup();
     }; 
     reader.readAsDataURL(event.target.files[0]);
+    
     document.getElementById('groups').appendChild(addEL);
 }
-
 function getCategory(){
     
     const option = [ document.getElementsByName("chk_info")[0],document.getElementsByName("chk_info")[1] ];
     
     if(option[0].checked == true){
-        return option[0].value;
+        return 0;
     }else if(option[1].checked == true){
-        return option[1].value;
+        return 1;
     }else{
        return -1;
     }
 }
 function setGroup(){
-
-    const categoryvalue = getCategory();
     
+   
     window.navigator.geolocation.getCurrentPosition( function(position) { 
        
+        const gname = document.querySelector("#nameinput").value;
+        const ginfo = document.querySelector("#infoinput").value;
+        const postoption = getCategory();
         const lat= position.coords.latitude;
         const lng= position.coords.longitude;
-        console.log(lat);
-    //     axios.post(`${URL}/group`, {
-    //         name : group.value,
-    //         info : groupinfo.value,
-    //         image : 이미지,
-    //         share : categoryvalue,
-    //         latitude : lat,
-    //         longitude : lng,
-    //     })
-    //     .then(response => {
-    //         console.log(response)
-    //     })
-    //     .catch(error => {
-    //         console.log(error.response)
-    //     }); 
+        const jwtToken = sessionStorage.getItem("jwt");
+        
+        axios.post(`${URL}/group`,
+        { 
+            
+            name : gname,
+            info : ginfo,
+            image : "aabbccdd",
+            share : 1,
+            latitude : lat,
+            longitude : lng, 
+            },{
+            headers : {
+                'authorization' : jwtToken
+            }
+        })
+        .then(response => {
+            console.log(response)
+        })
+        .catch(error => {
+            console.log(error.response)
+        }); 
     });
 }

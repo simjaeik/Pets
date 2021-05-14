@@ -1,7 +1,6 @@
 const URL = "http://ec2-54-180-91-27.ap-northeast-2.compute.amazonaws.com:3000/api";
 const checkid = document.getElementById("ID");
 const checkpw = document.getElementById("PW");
-
 function login(){
 
     axios.post(`${URL}/user/login`, {
@@ -10,7 +9,7 @@ function login(){
     })
     .then(response => {
         console.log(response)
-        localStorage.setItem(`${checkid.value}-token`,response.data.token);
+        sessionStorage.setItem("jwt",response.data.token);
         location.href="../community/community.html";
     })
     .catch(error => {
