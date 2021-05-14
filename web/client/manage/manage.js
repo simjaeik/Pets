@@ -28,16 +28,10 @@ function modal() {
     });
 
     modal.querySelector('#addgroup_btn').addEventListener('click', function() {
+   
+        bg.remove();
+        modal.style.display = 'none';
 
-        const aa = getCategory();
-        alert(aa);
-
-        if(nameinputValue === "") { alert("그룹 이름을 입력해주세요. ");}
-        else if(infoinputValue === "") { alert("그룹 소개를 입력해주세요. "); }
-        else {
-            bg.remove();
-            modal.style.display = 'none';
-        }
     });
 
     modal.setStyle({
