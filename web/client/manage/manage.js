@@ -4,7 +4,9 @@ function modal() {
     const zIndex = 9999;   
     const bg = document.createElement('div');
     const modal = document.getElementById('my_modal');
-   
+    const nameinputValue = document.querySelector("#nameinput").value;
+    const infoinputValue = document.querySelector("#infoinput").value;
+
     // 모달 div 뒤에 희끄무레한 레이어
     bg.setStyle({
         position: 'fixed',
@@ -23,6 +25,19 @@ function modal() {
     modal.querySelector('.modal_btn').addEventListener('click', function() {
         bg.remove();
         modal.style.display = 'none';
+    });
+
+    modal.querySelector('#addgroup_btn').addEventListener('click', function() {
+
+        const aa = getCategory();
+        alert(aa);
+
+        if(nameinputValue === "") { alert("그룹 이름을 입력해주세요. ");}
+        else if(infoinputValue === "") { alert("그룹 소개를 입력해주세요. "); }
+        else {
+            bg.remove();
+            modal.style.display = 'none';
+        }
     });
 
     modal.setStyle({
@@ -46,7 +61,6 @@ Element.prototype.setStyle = function(styles) {
     for (var k in styles) this.style[k] = styles[k];
     return this;
 };
-
 function initinput(){
 
     const input = document.getElementsByClassName('input');
@@ -56,7 +70,7 @@ function initinput(){
     }
 }
 
-function addGroup(){
+function addGroup(event){
  
     const nameinputValue = document.querySelector("#nameinput").value;
     const infoinputValue = document.querySelector("#infoinput").value;
@@ -69,37 +83,26 @@ function addGroup(){
     groupinfo.classList.add('managegroup');
     groupinfo.innerText = infoinputValue;
 
-    const image = document.createElement('img');
+    const img = document.createElement('img');
     //이미지 url 
     const p = document.createElement('p');
     
     const addEL = document.createElement('div');
     
     addEL.classList.add('item');
-    addEL.appendChild(p);
-    addEL.appendChild(image);
-    addEL.appendChild(p);
-    addEL.appendChild(groupinfo);
-    addEL.appendChild(group);
-
-    document.getElementById('groups').appendChild(addEL);
-
-    initinput();
-    setGroup(group,groupinfo);
-}
-function exitModal(){
     
-    const modal = document.getElementById('my_modal');
-    const bg = document.createElement('div');
-
-    // 닫기 버튼 처리, 시꺼먼 레이어와 모달 div 지우기
-    modal.querySelector('#addgroup_btn').addEventListener('click', function() {
-        bg.remove();
-        modal.style.display = 'none';
-    });
-
-   // const modal = document.getElementById('my_modal');
+    const reader = new FileReader(); 
+    reader.onload = function(event) { 
+        img.setAttribute("src", event.target.result); 
+        addEL.appendChild(img); 
+        addEL.appendChild(p);
+        addEL.appendChild(groupinfo);
+        addEL.appendChild(group);
+    }; 
+    reader.readAsDataURL(event.target.files[0]); 
+    document.getElementById('groups').appendChild(addEL);
 }
+
 function getCategory(){
     
     const option = [ document.getElementsByName("chk_info")[0],document.getElementsByName("chk_info")[1] ];
@@ -131,15 +134,9 @@ function setGroup(group,groupinfo){
         })
         .then(response => {
             console.log(response)
-            alert("회원가입이 완료되었습니다.");
-            location.href="../pets.html";
         })
         .catch(error => {
             console.log(error.response)
-            if(error.response.data === "중복된 닉네임입니다.")
-                alert(error.response.data);
-            else if(error.response.data === "중복된 email입니다.")
-                alert(error.response.data);
         }); 
     });
 }
