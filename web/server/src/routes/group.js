@@ -17,4 +17,6 @@ router.post("/member/:id", groupAuth, controller.addGroupMember);
 
 router.patch("/:id", groupAuth, controller.updateGroup);
 
+router.patch("/share/:id", groupAuth, controller.toggleShare);
+
 module.exports = router;
