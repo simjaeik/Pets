@@ -29,6 +29,7 @@ class SaveGroupViewModel @Inject constructor(
     val isShare = MutableLiveData(false)
 
     val completeEvent = SingleLiveEvent<Unit>()
+    val groupUpdateEvent = SingleLiveEvent<Unit>()
 
     private var isUpdateGroup = false
 
@@ -51,6 +52,7 @@ class SaveGroupViewModel @Inject constructor(
 
     private fun initData(group: Group?) {
         group?.let {
+            isUpdateGroup = true
             name.value = group.name
             info.value = group.info
             image.value = group.image
@@ -66,7 +68,12 @@ class SaveGroupViewModel @Inject constructor(
                 addNewGroup()
             }
             when (result) {
-                is Result.Success -> completeEvent.value = Unit
+                is Result.Success -> {
+                    if (isUpdateGroup)
+                        groupUpdateEvent.value = Unit
+                    else
+                        completeEvent.value = Unit
+                }
                 is Result.Failure -> errorEvent.value =
                     "code: ${result.code} message: ${result.error}"
                 is Result.NetworkError -> errorEvent.value = "네트워크 문제가 발생했습니다."
