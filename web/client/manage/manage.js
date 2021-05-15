@@ -1,5 +1,8 @@
 const URL = "http://ec2-54-180-91-27.ap-northeast-2.compute.amazonaws.com:3000/api";
 const jwtToken = sessionStorage.getItem("jwt");
+const outputImage =  new Array();
+const outputgInfo = new Array();
+const outputgName = new Array(); 
 axios.get(`${URL}/group`,
 {
     headers : {
@@ -7,7 +10,42 @@ axios.get(`${URL}/group`,
     }
 })
 .then(response => {
-    console.log(response)
+    const output = JSON.parse(response.request.response);
+    console.log(output);
+    const outputImage =  new Array(5);
+    const outputgInfo = new Array(5);
+    const outputgName = new Array(5); 
+    for (let i=0;i<output.length;i++){
+
+        outputImage[i] = output[i]._Group.image;
+        outputgInfo[i] = output[i]._Group.info;
+        outputgName[i] = output[i]._Group.name;
+
+    }
+   for(let i=0;i<output.length;i++){
+
+        const g = document.createElement('text');
+        g.classList.add('managegroup');
+        g.innerText = outputgName[i];
+
+        const ginfo = document.createElement('div');
+        ginfo.classList.add('managegroup');
+        ginfo.innerText = outputgInfo[i];
+
+        const img = document.createElement('img');
+        const p = document.createElement('p');
+        const addEL = document.createElement('div');
+
+        addEL.classList.add('item');
+ 
+        //img.setAttribute("src", event.target.result); 
+        addEL.appendChild(img); 
+        addEL.appendChild(p);
+        addEL.appendChild(ginfo);
+        addEL.appendChild(g);
+    
+        document.getElementById('groups').appendChild(addEL);
+    }
 })
 .catch(error => {
     console.log(error.response)
@@ -130,7 +168,6 @@ function getCategory(){
 }
 function setGroup(){
     
-   
     window.navigator.geolocation.getCurrentPosition( function(position) { 
        
         const gname = document.querySelector("#nameinput").value;
