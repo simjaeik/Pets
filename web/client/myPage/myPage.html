@@ -63,63 +63,51 @@
     </div>
 
     <!--버튼-->
-    <button id="popup_open_btn" class="btn btn-outline-danger" onclick="modal(); initinput();">새로운 그룹 만들기</button>
+    <button id="popup_open_btn" class="btn btn-outline-danger" onclick="modal();">정보 수정하기</button>
 
     <!--모달창-->
     <div id="my_modal">
         <div class="cover">
-            <h1 class="modal_title">새로운 그룹 만들기</h1>
+            <h1 class="modal_title">정보 수정하기</h1>
             <button class="modal_btn">닫기</button>
         </div>
-        <!--그룹이름-->
+
+        <!--이름 수정-->
         <div class="form-group row">
-            <label class="col-lg-2 col-form-label form-control-label text-muted"><h2>그룹이름</h2></label>
+            <label class="col-lg-2 col-form-label form-control-label text-muted"><h2>이름 수정</h2></label>
                 <div class="col-lg-10">
                     <label> <p class="label-txt"></p> 
                     <input type="text" class="input" id="nameinput" required>
                     <div class="line-box"> <div class="line"></div></div> 
             </label> </div>
         </div>
-        <label></label> 
+      
 
-        <!--그룹소개-->
+        <!--이메일 수정-->
         <div class="form-group row">
-            <label class="col-lg-2 col-form-label form-control-label text-muted"><h2>그룹소개</h2></label>
+            <label class="col-lg-2 col-form-label form-control-label text-muted"><h2>이메일 수정</h2></label>
                 <div class="col-lg-10">
                     <label> <p class="label-txt"></p> 
                     <input type="text" class="input" id="infoinput" required>
                     <div class="line-box"> <div class="line"></div></div> 
             </label> </div>
         </div>
-        <label></label> 
 
-         <!--공개여부-->
-         <div class="form-group row">
-            <label class="col-lg-2 col-form-label form-control-label text-muted"><h2>공개여부</h2></label>
-                <div class="col-lg-10">
-                <label> 
-                    <input type="radio" name="chk_info" value="public"> 공개
-                    <input type="radio" name="chk_info" value="private"> 비공개
-                    <div class="line-box"> <div class="line"></div></div> 
-                </label> 
-            </div>
-        </div>
-        <label></label> 
-
-        <!--이미지-->
+        <!--닉네임 수정-->
         <div class="form-group row">
-            <label class="col-lg-2 col-form-label form-control-label text-muted"><h2>대표사진등록</h2></label>
+            <label class="col-lg-2 col-form-label form-control-label text-muted"><h2>닉네임 수정</h2></label>
                 <div class="col-lg-10">
-                <label>
-                    <input type="file" name="file" id="uploadImage" accept="image/*"  onchange="addGroup(event);"/>
-                </label>
-                </div>
+                    <label> <p class="label-txt"></p> 
+                    <input type="text" class="input" id="nicknameinput" required>
+                    <div class="line-box"> <div class="line"></div></div> 
+                    <div id="goodnickname">사용가능한 닉네임입니다.</div>
+                    <button type="button" class="btn btn-outline-danger" onclick="isNicknameExist()";>닉네임중복확인</button>  
+            </label> </div>
         </div>
-        <label></label> 
-       
+
         <button type="button" class="btn btn-outline-primary btn-lg" id="addgroup_btn">만들기</button>   
     </div>
-  
+
     <!--javascript-->
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="../boot_js/bootstrap.min.js"></script>

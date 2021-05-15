@@ -26,8 +26,7 @@ function signUp(){
                 alert(error.response.data);
             else if(error.response.data === "중복된 email입니다.")
                 alert(error.response.data);
-        });
-    
+        }); 
 };
 
 function isNicknameExist(){
