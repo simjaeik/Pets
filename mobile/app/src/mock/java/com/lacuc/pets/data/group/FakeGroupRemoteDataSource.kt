@@ -56,9 +56,25 @@ class FakeGroupRemoteDataSource @Inject constructor() : GroupDataSource {
         Result.Success(groupData.find { it.GID == gid })
     }
 
-    override suspend fun updateGroup(group: Group): Result<Void> = withContext(Dispatchers.IO) {
+    override suspend fun updateGroup(
+        gid: String,
+        params: Map<String, String>,
+        imageFile: MultipartBody.Part
+    ): Result<Void> = withContext(Dispatchers.IO) {
         delay(100)
-        groupData = (groupData.filter { it.GID != group.GID } + group).toMutableList()
+        val group = groupData.find { it.GID == gid }
+        group?.let {
+            groupData = groupData.filter { it.GID != gid } as MutableList<Group>
+            groupData.add(
+                Group(
+                    group.GID,
+                    params["name"]!!,
+                    params["info"]!!,
+                    group.image,
+                    params["share"].toBoolean()
+                )
+            )
+        }
         Result.Success(null)
     }
 
