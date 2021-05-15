@@ -94,6 +94,9 @@ li a {
 #MyPage{
     color:#469efc;
 }
+#userInfo{
+    background-color: #d6eaff;
+}
 #write_type{
     border-bottom-color:tomato;
     border-bottom-style:outset;

@@ -20,6 +20,18 @@ const jwtToken = sessionStorage.getItem("jwt");
 //     console.log(error.response)
 // }); 
 
-const username = "micky";
-const Name = document.getElementById("userName");
+const userNickname = "micky";
+const username = "mouse"; const useremail="micky@naver.com";
+
+const nickName = document.getElementById("usernickname");
+nickName.innerText = userNickname;
+
+const Name = document.getElementById("username");
 Name.innerText = username;
+
+const Email = document.getElementById("useremail");
+Email.innerText = useremail;
+
+function updateMemberInfo(){
+    
+}
