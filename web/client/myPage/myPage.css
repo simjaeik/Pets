@@ -6,8 +6,8 @@ body {
   }
 img {
     border:3px solid gold;
-    border-radius: 7px;
-    width:400px; height:500px;
+    border-radius: 70%;
+    width:200px; height:300px;
 }
 p{
     text-align:center;
@@ -84,6 +84,9 @@ li a {
 #nav{
     width:40%;
 } 
+#userName{
+    font-size:larger;
+}
 #writebtn{
     width:10%;
     font-size: 40px;
