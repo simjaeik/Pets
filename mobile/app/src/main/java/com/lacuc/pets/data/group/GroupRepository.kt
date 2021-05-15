@@ -15,7 +15,11 @@ interface GroupRepository {
 
     suspend fun getGroup(gid: String): Result<Group>
 
-    suspend fun updateGroup(group: Group): Result<Void>
+    suspend fun updateGroup(
+        gid: String,
+        params: Map<String, String>,
+        imageFile: MultipartBody.Part
+    ): Result<Void>
 
     suspend fun addGroupMember(memberParams: Map<String, Any>): Result<Void>
 
