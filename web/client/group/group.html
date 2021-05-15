@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>manage.html</title>
+    <title>group.html</title>
     <!--라이브러리-->
     <link rel="stylesheet" href="../boot_css/bootstrap.min.css">
     <link rel="stylesheet" href="../boot_css/bootstrap-responsive.css">
@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!--css 연결-->
     <link rel="stylesheet" href="../boot_css/login.css">
-    <link rel="stylesheet" href="manage.css"></style>
+    <link rel="stylesheet" href="group.css"></style>
     
   </head>
 
@@ -39,6 +39,23 @@
         </div>
     </div>
 
+    <!--세부카테고리-->
+    <div class = "container-fluid" id="firstcontainer">  
+        <!--네비바-->
+        <div class='cover'>
+            <div class="item-fulid" id="nav">
+                <ul>
+                    <li><a href="group.html" id="petmanage">동물관리</a></li>
+                    <li><a href="../pets.html" >캘린더</a></li>
+                    <li><a href="manage.html">갤러리</a></li>
+                </ul>
+            </div>
+            <div>
+                <button id="popup_open_btn" class="btn btn-outline-danger" onclick="modal(); initinput();">동물 추가</button>
+            </div>
+        </div>
+    </div>
+
     <!--그룹-->
     <div class="container-fluid">
         
@@ -51,28 +68,26 @@
             </div>
         </div>
     </div>
-
-    <!--버튼-->
-    <button id="popup_open_btn" class="btn btn-outline-danger" onclick="modal(); initinput();">새로운 그룹 만들기</button>
-
+    
     <!--모달창-->
     <div id="my_modal">
         <div class="cover">
-            <h1 class="modal_title">새로운 그룹 만들기</h1>
+            <h1 class="modal_title">동물 추가</h1>
             <button class="modal_btn">닫기</button>
         </div>
-        <!--그룹이름-->
+        <!--여백-->
+        <div id="margin"></div>
+        <!--동물이름-->
         <div class="form-group row">
-            <label class="col-lg-2 col-form-label form-control-label text-muted"><h2>그룹이름</h2></label>
+            <label class="col-lg-2 col-form-label form-control-label text-muted"><h2>동물이름</h2></label>
                 <div class="col-lg-10">
                     <label> <p class="label-txt"></p> 
                     <input type="text" class="input" id="nameinput" required>
                     <div class="line-box"> <div class="line"></div></div> 
             </label> </div>
         </div>
-        <label></label> 
 
-        <!--그룹소개-->
+        <!--동물나이-->
         <div class="form-group row">
             <label class="col-lg-2 col-form-label form-control-label text-muted"><h2>그룹소개</h2></label>
                 <div class="col-lg-10">
@@ -81,20 +96,59 @@
                     <div class="line-box"> <div class="line"></div></div> 
             </label> </div>
         </div>
-        <label></label> 
 
-         <!--공개여부-->
-         <div class="form-group row">
-            <label class="col-lg-2 col-form-label form-control-label text-muted"><h2>공개여부</h2></label>
+         <!--성별-->
+        <div class="form-group row">
+            <label class="col-lg-2 col-form-label form-control-label text-muted"><h2>성별</h2></label>
                 <div class="col-lg-10">
                 <label> 
-                    <input type="radio" name="chk_info" value="public"> 공개
-                    <input type="radio" name="chk_info" value="private"> 비공개
+                    <input type="radio" name="chk_info" value="male"> 수컷
+                    <input type="radio" name="chk_info" value="female"> 암컷
                     <div class="line-box"> <div class="line"></div></div> 
                 </label> 
             </div>
         </div>
-        <label></label> 
+
+        <!--품종-->
+        <div class="form-group row">
+            <label class="col-lg-2 col-form-label form-control-label text-muted"><h2>품종</h2></label>
+                <div class="col-lg-10">
+                    <label> <p class="label-txt"></p> 
+                    <input type="text" class="input" id="infoinput" required>
+                    <div class="line-box"> <div class="line"></div></div> 
+            </label> </div>
+        </div>
+
+        
+        <!--아종-->
+        <div class="form-group row">
+            <label class="col-lg-2 col-form-label form-control-label text-muted"><h2>아종</h2></label>
+                <div class="col-lg-10">
+                    <label> <p class="label-txt"></p> 
+                    <input type="text" class="input" id="infoinput" required>
+                    <div class="line-box"> <div class="line"></div></div> 
+            </label> </div>
+        </div>
+
+        <!--몸무게-->
+        <div class="form-group row">
+            <label class="col-lg-2 col-form-label form-control-label text-muted"><h2>몸무게</h2></label>
+                <div class="col-lg-10">
+                    <label> <p class="label-txt"></p> 
+                    <input type="number" class="input" id="infoinput" required>
+                    <div class="line-box"> <div class="line"></div></div> 
+            </label> </div>
+        </div>
+
+        <!--동물등록번호-->
+        <div class="form-group row">
+            <label class="col-lg-2 col-form-label form-control-label text-muted"><h2>동물등록번호</h2></label>
+                <div class="col-lg-10">
+                    <label> <p class="label-txt"></p> 
+                    <input type="number" class="input" id="infoinput" required>
+                    <div class="line-box"> <div class="line"></div></div> 
+            </label> </div>
+        </div>
 
         <!--이미지-->
         <div class="form-group row">
@@ -105,7 +159,6 @@
                 </label>
                 </div>
         </div>
-        <label></label> 
        
         <button type="button" class="btn btn-outline-primary btn-lg" id="addgroup_btn">만들기</button>   
     </div>
@@ -115,7 +168,7 @@
     <script src="../boot_js/bootstrap.min.js"></script>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="manage.js"></script>
+    <script src="group.js"></script>
 
     </body>
 </html>
