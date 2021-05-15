@@ -68,11 +68,20 @@ class SaveAnimalFragment : DaggerFragment() {
         }
 
         setOnCompleteEventObserver()
+
+        setOnUpdateEventObserver()
     }
 
     private fun setOnCompleteEventObserver() {
         viewModel.completeEvent.observe(viewLifecycleOwner) {
             navController.previousBackStackEntry?.savedStateHandle?.set("onCompleteEvent", true)
+            navController.navigateUp()
+        }
+    }
+
+    private fun setOnUpdateEventObserver() {
+        viewModel.updateEvent.observe(viewLifecycleOwner) {
+            navController.previousBackStackEntry?.savedStateHandle?.set("onUpdateEvent", true)
             navController.navigateUp()
         }
     }
