@@ -1,4 +1,4 @@
-package com.lacuc.pets.ui.manage.animal.add
+package com.lacuc.pets.ui.manage.animal.save
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
-class AddAnimalViewModel @Inject constructor(
+class SaveAnimalViewModel @Inject constructor(
     private val addAnimalsUseCase: AddAnimalUseCase,
     private val getAnimalUseCase: GetAnimalUseCase,
     private val errorEvent: SingleLiveEvent<String>

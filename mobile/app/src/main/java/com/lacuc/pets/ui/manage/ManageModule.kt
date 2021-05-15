@@ -1,10 +1,10 @@
 package com.lacuc.pets.ui.manage
 
-import com.lacuc.pets.ui.manage.animal.add.AddAnimalFragment
 import com.lacuc.pets.ui.manage.animal.choose.ChooseAnimalFragment
 import com.lacuc.pets.ui.manage.animal.detail.AnimalDetailFragment
 import com.lacuc.pets.ui.manage.animal.detail.medical.AddMedicalFragment
 import com.lacuc.pets.ui.manage.animal.detail.memo.AddMemoFragment
+import com.lacuc.pets.ui.manage.animal.save.SaveAnimalFragment
 import com.lacuc.pets.ui.manage.group.choose.ChooseGroupFragment
 import com.lacuc.pets.ui.manage.group.gallery.GalleryFragment
 import com.lacuc.pets.ui.manage.group.gallery.detail.ImageDetailFragment
@@ -28,7 +28,7 @@ abstract class ManageModule {
     abstract fun getChooseAnimalFragment(): ChooseAnimalFragment
 
     @ContributesAndroidInjector
-    abstract fun getAddAnimalFragment(): AddAnimalFragment
+    abstract fun getAddAnimalFragment(): SaveAnimalFragment
 
     @ContributesAndroidInjector
     abstract fun getAnimalDetailFragment(): AnimalDetailFragment
