@@ -42,7 +42,7 @@
     <div class="container-fluid">
         
         <div class="item">
-            <p><img src="../img/logo.PNG"></p>
+            <p><img src="../img/logo.PNG" id="userImage"></p>
             <p>
                 <text id="usernickname"> </text>
                 <text>님 반갑습니다.</text>
@@ -104,6 +104,17 @@
                     <button type="button" class="btn btn-outline-danger" onclick="isNicknameExist()";>닉네임중복확인</button>  
             </label> </div>
         </div>
+
+        <!--이미지수정-->
+         <div class="form-group row">
+            <label class="col-lg-2 col-form-label form-control-label text-muted"><h2>이미지수정</h2></label>
+                <div class="col-lg-10">
+                <label>
+                    <input type="file" name="file" id="uploadImage" accept="image/*"  onchange="addGroup(event);"/>
+                </label>
+                </div>
+        </div>
+        <label></label> 
 
         <button type="button" class="btn btn-outline-primary btn-lg" id="addgroup_btn">만들기</button>   
     </div>

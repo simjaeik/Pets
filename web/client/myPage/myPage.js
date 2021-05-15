@@ -113,3 +113,12 @@ function isNicknameExist(){
         console.log(error.response)
     });
 };
+function addGroup(event){
+
+    const image = document.getElementById("userImage");
+    const reader = new FileReader(); 
+    reader.onload = function(event){
+        image.setAttribute("src",event.target.result);
+    }
+    reader.readAsDataURL(event.target.files[0]);
+}

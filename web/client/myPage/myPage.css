@@ -115,7 +115,7 @@ li a {
 }
 #my_modal {
     display: none;
-    left: 0; top: 0; width: 60%; height: 45%;
+    left: 0; top: 0; width: 60%; height: 60%;
     padding: 20px 60px;
     background-color: #fefefe;
     border: 1px solid #888;
