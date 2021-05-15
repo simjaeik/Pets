@@ -6,7 +6,6 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
-import java.util.regex.Pattern
 import javax.inject.Inject
 
 class UpdateGroupUseCase @Inject constructor(private val repository: GroupRepository) {
@@ -24,7 +23,7 @@ class UpdateGroupUseCase @Inject constructor(private val repository: GroupReposi
             "latitude" to "0",
             "longitude" to "0"
         )
-        return if (Pattern.matches("^(http)", imageUri)) {
+        return if (imageUri.startsWith("http")) {
             val imagePart = MultipartBody.Part.createFormData("image", imageUri)
             repository.updateGroup(gid, partMap, imagePart)
         } else {
