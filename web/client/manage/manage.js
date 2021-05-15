@@ -1,4 +1,17 @@
 const URL = "http://ec2-54-180-91-27.ap-northeast-2.compute.amazonaws.com:3000/api";
+const jwtToken = sessionStorage.getItem("jwt");
+axios.get(`${URL}/group`,
+{
+    headers : {
+        'authorization' : jwtToken
+    }
+})
+.then(response => {
+    console.log(response)
+})
+.catch(error => {
+    console.log(error.response)
+}); 
 function modal() {
 
     const zIndex = 9999;   
