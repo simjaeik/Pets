@@ -86,7 +86,7 @@ class SaveGroupViewModel @Inject constructor(
     }
 
     private suspend fun updateGroup(): Result<Void> = updateGroupUseCase(
-        Group(gid, name.safeValue, info.safeValue, image.safeValue, isShare.safeValue)
+        gid, name.safeValue, info.safeValue, image.safeValue, isShare.safeValue
     )
 
     private suspend fun addNewGroup(): Result<Void> = addGroupUseCase(
