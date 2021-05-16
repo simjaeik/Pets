@@ -7,7 +7,8 @@ module.exports = async (req, res, next) => {
   const { authorization } = req.headers;
   const { data } = verifyJWT(authorization);
   const { UID } = data;
-  const { id } = req.params;
+
+  const id = req.body.GID ? req.body.GID : req.params.id;
 
   if (!data) {
     return res.status(401).json("로그인 해주시기 바랍니다");
