@@ -26,6 +26,7 @@ class UserProfileViewModel @Inject constructor(
 
     val name = MutableLiveData("")
     val email = MutableLiveData("")
+    val nickName = MutableLiveData("")
 
     val completeBtnEnable = MutableLiveData(false)
 
@@ -33,7 +34,7 @@ class UserProfileViewModel @Inject constructor(
 
     fun updateProfile() {
         viewModelScope.launch {
-            val result = updateProfileUseCase(name.safeValue, email.safeValue)
+            val result = updateProfileUseCase(name.safeValue, email.safeValue, nickName.safeValue)
 
             when (result) {
                 is Result.Success -> completeEvent.value = Unit

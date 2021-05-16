@@ -5,7 +5,7 @@ import com.lacuc.pets.data.group.GroupRepository
 import javax.inject.Inject
 
 class UpdateProfileUseCase @Inject constructor(private val repository: GroupRepository) {
-    suspend operator fun invoke(name: String, email: String): Result<Void> {
-        return repository.updateProfile(name, email)
+    suspend operator fun invoke(name: String, email: String, nickName: String): Result<Void> {
+        return repository.updateProfile(name, email, nickName)
     }
 }
