@@ -14,9 +14,9 @@ function login(){
     })
     .catch(error => {
         console.log(error.response)
-        if (error.response.data.message === "올바르지 않은 비밀번호 입니다."){
+        if (error.response.data.reason === "올바르지 않은 비밀번호 입니다."){
             alert("올바르지 않은 비밀번호 입니다.");
-        } else if (error.response.data.message === "존재하지 않는 사용자 입니다."){
+        } else if (error.response.data.reason === "존재하지 않는 사용자 입니다."){
             alert("존재하지 않는 사용자 입니다.");
             initinput();
         }

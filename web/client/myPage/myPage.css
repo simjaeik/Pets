@@ -22,6 +22,9 @@ h2{
     font-size: 15px; 
     color: #216182; 
 }
+label{
+    margin: 0;
+}
 text, #groupName{
     color:#0660c0;
 }
@@ -115,7 +118,7 @@ li a {
 }
 #my_modal {
     display: none;
-    left: 0; top: 0; width: 60%; height: 60%;
+    left: 0; top: 0; width: 60%; height: 50%;
     padding: 20px 60px;
     background-color: #fefefe;
     border: 1px solid #888;
@@ -146,4 +149,31 @@ li a {
 #uploadImage{
     width:100%; 
     height:100%;
+}
+#margin{
+    margin:30px;
+}
+#equal{
+    display:none;
+    color:blue;
+}
+
+#no_equal{
+    display:none;
+    color:red;
+}
+#badpw, #normalpw, #goodpw{
+    display:none;
+}
+#badpwoption{
+    display:none;
+    color:red;
+}
+#normalpwoption{
+    display:none;
+    color:orange;
+}
+#goodpwoption, #goodnickname, #goodemail{
+    display:none;
+    color:blue;
 }

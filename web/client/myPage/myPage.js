@@ -1,36 +1,36 @@
 const URL = "http://ec2-54-180-91-27.ap-northeast-2.compute.amazonaws.com:3000/api";
 const jwtToken = sessionStorage.getItem("jwt");
 const exist=0;
-// axios.get(`${URL}/user`,
-// { 
-//     headers : {
-//         'authorization' : jwtToken
-//     }
-// })
-// .then(response => {
-//     console.log(response)
- 
-//     // {
-//     //     name : 이름,
-//     //     email : 이메일,
-//     //     nickName : 유저 닉네임
-//     // }
-// })
-// .catch(error => {
-//     console.log(error.response)
-// }); 
+const updatename = document.getElementById("updatename");
+const updateemail = document.getElementById("updateemail");
+const updatenickname = document.getElementById("updatenickname");
+const checkpw = document.getElementById("updatepw");
+const checkpwre = document.getElementById("updatepwre");
+axios.get(`${URL}/user`,
+{ 
+    headers : {
+        'authorization' : jwtToken
+    }
+})
+.then(response => {
+    console.log(response)
 
-const userNickname = "micky";
-const username = "mouse"; const useremail="micky@naver.com";
+    const userNickname = response.data.nickname;
+    const username = response.data.name;
+    const useremail = response.data.email;
 
-const nickName = document.getElementById("usernickname");
-nickName.innerText = userNickname;
+    const nickName = document.getElementById("usernickname");
+    nickName.innerText = userNickname;
 
-const Name = document.getElementById("username");
-Name.innerText = username;
+    const Name = document.getElementById("username");
+    Name.innerText = username;
 
-const Email = document.getElementById("useremail");
-Email.innerText = useremail;
+    const Email = document.getElementById("useremail");
+    Email.innerText = useremail;
+})
+.catch(error => {
+    console.log(error.response)
+}); 
 
 function modal() {
 
@@ -60,13 +60,47 @@ function modal() {
 
     modal.querySelector('#addgroup_btn').addEventListener('click', function() {
 
-        if(Name.innerText === "") { alert("이름을 수정해주세요. "); }
-        else if(Email.innerText === "") { alert("이메일을 수정해주세요. "); }
-        else if(nickName.innerText === "") { alert("닉네임을 수정해주세요. ");}
+        if(updatename.value === "") { alert("이름을 수정해주세요. "); }
+        else if(updateemail.value === "") { alert("이메일을 수정해주세요. "); }
+        else if(updatenickname.value === "") { alert("닉네임을 수정해주세요. ");}
         else if(exist === 1) { alert("중복된 닉네임입니다. 다시 입력해주세요.");}
         else{
             bg.remove();
             modal.style.display = 'none';
+            //비밀번호 수정
+            const existpw = document.getElementById("existpw");
+            axios.patch(`${URL}/user/PW`,{ 
+               password : existpw.value,
+               afterPassword : checkpw.value,
+               afterRePassword : checkpwre.value
+            },{
+                headers : {
+                    'authorization' : jwtToken
+                }
+            })
+            .then(response => {
+                console.log(response)
+            })
+            .catch(error => {
+                console.log(error.response)
+            }); 
+            //정보수정
+            axios.patch(`${URL}/user`,{ 
+                name: updatename.value,
+                email: updateemail.value,
+                nickName : updatenickname.value
+            },{
+                headers : {
+                    'authorization' : jwtToken
+                }
+            })
+            .then(response => {
+                console.log(response)
+                alert("성공적으로 수정되었습니다.");
+            })
+            .catch(error => {
+                console.log(error.response)
+            }); 
         }
     });
 
@@ -91,9 +125,17 @@ Element.prototype.setStyle = function(styles) {
     for (var k in styles) this.style[k] = styles[k];
     return this;
 };
+function initinput(){
+
+    const input = document.getElementsByClassName('input');
+    
+    for(let i=0;i<input.length;i++){
+        input[i].value= "";
+    }
+}
 function isNicknameExist(){
 
-    const checknickname = document.getElementById("nicknameinput").value;
+    const checknickname = document.getElementById("updatenickname").value;
     const goodnickname = document.getElementById("goodnickname");
 
     axios.get(`${URL}/user/nickname/${checknickname}`, {
@@ -113,6 +155,52 @@ function isNicknameExist(){
         console.log(error.response)
     });
 };
+function goodpw() {
+
+    const pw = document.getElementById('updatepw');
+    const SC = ["!","@","#","$","%","^","&","*","(",")","_","-","+","=","/","~","`"];
+    let check_SC=0;
+
+    const badpw = document.getElementById("badpw");
+    const badpwoption = document.getElementById("badpwoption");
+
+    const normalpw = document.getElementById("normalpw");
+    const normalpwoption = document.getElementById("normalpwoption");
+
+    const goodpw = document.getElementById("goodpw");
+    const goodpwoption = document.getElementById("goodpwoption");
+
+    //특수문자 체크
+    for(var i=0;i<SC.length;i++){
+        if(pw.value.indexOf(SC[i]) !== -1){
+            check_SC=1;
+        }
+    }
+
+    if (check_SC === 0 && pw.value.length < 5){
+       badpw.style.display = "block", badpwoption.style.display = "block";
+    }
+    if(check_SC === 0 && pw.value.length > 5){
+        normalpw.style.display = "block"; normalpwoption.style.display = "block";
+        badpw.style.display="none"; badpwoption.style.display = "none";
+    }
+    if (check_SC === 1 && pw.value.length > 8){
+        normalpw.style.display = "none"; normalpwoption.style.display = "none";
+        badpw.style.display="none"; badpwoption.style.display = "none";
+        goodpw.style.display = "block"; goodpwoption.style.display = "block";
+    }
+
+}
+ function eqaul_pw(){
+   
+    const success = document.getElementById("equal");
+    const danger = document.getElementById("no_equal");
+  
+
+    if ( checkpwre.value !== "" && checkpw.value === checkpwre.value ) { success.style.display = "block"; danger.style.display = "none"; }
+    else { danger.style.display = "block"; success.style.display = "none"; }
+
+}
 function addGroup(event){
 
     const image = document.getElementById("userImage");

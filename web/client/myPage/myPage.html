@@ -63,7 +63,7 @@
     </div>
 
     <!--버튼-->
-    <button id="popup_open_btn" class="btn btn-outline-danger" onclick="modal();">정보 수정하기</button>
+    <button id="popup_open_btn" class="btn btn-outline-danger" onclick="modal(); initinput();">정보 수정하기</button>
 
     <!--모달창-->
     <div id="my_modal">
@@ -72,12 +72,15 @@
             <button class="modal_btn">닫기</button>
         </div>
 
+        <!--여백-->
+        <div id="margin"></div>
+
         <!--이름 수정-->
         <div class="form-group row">
             <label class="col-lg-2 col-form-label form-control-label text-muted"><h2>이름 수정</h2></label>
                 <div class="col-lg-10">
                     <label> <p class="label-txt"></p> 
-                    <input type="text" class="input" id="nameinput" required>
+                    <input type="text" class="input" id="updatename" required>
                     <div class="line-box"> <div class="line"></div></div> 
             </label> </div>
         </div>
@@ -88,7 +91,7 @@
             <label class="col-lg-2 col-form-label form-control-label text-muted"><h2>이메일 수정</h2></label>
                 <div class="col-lg-10">
                     <label> <p class="label-txt"></p> 
-                    <input type="text" class="input" id="infoinput" required>
+                    <input type="text" class="input" id="updateemail" required>
                     <div class="line-box"> <div class="line"></div></div> 
             </label> </div>
         </div>
@@ -98,10 +101,47 @@
             <label class="col-lg-2 col-form-label form-control-label text-muted"><h2>닉네임 수정</h2></label>
                 <div class="col-lg-10">
                     <label> <p class="label-txt"></p> 
-                    <input type="text" class="input" id="nicknameinput" required>
+                    <input type="text" class="input" id="updatenickname" required>
                     <div class="line-box"> <div class="line"></div></div> 
                     <div id="goodnickname">사용가능한 닉네임입니다.</div>
                     <button type="button" class="btn btn-outline-danger" onclick="isNicknameExist()";>닉네임중복확인</button>  
+            </label> </div>
+        </div>
+
+        <!--기존 비밀번호-->
+         <div class="form-group row">
+            <label class="col-lg-2 col-form-label form-control-label text-muted"><h2>기존 비밀번호</h2></label>
+                <div class="col-lg-10">
+                    <label> <p class="label-txt"></p> 
+                    <input type="password" class="input" id="existpw" placeholder="비밀번호를 입력하세요" required>
+                    <div class="line-box"> <div class="line"></div></div> 
+                </label> </div>
+            </div>
+    
+        <!--비밀번호 수정-->
+        <div class="form-group row">
+        <label class="col-lg-2 col-form-label form-control-label text-muted"><h2>비밀번호 수정</h2></label>
+            <div class="col-lg-10">
+                <label> <p class="label-txt"></p> 
+                <input type="password" class="input" id="updatepw" placeholder="비밀번호를 입력하세요" onfocus="goodpw();" required>
+                <div class="line-box"> <div class="line"></div></div> 
+                  <!--비밀번호 조건-->
+                <div id="badpw">비밀번호 강도:</div><div id="badpwoption">낮음</div>
+                <div id="normalpw">비밀번호 강도:</div><div id="normalpwoption">보통</div>
+                <div id="goodpw">비밀번호 강도:</div><div id="goodpwoption">높음</div>
+            </label> </div>
+        </div>
+
+        <!--비밀번호 수정 확인-->
+        <div class="form-group row">
+        <label class="col-lg-2 col-form-label form-control-label text-muted"><h2>비밀번호 수정 확인</h2></label>
+            <div class="col-lg-10">
+                <label> <p class="label-txt"></p> 
+                <input type="password" class="input" id="updatepwre" placeholder="비밀번호를 재입력하세요" onfocus="goodpw(); equal_pw();"required>
+                <div class="line-box"> <div class="line"></div></div> 
+                 <!--비밀번호 일치여부를 알려줌-->
+                <div id="equal">비밀번호가 일치합니다.</div>
+                <div id="no_equal">비밀번호가 일치하지 않습니다.</div>
             </label> </div>
         </div>
 
@@ -114,7 +154,6 @@
                 </label>
                 </div>
         </div>
-        <label></label> 
 
         <button type="button" class="btn btn-outline-primary btn-lg" id="addgroup_btn">만들기</button>   
     </div>
