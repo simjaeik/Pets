@@ -11,6 +11,8 @@ router.get("/", controller.getMyGroups);
 
 router.get("/:id", controller.getGroup);
 
+router.get("/members/:id", controller.getGroupMembers);
+
 router.post("/", controller.setGroup);
 
 router.post("/member/:id", groupAuth, controller.addGroupMember);
