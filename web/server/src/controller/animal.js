@@ -23,4 +23,13 @@ module.exports = {
     return res.status(status).json(result);
   },
 
+  updateAnimalDetail: async (req, res) => {
+    const { status, result } = await control(service.updateAnimalDetail, {
+      AID: req.params,
+      body: req.body,
+    });
+
+    return res.status(status).json(result);
+  },
+
 };
