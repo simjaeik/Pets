@@ -1,5 +1,6 @@
 const URL = "http://ec2-54-180-91-27.ap-northeast-2.compute.amazonaws.com:3000/api";
 const jwtToken = sessionStorage.getItem("jwt");
+const gid = ""
 const outputImage =  new Array();
 const outputgInfo = new Array();
 const outputgName = new Array(); 
@@ -12,9 +13,9 @@ axios.get(`${URL}/group`,
 .then(response => {
     const output = JSON.parse(response.request.response);
     console.log(output);
-    const outputImage =  new Array(5);
-    const outputgInfo = new Array(5);
-    const outputgName = new Array(5); 
+
+    gid = output[0]._Group.GID;
+    console.log(gid);
     for (let i=0;i<output.length;i++){
 
         outputImage[i] = output[i]._Group.image;
@@ -78,17 +79,8 @@ function modal() {
 
     modal.querySelector('#addgroup_btn').addEventListener('click', function() {
 
-        const name = document.querySelector("#nameinput").value;
-        const info = document.querySelector("#infoinput").value;
-        const postoption = getCategory();
-
-        if(name === "") { alert("그룹 이름을 입력해주세요. "); }
-        else if(info === "") { alert("그룹 소개를 입력해주세요. "); }
-        else if(postoption === -1) { alert("게시글 종류를 선택해주세요. ");}
-        else{
-            bg.remove();
-            modal.style.display = 'none';
-        }
+        bg.remove();
+        modal.style.display = 'none';
     });
 
     modal.setStyle({
@@ -199,3 +191,26 @@ function setGroup(){
         }); 
     });
 }
+// function toggleShare(){
+      
+//     axios.patch(`${URL}/group/share/${}`,
+//     { 
+        
+//         name : gname,
+//         info : ginfo,
+//         image : "aabbccdd",
+//         share : 1,
+//         latitude : lat,
+//         longitude : lng, 
+//         },{
+//         headers : {
+//             'authorization' : jwtToken
+//         }
+//     })
+//     .then(response => {
+//         console.log(response)
+//     })
+//     .catch(error => {
+//         console.log(error.response)
+//     }); 
+// }

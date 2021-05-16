@@ -9,6 +9,9 @@ img {
     border-radius: 7px;
     width:400px; height:500px;
 }
+img:hover{
+    border:5px solid gold;
+}
 p{
     text-align:center;
 }

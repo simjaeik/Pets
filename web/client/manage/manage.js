@@ -1,8 +1,7 @@
 const URL = "http://ec2-54-180-91-27.ap-northeast-2.compute.amazonaws.com:3000/api";
 const jwtToken = sessionStorage.getItem("jwt");
-const outputImage =  new Array();
-const outputgInfo = new Array();
-const outputgName = new Array(); 
+const gid = new Array();
+const outputImage =  new Array(), outputgInfo = new Array(), outputgName = new Array(); 
 axios.get(`${URL}/group`,
 {
     headers : {
@@ -12,33 +11,29 @@ axios.get(`${URL}/group`,
 .then(response => {
     const output = JSON.parse(response.request.response);
     console.log(output);
-    const outputImage =  new Array(5);
-    const outputgInfo = new Array(5);
-    const outputgName = new Array(5); 
     for (let i=0;i<output.length;i++){
 
+        gid[i] = output[i].GID;
         outputImage[i] = output[i]._Group.image;
         outputgInfo[i] = output[i]._Group.info;
         outputgName[i] = output[i]._Group.name;
 
     }
-   for(let i=0;i<output.length;i++){
+    for(let i=0;i<output.length;i++){
 
         const g = document.createElement('text');
-        g.classList.add('managegroup');
         g.innerText = outputgName[i];
 
         const ginfo = document.createElement('div');
-        ginfo.classList.add('managegroup');
         ginfo.innerText = outputgInfo[i];
 
         const img = document.createElement('img');
+        img.classList.add(gid[i]);
         const p = document.createElement('p');
         const addEL = document.createElement('div');
 
         addEL.classList.add('item');
  
-        //img.setAttribute("src", event.target.result); 
         addEL.appendChild(img); 
         addEL.appendChild(p);
         addEL.appendChild(ginfo);
@@ -46,10 +41,30 @@ axios.get(`${URL}/group`,
     
         document.getElementById('groups').appendChild(addEL);
     }
+    getGroup(output.length);
 })
 .catch(error => {
     console.log(error.response)
 }); 
+function getGroup(len){
+  
+    for(let i=0;i<len;i++){
+        const mygroup = document.getElementsByTagName("img")[i];
+        mygroup.onclick = function(){
+                axios.get(`${URL}/group/${mygroup.className}`, {
+                    headers : {
+                        'authorization' : jwtToken
+                    }
+                    })
+                    .then(response => {
+                        console.log(response)
+                    })
+                    .catch(error => {
+                        console.log(error.response)
+                });
+        }  
+    }
+}
 function modal() {
 
     const zIndex = 9999;   

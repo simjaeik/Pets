@@ -51,6 +51,8 @@
                 </ul>
             </div>
             <div>
+                <i class="icon-share" onclick="toggleShare()"></i> 
+                <button id="popup_open_btn" class="btn btn-outline-danger">멤버 관리</button> 
                 <button id="popup_open_btn" class="btn btn-outline-danger" onclick="modal(); initinput();">동물 추가</button>
             </div>
         </div>
@@ -58,14 +60,7 @@
 
     <!--그룹-->
     <div class="container-fluid">
-        
         <div class="cover managegroup" id="groups">
-            <!--본인이 속한 그룹-->
-            <div class="item">
-                <p><img src="../img/cat.jpg" onclick="location.href='../group/group.html'"></p>
-                <div>우리가족 info</div>
-                <p><text>우리가족</text></p>     
-            </div>
         </div>
     </div>
     
@@ -160,9 +155,30 @@
                 </div>
         </div>
        
-        <button type="button" class="btn btn-outline-primary btn-lg" id="addgroup_btn">만들기</button>   
+        <button type="button" class="btn btn-outline-primary btn-lg" id="addgroup_btn" >만들기</button>   
     </div>
   
+
+    <!--모달창-->
+    <div id="animal">
+        <div class="cover">
+            <h1 class="modal_title">동물 추가</h1>
+            <button class="modal_btn">닫기</button>
+        </div>
+        <!--여백-->
+        <div id="margin"></div>
+        <!--동물이름-->
+        <div class="form-group row">
+            <label class="col-lg-2 col-form-label form-control-label text-muted"><h2>동물이름</h2></label>
+                <div class="col-lg-10">
+                    <label> <p class="label-txt"></p> 
+                    <input type="text" class="input" id="nameinput" required>
+                    <div class="line-box"> <div class="line"></div></div> 
+            </label> </div>
+        </div>
+    </div>
+
+
     <!--javascript-->
     <script src="https://code.jquery.com/jquery.js"></script>
     <script src="../boot_js/bootstrap.min.js"></script>
