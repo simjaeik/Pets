@@ -6,6 +6,14 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       primaryKey: true,
     },
+    GID: {
+      type: DataTypes.UUID,
+      references: {
+        model: "_Group",
+        key: "GID",
+      },
+      allowNull: false,
+    },
     name: { type: DataTypes.STRING(30), allowNull: false },
     age: { type: DataTypes.INTEGER, allowNull: false },
     sex: { type: DataTypes.STRING(10), allowNull: false },
