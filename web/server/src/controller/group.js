@@ -14,6 +14,15 @@ module.exports = {
     return res.status(status).json(result);
   },
 
+  getGroupMembers: async (req, res) => {
+    const { status, result } = await control(
+      service.getGroupMembers,
+      req.params
+    );
+
+    return res.status(status).json(result);
+  },
+
   setGroup: async (req, res) => {
     const { status, result } = await control(service.setGroup, {
       data: req.data,
@@ -49,6 +58,19 @@ module.exports = {
 
     return res.status(status).json(result);
   },
+
+  deleteGroup: async (req, res) => {
+    const { status, result } = await control(service.deleteGroup, req.gid);
+
+    return res.status(status).json(result);
+  },
+
+  deleteGroupMember: async (req, res) => {
+    const { status, result } = await control(service.deleteGroupMember, {
+      GID: req.gid,
+      UID: req.uid,
+    });
+
     return res.status(status).json(result);
   },
 };

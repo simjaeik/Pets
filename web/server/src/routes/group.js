@@ -11,6 +11,8 @@ router.get("/", controller.getMyGroups);
 
 router.get("/:id", controller.getGroup);
 
+router.get("/members/:id", controller.getGroupMembers);
+
 router.post("/", controller.setGroup);
 
 router.post("/member/:id", groupAuth, controller.addGroupMember);
@@ -18,5 +20,9 @@ router.post("/member/:id", groupAuth, controller.addGroupMember);
 router.patch("/:id", groupAuth, controller.updateGroup);
 
 router.patch("/share/:id", groupAuth, controller.toggleShare);
+
+router.delete("/:id", groupAuth, controller.deleteGroup);
+
+router.delete("/member/:id", groupAuth, controller.deleteGroupMember);
 
 module.exports = router;

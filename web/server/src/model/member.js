@@ -15,8 +15,11 @@ module.exports = (sequelize, DataTypes) => {
   const DB = { Member };
 
   DB.associate = (db) => {
-    db.Member.hasMany(db.MemberGroup, { foreignKey: "UID" });
-    db.Member.hasMany(db.Comment, { foreignKefy: "UID" });
+    db.Member.hasMany(db.MemberGroup, {
+      foreignKey: "UID",
+      onDelete: "CASCADE",
+    });
+    db.Member.hasMany(db.Comment, { foreignKefy: "UID", onDelete: "CASCADE" });
   };
   return DB;
 };

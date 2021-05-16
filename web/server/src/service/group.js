@@ -1,4 +1,11 @@
-const { Group, MemberGroup, sequelize, Member } = require("../model/index");
+const {
+  Group,
+  MemberGroup,
+  sequelize,
+  Sequelize,
+  Member,
+} = require("../model/index");
+const { Op } = Sequelize;
 
 const checkInvalidData = (data) => {
   const { name, info, image, share, latitude, longitude } = data;
@@ -50,6 +57,30 @@ module.exports = {
     }
   },
 
+  getGroupMembers: async ({ id }) => {
+    if (!id) {
+      return { error: "모든 정보를 입력해주세요" };
+    }
+
+    try {
+      const members = await MemberGroup.findAll({
+        include: [
+          {
+            model: Member,
+            attributes: ["name", "email", "nickName"],
+          },
+        ],
+        attributes: ["UID", "authority"],
+        where: { GID: id },
+        raw: true,
+      });
+      return members;
+    } catch (error) {
+      console.log(error);
+      return { error };
+    }
+  },
+
   setGroup: async ({ data, body }) => {
     if (!data) {
       return { error: "invalid Token" };
@@ -58,7 +89,6 @@ module.exports = {
       return { error: "모든 데이터를 입력해주세요." };
     }
     const { UID } = data;
-    const { name, info, image, share, latitude, longitude } = body;
 
     const t = await sequelize.transaction();
 
@@ -132,4 +162,32 @@ module.exports = {
     }
   },
 
+  deleteGroup: async (GID) => {
+    if (!GID) {
+      return { error: "삭제하고자 하는 그룹의 id가 존재하지 않습니다." };
+    }
+
+    try {
+      const result = await Group.destroy({ where: { GID } });
+      return result;
+    } catch (error) {
+      console.log(error);
+      return { error };
+    }
+  },
+
+  deleteGroupMember: async ({ GID, UID }) => {
+    console.log(GID, UID);
+    if (!GID || !UID) {
+      return { error: "삭제하고자 하는 그룹의 id가 존재하지 않습니다." };
+    }
+
+    try {
+      await MemberGroup.destroy({ where: { [Op.and]: [{ UID }, { GID }] } });
+      return { result: true };
+    } catch (error) {
+      console.log(error);
+      return { result: false, error };
+    }
+  },
 };
