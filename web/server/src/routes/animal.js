@@ -13,5 +13,7 @@ router.get("/:id", controller.getAnimal);
 
 router.post("/:id", group_auth, controller.addAnimal);
 
+router.patch("/:id", group_auth, controller.updateAnimalDetail);
+
 
 module.exports = router;
