@@ -23,4 +23,9 @@ module.exports = {
     return res.status(status).json(result);
   },
 
+  deleteItem: async (req, res) => {
+    const { status, result } = await control(service.deleteItem, req.params);
+
+    return res.status(status).json(result);
+  },
 };
