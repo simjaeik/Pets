@@ -67,15 +67,12 @@ class DefaultGroupRepository @Inject constructor(
     override suspend fun getItems(gid: String): Result<List<ItemHistory>> =
         groupRemoteDataSource.getItems(gid)
 
-    override suspend fun setItem(itemHistory: ItemHistory): Result<Void> {
-        TODO("Not yet implemented")
-    }
+    override suspend fun setItem(itemHistory: ItemHistory): Result<Void> =
+        groupRemoteDataSource.setItem(itemHistory)
 
-    override suspend fun updateItem(iid: String, itemHistory: ItemHistory): Result<Void> {
-        TODO("Not yet implemented")
-    }
+    override suspend fun updateItem(iid: String, itemHistory: ItemHistory): Result<Void> =
+        groupRemoteDataSource.updateItem(iid, itemHistory)
 
-    override suspend fun deleteItem(iid: String): Result<Void> {
-        TODO("Not yet implemented")
-    }
+    override suspend fun deleteItem(iid: String): Result<Void> =
+        groupRemoteDataSource.deleteItem(iid)
 }

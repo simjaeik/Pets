@@ -156,16 +156,21 @@ class FakeGroupRemoteDataSource @Inject constructor() : GroupDataSource {
             Result.Success(itemData.filter { it.gid == gid })
         }
 
-    override suspend fun setItem(itemHistory: ItemHistory): Result<Void> {
-        TODO("Not yet implemented")
-    }
+    override suspend fun setItem(itemHistory: ItemHistory): Result<Void> =
+        withContext(Dispatchers.IO) {
+            itemData.add(itemHistory)
+            Result.Success(null)
+        }
 
-    override suspend fun updateItem(iid: String, itemHistory: ItemHistory): Result<Void> {
-        TODO("Not yet implemented")
-    }
+    override suspend fun updateItem(iid: String, itemHistory: ItemHistory): Result<Void> =
+        withContext(Dispatchers.IO) {
+            itemData = (itemData.filter { it.hid != iid } + itemHistory) as MutableList<ItemHistory>
+            Result.Success(null)
+        }
 
-    override suspend fun deleteItem(iid: String): Result<Void> {
-        TODO("Not yet implemented")
+    override suspend fun deleteItem(iid: String): Result<Void> = withContext(Dispatchers.IO) {
+        itemData = itemData.filter { it.hid != iid } as MutableList<ItemHistory>
+        Result.Success(null)
     }
 
     private fun initGroup() {
