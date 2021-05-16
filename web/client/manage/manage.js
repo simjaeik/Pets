@@ -58,7 +58,7 @@ function getGroup(len){
                     })
                     .then(response => {
                         console.log(response)
-                        sessionStorage.setItem("gid",response.data.token);
+                        sessionStorage.setItem("gid",mygroup.className);
                         location.href="../group/group.html";
                     })
                     .catch(error => {
@@ -158,8 +158,7 @@ function addGroup(event){
 
     const reader = new FileReader(); 
     reader.onload = function(event) { 
-        //result : 이미지를 문자열로 
-        //const result = reader.result;
+      
         img.setAttribute("src", event.target.result); 
         addEL.appendChild(img); 
         addEL.appendChild(p);
@@ -192,7 +191,6 @@ function setGroup(){
         const postoption = getCategory();
         const lat= position.coords.latitude;
         const lng= position.coords.longitude;
-        const jwtToken = sessionStorage.getItem("jwt");
         
         axios.post(`${URL}/group`,
         { 
@@ -200,7 +198,7 @@ function setGroup(){
             name : gname,
             info : ginfo,
             image : "aabbccdd",
-            share : 1,
+            share : postoption,
             latitude : lat,
             longitude : lng, 
             },{
@@ -210,6 +208,7 @@ function setGroup(){
         })
         .then(response => {
             console.log(response)
+            sessionStorage.setItem("shareoption",postoption);
         })
         .catch(error => {
             console.log(error.response)

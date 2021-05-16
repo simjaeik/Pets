@@ -9,10 +9,27 @@ axios.get(`${URL}/group/${GID}`, {
     })
     .then(response => {
         console.log(response)
+        toggleShare();
     })
     .catch(error => {
         console.log(error.response)
 });
+function toggleShare(){
+      
+    const share = sessionStorage.getItem("shareoption");
+    axios.patch(`${URL}/group/share/${GID}`,{ 
+        share : share },{
+        headers : {
+            'authorization' : jwtToken
+        }
+    })
+    .then(response => {
+        console.log(response)
+    })
+    .catch(error => {
+        console.log(error.response)
+    }); 
+}
 // const outputImage =  new Array();
 // const outputgInfo = new Array();
 // const outputgName = new Array(); 
@@ -204,27 +221,4 @@ axios.get(`${URL}/group/${GID}`, {
 //             console.log(error.response)
 //         }); 
 //     });
-// }
-// function toggleShare(){
-      
-//     axios.patch(`${URL}/group/share/${}`,
-//     { 
-        
-//         name : gname,
-//         info : ginfo,
-//         image : "aabbccdd",
-//         share : 1,
-//         latitude : lat,
-//         longitude : lng, 
-//         },{
-//         headers : {
-//             'authorization' : jwtToken
-//         }
-//     })
-//     .then(response => {
-//         console.log(response)
-//     })
-//     .catch(error => {
-//         console.log(error.response)
-//     }); 
 // }
