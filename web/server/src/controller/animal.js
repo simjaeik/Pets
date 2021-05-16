@@ -8,4 +8,10 @@ module.exports = {
     return res.status(status).json(result);
   },
 
+  getAnimal: async (req, res) => {
+    const { status, result } = await control(service.getAnimal, req.params);
+
+    return res.status(status).json(result);
+  },
+
 };
