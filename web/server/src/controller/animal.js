@@ -14,4 +14,13 @@ module.exports = {
     return res.status(status).json(result);
   },
 
+  addAnimal: async (req, res) => {
+    const { status, result } = await control(service.addAnimal, {
+      GID: req.gid,
+      body: req.body,
+    });
+
+    return res.status(status).json(result);
+  },
+
 };
