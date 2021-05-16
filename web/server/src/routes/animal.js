@@ -15,5 +15,6 @@ router.post("/:id", group_auth, controller.addAnimal);
 
 router.patch("/:id", group_auth, controller.updateAnimalDetail);
 
+router.delete("/:id", group_auth, controller.deleteAnimal);
 
 module.exports = router;
