@@ -1,4 +1,4 @@
-package com.lacuc.pets.ui.manage.animal.add
+package com.lacuc.pets.ui.manage.animal.save
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -7,14 +7,16 @@ import com.lacuc.pets.data.Result
 import com.lacuc.pets.data.animal.entity.Animal
 import com.lacuc.pets.domain.animal.animal.AddAnimalUseCase
 import com.lacuc.pets.domain.animal.animal.GetAnimalUseCase
+import com.lacuc.pets.domain.animal.animal.UpdateAnimalUseCase
 import com.lacuc.pets.util.SingleLiveEvent
 import com.lacuc.pets.util.safeValue
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
-class AddAnimalViewModel @Inject constructor(
-    private val addAnimalsUseCase: AddAnimalUseCase,
+class SaveAnimalViewModel @Inject constructor(
+    private val addAnimalUseCase: AddAnimalUseCase,
+    private val updateAnimalUseCase: UpdateAnimalUseCase,
     private val getAnimalUseCase: GetAnimalUseCase,
     private val errorEvent: SingleLiveEvent<String>
 ) : ViewModel() {
@@ -30,7 +32,10 @@ class AddAnimalViewModel @Inject constructor(
     val weight = MutableLiveData<String>()
     val number = MutableLiveData("")
 
+    var isUpdate = false
+
     val completeEvent = SingleLiveEvent<Unit>()
+    val updateEvent = SingleLiveEvent<Unit>()
 
     fun setImage(dataString: String?) {
         image.value = dataString
@@ -39,10 +44,13 @@ class AddAnimalViewModel @Inject constructor(
     fun saveAnimal() {
         viewModelScope.launch {
             val animal = createAnimal()
-            val result = addAnimalsUseCase(animal)
+            val result = if (isUpdate)
+                updateAnimalUseCase(aid, animal)
+            else addAnimalUseCase(animal)
 
             when (result) {
-                is Result.Success -> completeEvent.value = Unit
+                is Result.Success ->
+                    if (isUpdate) updateEvent.value = Unit else completeEvent.value = Unit
                 is Result.Failure -> errorEvent.value =
                     "code: ${result.code} message: ${result.error}"
                 is Result.NetworkError -> errorEvent.value = "네트워크 문제가 발생했습니다."
@@ -88,6 +96,7 @@ class AddAnimalViewModel @Inject constructor(
         if (animal == null)
             return
 
+        isUpdate = true
         name.value = animal.name
         image.value = animal.image
         age.value = animal.age.toString()

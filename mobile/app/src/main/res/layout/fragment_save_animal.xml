@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.manage.animal.add.AddAnimalFragment">
+    tools:context=".ui.manage.animal.save.SaveAnimalFragment">
 
     <data>
 
@@ -10,7 +10,7 @@
 
         <variable
             name="vm"
-            type="com.lacuc.pets.ui.manage.animal.add.AddAnimalViewModel" />
+            type="com.lacuc.pets.ui.manage.animal.save.SaveAnimalViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,7 +18,7 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/toolbarLayout_addAnimal"
+            android:id="@+id/toolbarLayout_saveAnimal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -30,7 +30,7 @@
                 android:layout_height="?actionBarSize">
 
                 <com.google.android.material.appbar.MaterialToolbar
-                    android:id="@+id/toolbar_addAnimal"
+                    android:id="@+id/toolbar_saveAnimal"
                     style="@style/Widget.MaterialComponents.Toolbar.Surface"
                     android:layout_width="match_parent"
                     android:layout_height="?actionBarSize"
@@ -39,7 +39,7 @@
                     tools:title="추가" />
 
                 <Button
-                    android:id="@+id/btn_addAnimal_complete"
+                    android:id="@+id/btn_saveAnimal_complete"
                     style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/toolbarLayout_addAnimal">
+            app:layout_constraintTop_toBottomOf="@id/toolbarLayout_saveAnimal">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -84,7 +84,7 @@
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/textInput_addAnimal_animalName"
+                        android:id="@+id/textInput_saveAnimal_animalName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
@@ -105,7 +105,7 @@
                     android:layout_height="194dp">
 
                     <ImageButton
-                        android:id="@+id/btn_addAnimal_pickImage"
+                        android:id="@+id/btn_saveAnimal_pickImage"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:backgroundTint="#7feeeeee"
@@ -136,7 +136,7 @@
                     app:suffixText="세">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/textInput_addAnimal_animalAge"
+                        android:id="@+id/textInput_saveAnimal_animalAge"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="number"
@@ -158,7 +158,7 @@
                     android:layout_height="wrap_content">
 
                     <AutoCompleteTextView
-                        android:id="@+id/textInput_addAnimal_animalSex"
+                        android:id="@+id/textInput_saveAnimal_animalSex"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="none"
@@ -180,7 +180,7 @@
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/textInput_addAnimal_animalSpecies"
+                        android:id="@+id/textInput_saveAnimal_animalSpecies"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
@@ -202,7 +202,7 @@
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/textInput_addAnimal_animalSubspecies"
+                        android:id="@+id/textInput_saveAnimal_animalSubspecies"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
@@ -225,7 +225,7 @@
                     app:suffixText="kg">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/textInput_addAnimal_animalWeight"
+                        android:id="@+id/textInput_saveAnimal_animalWeight"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal"
@@ -247,7 +247,7 @@
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/textInput_addAnimal_animalNumber"
+                        android:id="@+id/textInput_saveAnimal_animalNumber"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"

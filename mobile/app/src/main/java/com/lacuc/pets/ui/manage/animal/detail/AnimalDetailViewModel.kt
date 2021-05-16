@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lacuc.pets.data.Result
-import com.lacuc.pets.data.animal.entity.Animal
 import com.lacuc.pets.domain.animal.AnimalDetailItem
 import com.lacuc.pets.domain.animal.animal.GetAnimalDetailUseCase
 import com.lacuc.pets.domain.animal.animal.GetAnimalUseCase
@@ -27,14 +26,23 @@ class AnimalDetailViewModel @Inject constructor(
 
     val detailItems = MutableLiveData<List<AnimalDetailItem>>()
 
-    val animal = MutableLiveData<Animal>()
+    val animalName = MutableLiveData("")
+
+    val animalImage = MutableLiveData("")
 
     val loading = MutableLiveData(false)
 
-    fun loadDetailItem(position: Int) {
+    val tabPosition = MutableLiveData(0)
+
+    fun onTabSelect(position: Int) {
+        tabPosition.value = position
+        loadDetailItem()
+    }
+
+    fun loadDetailItem() {
         viewModelScope.launch {
             loading.value = true
-            val itemList = when (position) {
+            val itemList = when (tabPosition.value) {
                 0 -> getAnimalDetailUseCase(aid)
                 1 -> getMedicalUseCase(aid)
                 2 -> getMemoUseCase(aid)
@@ -60,15 +68,18 @@ class AnimalDetailViewModel @Inject constructor(
 
     fun loadAnimal() {
         viewModelScope.launch {
-            val _animal = getAnimalUseCase(aid)
+            val animal = getAnimalUseCase(aid)
 
-            when (_animal) {
-                is Result.Success -> _animal.body?.let { animal.value = it }
+            when (animal) {
+                is Result.Success -> animal.body?.let {
+                    animalName.value = it.name
+                    animalImage.value = it.image
+                }
                 is Result.Failure -> errorEvent.value =
-                    "code: ${_animal.code} message: ${_animal.error}"
+                    "code: ${animal.code} message: ${animal.error}"
                 is Result.NetworkError -> errorEvent.value = "네트워크 문제가 발생했습니다."
                 is Result.Unexpected -> {
-                    Timber.d(_animal.t.toString())
+                    Timber.d(animal.t.toString())
                     errorEvent.value = "알수없는 오류가 발생했습니다."
                 }
             }

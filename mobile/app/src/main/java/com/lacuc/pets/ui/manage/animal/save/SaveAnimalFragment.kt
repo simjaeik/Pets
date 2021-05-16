@@ -1,4 +1,4 @@
-package com.lacuc.pets.ui.manage.animal.add
+package com.lacuc.pets.ui.manage.animal.save
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,21 +12,21 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.lacuc.pets.ViewModelFactory
-import com.lacuc.pets.databinding.FragmentAddAnimalBinding
+import com.lacuc.pets.databinding.FragmentSaveAnimalBinding
 import com.lacuc.pets.ui.manage.ManageViewModel
 import com.lacuc.pets.util.setupWithNavController
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-class AddAnimalFragment : DaggerFragment() {
+class SaveAnimalFragment : DaggerFragment() {
 
-    private var _binding: FragmentAddAnimalBinding? = null
+    private var _binding: FragmentSaveAnimalBinding? = null
     private val binding get() = _binding!!
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private val viewModel: AddAnimalViewModel by viewModels { viewModelFactory }
+    private val viewModel: SaveAnimalViewModel by viewModels { viewModelFactory }
 
     private val activityViewModel: ManageViewModel by activityViewModels { viewModelFactory }
 
@@ -51,7 +51,7 @@ class AddAnimalFragment : DaggerFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentAddAnimalBinding.inflate(inflater, container, false).apply {
+        _binding = FragmentSaveAnimalBinding.inflate(inflater, container, false).apply {
             lifecycleOwner = viewLifecycleOwner
             vm = viewModel
         }
@@ -61,18 +61,27 @@ class AddAnimalFragment : DaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.toolbarAddAnimal.setupWithNavController(navController)
+        binding.toolbarSaveAnimal.setupWithNavController(navController)
 
-        binding.btnAddAnimalPickImage.setOnClickListener {
+        binding.btnSaveAnimalPickImage.setOnClickListener {
             requestImage()
         }
 
         setOnCompleteEventObserver()
+
+        setOnUpdateEventObserver()
     }
 
     private fun setOnCompleteEventObserver() {
         viewModel.completeEvent.observe(viewLifecycleOwner) {
             navController.previousBackStackEntry?.savedStateHandle?.set("onCompleteEvent", true)
+            navController.navigateUp()
+        }
+    }
+
+    private fun setOnUpdateEventObserver() {
+        viewModel.updateEvent.observe(viewLifecycleOwner) {
+            navController.previousBackStackEntry?.savedStateHandle?.set("onUpdateEvent", true)
             navController.navigateUp()
         }
     }
