@@ -26,5 +26,20 @@ module.exports = {
     }
   },
 
+  setItem: async (body) => {
+    const bodyValid = checkBodyValid(body);
+    if (!bodyValid) {
+      return { error: "입력한 body의 정보가 부족합니다." };
+    }
+
+    try {
+      await ItemHistory.create(body);
+      return { result: true };
+    } catch (error) {
+      console.log(error);
+      return { result: false, error };
+    }
+  },
+
 
 };
