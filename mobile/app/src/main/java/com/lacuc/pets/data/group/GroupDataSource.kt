@@ -29,9 +29,12 @@ interface GroupDataSource {
 
     suspend fun getGroupMember(gid: String, uid: String): Result<Member>
 
+    suspend fun getProfile(): Result<Member>
+
     suspend fun updateProfile(
         name: String,
-        email: String
+        email: String,
+        nickName: String
     ): Result<Void>
 
     suspend fun deleteGroupMember(gid: String): Result<Void>

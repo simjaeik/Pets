@@ -30,6 +30,17 @@ interface GroupService {
     @GET("api/group/{id}")
     suspend fun getGroup(@Path("id") gid: String): Result<Group>
 
+    @GET("api/user")
+    suspend fun getMemberInfo(): Result<Member>
+
+    @FormUrlEncoded
+    @PATCH("api/user")
+    suspend fun updateMemberInfo(
+        @Field("name") name: String,
+        @Field("email") email: String,
+        @Field("nickName") nickName: String
+    ): Result<Void>
+
     @FormUrlEncoded
     @POST("api/group/member/{id}")
     suspend fun addGroupMember(
