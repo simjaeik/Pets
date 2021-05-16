@@ -32,4 +32,9 @@ module.exports = {
     return res.status(status).json(result);
   },
 
+  deleteAnimal: async (req, res) => {
+    const { status, result } = await control(service.deleteAnimal, req.params);
+
+    return res.status(status).json(result);
+  },
 };
