@@ -9,6 +9,8 @@ axios.get(`${URL}/group/${GID}`, {
     })
     .then(response => {
         console.log(response)
+        const gname = document.getElementById("groupname");
+        gname.innerText = response.data.name;
         toggleShare();
     })
     .catch(error => {
