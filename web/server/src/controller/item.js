@@ -14,4 +14,13 @@ module.exports = {
     return res.status(status).json(result);
   },
 
+  updateItem: async (req, res) => {
+    const { status, result } = await control(service.updateItem, {
+      HID: req.params,
+      body: req.body,
+    });
+
+    return res.status(status).json(result);
+  },
+
 };
