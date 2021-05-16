@@ -1,4 +1,11 @@
-const { Group, MemberGroup, sequelize, Member } = require("../model/index");
+const {
+  Group,
+  MemberGroup,
+  sequelize,
+  Sequelize,
+  Member,
+} = require("../model/index");
+const { Op } = Sequelize;
 
 const checkInvalidData = (data) => {
   const { name, info, image, share, latitude, longitude } = data;
@@ -166,6 +173,21 @@ module.exports = {
     } catch (error) {
       console.log(error);
       return { error };
+    }
+  },
+
+  deleteGroupMember: async ({ GID, UID }) => {
+    console.log(GID, UID);
+    if (!GID || !UID) {
+      return { error: "삭제하고자 하는 그룹의 id가 존재하지 않습니다." };
+    }
+
+    try {
+      await MemberGroup.destroy({ where: { [Op.and]: [{ UID }, { GID }] } });
+      return { result: true };
+    } catch (error) {
+      console.log(error);
+      return { result: false, error };
     }
   },
 };
