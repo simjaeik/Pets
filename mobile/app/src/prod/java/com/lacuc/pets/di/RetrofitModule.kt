@@ -3,7 +3,6 @@ package com.lacuc.pets.di
 import com.lacuc.pets.data.animal.AnimalService
 import com.lacuc.pets.data.group.GroupService
 import com.lacuc.pets.data.login.LoginService
-import com.lacuc.pets.data.post.PostService
 import com.lacuc.pets.util.retrofit.AddTokenInterceptor
 import com.lacuc.pets.util.retrofit.ResultCallAdapter
 import dagger.Binds
@@ -57,9 +56,5 @@ abstract class RetrofitModule {
         fun provideAnimalService(retrofit: Retrofit): AnimalService =
             retrofit.create(AnimalService::class.java)
 
-        @Provides
-        @Reusable
-        fun providePostService(retrofit: Retrofit): PostService =
-            retrofit.create(PostService::class.java)
     }
 }

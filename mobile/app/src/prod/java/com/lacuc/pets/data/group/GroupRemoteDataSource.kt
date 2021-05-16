@@ -38,8 +38,8 @@ class GroupRemoteDataSource @Inject constructor(
         TODO("Not yet implemented")
     }
 
-    override suspend fun updateGroupMember(
-        gid: String, uid: String, name: String, email: String
+    override suspend fun updateProfile(
+        name: String, email: String
     ): Result<Void> {
         TODO("Not yet implemented")
     }

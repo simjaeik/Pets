@@ -60,12 +60,15 @@ class FakeAnimalRemoteDataSource @Inject constructor() : AnimalDataSource {
         }
 
 
-    override suspend fun updateMemo(mid: String, memo: Memo): Result<Void> {
-        TODO("Not yet implemented")
-    }
+    override suspend fun updateMemo(mid: String, memo: Memo): Result<Void> =
+        withContext(Dispatchers.IO) {
+            memoData = (memoData.filter { it.MID == mid } + memo) as MutableList<Memo>
+            Result.Success(null)
+        }
 
-    override suspend fun deleteMemo(mid: String): Result<Void> {
-        TODO("Not yet implemented")
+    override suspend fun deleteMemo(mid: String): Result<Void> = withContext(Dispatchers.IO) {
+        memoData = memoData.filter { it.MID != mid } as MutableList<Memo>
+        Result.Success(null)
     }
 
     override suspend fun loadMedical(aid: String): Result<List<Medical>> =
@@ -119,8 +122,8 @@ class FakeAnimalRemoteDataSource @Inject constructor() : AnimalDataSource {
 
     private fun initMemo() {
         memoData = mutableListOf(
-            Memo("고양이 모래 사야됨"),
-            Memo("캣타워 사야됨"),
+            Memo("0", "고양이 모래 사야됨"),
+            Memo("1", "캣타워 사야됨"),
         )
     }
 }

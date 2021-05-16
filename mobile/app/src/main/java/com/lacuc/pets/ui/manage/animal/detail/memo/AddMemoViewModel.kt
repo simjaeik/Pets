@@ -10,6 +10,7 @@ import com.lacuc.pets.util.SingleLiveEvent
 import com.lacuc.pets.util.safeValue
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import java.util.*
 import javax.inject.Inject
 
 class AddMemoViewModel @Inject constructor(
@@ -25,7 +26,7 @@ class AddMemoViewModel @Inject constructor(
 
     fun onCompleteClick() {
         viewModelScope.launch {
-            val result = addMemoUseCase(aid, Memo(content.safeValue))
+            val result = addMemoUseCase(aid, Memo(UUID.randomUUID().toString(), content.safeValue))
 
             when (result) {
                 is Result.Success -> completeEvent.value = Unit

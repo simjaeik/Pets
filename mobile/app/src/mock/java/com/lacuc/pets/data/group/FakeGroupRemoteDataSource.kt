@@ -15,6 +15,7 @@ class FakeGroupRemoteDataSource @Inject constructor() : GroupDataSource {
     private var memberData = mutableListOf<Member>()
     private var imageData = mutableListOf<GroupImage>()
     private var itemData = mutableListOf<ItemHistory>()
+    private var profile = Member("0", "foo", "foo", "foo", "foo")
 
     init {
         initGroup()
@@ -26,10 +27,6 @@ class FakeGroupRemoteDataSource @Inject constructor() : GroupDataSource {
     override suspend fun getMyGroups(): Result<List<GroupWrapper>> = withContext(Dispatchers.IO) {
         delay(100)
         Result.Success(groupData.map { GroupWrapper(it) })
-    }
-
-    override suspend fun getGroupsNear(latitude: Double, longitude: Double): Result<List<Group>> {
-        TODO("Not yet implemented")
     }
 
     override suspend fun deleteGroup(gid: String): Result<Void> {
@@ -78,8 +75,16 @@ class FakeGroupRemoteDataSource @Inject constructor() : GroupDataSource {
         Result.Success(null)
     }
 
-    override suspend fun addGroupMember(memberParams: Map<String, Any>): Result<Void> {
-        TODO("Not yet implemented")
+    override suspend fun addGroupMember(
+        gid: String,
+        email: String,
+        authority: String
+    ): Result<Void> = withContext(Dispatchers.IO) {
+        val target = memberData.find { it.email == email }
+        target?.let {
+            memberData.add(it)
+        }
+        Result.Success(null)
     }
 
     override suspend fun getGroupMembers(gid: String): Result<List<Member>> =
@@ -90,21 +95,19 @@ class FakeGroupRemoteDataSource @Inject constructor() : GroupDataSource {
 
     override suspend fun getGroupMember(gid: String, uid: String): Result<Member> =
         withContext(Dispatchers.IO) {
-            Result.Success(memberData.find { it.uid == uid })
+            Result.Success(memberData.find { it.UID == uid })
         }
 
-    override suspend fun updateGroupMember(
-        gid: String,
-        uid: String,
+    override suspend fun getProfile(): Result<Member> = withContext(Dispatchers.IO) {
+        Result.Success(profile)
+    }
+
+    override suspend fun updateProfile(
         name: String,
-        email: String
+        email: String,
+        nickName: String
     ): Result<Void> = withContext(Dispatchers.IO) {
-        val member = memberData.find { it.uid == uid }
-        member?.let {
-            memberData = (memberData.filter { it.uid != uid } + Member(
-                uid, name, member.password, email, member.nickName
-            )) as MutableList<Member>
-        }
+        profile = Member(profile.UID, name, profile.password, email, nickName)
         Result.Success(null)
     }
 
@@ -153,16 +156,21 @@ class FakeGroupRemoteDataSource @Inject constructor() : GroupDataSource {
             Result.Success(itemData.filter { it.gid == gid })
         }
 
-    override suspend fun setItem(itemHistory: ItemHistory): Result<Void> {
-        TODO("Not yet implemented")
-    }
+    override suspend fun setItem(itemHistory: ItemHistory): Result<Void> =
+        withContext(Dispatchers.IO) {
+            itemData.add(itemHistory)
+            Result.Success(null)
+        }
 
-    override suspend fun updateItem(iid: String, itemHistory: ItemHistory): Result<Void> {
-        TODO("Not yet implemented")
-    }
+    override suspend fun updateItem(iid: String, itemHistory: ItemHistory): Result<Void> =
+        withContext(Dispatchers.IO) {
+            itemData = (itemData.filter { it.hid != iid } + itemHistory) as MutableList<ItemHistory>
+            Result.Success(null)
+        }
 
-    override suspend fun deleteItem(iid: String): Result<Void> {
-        TODO("Not yet implemented")
+    override suspend fun deleteItem(iid: String): Result<Void> = withContext(Dispatchers.IO) {
+        itemData = itemData.filter { it.hid != iid } as MutableList<ItemHistory>
+        Result.Success(null)
     }
 
     private fun initGroup() {

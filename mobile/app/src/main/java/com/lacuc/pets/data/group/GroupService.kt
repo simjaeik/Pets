@@ -9,12 +9,6 @@ interface GroupService {
     @GET("api/group")
     suspend fun getMyGroups(): Result<List<GroupWrapper>>
 
-    @GET("api/group/near")
-    suspend fun getGroupsNear(
-        @Query("latitude") latitude: Double,
-        @Query("longitude") longitude: Double
-    ): Result<List<Group>>
-
     @DELETE("api/group/{id}")
     suspend fun deleteGroup(@Path("id") gid: String): Result<Void>
 
@@ -36,9 +30,24 @@ interface GroupService {
     @GET("api/group/{id}")
     suspend fun getGroup(@Path("id") gid: String): Result<Group>
 
+    @GET("api/user")
+    suspend fun getMemberInfo(): Result<Member>
+
     @FormUrlEncoded
-    @POST("api/group/member")
-    suspend fun addGroupMember(@FieldMap memberParams: Map<String, Any>): Result<Void>
+    @PATCH("api/user")
+    suspend fun updateMemberInfo(
+        @Field("name") name: String,
+        @Field("email") email: String,
+        @Field("nickName") nickName: String
+    ): Result<Void>
+
+    @FormUrlEncoded
+    @POST("api/group/member/{id}")
+    suspend fun addGroupMember(
+        @Path("id") gid: String,
+        @Field("email") email: String,
+        @Field("authority") authority: String
+    ): Result<Void>
 
     @GET("api/group/member/{id}")
     suspend fun getGroupMembers(@Path("id") gid: String): Result<List<Member>>

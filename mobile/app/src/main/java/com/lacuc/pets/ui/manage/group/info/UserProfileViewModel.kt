@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.jakewharton.rxbinding4.InitialValueObservable
 import com.lacuc.pets.data.Result
 import com.lacuc.pets.domain.member.GetGroupMemberUseCase
-import com.lacuc.pets.domain.member.UpdateGroupMemberUseCase
+import com.lacuc.pets.domain.member.UpdateProfileUseCase
 import com.lacuc.pets.util.SingleLiveEvent
 import com.lacuc.pets.util.safeValue
 import io.reactivex.rxjava3.core.Observable
@@ -16,7 +16,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class UserProfileViewModel @Inject constructor(
-    private val updateProfileUseCase: UpdateGroupMemberUseCase,
+    private val updateProfileUseCase: UpdateProfileUseCase,
     private val getGroupMemberUseCase: GetGroupMemberUseCase,
     private val errorEvent: SingleLiveEvent<String>
 ) : ViewModel() {
@@ -26,6 +26,7 @@ class UserProfileViewModel @Inject constructor(
 
     val name = MutableLiveData("")
     val email = MutableLiveData("")
+    val nickName = MutableLiveData("")
 
     val completeBtnEnable = MutableLiveData(false)
 
@@ -33,7 +34,7 @@ class UserProfileViewModel @Inject constructor(
 
     fun updateProfile() {
         viewModelScope.launch {
-            val result = updateProfileUseCase(gid, uid, name.safeValue, email.safeValue)
+            val result = updateProfileUseCase(name.safeValue, email.safeValue, nickName.safeValue)
 
             when (result) {
                 is Result.Success -> completeEvent.value = Unit

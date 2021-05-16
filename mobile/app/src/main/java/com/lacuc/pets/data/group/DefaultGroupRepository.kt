@@ -11,10 +11,6 @@ class DefaultGroupRepository @Inject constructor(
     override suspend fun getMyGroups(): Result<List<GroupWrapper>> =
         groupRemoteDataSource.getMyGroups()
 
-    override suspend fun getGroupsNear(latitude: Double, longitude: Double): Result<List<Group>> {
-        TODO("Not yet implemented")
-    }
-
     override suspend fun deleteGroup(gid: String): Result<Void> {
         TODO("Not yet implemented")
     }
@@ -34,9 +30,11 @@ class DefaultGroupRepository @Inject constructor(
     ): Result<Void> =
         groupRemoteDataSource.updateGroup(gid, params, imageFile)
 
-    override suspend fun addGroupMember(memberParams: Map<String, Any>): Result<Void> {
-        TODO("Not yet implemented")
-    }
+    override suspend fun addGroupMember(
+        gid: String,
+        email: String,
+        authority: String
+    ): Result<Void> = groupRemoteDataSource.addGroupMember(gid, email, authority)
 
     override suspend fun getGroupMembers(gid: String): Result<List<Member>> =
         groupRemoteDataSource.getGroupMembers(gid)
@@ -44,9 +42,11 @@ class DefaultGroupRepository @Inject constructor(
     override suspend fun getGroupMember(gid: String, uid: String): Result<Member> =
         groupRemoteDataSource.getGroupMember(gid, uid)
 
-    override suspend fun updateGroupMember(
-        gid: String, uid: String, name: String, email: String
-    ): Result<Void> = groupRemoteDataSource.updateGroupMember(gid, uid, name, email)
+    override suspend fun getProfile(): Result<Member> = groupRemoteDataSource.getProfile()
+
+    override suspend fun updateProfile(
+        name: String, email: String, nickName: String
+    ): Result<Void> = groupRemoteDataSource.updateProfile(name, email, nickName)
 
     override suspend fun deleteGroupMember(gid: String): Result<Void> {
         TODO("Not yet implemented")
@@ -67,15 +67,12 @@ class DefaultGroupRepository @Inject constructor(
     override suspend fun getItems(gid: String): Result<List<ItemHistory>> =
         groupRemoteDataSource.getItems(gid)
 
-    override suspend fun setItem(itemHistory: ItemHistory): Result<Void> {
-        TODO("Not yet implemented")
-    }
+    override suspend fun setItem(itemHistory: ItemHistory): Result<Void> =
+        groupRemoteDataSource.setItem(itemHistory)
 
-    override suspend fun updateItem(iid: String, itemHistory: ItemHistory): Result<Void> {
-        TODO("Not yet implemented")
-    }
+    override suspend fun updateItem(iid: String, itemHistory: ItemHistory): Result<Void> =
+        groupRemoteDataSource.updateItem(iid, itemHistory)
 
-    override suspend fun deleteItem(iid: String): Result<Void> {
-        TODO("Not yet implemented")
-    }
+    override suspend fun deleteItem(iid: String): Result<Void> =
+        groupRemoteDataSource.deleteItem(iid)
 }
