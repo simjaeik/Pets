@@ -11,5 +11,7 @@ router.get("/all/:id", group_auth, controller.getAnimalByGroup);
 
 router.get("/:id", controller.getAnimal);
 
+router.post("/:id", group_auth, controller.addAnimal);
+
 
 module.exports = router;
