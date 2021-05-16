@@ -21,6 +21,14 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       primaryKey: true,
     },
+    GID: {
+      type: DataTypes.UUID,
+      references: {
+        model: "_Group",
+        key: "GID",
+      },
+      allowNull: false,
+    },
     url: { type: DataTypes.STRING(100), allowNull: true },
     tag: { type: DataTypes.STRING(50), allowNull: true },
   });
@@ -31,6 +39,14 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       primaryKey: true,
+    },
+    GID: {
+      type: DataTypes.UUID,
+      references: {
+        model: "_Group",
+        key: "GID",
+      },
+      allowNull: false,
     },
     name: { type: DataTypes.STRING(50), allowNull: false },
     category: { type: DataTypes.STRING(50), allowNull: false },
