@@ -1,5 +1,12 @@
 const { ItemHistory } = require("../model/index");
 
+const checkBodyValid = (body) => {
+  const invalidValue = Object.values(body).some(
+    (v) => v === null || v === undefined
+  );
+  const invalidBody = Object.keys(body).length === 5 ? false : true;
+  return invalidValue || invalidBody ? false : true;
+};
 
 module.exports = {
   getItems: async ({ id }) => {
