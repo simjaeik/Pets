@@ -38,4 +38,24 @@ module.exports = {
     }
   },
 
+  addAnimal: async ({ GID, body }) => {
+    if (!GID) {
+      return { error: "GID가 존재하지 않습니다." };
+    }
+
+    const validAddBody = checkAddBodyValid(body);
+    if (!validAddBody) {
+      return { error: "body의 정보가 부족합니다." };
+    }
+
+    body.GID = GID;
+    try {
+      await Animal.create(body);
+      return { result: true };
+    } catch (error) {
+      console.log(error);
+      return error;
+    }
+  },
+
 };
