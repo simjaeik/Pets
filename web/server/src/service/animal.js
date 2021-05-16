@@ -58,4 +58,20 @@ module.exports = {
     }
   },
 
+  updateAnimalDetail: async ({ AID, body }) => {
+    AID = AID.id;
+    if (!AID || !body) {
+      return { error: "정보가 부족합니다." };
+    }
+
+    delete body.GID;
+    try {
+      await Animal.update(body, { where: { AID } });
+      return { result: true };
+    } catch (error) {
+      console.log(error);
+      return { error };
+    }
+  },
+
 };
