@@ -31,6 +31,14 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       primaryKey: true,
     },
+    AID: {
+      type: DataTypes.UUID,
+      references: {
+        model: "Animal",
+        key: "AID",
+      },
+      allowNull: false,
+    },
     date: { type: DataTypes.DATE, allowNull: false },
     title: { type: DataTypes.STRING(100), allowNull: false },
     content: { type: DataTypes.TEXT, allowNull: false },
@@ -43,6 +51,14 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       primaryKey: true,
+    },
+    AID: {
+      type: DataTypes.UUID,
+      references: {
+        model: "Animal",
+        key: "AID",
+      },
+      allowNull: false,
     },
     content: {
       type: DataTypes.TEXT,
