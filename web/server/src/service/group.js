@@ -58,7 +58,6 @@ module.exports = {
       return { error: "모든 데이터를 입력해주세요." };
     }
     const { UID } = data;
-    const { name, info, image, share, latitude, longitude } = body;
 
     const t = await sequelize.transaction();
 
@@ -132,4 +131,17 @@ module.exports = {
     }
   },
 
+  deleteGroup: async (GID) => {
+    if (!GID) {
+      return { error: "삭제하고자 하는 그룹의 id가 존재하지 않습니다." };
+    }
+
+    try {
+      const result = await Group.destroy({ where: { GID } });
+      return result;
+    } catch (error) {
+      console.log(error);
+      return { error };
+    }
+  },
 };
