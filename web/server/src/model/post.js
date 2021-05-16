@@ -50,12 +50,12 @@ module.exports = (sequelize, DataTypes) => {
   const DB = { Post, PostImage, Favorite, Comment };
 
   DB.associate = (db) => {
-    db.Post.hasMany(db.PostImage, { foreignKey: "PID" });
-    db.Post.hasMany(db.Favorite, { foreignKey: "PID" });
-    db.Post.hasMany(db.Comment, { foreignKey: "PID" });
+    db.Post.hasMany(db.PostImage, { foreignKey: "PID", onDelete: "CASCADE" });
+    db.Post.hasMany(db.Favorite, { foreignKey: "PID", onDelete: "CASCADE" });
+    db.Post.hasMany(db.Comment, { foreignKey: "PID", onDelete: "CASCADE" });
 
-    db.Post.belongsTo(db.Group, { foreignKey: "GID" });
-    db.Comment.belongsTo(db.Post, { foreignKey: "PID" });
+    db.Post.belongsTo(db.Group, { foreignKey: "GID", onDelete: "CASCADE" });
+    db.Comment.belongsTo(db.Post, { foreignKey: "PID", onDelete: "CASCADE" });
   };
   return DB;
 };

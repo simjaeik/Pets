@@ -45,11 +45,17 @@ module.exports = (sequelize, DataTypes) => {
   const DB = { Animal, MedicalHistory, Memo };
 
   DB.associate = (db) => {
-    db.Animal.hasMany(db.MedicalHistory, { foreignKey: "AID" });
+    db.Animal.hasMany(db.MedicalHistory, {
+      foreignKey: "AID",
+      onDelete: "CASCADE",
+    });
 
-    db.Animal.belongsTo(db.Group, { foreignKey: "GID" });
-    db.MedicalHistory.belongsTo(db.Animal, { foreignKey: "AID" });
-    db.Memo.belongsTo(db.Animal, { foreignKey: "AID" });
+    db.Animal.belongsTo(db.Group, { foreignKey: "GID", onDelete: "CASCADE" });
+    db.MedicalHistory.belongsTo(db.Animal, {
+      foreignKey: "AID",
+      onDelete: "CASCADE",
+    });
+    db.Memo.belongsTo(db.Animal, { foreignKey: "AID", onDelete: "CASCADE" });
   };
   return DB;
 };
