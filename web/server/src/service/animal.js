@@ -14,4 +14,21 @@ module.exports = {
     }
   },
 
+  getAnimal: async ({ id }) => {
+    if (!id) {
+      return { error: "아이디가 존재하지 않습니다." };
+    }
+
+    try {
+      const animal = await Animal.findOne({ where: { AID: id }, raw: true });
+      if (!animal) {
+        return { error: "해당 동물이 존재하지 않습니다." };
+      }
+      return animal;
+    } catch (error) {
+      console.log(error);
+      return { error };
+    }
+  },
+
 };
