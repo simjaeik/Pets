@@ -15,6 +15,7 @@ class FakeGroupRemoteDataSource @Inject constructor() : GroupDataSource {
     private var memberData = mutableListOf<Member>()
     private var imageData = mutableListOf<GroupImage>()
     private var itemData = mutableListOf<ItemHistory>()
+    private var profile = Member("0", "foo", "foo", "foo", "foo")
 
     init {
         initGroup()
@@ -93,18 +94,11 @@ class FakeGroupRemoteDataSource @Inject constructor() : GroupDataSource {
             Result.Success(memberData.find { it.uid == uid })
         }
 
-    override suspend fun updateGroupMember(
-        gid: String,
-        uid: String,
+    override suspend fun updateProfile(
         name: String,
         email: String
     ): Result<Void> = withContext(Dispatchers.IO) {
-        val member = memberData.find { it.uid == uid }
-        member?.let {
-            memberData = (memberData.filter { it.uid != uid } + Member(
-                uid, name, member.password, email, member.nickName
-            )) as MutableList<Member>
-        }
+        profile = Member(profile.uid, name, profile.password, email, profile.nickName)
         Result.Success(null)
     }
 

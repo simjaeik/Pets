@@ -27,9 +27,7 @@ interface GroupDataSource {
 
     suspend fun getGroupMember(gid: String, uid: String): Result<Member>
 
-    suspend fun updateGroupMember(
-        gid: String,
-        uid: String,
+    suspend fun updateProfile(
         name: String,
         email: String
     ): Result<Void>
