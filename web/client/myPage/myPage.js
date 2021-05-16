@@ -4,7 +4,8 @@ const exist=0;
 const updatename = document.getElementById("updatename");
 const updateemail = document.getElementById("updateemail");
 const updatenickname = document.getElementById("updatenickname");
-
+const checkpw = document.getElementById("updatepw");
+const checkpwre = document.getElementById("updatepwre");
 axios.get(`${URL}/user`,
 { 
     headers : {
@@ -66,7 +67,24 @@ function modal() {
         else{
             bg.remove();
             modal.style.display = 'none';
-
+            //비밀번호 수정
+            const existpw = document.getElementById("existpw");
+            axios.patch(`${URL}/user/PW`,{ 
+               password : existpw.value,
+               afterPassword : checkpw.value,
+               afterRePassword : checkpwre.value
+            },{
+                headers : {
+                    'authorization' : jwtToken
+                }
+            })
+            .then(response => {
+                console.log(response)
+            })
+            .catch(error => {
+                console.log(error.response)
+            }); 
+            //정보수정
             axios.patch(`${URL}/user`,{ 
                 name: updatename.value,
                 email: updateemail.value,
@@ -137,6 +155,52 @@ function isNicknameExist(){
         console.log(error.response)
     });
 };
+function goodpw() {
+
+    const pw = document.getElementById('updatepw');
+    const SC = ["!","@","#","$","%","^","&","*","(",")","_","-","+","=","/","~","`"];
+    let check_SC=0;
+
+    const badpw = document.getElementById("badpw");
+    const badpwoption = document.getElementById("badpwoption");
+
+    const normalpw = document.getElementById("normalpw");
+    const normalpwoption = document.getElementById("normalpwoption");
+
+    const goodpw = document.getElementById("goodpw");
+    const goodpwoption = document.getElementById("goodpwoption");
+
+    //특수문자 체크
+    for(var i=0;i<SC.length;i++){
+        if(pw.value.indexOf(SC[i]) !== -1){
+            check_SC=1;
+        }
+    }
+
+    if (check_SC === 0 && pw.value.length < 5){
+       badpw.style.display = "block", badpwoption.style.display = "block";
+    }
+    if(check_SC === 0 && pw.value.length > 5){
+        normalpw.style.display = "block"; normalpwoption.style.display = "block";
+        badpw.style.display="none"; badpwoption.style.display = "none";
+    }
+    if (check_SC === 1 && pw.value.length > 8){
+        normalpw.style.display = "none"; normalpwoption.style.display = "none";
+        badpw.style.display="none"; badpwoption.style.display = "none";
+        goodpw.style.display = "block"; goodpwoption.style.display = "block";
+    }
+
+}
+ function eqaul_pw(){
+   
+    const success = document.getElementById("equal");
+    const danger = document.getElementById("no_equal");
+  
+
+    if ( checkpwre.value !== "" && checkpw.value === checkpwre.value ) { success.style.display = "block"; danger.style.display = "none"; }
+    else { danger.style.display = "block"; success.style.display = "none"; }
+
+}
 function addGroup(event){
 
     const image = document.getElementById("userImage");
