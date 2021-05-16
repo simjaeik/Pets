@@ -1,9 +1,14 @@
 const {
   Group,
+  Member,
   MemberGroup,
+  Animal,
+  ItemHistory,
+  GalleryImage,
+  Favorite,
+  Post,
   sequelize,
   Sequelize,
-  Member,
 } = require("../model/index");
 const { Op } = Sequelize;
 
@@ -183,6 +188,13 @@ module.exports = {
     }
 
     try {
+      await Animal.destroy({ where: { GID } });
+      await MemberGroup.destroy({ where: { GID } });
+      await Favorite.destroy({ where: { GID } });
+      await ItemHistory.destroy({ where: { GID } });
+      await GalleryImage.destroy({ where: { GID } });
+      await Post.destroy({ where: { GID } });
+
       await MemberGroup.destroy({ where: { [Op.and]: [{ UID }, { GID }] } });
       return { result: true };
     } catch (error) {
