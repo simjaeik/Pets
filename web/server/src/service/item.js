@@ -58,5 +58,17 @@ module.exports = {
     }
   },
 
+  deleteItem: async ({ id }) => {
+    if (!id) {
+      return { error: "HID가 입력되지 않았습니다." };
+    }
 
+    try {
+      await ItemHistory.destroy({ where: { HID: id } });
+      return { result: true };
+    } catch (error) {
+      console.log(error);
+      return { return: false, error };
+    }
+  },
 };
