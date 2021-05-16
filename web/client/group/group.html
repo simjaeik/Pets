@@ -56,8 +56,9 @@
             <!--right-->
             <div>
                 <i class="icon-share" onclick="toggleShare()"></i> 
-                <button id="popup_open_btn" class="btn btn-outline-danger">멤버 관리</button> 
+                <button id="popup_open_btn" class="btn btn-outline-danger" onclick="initinput();">멤버 관리</button> 
                 <button id="popup_open_btn" class="btn btn-outline-danger" onclick="modal(); initinput();">동물 추가</button>
+                <button id="popup_open_btn" class="btn btn-outline-danger" onclick="updategroup_modal(); initinput();">정보 수정</button>
             </div>
         </div>
     </div>
@@ -163,7 +164,7 @@
     </div>
   
 
-    <!--모달창-->
+    <!--동물 추가 모달창-->
     <div id="animal">
         <div class="cover">
             <h1 class="modal_title">동물 추가</h1>
@@ -180,8 +181,71 @@
                     <div class="line-box"> <div class="line"></div></div> 
             </label> </div>
         </div>
+
+        <button type="button" class="btn btn-outline-primary btn-lg" id="addgroup_btn" >만들기</button>   
     </div>
 
+    <!--그룹 정보 수정 모달창-->
+    <div id="updategroup">
+        <div class="cover">
+            <h1 class="modal_title">그룹 정보 수정</h1>
+            <button class="modal_btn">닫기</button>
+        </div>
+        <!--여백-->
+        <div id="margin"></div>
+    
+        <!--바꿀 이름-->
+        <div class="form-group row">
+            <label class="col-lg-2 col-form-label form-control-label text-muted"><h2>바꿀 이름</h2></label>
+                <div class="col-lg-10">
+                    <label> <p class="label-txt"></p> 
+                    <input type="text" class="input" id="updatename" required>
+                    <div class="line-box"> <div class="line"></div></div> 
+            </label> </div>
+        </div>
+
+        <!--바꿀 info-->
+        <div class="form-group row">
+            <label class="col-lg-2 col-form-label form-control-label text-muted"><h2>소개 바꾸기</h2></label>
+                <div class="col-lg-10">
+                    <label> <p class="label-txt"></p> 
+                    <input type="text" class="input" id="updateinfo" required>
+                    <div class="line-box"> <div class="line"></div></div> 
+            </label> </div>
+        </div>
+
+        <!--이미지-->
+        <div class="form-group row">
+        <label class="col-lg-2 col-form-label form-control-label text-muted"><h2>바꿀 이미지</h2></label>
+            <div class="col-lg-10">
+            <label>
+                <input type="file" name="file" id="uploadImage" accept="image/*"  onchange="addGroup(event);"/>
+            </label>
+            </div>
+        </div>
+
+        <!--lat 바꾸기-->
+        <div class="form-group row">
+            <label class="col-lg-2 col-form-label form-control-label text-muted"><h2>위치 바꾸기(latitude)</h2></label>
+                <div class="col-lg-10">
+                    <label> <p class="label-txt"></p> 
+                    <input type="number" class="input" id="updatelat" required>
+                    <div class="line-box"> <div class="line"></div></div> 
+            </label> </div>
+        </div>
+
+        <!--lon 바꾸기-->
+        <div class="form-group row">
+            <label class="col-lg-2 col-form-label form-control-label text-muted"><h2>위치 바꾸기(longtitude)</h2></label>
+                <div class="col-lg-10">
+                    <label> <p class="label-txt"></p> 
+                    <input type="number" class="input" id="updatelon" required>
+                    <div class="line-box"> <div class="line"></div></div> 
+            </label> </div>
+        </div>
+        <button type="button" class="btn btn-outline-primary btn-lg" id="updategroup_btn" >바꾸기</button>   
+  
+    </div>
 
     <!--javascript-->
     <script src="https://code.jquery.com/jquery.js"></script>
