@@ -19,7 +19,11 @@ interface GroupRepository {
         imageFile: MultipartBody.Part
     ): Result<Void>
 
-    suspend fun addGroupMember(memberParams: Map<String, Any>): Result<Void>
+    suspend fun addGroupMember(
+        gid: String,
+        email: String,
+        authority: String
+    ): Result<Void>
 
     suspend fun getGroupMembers(gid: String): Result<List<Member>>
 

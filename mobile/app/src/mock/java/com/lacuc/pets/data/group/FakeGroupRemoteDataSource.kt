@@ -75,8 +75,16 @@ class FakeGroupRemoteDataSource @Inject constructor() : GroupDataSource {
         Result.Success(null)
     }
 
-    override suspend fun addGroupMember(memberParams: Map<String, Any>): Result<Void> {
-        TODO("Not yet implemented")
+    override suspend fun addGroupMember(
+        gid: String,
+        email: String,
+        authority: String
+    ): Result<Void> = withContext(Dispatchers.IO) {
+        val target = memberData.find { it.email == email }
+        target?.let {
+            memberData.add(it)
+        }
+        Result.Success(null)
     }
 
     override suspend fun getGroupMembers(gid: String): Result<List<Member>> =
@@ -87,14 +95,14 @@ class FakeGroupRemoteDataSource @Inject constructor() : GroupDataSource {
 
     override suspend fun getGroupMember(gid: String, uid: String): Result<Member> =
         withContext(Dispatchers.IO) {
-            Result.Success(memberData.find { it.uid == uid })
+            Result.Success(memberData.find { it.UID == uid })
         }
 
     override suspend fun updateProfile(
         name: String,
         email: String
     ): Result<Void> = withContext(Dispatchers.IO) {
-        profile = Member(profile.uid, name, profile.password, email, profile.nickName)
+        profile = Member(profile.UID, name, profile.password, email, profile.nickName)
         Result.Success(null)
     }
 
