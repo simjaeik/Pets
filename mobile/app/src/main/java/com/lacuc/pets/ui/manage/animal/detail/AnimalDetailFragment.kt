@@ -62,10 +62,6 @@ class AnimalDetailFragment : DaggerFragment() {
 
         setOnUpdateEventObserver()
 
-        viewModel.animal.observe(viewLifecycleOwner) {
-            binding.item = it
-        }
-
         setOnTabSelectedObserver()
     }
 
@@ -82,6 +78,8 @@ class AnimalDetailFragment : DaggerFragment() {
             ?.getLiveData<Boolean>("onUpdateEvent")
             ?.observe(viewLifecycleOwner) {
                 viewModel.loadDetailItem()
+                viewModel.loadAnimal()
+                navController.previousBackStackEntry?.savedStateHandle?.set("onCompleteEvent", true)
             }
     }
 
