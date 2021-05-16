@@ -41,5 +41,22 @@ module.exports = {
     }
   },
 
+  updateItem: async ({ HID, body }) => {
+    const { id } = HID;
+    if (!id) {
+      return { error: "정보가 부족합니다." };
+    }
+    try {
+      const [result] = await ItemHistory.update(body, { where: { HID: id } });
+      if (result <= 0) {
+        return { result: false, error: "아무 변화가 없습니다." };
+      }
+      return { result: true };
+    } catch (error) {
+      console.log(error);
+      return { result: false, error };
+    }
+  },
+
 
 };
