@@ -23,4 +23,6 @@ router.patch("/share/:id", groupAuth, controller.toggleShare);
 
 router.delete("/:id", groupAuth, controller.deleteGroup);
 
+router.delete("/member/:id", groupAuth, controller.deleteGroupMember);
+
 module.exports = router;
