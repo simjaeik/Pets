@@ -31,10 +31,12 @@ class AnimalDetailViewModel @Inject constructor(
 
     val loading = MutableLiveData(false)
 
-    fun loadDetailItem(position: Int) {
+    var tapPosition = 0
+
+    fun loadDetailItem() {
         viewModelScope.launch {
             loading.value = true
-            val itemList = when (position) {
+            val itemList = when (tapPosition) {
                 0 -> getAnimalDetailUseCase(aid)
                 1 -> getMedicalUseCase(aid)
                 2 -> getMemoUseCase(aid)
@@ -73,5 +75,9 @@ class AnimalDetailViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    fun onTabSelect(position: Int) {
+        Timber.d("$position")
     }
 }
