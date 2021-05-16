@@ -1,6 +1,6 @@
 const URL = "http://ec2-54-180-91-27.ap-northeast-2.compute.amazonaws.com:3000/api";
 const jwtToken = sessionStorage.getItem("jwt");
-const gid = new Array();
+const gid = new Array(); 
 const outputImage =  new Array(), outputgInfo = new Array(), outputgName = new Array(); 
 axios.get(`${URL}/group`,
 {
@@ -58,6 +58,8 @@ function getGroup(len){
                     })
                     .then(response => {
                         console.log(response)
+                        sessionStorage.setItem("gid",response.data.token);
+                        location.href="../group/group.html";
                     })
                     .catch(error => {
                         console.log(error.response)
