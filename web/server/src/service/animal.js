@@ -1,5 +1,12 @@
 const { Animal } = require("../model/index");
 
+const checkAddBodyValid = (body) => {
+  if (Object.keys(body).length !== 8) {
+    return false;
+  }
+  return true;
+};
+
 module.exports = {
   getAnimalByGroup: async (GID) => {
     if (!GID) {
