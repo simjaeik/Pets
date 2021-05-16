@@ -41,9 +41,11 @@ class FakeAnimalRemoteDataSource @Inject constructor() : AnimalDataSource {
         Result.Success(animalData.find { it.aid == aid })
     }
 
-    override suspend fun updateAnimalDetail(aid: String, animal: Animal): Result<Void> {
-        TODO("Not yet implemented")
-    }
+    override suspend fun updateAnimalDetail(aid: String, animal: Animal): Result<Void> =
+        withContext(Dispatchers.IO) {
+            animalData = (animalData.filter { it.aid != aid } + animal) as MutableList<Animal>
+            Result.Success(null)
+        }
 
     override suspend fun getMemos(aid: String): Result<List<Memo>> = withContext(Dispatchers.IO) {
         delay(100)
