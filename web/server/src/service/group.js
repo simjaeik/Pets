@@ -50,6 +50,30 @@ module.exports = {
     }
   },
 
+  getGroupMembers: async ({ id }) => {
+    if (!id) {
+      return { error: "모든 정보를 입력해주세요" };
+    }
+
+    try {
+      const members = await MemberGroup.findAll({
+        include: [
+          {
+            model: Member,
+            attributes: ["name", "email", "nickName"],
+          },
+        ],
+        attributes: ["UID", "authority"],
+        where: { GID: id },
+        raw: true,
+      });
+      return members;
+    } catch (error) {
+      console.log(error);
+      return { error };
+    }
+  },
+
   setGroup: async ({ data, body }) => {
     if (!data) {
       return { error: "invalid Token" };
