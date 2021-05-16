@@ -9,4 +9,6 @@ const router = express.Router();
 
 router.get("/:id", controll.getItems);
 
+router.post("/", groupAuth, controll.setItem);
+
 module.exports = router;
