@@ -11,4 +11,6 @@ router.get("/:id", controll.getItems);
 
 router.post("/", groupAuth, controll.setItem);
 
+router.patch("/:id", groupAuth, controll.updateItem);
+
 module.exports = router;
