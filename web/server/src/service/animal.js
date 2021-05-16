@@ -74,4 +74,17 @@ module.exports = {
     }
   },
 
+  deleteAnimal: async ({ id }) => {
+    if (!id) {
+      return { error: "정보가 부족합니다." };
+    }
+
+    try {
+      await Animal.destroy({ where: { AID: id } });
+      return { result: true };
+    } catch (error) {
+      console.log(error);
+      return { result: false, error };
+    }
+  },
 };
