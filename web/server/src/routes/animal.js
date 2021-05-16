@@ -9,5 +9,7 @@ const group_auth = require("./middleware/group-auth");
 
 router.get("/all/:id", group_auth, controller.getAnimalByGroup);
 
+router.get("/:id", controller.getAnimal);
+
 
 module.exports = router;
