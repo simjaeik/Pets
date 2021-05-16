@@ -11,10 +11,6 @@ class DefaultGroupRepository @Inject constructor(
     override suspend fun getMyGroups(): Result<List<GroupWrapper>> =
         groupRemoteDataSource.getMyGroups()
 
-    override suspend fun getGroupsNear(latitude: Double, longitude: Double): Result<List<Group>> {
-        TODO("Not yet implemented")
-    }
-
     override suspend fun deleteGroup(gid: String): Result<Void> {
         TODO("Not yet implemented")
     }

@@ -7,8 +7,6 @@ import okhttp3.MultipartBody
 interface GroupDataSource {
     suspend fun getMyGroups(): Result<List<GroupWrapper>>
 
-    suspend fun getGroupsNear(latitude: Double, longitude: Double): Result<List<Group>>
-
     suspend fun deleteGroup(gid: String): Result<Void>
 
     suspend fun setGroup(params: Map<String, String>, imageFile: MultipartBody.Part): Result<Void>

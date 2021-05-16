@@ -9,12 +9,6 @@ interface GroupService {
     @GET("api/group")
     suspend fun getMyGroups(): Result<List<GroupWrapper>>
 
-    @GET("api/group/near")
-    suspend fun getGroupsNear(
-        @Query("latitude") latitude: Double,
-        @Query("longitude") longitude: Double
-    ): Result<List<Group>>
-
     @DELETE("api/group/{id}")
     suspend fun deleteGroup(@Path("id") gid: String): Result<Void>
 

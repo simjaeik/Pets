@@ -29,10 +29,6 @@ class FakeGroupRemoteDataSource @Inject constructor() : GroupDataSource {
         Result.Success(groupData.map { GroupWrapper(it) })
     }
 
-    override suspend fun getGroupsNear(latitude: Double, longitude: Double): Result<List<Group>> {
-        TODO("Not yet implemented")
-    }
-
     override suspend fun deleteGroup(gid: String): Result<Void> {
         TODO("Not yet implemented")
     }
