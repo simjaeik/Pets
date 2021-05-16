@@ -9,12 +9,10 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.tabs.TabLayout
 import com.lacuc.pets.R
 import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.FragmentAnimalDetailBinding
 import com.lacuc.pets.ui.manage.ManageViewModel
-import com.lacuc.pets.util.doOnTabSelectedListener
 import com.lacuc.pets.util.setup
 import com.lacuc.pets.util.setupWithNavController
 import dagger.android.support.DaggerFragment
@@ -37,7 +35,7 @@ class AnimalDetailFragment : DaggerFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityViewModel.aid?. let { viewModel.aid = it }
-        viewModel.loadDetailItem(0)
+        viewModel.loadDetailItem()
         viewModel.loadAnimal()
     }
 
@@ -62,18 +60,20 @@ class AnimalDetailFragment : DaggerFragment() {
 
         setOnCompleteObserver()
 
-        binding.tabLayoutAnimalDetail.doOnTabSelectedListener {
-            viewModel.loadDetailItem(it.position)
-            setFabClickListener(it.position)
-            saveCurrentTabPosition(it)
-        }
+        setOnUpdateEventObserver()
 
         viewModel.animal.observe(viewLifecycleOwner) {
             binding.item = it
         }
+    }
 
-        val currentTabPosition = restorePreviousTabPosition()
-        binding.tabLayoutAnimalDetail.getTabAt(currentTabPosition)?.select()
+    private fun setOnUpdateEventObserver() {
+        navController.currentBackStackEntry
+            ?.savedStateHandle
+            ?.getLiveData<Boolean>("onUpdateEvent")
+            ?.observe(viewLifecycleOwner) {
+                viewModel.loadDetailItem()
+            }
     }
 
     private fun setOnCompleteObserver() {
@@ -81,22 +81,8 @@ class AnimalDetailFragment : DaggerFragment() {
             ?.savedStateHandle
             ?.getLiveData<Int>("onCompleteEvent")
             ?.observe(viewLifecycleOwner) {
-                viewModel.loadDetailItem(it)
+                viewModel.loadDetailItem()
             }
-    }
-
-    private fun restorePreviousTabPosition() = navController.currentBackStackEntry
-        ?.savedStateHandle
-        ?.get<Int>("TabPosition")
-        ?: let {
-            binding.fabAnimalDetail.setOnClickListener { navToEditAnimal() }
-            0
-        }
-
-    private fun saveCurrentTabPosition(it: TabLayout.Tab) {
-        navController.currentBackStackEntry
-            ?.savedStateHandle
-            ?.set("TabPosition", it.position)
     }
 
     private fun setFabClickListener(position: Int = 0) {
