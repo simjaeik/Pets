@@ -49,6 +49,10 @@ module.exports = {
 
     return res.status(status).json(result);
   },
+
+  deleteGroup: async (req, res) => {
+    const { status, result } = await control(service.deleteGroup, req.gid);
+
     return res.status(status).json(result);
   },
 };
