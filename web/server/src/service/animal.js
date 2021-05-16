@@ -1,4 +1,4 @@
-const { Animal } = require("../model/index");
+const { Animal, MedicalHistory, Memo } = require("../model/index");
 
 const checkAddBodyValid = (body) => {
   if (Object.keys(body).length !== 8) {
@@ -80,6 +80,8 @@ module.exports = {
     }
 
     try {
+      await MedicalHistory.destroy({ where: { AID: id } });
+      await Memo.destroy({ where: { AID: id } });
       await Animal.destroy({ where: { AID: id } });
       return { result: true };
     } catch (error) {
