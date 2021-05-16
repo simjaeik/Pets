@@ -34,7 +34,7 @@ class AnimalDetailFragment : DaggerFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        activityViewModel.aid?. let { viewModel.aid = it }
+        activityViewModel.aid?.let { viewModel.aid = it }
         viewModel.loadDetailItem()
         viewModel.loadAnimal()
     }
@@ -64,6 +64,15 @@ class AnimalDetailFragment : DaggerFragment() {
 
         viewModel.animal.observe(viewLifecycleOwner) {
             binding.item = it
+        }
+
+        setOnTabSelectedObserver()
+    }
+
+    private fun setOnTabSelectedObserver() {
+        viewModel.tabPosition.observe(viewLifecycleOwner) {
+            setFabClickListener(it)
+            binding.tabLayoutAnimalDetail.getTabAt(it)?.select()
         }
     }
 
