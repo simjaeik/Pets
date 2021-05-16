@@ -13,4 +13,6 @@ router.post("/", groupAuth, controll.setItem);
 
 router.patch("/:id", groupAuth, controll.updateItem);
 
+router.delete("/:id", groupAuth, controll.deleteItem);
+
 module.exports = router;
