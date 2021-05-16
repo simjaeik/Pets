@@ -1,6 +1,10 @@
 const URL = "http://ec2-54-180-91-27.ap-northeast-2.compute.amazonaws.com:3000/api";
 const jwtToken = sessionStorage.getItem("jwt");
 const exist=0;
+const updatename = document.getElementById("updatename");
+const updateemail = document.getElementById("updateemail");
+const updatenickname = document.getElementById("updatenickname");
+
 axios.get(`${URL}/user`,
 { 
     headers : {
@@ -9,7 +13,7 @@ axios.get(`${URL}/user`,
 })
 .then(response => {
     console.log(response)
-    console.log(response.data.nickname);
+
     const userNickname = response.data.nickname;
     const username = response.data.name;
     const useremail = response.data.email;
@@ -22,7 +26,6 @@ axios.get(`${URL}/user`,
 
     const Email = document.getElementById("useremail");
     Email.innerText = useremail;
- 
 })
 .catch(error => {
     console.log(error.response)
@@ -56,13 +59,30 @@ function modal() {
 
     modal.querySelector('#addgroup_btn').addEventListener('click', function() {
 
-        if(Name.innerText === "") { alert("이름을 수정해주세요. "); }
-        else if(Email.innerText === "") { alert("이메일을 수정해주세요. "); }
-        else if(nickName.innerText === "") { alert("닉네임을 수정해주세요. ");}
+        if(updatename.value === "") { alert("이름을 수정해주세요. "); }
+        else if(updateemail.value === "") { alert("이메일을 수정해주세요. "); }
+        else if(updatenickname.value === "") { alert("닉네임을 수정해주세요. ");}
         else if(exist === 1) { alert("중복된 닉네임입니다. 다시 입력해주세요.");}
         else{
             bg.remove();
             modal.style.display = 'none';
+
+            axios.patch(`${URL}/user`,{ 
+                name: updatename.value,
+                email: updateemail.value,
+                nickName : updatenickname.value
+            },{
+                headers : {
+                    'authorization' : jwtToken
+                }
+            })
+            .then(response => {
+                console.log(response)
+                alert("성공적으로 수정되었습니다.");
+            })
+            .catch(error => {
+                console.log(error.response)
+            }); 
         }
     });
 
@@ -87,9 +107,17 @@ Element.prototype.setStyle = function(styles) {
     for (var k in styles) this.style[k] = styles[k];
     return this;
 };
+function initinput(){
+
+    const input = document.getElementsByClassName('input');
+    
+    for(let i=0;i<input.length;i++){
+        input[i].value= "";
+    }
+}
 function isNicknameExist(){
 
-    const checknickname = document.getElementById("nicknameinput").value;
+    const checknickname = document.getElementById("updatenickname").value;
     const goodnickname = document.getElementById("goodnickname");
 
     axios.get(`${URL}/user/nickname/${checknickname}`, {
