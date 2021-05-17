@@ -39,17 +39,18 @@ module.exports = {
     }
   },
 
-  addAnimal: async ({ GID, body }) => {
+  addAnimal: async ({ GID, body, file }) => {
     if (!GID) {
       return { error: "GID가 존재하지 않습니다." };
     }
 
     const validAddBody = checkAddBodyValid(body);
-    if (!validAddBody) {
+    if (!validAddBody || !file) {
       return { error: "body의 정보가 부족합니다." };
     }
 
     body.GID = GID;
+    body.image = file.location;
     try {
       await Animal.create(body);
       return { result: true };
@@ -59,15 +60,22 @@ module.exports = {
     }
   },
 
-  updateAnimalDetail: async ({ AID, body }) => {
+  updateAnimalDetail: async ({ AID, body, file }) => {
     AID = AID.id;
     if (!AID || !body) {
       return { error: "정보가 부족합니다." };
     }
 
+    if (file) {
+      body.image = file.location;
+    }
+
     delete body.GID;
     try {
-      await Animal.update(body, { where: { AID } });
+      const result = await Animal.update(body, { where: { AID } });
+      if (result <= 0) {
+        return { result: false, error: "수정이 되지 않았습니다" };
+      }
       return { result: true };
     } catch (error) {
       console.log(error);

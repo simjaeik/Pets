@@ -109,7 +109,10 @@ module.exports = {
     }
 
     try {
-      await Member.update(body, { where: { UID } });
+      const result = await Member.update(body, { where: { UID } });
+      if (result <= 0) {
+        return { result: false, error: "수정이 정상적으로 되지 않았습니다." };
+      }
       return { result: true };
     } catch (error) {
       console.log(error);
@@ -131,7 +134,13 @@ module.exports = {
 
     try {
       const updatePW = await bcrypt.hash(afterPassword);
-      await Member.update({ password: updatePW }, { where: { UID } });
+      const result = await Member.update(
+        { password: updatePW },
+        { where: { UID } }
+      );
+      if (result <= 0) {
+        return { result: false, error: "수정이 정상적으로 되지 않았습니다." };
+      }
       return { result: true };
     } catch (error) {
       console.log(error);

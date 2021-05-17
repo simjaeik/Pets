@@ -19,6 +19,7 @@ module.exports = {
     const { status, result } = await control(service.addAnimal, {
       GID: req.gid,
       body: req.body,
+      file: req.file,
     });
 
     return res.status(status).json(result);
@@ -28,6 +29,7 @@ module.exports = {
     const { status, result } = await control(service.updateAnimalDetail, {
       AID: req.params,
       body: req.body,
+      file: req.file,
     });
 
     return res.status(status).json(result);
