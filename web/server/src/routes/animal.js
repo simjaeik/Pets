@@ -22,6 +22,7 @@ router.delete("/:id", groupAuth, controller.deleteAnimal);
 
 router.get("/memo/:id", controller.getMemos);
 
+router.post("/memo/:id", groupAuth, controller.setMemo);
 
 router.patch("/:id", group_auth, controller.updateAnimalDetail);
 
