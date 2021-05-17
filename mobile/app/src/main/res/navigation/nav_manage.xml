@@ -164,7 +164,7 @@
     <fragment
         android:id="@+id/saveItemFragment"
         android:name="com.lacuc.pets.ui.manage.group.item.save.SaveItemFragment"
-        android:label="SaveItemFragment"
+        android:label="물품 저장"
         tools:layout="@layout/fragment_save_item" />
 
 </navigation>
