@@ -216,4 +216,20 @@ module.exports = {
     }
   },
 
+  deleteMedicalHistory: async ({ id }) => {
+    if (!id) {
+      return { error: "입력한 정보가 부족합니다." };
+    }
+
+    try {
+      const result = await MedicalHistory.destroy({ where: { HID: id } });
+      if (result <= 0) {
+        return { result: false, error: "아무것도 삭제되지 않았습니다." };
+      }
+      return { result: true };
+    } catch (error) {
+      console.log(error);
+      return { result: false, error };
+    }
+  },
 };
