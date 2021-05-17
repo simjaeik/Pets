@@ -86,7 +86,8 @@ module.exports = {
     }
   },
 
-  setGroup: async ({ data, body }) => {
+  setGroup: async ({ data, body, file }) => {
+    body.image = file.location;
     if (!data) {
       return { error: "invalid Token" };
     }
