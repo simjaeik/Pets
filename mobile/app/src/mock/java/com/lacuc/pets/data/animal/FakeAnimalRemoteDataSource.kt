@@ -60,9 +60,9 @@ class FakeAnimalRemoteDataSource @Inject constructor() : AnimalDataSource {
         }
 
 
-    override suspend fun updateMemo(mid: String, memo: Memo): Result<Void> =
+    override suspend fun updateMemo(mid: String, gid: String, content: String): Result<Void> =
         withContext(Dispatchers.IO) {
-            memoData = (memoData.filter { it.MID == mid } + memo) as MutableList<Memo>
+            memoData = (memoData.filter { it.MID != mid } + Memo(mid, content)) as MutableList<Memo>
             Result.Success(null)
         }
 
@@ -82,6 +82,11 @@ class FakeAnimalRemoteDataSource @Inject constructor() : AnimalDataSource {
             delay(100)
             medicalData = (medicalData + medical) as MutableList<Medical>
             Result.Success(null)
+        }
+
+    override suspend fun getMemo(aid: String, mid: String): Result<Memo> =
+        withContext(Dispatchers.IO) {
+            Result.Success(memoData.find { it.MID == mid })
         }
 
     private fun initAnimal() {

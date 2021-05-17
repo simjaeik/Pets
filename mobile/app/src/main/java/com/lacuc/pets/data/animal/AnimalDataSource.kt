@@ -20,11 +20,13 @@ interface AnimalDataSource {
 
     suspend fun setMemo(aid: String, memo: Memo): Result<Void>
 
-    suspend fun updateMemo(mid: String, memo: Memo): Result<Void>
+    suspend fun updateMemo(mid: String, gid: String, content: String): Result<Void>
 
     suspend fun deleteMemo(mid: String): Result<Void>
 
     suspend fun loadMedical(aid: String): Result<List<Medical>>
 
     suspend fun addMedical(aid: String, medical: Medical): Result<Void>
+
+    suspend fun getMemo(aid: String, mid: String): Result<Memo>
 }

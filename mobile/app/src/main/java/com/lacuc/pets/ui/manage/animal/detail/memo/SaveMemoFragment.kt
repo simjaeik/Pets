@@ -4,33 +4,46 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.lacuc.pets.ViewModelFactory
-import com.lacuc.pets.databinding.FragmentAddMemoBinding
+import com.lacuc.pets.databinding.FragmentSaveMemoBinding
+import com.lacuc.pets.ui.manage.ManageViewModel
 import com.lacuc.pets.util.setupWithNavController
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-class AddMemoFragment : DaggerFragment() {
+class SaveMemoFragment : DaggerFragment() {
 
-    private var _binding: FragmentAddMemoBinding? = null
+    private var _binding: FragmentSaveMemoBinding? = null
     private val binding get() = _binding!!
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private val viewModel: AddMemoViewModel by viewModels { viewModelFactory }
+    private val viewModel: SaveMemoViewModel by viewModels { viewModelFactory }
+
+    private val activityViewModel: ManageViewModel by activityViewModels { viewModelFactory }
 
     private val navController: NavController by lazy { findNavController() }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        activityViewModel.mid?.let {
+            viewModel.mid = it
+            viewModel.loadMemo()
+        }
+        activityViewModel.gid?.let { viewModel.gid = it }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentAddMemoBinding.inflate(inflater, container, false).apply {
+        _binding = FragmentSaveMemoBinding.inflate(inflater, container, false).apply {
             lifecycleOwner = viewLifecycleOwner
             vm = viewModel
         }

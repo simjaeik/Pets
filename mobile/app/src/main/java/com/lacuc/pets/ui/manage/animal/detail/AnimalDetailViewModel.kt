@@ -8,7 +8,7 @@ import com.lacuc.pets.domain.animal.AnimalDetailItem
 import com.lacuc.pets.domain.animal.animal.GetAnimalDetailUseCase
 import com.lacuc.pets.domain.animal.animal.GetAnimalUseCase
 import com.lacuc.pets.domain.animal.medical.GetMedicalUseCase
-import com.lacuc.pets.domain.animal.memo.GetMemoUseCase
+import com.lacuc.pets.domain.animal.memo.GetMemosUseCase
 import com.lacuc.pets.util.SingleLiveEvent
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -18,7 +18,7 @@ class AnimalDetailViewModel @Inject constructor(
     private val getAnimalUseCase: GetAnimalUseCase,
     private val getAnimalDetailUseCase: GetAnimalDetailUseCase,
     private val getMedicalUseCase: GetMedicalUseCase,
-    private val getMemoUseCase: GetMemoUseCase,
+    private val getMemosUseCase: GetMemosUseCase,
     private val errorEvent: SingleLiveEvent<String>
 ) : ViewModel() {
 
@@ -34,6 +34,8 @@ class AnimalDetailViewModel @Inject constructor(
 
     val tabPosition = MutableLiveData(0)
 
+    val detailItemClickEvent = SingleLiveEvent<AnimalDetailItem>()
+
     fun onTabSelect(position: Int) {
         tabPosition.value = position
         loadDetailItem()
@@ -45,7 +47,7 @@ class AnimalDetailViewModel @Inject constructor(
             val itemList = when (tabPosition.value) {
                 0 -> getAnimalDetailUseCase(aid)
                 1 -> getMedicalUseCase(aid)
-                2 -> getMemoUseCase(aid)
+                2 -> getMemosUseCase(aid) { detailItemClickEvent.value = it }
                 else -> {
                     loading.value = false
                     return@launch

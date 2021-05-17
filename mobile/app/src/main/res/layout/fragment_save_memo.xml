@@ -2,13 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.manage.animal.detail.memo.AddMemoFragment">
+    tools:context=".ui.manage.animal.detail.memo.SaveMemoFragment">
 
     <data>
 
         <variable
             name="vm"
-            type="com.lacuc.pets.ui.manage.animal.detail.memo.AddMemoViewModel" />
+            type="com.lacuc.pets.ui.manage.animal.detail.memo.SaveMemoViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -44,7 +44,7 @@
                     android:layout_marginEnd="16dp"
                     android:enabled="@{!vm.content.empty}"
                     android:minWidth="0dp"
-                    android:onClick="@{() -> vm.onCompleteClick()}"
+                    android:onClick="@{() -> vm.saveMemo()}"
                     android:text="@string/complete"
                     android:textAppearance="?textAppearanceHeadline6" />
 
