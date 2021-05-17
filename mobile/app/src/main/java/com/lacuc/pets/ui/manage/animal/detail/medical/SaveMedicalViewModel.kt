@@ -7,6 +7,7 @@ import com.lacuc.pets.data.Result
 import com.lacuc.pets.data.animal.entity.Medical
 import com.lacuc.pets.domain.animal.medical.AddMedicalUseCase
 import com.lacuc.pets.domain.animal.medical.GetMedicalUseCase
+import com.lacuc.pets.domain.animal.medical.UpdateMedicalUseCase
 import com.lacuc.pets.util.SingleLiveEvent
 import com.lacuc.pets.util.safeValue
 import kotlinx.coroutines.launch
@@ -16,6 +17,7 @@ import javax.inject.Inject
 
 class SaveMedicalViewModel @Inject constructor(
     private val getMedicalUseCase: GetMedicalUseCase,
+    private val updateMedicalUseCase: UpdateMedicalUseCase,
     private val addMedicalUseCase: AddMedicalUseCase,
     private val errorEvent: SingleLiveEvent<String>
 ) : ViewModel() {
@@ -35,15 +37,18 @@ class SaveMedicalViewModel @Inject constructor(
 
     fun onCompleteClick() {
         viewModelScope.launch {
-            val result = addMedicalUseCase(
-                aid, Medical(
-                    UUID.randomUUID().toString(),
-                    System.currentTimeMillis(),
-                    title.safeValue,
-                    content.safeValue,
-                    hospital.safeValue
+            val result = if (isUpdate)
+                updateMedicalUseCase(hid, createParams())
+            else
+                addMedicalUseCase(
+                    aid, Medical(
+                        UUID.randomUUID().toString(),
+                        System.currentTimeMillis(),
+                        title.safeValue,
+                        content.safeValue,
+                        hospital.safeValue
+                    )
                 )
-            )
 
             when (result) {
                 is Result.Success -> completeEvent.value = Unit
@@ -57,6 +62,13 @@ class SaveMedicalViewModel @Inject constructor(
             }
         }
     }
+
+    private fun createParams(): Map<String, String> = mapOf(
+        "date" to time.safeValue,
+        "title" to title.safeValue,
+        "content" to content.safeValue,
+        "hospital" to hospital.safeValue
+    )
 
     fun loadMedical() {
         viewModelScope.launch {
