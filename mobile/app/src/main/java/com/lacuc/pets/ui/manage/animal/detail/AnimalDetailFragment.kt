@@ -37,9 +37,11 @@ class AnimalDetailFragment : DaggerFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        activityViewModel.aid?.let { viewModel.aid = it }
-        viewModel.loadDetailItem()
-        viewModel.loadAnimal()
+        activityViewModel.aid?.let {
+            viewModel.aid = it
+            viewModel.loadDetailItem()
+            viewModel.loadAnimal()
+        }
     }
 
     override fun onCreateView(
