@@ -67,6 +67,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:inputType="none"
+                    android:text="@{item.authority}"
                     app:arrayId="@{R.array.member_authority_array}"
                     app:layoutId="@{R.layout.item_menu_dropdown}"
                     tools:text="권한" />

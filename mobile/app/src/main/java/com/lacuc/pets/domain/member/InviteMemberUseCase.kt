@@ -8,7 +8,7 @@ class InviteMemberUseCase @Inject constructor(private val repository: GroupRepos
     suspend operator fun invoke(
         gid: String,
         email: String,
-        authority: String = "수정권한"
+        authority: String = "권한없음"
     ): Result<Void> {
         return repository.addGroupMember(gid, email, authority)
     }

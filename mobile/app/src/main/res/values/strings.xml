@@ -52,7 +52,7 @@
 
     <string-array name="member_authority_array">
         <item>관리자</item>
-        <item>매니저</item>
-        <item>멤버</item>
+        <item>수정권한</item>
+        <item>권한없음</item>
     </string-array>
 </resources>
