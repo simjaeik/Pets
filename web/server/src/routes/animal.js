@@ -18,6 +18,10 @@ router.patch("/:id", groupAuth, controller.updateAnimalDetail);
 
 router.delete("/:id", groupAuth, controller.deleteAnimal);
 
+// Memo
+
+router.get("/memo/:id", controller.getMemos);
+
 
 router.patch("/:id", group_auth, controller.updateAnimalDetail);
 
