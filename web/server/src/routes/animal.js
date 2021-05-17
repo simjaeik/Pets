@@ -34,4 +34,6 @@ router.get("/medical/:id", controller.getMedicalHistories);
 
 router.post("/medical/:id", groupAuth, controller.setMedicalHistory);
 
+router.patch("/medical/:id", groupAuth, controller.updateMedicalHistory);
+
 module.exports = router;
