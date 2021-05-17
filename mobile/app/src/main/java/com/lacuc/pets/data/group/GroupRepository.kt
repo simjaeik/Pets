@@ -47,7 +47,7 @@ interface GroupRepository {
 
     suspend fun getItems(gid: String): Result<List<ItemHistory>>
 
-    suspend fun setItem(itemHistory: ItemHistory): Result<Void>
+    suspend fun setItem(params: Map<String, String>): Result<Void>
 
     suspend fun updateItem(iid: String, itemHistory: ItemHistory): Result<Void>
 

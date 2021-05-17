@@ -57,7 +57,7 @@ class ItemListFragment : DaggerFragment() {
         binding.recyclerviewItemList.setup(ItemListAdapter())
 
         viewModel.itemClickEvent.observe(viewLifecycleOwner) {
-            activityViewModel.hid = it.itemHistory.hid
+            activityViewModel.hid = it.itemHistory.HID
             val action = ItemListFragmentDirections.actionItemListFragmentToSaveItemFragment()
             navController.navigate(action)
         }
