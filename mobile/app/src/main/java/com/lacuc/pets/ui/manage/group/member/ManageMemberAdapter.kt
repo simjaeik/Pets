@@ -5,31 +5,40 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.lacuc.pets.BR
 import com.lacuc.pets.R
+import com.lacuc.pets.data.group.entity.Member
+import com.lacuc.pets.databinding.ItemMemberBinding
 import com.lacuc.pets.databinding.ItemMemberFooterBinding
 import com.lacuc.pets.util.BindableAdapter
 import com.lacuc.pets.util.SingleLiveEvent
 import com.lacuc.pets.util.ViewBindingHolder
-import java.lang.reflect.Member
 
-class ManageMemberAdapter : RecyclerView.Adapter<ViewBindingHolder<*>>(),
+class ManageMemberAdapter(val onChange: (Member, String) -> Unit) :
+    RecyclerView.Adapter<ViewBindingHolder<*>>(),
     BindableAdapter<List<Member>> {
 
     private val items = ArrayList<Member>()
 
     val inviteMemberEvent = SingleLiveEvent<Unit>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewBindingHolder<*> {
-        val viewHolder = ViewBindingHolder<ViewDataBinding>(parent.context, viewType)
-        if (viewType == R.layout.item_member_footer) {
-            (viewHolder.binding as ItemMemberFooterBinding).btnItemMemberFooterInviteMember
-                .setOnClickListener { inviteMemberEvent.value = Unit }
-        }
-        return viewHolder
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewBindingHolder<*> =
+        ViewBindingHolder<ViewDataBinding>(parent.context, viewType)
 
     override fun onBindViewHolder(holder: ViewBindingHolder<*>, position: Int) {
         if (position in 1..items.size)
             holder.binding.setVariable(BR.item, items[position - 1])
+        when (holder.binding) {
+            is ItemMemberBinding -> {
+                holder.binding.dropdownItemMemberAuthority
+                    .setOnItemClickListener { parent, _, pos, _ ->
+                        onChange(items[position - 1], parent.getItemAtPosition(pos) as String)
+                    }
+            }
+            is ItemMemberFooterBinding -> {
+                holder.binding.btnItemMemberFooterInviteMember.setOnClickListener {
+                    inviteMemberEvent.value = Unit
+                }
+            }
+        }
         holder.binding.executePendingBindings()
     }
 

@@ -57,7 +57,9 @@ class ManageMemberFragment : DaggerFragment() {
     }
 
     private fun setupRecyclerView() {
-        val adapter = ManageMemberAdapter()
+        val adapter = ManageMemberAdapter { member, authority ->
+            viewModel.updateAuthority(member, authority)
+        }
         binding.recyclerViewManageMember.setup(adapter)
 
         setupInviteMemberBtnObserver(adapter)

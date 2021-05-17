@@ -35,4 +35,7 @@ class ManageMemberViewModel @Inject constructor(
             }
         }
     }
+
+    fun updateAuthority(member: Member, authority: String) {
+    }
 }
