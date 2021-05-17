@@ -69,4 +69,41 @@ module.exports = {
 
     return res.status(status).json(result);
   },
+
+  // MedicalHistory
+  getMedicalHistories: async (req, res) => {
+    const { status, result } = await control(
+      service.getMedicalHistories,
+      req.params
+    );
+
+    return res.status(status).json(result);
+  },
+
+  setMedicalHistory: async (req, res) => {
+    const { status, result } = await control(service.setMedicalHistory, {
+      AID: req.params,
+      body: req.body,
+    });
+
+    return res.status(status).json(result);
+  },
+
+  updateMedicalHistory: async (req, res) => {
+    const { status, result } = await control(service.updateMedicalHistory, {
+      HID: req.params,
+      body: req.body,
+    });
+
+    return res.status(status).json(result);
+  },
+
+  deleteMedicalHistory: async (req, res) => {
+    const { status, result } = await control(
+      service.deleteMedicalHistory,
+      req.params
+    );
+
+    return res.status(status).json(result);
+  },
 };

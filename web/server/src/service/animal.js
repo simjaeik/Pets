@@ -160,4 +160,76 @@ module.exports = {
       return { result: false, error };
     }
   },
+
+  // MedicalHistory
+
+  getMedicalHistories: async ({ id }) => {
+    if (!id) {
+      return { error: "AID를 확인하세요." };
+    }
+
+    try {
+      const medicals = await MedicalHistory.findAll({
+        where: { AID: id },
+        attributes: ["HID", "date", "title", "content", "hospital"],
+        raw: true,
+      });
+      return medicals;
+    } catch (error) {
+      console.log(error);
+      return { error };
+    }
+  },
+
+  setMedicalHistory: async ({ AID, body }) => {
+    if (!AID || !body) {
+      return { error: "입력한 정보가 부족합니다." };
+    }
+    body.AID = AID.id;
+    delete body.GID;
+    try {
+      const result = await MedicalHistory.create(body);
+      console.log(result);
+      return { result: true };
+    } catch (error) {
+      console.log(error);
+      return { result: false, error };
+    }
+  },
+
+  updateMedicalHistory: async ({ HID, body }) => {
+    HID = HID.id;
+    if (!HID || !body) {
+      return { error: "입력한 정보가 부족합니다." };
+    }
+    delete body.GID;
+
+    try {
+      const result = await MedicalHistory.update(body, { where: { HID } });
+      if (result <= 0) {
+        return { result: false, error: "수정된 내용이 없습니다." };
+      }
+      return { result: true };
+    } catch (error) {
+      console.log(error);
+      return { result: false, error };
+    }
+  },
+
+  deleteMedicalHistory: async ({ id }) => {
+    if (!id) {
+      return { error: "입력한 정보가 부족합니다." };
+    }
+
+    try {
+      const result = await MedicalHistory.destroy({ where: { HID: id } });
+      if (result <= 0) {
+        return { result: false, error: "아무것도 삭제되지 않았습니다." };
+      }
+      return { result: true };
+    } catch (error) {
+      console.log(error);
+      return { result: false, error };
+    }
+  },
 };
