@@ -12,6 +12,9 @@ import androidx.navigation.fragment.findNavController
 import com.lacuc.pets.R
 import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.FragmentAnimalDetailBinding
+import com.lacuc.pets.domain.animal.AnimalDetailDetailItem
+import com.lacuc.pets.domain.animal.AnimalDetailMedicalItem
+import com.lacuc.pets.domain.animal.AnimalDetailMemoItem
 import com.lacuc.pets.ui.manage.ManageViewModel
 import com.lacuc.pets.util.setup
 import com.lacuc.pets.util.setupWithNavController
@@ -63,6 +66,27 @@ class AnimalDetailFragment : DaggerFragment() {
         setOnUpdateEventObserver()
 
         setOnTabSelectedObserver()
+
+        setOnDetailItemClickObserver()
+    }
+
+    private fun setOnDetailItemClickObserver() {
+        viewModel.detailItemClickEvent.observe(viewLifecycleOwner) { item ->
+            when (item) {
+                is AnimalDetailDetailItem -> {
+                }
+                is AnimalDetailMedicalItem -> {
+                }
+                is AnimalDetailMemoItem -> navToSaveMemo(item)
+            }
+        }
+    }
+
+    private fun navToSaveMemo(item: AnimalDetailMemoItem) {
+        activityViewModel.mid = item.memo.MID
+        val action = AnimalDetailFragmentDirections
+            .actionAnimalDetailFragmentToAddMemoFragment()
+        navController.navigate(action)
     }
 
     private fun setOnTabSelectedObserver() {

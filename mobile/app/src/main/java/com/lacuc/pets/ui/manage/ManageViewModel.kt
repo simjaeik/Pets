@@ -9,4 +9,5 @@ class ManageViewModel @Inject constructor() : ViewModel() {
     var iid: String? = null
     var uid: String? = null
     var hid: String? = null
+    var mid: String? = null
 }
