@@ -26,6 +26,6 @@ router.post("/memo/:id", groupAuth, controller.setMemo);
 
 router.patch("/memo/:id", groupAuth, controller.updateMemo);
 
-router.delete("/:id", group_auth, controller.deleteAnimal);
+router.delete("/memo/:id", groupAuth, controller.deleteMemo);
 
 module.exports = router;
