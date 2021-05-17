@@ -28,4 +28,8 @@ router.patch("/memo/:id", groupAuth, controller.updateMemo);
 
 router.delete("/memo/:id", groupAuth, controller.deleteMemo);
 
+// MedicalHistory
+
+router.get("/medical/:id", controller.getMedicalHistories);
+
 module.exports = router;
