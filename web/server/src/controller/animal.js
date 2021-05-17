@@ -80,6 +80,15 @@ module.exports = {
     return res.status(status).json(result);
   },
 
+  setMedicalHistory: async (req, res) => {
+    const { status, result } = await control(service.setMedicalHistory, {
+      AID: req.params,
+      body: req.body,
+    });
+
+    return res.status(status).json(result);
+  },
+
     return res.status(status).json(result);
   },
 };
