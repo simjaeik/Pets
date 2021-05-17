@@ -5,7 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Animal(
-    val aid: String,
+    val AID: String,
     val gid: String,
     val name: String,
     val image: String,
