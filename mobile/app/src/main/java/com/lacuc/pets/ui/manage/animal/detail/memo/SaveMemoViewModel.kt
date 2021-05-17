@@ -7,6 +7,7 @@ import com.lacuc.pets.data.Result
 import com.lacuc.pets.data.animal.entity.Memo
 import com.lacuc.pets.domain.animal.memo.AddMemoUseCase
 import com.lacuc.pets.domain.animal.memo.GetMemoUseCase
+import com.lacuc.pets.domain.animal.memo.UpdateMemoUseCase
 import com.lacuc.pets.util.SingleLiveEvent
 import com.lacuc.pets.util.safeValue
 import kotlinx.coroutines.launch
@@ -16,10 +17,12 @@ import javax.inject.Inject
 
 class SaveMemoViewModel @Inject constructor(
     private val getMemoUseCase: GetMemoUseCase,
+    private val updateMemoUseCase: UpdateMemoUseCase,
     private val addMemoUseCase: AddMemoUseCase,
     private val errorEvent: SingleLiveEvent<String>
 ) : ViewModel() {
 
+    var gid = ""
     var aid = ""
     var mid = ""
 
@@ -27,9 +30,14 @@ class SaveMemoViewModel @Inject constructor(
 
     val completeEvent = SingleLiveEvent<Unit>()
 
-    fun onCompleteClick() {
+    var isUpdate = false
+
+    fun saveMemo() {
         viewModelScope.launch {
-            val result = addMemoUseCase(aid, Memo(UUID.randomUUID().toString(), content.safeValue))
+            val result = if (isUpdate)
+                updateMemoUseCase(mid, gid, content.safeValue)
+            else
+                addMemoUseCase(aid, Memo(UUID.randomUUID().toString(), content.safeValue))
 
             when (result) {
                 is Result.Success -> completeEvent.value = Unit
@@ -49,7 +57,10 @@ class SaveMemoViewModel @Inject constructor(
             val memo = getMemoUseCase(aid, mid)
 
             when (memo) {
-                is Result.Success -> memo.body?.let { content.value = it.content }
+                is Result.Success -> memo.body?.let {
+                    isUpdate = true
+                    content.value = it.content
+                }
                 is Result.Failure -> errorEvent.value =
                     "code: ${memo.code} message: ${memo.error}"
                 is Result.NetworkError -> errorEvent.value = "네트워크 문제가 발생했습니다."

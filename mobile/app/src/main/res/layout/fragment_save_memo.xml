@@ -44,7 +44,7 @@
                     android:layout_marginEnd="16dp"
                     android:enabled="@{!vm.content.empty}"
                     android:minWidth="0dp"
-                    android:onClick="@{() -> vm.onCompleteClick()}"
+                    android:onClick="@{() -> vm.saveMemo()}"
                     android:text="@string/complete"
                     android:textAppearance="?textAppearanceHeadline6" />
 

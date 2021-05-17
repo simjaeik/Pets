@@ -35,6 +35,7 @@ class SaveMemoFragment : DaggerFragment() {
             viewModel.mid = it
             viewModel.loadMemo()
         }
+        activityViewModel.gid?.let { viewModel.gid = it }
     }
 
     override fun onCreateView(

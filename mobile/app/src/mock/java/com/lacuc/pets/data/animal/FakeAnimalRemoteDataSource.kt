@@ -62,7 +62,7 @@ class FakeAnimalRemoteDataSource @Inject constructor() : AnimalDataSource {
 
     override suspend fun updateMemo(mid: String, gid: String, content: String): Result<Void> =
         withContext(Dispatchers.IO) {
-            memoData = (memoData.filter { it.MID == mid } + Memo(mid, content)) as MutableList<Memo>
+            memoData = (memoData.filter { it.MID != mid } + Memo(mid, content)) as MutableList<Memo>
             Result.Success(null)
         }
 
