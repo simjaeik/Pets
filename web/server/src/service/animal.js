@@ -125,4 +125,23 @@ module.exports = {
     }
   },
 
+  updateMemo: async ({ MID, body }) => {
+    MID = MID.id;
+    if (!MID || !body) {
+      return { error: "입력한 정보가 부족합니다." };
+    }
+    delete body.GID;
+
+    try {
+      const result = await Memo.update(body, { where: { MID } });
+      if (result <= 0) {
+        return { result: false, error: "수정된 내용이 없습니다." };
+      }
+      return { result: true };
+    } catch (error) {
+      console.log(error);
+      return { result: false, error };
+    }
+  },
+
 };
