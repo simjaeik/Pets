@@ -27,6 +27,9 @@ class DefaultAnimalRepository @Inject constructor(
     override suspend fun getMemo(aid: String, mid: String): Result<Memo> =
         animalRemoteDataSource.getMemo(aid, mid)
 
+    override suspend fun getMedical(aid: String, hid: String): Result<Medical> =
+        animalRemoteDataSource.getMedical(aid, hid)
+
     override suspend fun setMemo(aid: String, memo: Memo): Result<Void> =
         animalRemoteDataSource.setMemo(aid, memo)
 

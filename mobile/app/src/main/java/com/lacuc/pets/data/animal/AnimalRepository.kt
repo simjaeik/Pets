@@ -31,4 +31,6 @@ interface AnimalRepository {
 
     suspend fun getMemo(aid: String, mid: String): Result<Memo>
 
+    suspend fun getMedical(aid: String, hid: String): Result<Medical>
+
 }

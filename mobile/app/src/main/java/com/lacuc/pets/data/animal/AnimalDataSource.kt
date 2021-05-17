@@ -29,4 +29,6 @@ interface AnimalDataSource {
     suspend fun addMedical(aid: String, medical: Medical): Result<Void>
 
     suspend fun getMemo(aid: String, mid: String): Result<Memo>
+
+    suspend fun getMedical(aid: String, hid: String): Result<Medical>
 }
