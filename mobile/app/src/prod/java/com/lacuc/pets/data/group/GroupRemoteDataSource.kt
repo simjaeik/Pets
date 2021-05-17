@@ -35,10 +35,6 @@ class GroupRemoteDataSource @Inject constructor(
     override suspend fun getGroupMembers(gid: String): Result<List<Member>> =
         groupService.getGroupMembers(gid)
 
-    override suspend fun getGroupMember(gid: String, uid: String): Result<Member> {
-        TODO("Not yet implemented")
-    }
-
     override suspend fun getProfile(): Result<Member> = groupService.getMemberInfo()
 
     override suspend fun updateProfile(

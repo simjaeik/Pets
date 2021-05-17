@@ -27,8 +27,6 @@ interface GroupRepository {
 
     suspend fun getGroupMembers(gid: String): Result<List<Member>>
 
-    suspend fun getGroupMember(gid: String, uid: String): Result<Member>
-
     suspend fun getProfile(): Result<Member>
 
     suspend fun updateProfile(
