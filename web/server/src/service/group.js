@@ -139,11 +139,14 @@ module.exports = {
     }
   },
 
-  updateGroup: async ({ GID, body }) => {
+  updateGroup: async ({ GID, body, file }) => {
     if (!body || !GID) {
       return { error: "정보가 부족합니다" };
     }
 
+    if (file) {
+      body.image = file.location;
+    }
     try {
       await Group.update(body, { where: { GID } });
       return { result: true };
