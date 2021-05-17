@@ -30,7 +30,6 @@ class SaveItemViewModel @Inject constructor(
 
     var isUpdate = false
 
-    val updateEvent = SingleLiveEvent<Unit>()
     val completeEvent = SingleLiveEvent<Unit>()
 
     fun loadItem() {
@@ -64,12 +63,7 @@ class SaveItemViewModel @Inject constructor(
                 addItemUseCase(createParams())
 
             when (result) {
-                is Result.Success -> {
-                    if (isUpdate)
-                        updateEvent.value = Unit
-                    else
-                        completeEvent.value = Unit
-                }
+                is Result.Success -> completeEvent.value = Unit
                 is Result.Failure -> errorEvent.value =
                     "code: ${result.code} message: ${result.error}"
                 is Result.NetworkError -> errorEvent.value = "네트워크 문제가 발생했습니다."

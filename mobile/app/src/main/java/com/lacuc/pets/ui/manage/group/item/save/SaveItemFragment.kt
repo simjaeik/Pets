@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.FragmentSaveItemBinding
 import com.lacuc.pets.ui.manage.ManageViewModel
+import com.lacuc.pets.util.setupWithNavController
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
@@ -48,4 +49,16 @@ class SaveItemFragment : DaggerFragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.toolbarSaveItem.setupWithNavController(navController)
+
+        setOnCompleteObserver()
+    }
+
+    private fun setOnCompleteObserver() {
+        viewModel.completeEvent.observe(viewLifecycleOwner) {
+            navController.previousBackStackEntry?.savedStateHandle?.set("onCompleteEvent", true)
+            navController.navigateUp()
+        }
+    }
 }

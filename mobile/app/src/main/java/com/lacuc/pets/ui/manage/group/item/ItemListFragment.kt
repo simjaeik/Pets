@@ -61,6 +61,8 @@ class ItemListFragment : DaggerFragment() {
             val action = ItemListFragmentDirections.actionItemListFragmentToSaveItemFragment()
             navController.navigate(action)
         }
+
+        setOnCompleteObserver()
     }
 
     private fun setupToolbar() {
@@ -74,6 +76,15 @@ class ItemListFragment : DaggerFragment() {
                 true
             }
         }
+    }
+
+    private fun setOnCompleteObserver() {
+        navController.currentBackStackEntry
+            ?.savedStateHandle
+            ?.getLiveData<Boolean>("onCompleteEvent")
+            ?.observe(viewLifecycleOwner) {
+                viewModel.loadItems()
+            }
     }
 
     override fun onDestroyView() {
