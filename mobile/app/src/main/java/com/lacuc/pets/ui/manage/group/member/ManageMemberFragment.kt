@@ -54,6 +54,17 @@ class ManageMemberFragment : DaggerFragment() {
         binding.toolbarManageMember.setupWithNavController(navController)
 
         setupRecyclerView()
+
+        setOnCompleteObserver()
+    }
+
+    private fun setOnCompleteObserver() {
+        navController.currentBackStackEntry
+            ?.savedStateHandle
+            ?.getLiveData<Boolean>("onCompleteEvent")
+            ?.observe(viewLifecycleOwner) {
+                viewModel.loadMembers()
+            }
     }
 
     private fun setupRecyclerView() {
