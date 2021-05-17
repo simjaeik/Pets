@@ -47,10 +47,12 @@
     <string name="edit">편집</string>
     <string name="shortcut">바로가기</string>
     <string name="nickName">닉네임</string>
+    <string name="invite">초대</string>
+    <string name="hint_email">aabbcc@lacuc.pets.com</string>
 
     <string-array name="member_authority_array">
         <item>관리자</item>
-        <item>매니저</item>
-        <item>멤버</item>
+        <item>수정권한</item>
+        <item>권한없음</item>
     </string-array>
 </resources>

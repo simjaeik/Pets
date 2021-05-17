@@ -112,7 +112,11 @@
         android:id="@+id/manageMemberFragment"
         android:name="com.lacuc.pets.ui.manage.group.member.ManageMemberFragment"
         android:label="멤버 관리"
-        tools:layout="@layout/fragment_manage_member" />
+        tools:layout="@layout/fragment_manage_member">
+        <action
+            android:id="@+id/action_manageMemberFragment_to_inviteMemberFragment"
+            app:destination="@id/inviteMemberFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/galleryFragment"
@@ -147,5 +151,11 @@
         android:name="com.lacuc.pets.ui.manage.group.item.ItemListFragment"
         android:label="물품 목록"
         tools:layout="@layout/fragment_item_list" />
+    
+    <fragment
+        android:id="@+id/inviteMemberFragment"
+        android:name="com.lacuc.pets.ui.manage.group.member.invite.InviteMemberFragment"
+        android:label="멤버 초대"
+        tools:layout="@layout/fragment_invite_member" />
 
 </navigation>

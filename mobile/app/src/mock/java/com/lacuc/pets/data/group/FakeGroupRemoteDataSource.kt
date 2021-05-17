@@ -204,9 +204,9 @@ class FakeGroupRemoteDataSource @Inject constructor() : GroupDataSource {
     }
 
     private fun initMember() {
-        memberData.add(Member("0", "Linux", "admin", "mail", "L"))
-        memberData.add(Member("1", "Ubuntu", "admin", "mail", "U"))
-        memberData.add(Member("2", "Arch", "admin", "mail", "A"))
+        memberData.add(Member("0", "Linux", "admin", "mail", "L", "관리자"))
+        memberData.add(Member("1", "Ubuntu", "admin", "mail", "U", "수정권한"))
+        memberData.add(Member("2", "Arch", "admin", "mail", "A", "권한없음"))
     }
 
     private fun initImage() {
