@@ -1,6 +1,7 @@
 // Dependencies
 const express = require("express");
 const groupAuth = require("./middleware/group-auth");
+const { upload } = require("./middleware/multer");
 
 // Controller
 const controller = require("../controller/group");
@@ -13,11 +14,11 @@ router.get("/:id", controller.getGroup);
 
 router.get("/members/:id", controller.getGroupMembers);
 
-router.post("/", controller.setGroup);
+router.post("/", upload.single("img"), controller.setGroup);
 
 router.post("/member/:id", groupAuth, controller.addGroupMember);
 
-router.patch("/:id", groupAuth, controller.updateGroup);
+router.patch("/:id", upload.single("img"), groupAuth, controller.updateGroup);
 
 router.patch("/share/:id", groupAuth, controller.toggleShare);
 
