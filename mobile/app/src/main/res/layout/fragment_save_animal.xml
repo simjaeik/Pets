@@ -8,6 +8,8 @@
 
         <import type="android.view.View" />
 
+        <import type="com.lacuc.pets.R" />
+
         <variable
             name="vm"
             type="com.lacuc.pets.ui.manage.animal.save.SaveAnimalViewModel" />
@@ -159,6 +161,8 @@
 
                     <AutoCompleteTextView
                         android:id="@+id/textInput_saveAnimal_animalSex"
+                        arrayId="@{R.array.animal_sex_array}"
+                        layoutId="@{R.layout.item_menu_dropdown}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="none"

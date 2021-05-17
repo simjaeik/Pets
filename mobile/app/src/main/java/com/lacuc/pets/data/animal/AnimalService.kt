@@ -4,14 +4,20 @@ import com.lacuc.pets.data.Result
 import com.lacuc.pets.data.animal.entity.Animal
 import com.lacuc.pets.data.animal.entity.Medical
 import com.lacuc.pets.data.animal.entity.Memo
+import okhttp3.MultipartBody
 import retrofit2.http.*
 
 interface AnimalService {
     @GET("api/animal/all/{id}")
     suspend fun getAnimalByGroup(@Path("id") gid: String): Result<List<Animal>>
 
-    @POST("api/animal")
-    suspend fun addAnimal(@Body animal: Animal): Result<Void>
+    @Multipart
+    @POST("api/animal/{id}")
+    suspend fun addAnimal(
+        @Path("id") gid: String,
+        @PartMap params: Map<String, String>,
+        @Part imageFile: MultipartBody.Part
+    ): Result<Void>
 
     @DELETE("api/animal/{id}")
     suspend fun deleteAnimal(@Path("id") aid: String): Result<Void>
@@ -19,8 +25,13 @@ interface AnimalService {
     @GET("api/animal/{id}")
     suspend fun getAnimal(@Path("id") aid: String): Result<Animal>
 
+    @FormUrlEncoded
     @PATCH("api/animal/{id}")
-    suspend fun updateAnimalDetail(@Path("id") aid: String, @Body animal: Animal): Result<Void>
+    suspend fun updateAnimalDetail(
+        @Path("id") aid: String,
+        @Field("GID") gid: String,
+        @Body animal: Animal
+    ): Result<Void>
 
     @GET("api/animal/memo/{id}")
     suspend fun getMemos(@Path("id") aid: String): Result<List<Memo>>
