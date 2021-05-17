@@ -69,7 +69,8 @@ class UserProfileFragment : DaggerFragment() {
         disposables.add(
             viewModel.bindCompleteBtnEnable(
                 binding.textInputUserProfileName.textChanges(),
-                binding.textInputUserProfileEmail.textChanges()
+                binding.textInputUserProfileEmail.textChanges(),
+                binding.textInputUserProfileNickName.textChanges()
             )
         )
     }
