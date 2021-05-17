@@ -149,12 +149,22 @@
         android:id="@+id/itemListFragment"
         android:name="com.lacuc.pets.ui.manage.group.item.ItemListFragment"
         android:label="물품 목록"
-        tools:layout="@layout/fragment_item_list" />
-    
+        tools:layout="@layout/fragment_item_list">
+        <action
+            android:id="@+id/action_itemListFragment_to_saveItemFragment"
+            app:destination="@id/saveItemFragment" />
+    </fragment>
+
     <fragment
         android:id="@+id/inviteMemberFragment"
         android:name="com.lacuc.pets.ui.manage.group.member.invite.InviteMemberFragment"
         android:label="멤버 초대"
         tools:layout="@layout/fragment_invite_member" />
+
+    <fragment
+        android:id="@+id/saveItemFragment"
+        android:name="com.lacuc.pets.ui.manage.group.item.save.SaveItemFragment"
+        android:label="SaveItemFragment"
+        tools:layout="@layout/fragment_save_item" />
 
 </navigation>

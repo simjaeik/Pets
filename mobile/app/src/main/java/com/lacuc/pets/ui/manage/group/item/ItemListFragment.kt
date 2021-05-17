@@ -46,6 +46,7 @@ class ItemListFragment : DaggerFragment() {
             lifecycleOwner = viewLifecycleOwner
             vm = viewModel
         }
+        activityViewModel.hid = null
         return binding.root
     }
 
@@ -53,6 +54,12 @@ class ItemListFragment : DaggerFragment() {
         binding.toolbarItemList.setupWithNavController(navController)
 
         binding.recyclerviewItemList.setup(ItemListAdapter())
+
+        viewModel.itemClickEvent.observe(viewLifecycleOwner) {
+            activityViewModel.hid = it.itemHistory.hid
+            val action = ItemListFragmentDirections.actionItemListFragmentToSaveItemFragment()
+            navController.navigate(action)
+        }
     }
 
     override fun onDestroyView() {
