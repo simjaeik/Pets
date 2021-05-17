@@ -10,9 +10,6 @@ class GroupRemoteDataSource @Inject constructor(
 ) : GroupDataSource {
     override suspend fun getMyGroups(): Result<List<GroupWrapper>> = groupService.getMyGroups()
 
-    override suspend fun getGroupsNear(latitude: Double, longitude: Double): Result<List<Group>> =
-        groupService.getGroupsNear(latitude, longitude)
-
     override suspend fun deleteGroup(gid: String): Result<Void> = groupService.deleteGroup(gid)
 
     override suspend fun setGroup(
@@ -28,8 +25,12 @@ class GroupRemoteDataSource @Inject constructor(
         imageFile: MultipartBody.Part
     ): Result<Void> = groupService.updateGroup(gid, params, imageFile)
 
-    override suspend fun addGroupMember(memberParams: Map<String, Any>): Result<Void> =
-        groupService.addGroupMember(memberParams)
+    override suspend fun addGroupMember(
+        gid: String,
+        email: String,
+        authority: String
+    ): Result<Void> =
+        groupService.addGroupMember(gid, email, authority)
 
     override suspend fun getGroupMembers(gid: String): Result<List<Member>> =
         groupService.getGroupMembers(gid)
@@ -38,11 +39,11 @@ class GroupRemoteDataSource @Inject constructor(
         TODO("Not yet implemented")
     }
 
+    override suspend fun getProfile(): Result<Member> = groupService.getMemberInfo()
+
     override suspend fun updateProfile(
-        name: String, email: String
-    ): Result<Void> {
-        TODO("Not yet implemented")
-    }
+        name: String, email: String, nickName: String
+    ): Result<Void> = groupService.updateMemberInfo(name, email, nickName)
 
     override suspend fun deleteGroupMember(gid: String): Result<Void> =
         groupService.deleteGroupMember(gid)
