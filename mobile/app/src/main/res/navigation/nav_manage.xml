@@ -79,7 +79,6 @@
     <fragment
         android:id="@+id/animalDetailFragment"
         android:name="com.lacuc.pets.ui.manage.animal.detail.AnimalDetailFragment"
-        android:label="fragment_animal_detail"
         tools:layout="@layout/fragment_animal_detail">
         <action
             android:id="@+id/action_animalDetailFragment_to_addAnimalFragment"
