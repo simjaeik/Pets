@@ -29,4 +29,13 @@ module.exports = {
     return res.status(status).json(result);
   },
 
+  updateGalleryImage: async (req, res) => {
+    const { status, result } = await control(service.updateGalleryImage, {
+      IID: req.params,
+      file: req.file,
+    });
+
+    return res.status(status).json(result);
+  },
+
 };
