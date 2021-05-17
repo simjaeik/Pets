@@ -23,6 +23,7 @@ class AnimalDetailMedicalItem(medical: Medical) : AnimalDetailItem() {
     val content = medical.content
 }
 
-class AnimalDetailMemoItem(memo: Memo) : AnimalDetailItem() {
+class AnimalDetailMemoItem(memo: Memo, listener: (AnimalDetailMemoItem) -> Unit) :
+    AnimalDetailItem() {
     val content = memo.content
 }
