@@ -33,8 +33,8 @@ class DefaultAnimalRepository @Inject constructor(
     override suspend fun updateMedical(hid: String, params: Map<String, String>): Result<Void> =
         animalRemoteDataSource.updateMedical(hid, params)
 
-    override suspend fun setMemo(aid: String, memo: Memo): Result<Void> =
-        animalRemoteDataSource.setMemo(aid, memo)
+    override suspend fun setMemo(aid: String, gid: String, content: String): Result<Void> =
+        animalRemoteDataSource.setMemo(aid, gid, content)
 
     override suspend fun deleteAnimal(aid: String): Result<Void> {
         TODO("Not yet implemented")

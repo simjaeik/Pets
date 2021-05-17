@@ -30,8 +30,8 @@ class AnimalRemoteDataSource @Inject constructor(
         return animalService.getMemos(aid)
     }
 
-    override suspend fun setMemo(aid: String, memo: Memo): Result<Void> {
-        return animalService.setMemo(aid, memo)
+    override suspend fun setMemo(aid: String, gid: String, content: String): Result<Void> {
+        return animalService.setMemo(aid, gid, content)
     }
 
     override suspend fun updateMemo(mid: String, gid: String, content: String): Result<Void> {
