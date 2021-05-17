@@ -8,6 +8,7 @@ const checkAddBodyValid = (body) => {
 };
 
 module.exports = {
+  // Animal
   getAnimalByGroup: async (GID) => {
     if (!GID) {
       return { error: "GID가 존재하지 않습니다." };
@@ -89,4 +90,24 @@ module.exports = {
       return { result: false, error };
     }
   },
+
+  // Memos
+
+  getMemos: async ({ id }) => {
+    if (!id) {
+      return { error: "AID를 확인하세요." };
+    }
+
+    try {
+      const memos = await Memo.findAll({
+        where: { AID: id },
+        attributes: ["MID", "content"],
+      });
+      return memos;
+    } catch (error) {
+      console.log(error);
+      return { error };
+    }
+  },
+
 };
