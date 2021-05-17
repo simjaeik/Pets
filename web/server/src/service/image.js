@@ -35,4 +35,20 @@ module.exports = {
     }
   },
 
+  setGalleryImage: async ({ body, file }) => {
+    if (!body || !file) {
+      return { error: "모든 정보를 입력해주세요" };
+    }
+
+    body.url = file.location;
+
+    try {
+      const result = await GalleryImage.create(body);
+      return { result: true };
+    } catch (error) {
+      console.log(error);
+      return { result: false, error };
+    }
+  },
+
 };
