@@ -35,6 +35,7 @@ class SaveMemoFragment : DaggerFragment() {
             viewModel.mid = it
             viewModel.loadMemo()
         }
+        activityViewModel.aid?.let { viewModel.aid = it }
         activityViewModel.gid?.let { viewModel.gid = it }
     }
 
