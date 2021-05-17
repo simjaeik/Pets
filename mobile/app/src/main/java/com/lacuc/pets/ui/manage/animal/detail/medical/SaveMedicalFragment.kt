@@ -8,19 +8,19 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.lacuc.pets.ViewModelFactory
-import com.lacuc.pets.databinding.FragmentAddMedicalBinding
+import com.lacuc.pets.databinding.FragmentSaveMedicalBinding
 import com.lacuc.pets.util.setupWithNavController
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-class AddMedicalFragment : DaggerFragment() {
-    private var _binding: FragmentAddMedicalBinding? = null
+class SaveMedicalFragment : DaggerFragment() {
+    private var _binding: FragmentSaveMedicalBinding? = null
     private val binding get() = _binding!!
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private val viewModel: AddMedicalViewModel by viewModels { viewModelFactory }
+    private val viewModel: SaveMedicalViewModel by viewModels { viewModelFactory }
 
     private val navController: NavController by lazy { findNavController() }
 
@@ -29,7 +29,7 @@ class AddMedicalFragment : DaggerFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentAddMedicalBinding.inflate(inflater, container, false).apply {
+        _binding = FragmentSaveMedicalBinding.inflate(inflater, container, false).apply {
             lifecycleOwner = viewLifecycleOwner
             vm = viewModel
         }

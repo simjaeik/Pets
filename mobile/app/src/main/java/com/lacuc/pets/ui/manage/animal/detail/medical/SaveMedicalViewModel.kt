@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
-class AddMedicalViewModel @Inject constructor(
+class SaveMedicalViewModel @Inject constructor(
     private val addMedicalUseCase: AddMedicalUseCase,
     private val errorEvent: SingleLiveEvent<String>
 ) : ViewModel() {
