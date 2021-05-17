@@ -69,4 +69,17 @@ module.exports = {
 
     return res.status(status).json(result);
   },
+
+  // MedicalHistory
+  getMedicalHistories: async (req, res) => {
+    const { status, result } = await control(
+      service.getMedicalHistories,
+      req.params
+    );
+
+    return res.status(status).json(result);
+  },
+
+    return res.status(status).json(result);
+  },
 };
