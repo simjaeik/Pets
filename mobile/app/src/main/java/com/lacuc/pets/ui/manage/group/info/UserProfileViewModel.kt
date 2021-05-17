@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jakewharton.rxbinding4.InitialValueObservable
 import com.lacuc.pets.data.Result
-import com.lacuc.pets.domain.member.GetGroupMemberUseCase
+import com.lacuc.pets.domain.member.GetProfileUseCase
 import com.lacuc.pets.domain.member.UpdateProfileUseCase
 import com.lacuc.pets.util.SingleLiveEvent
 import com.lacuc.pets.util.safeValue
@@ -16,13 +16,10 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class UserProfileViewModel @Inject constructor(
+    private val getProfileUseCase: GetProfileUseCase,
     private val updateProfileUseCase: UpdateProfileUseCase,
-    private val getGroupMemberUseCase: GetGroupMemberUseCase,
     private val errorEvent: SingleLiveEvent<String>
 ) : ViewModel() {
-
-    var gid = ""
-    var uid = ""
 
     val name = MutableLiveData("")
     val email = MutableLiveData("")
@@ -59,12 +56,14 @@ class UserProfileViewModel @Inject constructor(
 
     fun loadProfile() {
         viewModelScope.launch {
-            val profile = getGroupMemberUseCase(gid, uid)
+            val profile = getProfileUseCase()
 
             when (profile) {
                 is Result.Success -> profile.body?.let {
+                    Timber.d("$it")
                     name.value = it.name
                     email.value = it.email
+                    nickName.value = it.nickName
                 }
                 is Result.Failure -> errorEvent.value =
                     "code: ${profile.code} message: ${profile.error}"
