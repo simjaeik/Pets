@@ -84,6 +84,11 @@ class FakeAnimalRemoteDataSource @Inject constructor() : AnimalDataSource {
             Result.Success(null)
         }
 
+    override suspend fun getMemo(aid: String, mid: String): Result<Memo> =
+        withContext(Dispatchers.IO) {
+            Result.Success(memoData.find { it.MID == mid })
+        }
+
     private fun initAnimal() {
         animalData = mutableListOf(
             Animal(
