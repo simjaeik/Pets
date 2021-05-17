@@ -51,6 +51,8 @@ fun setTest(tabLayout: TabLayout, listener: Consumer<Int>) {
 }
 
 @BindingAdapter("date")
-fun setDate(textView: TextView, date: String) {
-    textView.text = date.split("T")[0]
+fun setDate(textView: TextView, date: String?) {
+    date?.let {
+        textView.text = date.split("T")[0]
+    }
 }
