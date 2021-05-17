@@ -43,11 +43,11 @@ class AnimalRemoteDataSource @Inject constructor(
     }
 
     override suspend fun loadMedical(aid: String): Result<List<Medical>> {
-        TODO("Not yet implemented")
+        return animalService.getMedicalHistories(aid)
     }
 
-    override suspend fun addMedical(aid: String, medical: Medical): Result<Void> {
-        TODO("Not yet implemented")
+    override suspend fun addMedical(aid: String, params: Map<String, String>): Result<Void> {
+        return animalService.setMedicalHistory(aid, params)
     }
 
     override suspend fun getMemo(aid: String, mid: String): Result<Memo> {
@@ -59,6 +59,6 @@ class AnimalRemoteDataSource @Inject constructor(
     }
 
     override suspend fun updateMedical(hid: String, params: Map<String, String>): Result<Void> {
-        TODO("Not yet implemented")
+        return animalService.updateMedicalHistory(hid, params)
     }
 }

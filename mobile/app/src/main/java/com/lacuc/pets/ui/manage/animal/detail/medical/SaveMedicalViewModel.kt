@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lacuc.pets.data.Result
-import com.lacuc.pets.data.animal.entity.Medical
 import com.lacuc.pets.domain.animal.medical.AddMedicalUseCase
 import com.lacuc.pets.domain.animal.medical.GetMedicalUseCase
 import com.lacuc.pets.domain.animal.medical.UpdateMedicalUseCase
@@ -12,7 +11,6 @@ import com.lacuc.pets.util.SingleLiveEvent
 import com.lacuc.pets.util.safeValue
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import java.util.*
 import javax.inject.Inject
 
 class SaveMedicalViewModel @Inject constructor(
@@ -40,15 +38,7 @@ class SaveMedicalViewModel @Inject constructor(
             val result = if (isUpdate)
                 updateMedicalUseCase(hid, createParams())
             else
-                addMedicalUseCase(
-                    aid, Medical(
-                        UUID.randomUUID().toString(),
-                        System.currentTimeMillis(),
-                        title.safeValue,
-                        content.safeValue,
-                        hospital.safeValue
-                    )
-                )
+                addMedicalUseCase(aid, createParams())
 
             when (result) {
                 is Result.Success -> completeEvent.value = Unit
@@ -64,6 +54,7 @@ class SaveMedicalViewModel @Inject constructor(
     }
 
     private fun createParams(): Map<String, String> = mapOf(
+        "GID" to gid,
         "date" to time.safeValue,
         "title" to title.safeValue,
         "content" to content.safeValue,
