@@ -27,7 +27,9 @@ class InviteMemberViewModel @Inject constructor(
             val result = inviteMemberUseCase(gid, email.safeValue)
 
             when (result) {
-                is Result.Success -> result.body?.let { completeEvent.value = Unit }
+                is Result.Success -> {
+                    completeEvent.value = Unit
+                }
                 is Result.Failure -> errorEvent.value =
                     "code: ${result.code} message: ${result.error}"
                 is Result.NetworkError -> errorEvent.value = "네트워크 문제가 발생했습니다."
