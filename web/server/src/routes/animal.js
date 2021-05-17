@@ -32,4 +32,6 @@ router.delete("/memo/:id", groupAuth, controller.deleteMemo);
 
 router.get("/medical/:id", controller.getMedicalHistories);
 
+router.post("/medical/:id", groupAuth, controller.setMedicalHistory);
+
 module.exports = router;
