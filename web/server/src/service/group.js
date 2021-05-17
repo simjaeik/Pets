@@ -17,7 +17,7 @@ const checkInvalidData = (data) => {
   if (
     name === undefined ||
     info === undefined ||
-    !image ||
+    image === undefined ||
     share === undefined ||
     latitude === undefined ||
     longitude === undefined
