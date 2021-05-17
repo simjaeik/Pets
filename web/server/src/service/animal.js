@@ -160,4 +160,25 @@ module.exports = {
       return { result: false, error };
     }
   },
+
+  // MedicalHistory
+
+  getMedicalHistories: async ({ id }) => {
+    if (!id) {
+      return { error: "AID를 확인하세요." };
+    }
+
+    try {
+      const medicals = await MedicalHistory.findAll({
+        where: { AID: id },
+        attributes: ["HID", "date", "title", "content", "hospital"],
+        raw: true,
+      });
+      return medicals;
+    } catch (error) {
+      console.log(error);
+      return { error };
+    }
+  },
+
 };
