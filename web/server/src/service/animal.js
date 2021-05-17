@@ -39,17 +39,18 @@ module.exports = {
     }
   },
 
-  addAnimal: async ({ GID, body }) => {
+  addAnimal: async ({ GID, body, file }) => {
     if (!GID) {
       return { error: "GID가 존재하지 않습니다." };
     }
 
     const validAddBody = checkAddBodyValid(body);
-    if (!validAddBody) {
+    if (!validAddBody || !file) {
       return { error: "body의 정보가 부족합니다." };
     }
 
     body.GID = GID;
+    body.image = file.location;
     try {
       await Animal.create(body);
       return { result: true };
