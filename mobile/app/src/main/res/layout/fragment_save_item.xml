@@ -43,6 +43,7 @@
                     android:layout_gravity="center|end"
                     android:layout_marginEnd="16dp"
                     android:minWidth="0dp"
+                    android:onClick="@{() -> vm.saveItem()}"
                     android:text="@string/complete"
                     android:textAppearance="?textAppearanceHeadline6" />
 

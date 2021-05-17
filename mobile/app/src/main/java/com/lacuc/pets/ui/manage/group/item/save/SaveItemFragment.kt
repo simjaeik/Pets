@@ -33,6 +33,7 @@ class SaveItemFragment : DaggerFragment() {
             viewModel.hid = it
             viewModel.loadItem()
         }
+        activityViewModel.gid?.let { viewModel.gid = it }
     }
 
     override fun onCreateView(
