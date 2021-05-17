@@ -5,6 +5,6 @@ data class Member(
     val name: String,
     val password: String,
     val email: String,
-    val nickName: String,
+    val nickname: String,
     val authority: String = "권한없음"
 )
