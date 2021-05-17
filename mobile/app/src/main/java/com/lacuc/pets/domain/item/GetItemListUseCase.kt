@@ -4,7 +4,7 @@ import com.lacuc.pets.data.Result
 import com.lacuc.pets.data.group.GroupRepository
 import javax.inject.Inject
 
-class GetItemHistoryUseCase @Inject constructor(private val repository: GroupRepository) {
+class GetItemListUseCase @Inject constructor(private val repository: GroupRepository) {
     suspend operator fun invoke(
         gid: String,
         listener: (ItemHistoryItem) -> Unit

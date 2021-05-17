@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lacuc.pets.data.Result
-import com.lacuc.pets.domain.item.GetItemHistoryUseCase
+import com.lacuc.pets.domain.item.GetItemListUseCase
 import com.lacuc.pets.domain.item.ItemHistoryItem
 import com.lacuc.pets.util.SingleLiveEvent
 import kotlinx.coroutines.launch
@@ -12,7 +12,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class ItemListViewModel @Inject constructor(
-    private val getItemHistoryUseCase: GetItemHistoryUseCase,
+    private val getItemListUseCase: GetItemListUseCase,
     private val errorEvent: SingleLiveEvent<String>
 ) : ViewModel() {
 
@@ -23,7 +23,7 @@ class ItemListViewModel @Inject constructor(
 
     fun loadItems() {
         viewModelScope.launch {
-            val items = getItemHistoryUseCase(gid) { itemClickEvent.value = it }
+            val items = getItemListUseCase(gid) { itemClickEvent.value = it }
 
             when (items) {
                 is Result.Success -> items.body?.let { itemHistory.value = it }
