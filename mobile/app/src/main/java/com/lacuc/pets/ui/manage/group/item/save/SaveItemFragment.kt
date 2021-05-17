@@ -27,11 +27,19 @@ class SaveItemFragment : DaggerFragment() {
 
     private val navController: NavController by lazy { findNavController() }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        activityViewModel.hid?.let {
+            viewModel.hid = it
+            viewModel.loadItem()
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentSaveItemBinding.inflate(inflater, container, false).apply {
             lifecycleOwner = viewLifecycleOwner
             vm = viewModel

@@ -78,7 +78,8 @@
                     android:id="@+id/textInput_saveItem_itemName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:text="@{vm.name}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -99,7 +100,8 @@
                     android:id="@+id/textInput_saveItem_category"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:text="@{vm.category}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -120,7 +122,8 @@
                     android:id="@+id/textInput_saveItem_price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:text="@{vm.price}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -141,7 +144,8 @@
                     android:id="@+id/textInput_saveItem_link"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:text="@{vm.link}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
