@@ -15,4 +15,6 @@ router.post("/", upload.single("img"), controller.setGalleryImage);
 
 router.patch("/:id", upload.single("img"), controller.updateGalleryImage);
 
+router.delete("/:id", controller.deleteGalleryImage);
+
 module.exports = router;
