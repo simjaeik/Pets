@@ -86,16 +86,16 @@
             app:destination="@id/addAnimalFragment" />
         <action
             android:id="@+id/action_animalDetailFragment_to_addMedicalFragment"
-            app:destination="@id/addMedicalFragment" />
+            app:destination="@id/SaveMedicalFragment" />
         <action
             android:id="@+id/action_animalDetailFragment_to_addMemoFragment"
             app:destination="@id/saveMemoFragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/addMedicalFragment"
-        android:name="com.lacuc.pets.ui.manage.animal.detail.medical.AddMedicalFragment"
-        tools:layout="@layout/fragment_add_medical" />
+        android:id="@+id/SaveMedicalFragment"
+        android:name="com.lacuc.pets.ui.manage.animal.detail.medical.SaveMedicalFragment"
+        tools:layout="@layout/fragment_save_medical" />
 
     <fragment
         android:id="@+id/saveMemoFragment"

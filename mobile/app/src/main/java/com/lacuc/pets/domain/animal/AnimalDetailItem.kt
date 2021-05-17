@@ -16,7 +16,10 @@ class AnimalDetailDetailItem(animal: Animal) : AnimalDetailItem() {
     val number = animal.number
 }
 
-class AnimalDetailMedicalItem(medical: Medical) : AnimalDetailItem() {
+class AnimalDetailMedicalItem(
+    val medical: Medical,
+    val listener: (AnimalDetailMedicalItem) -> Unit
+) : AnimalDetailItem() {
     val title = medical.title
     val date = medical.date.toString()
     val hospital = medical.hospital

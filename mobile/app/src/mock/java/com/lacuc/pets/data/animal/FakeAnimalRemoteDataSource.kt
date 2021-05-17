@@ -89,6 +89,24 @@ class FakeAnimalRemoteDataSource @Inject constructor() : AnimalDataSource {
             Result.Success(memoData.find { it.MID == mid })
         }
 
+    override suspend fun getMedical(aid: String, hid: String): Result<Medical> =
+        withContext(Dispatchers.IO) {
+            Result.Success(medicalData.find { it.HID == hid })
+        }
+
+    override suspend fun updateMedical(hid: String, params: Map<String, String>): Result<Void> =
+        withContext(Dispatchers.IO) {
+            val medical = Medical(
+                hid,
+                params.getValue("date").toLong(),
+                params.getValue("title"),
+                params.getValue("content"),
+                params.getValue("hospital")
+            )
+            medicalData = (medicalData.filter { it.HID != hid } + medical) as MutableList<Medical>
+            Result.Success(null)
+        }
+
     private fun initAnimal() {
         animalData = mutableListOf(
             Animal(
@@ -120,8 +138,8 @@ class FakeAnimalRemoteDataSource @Inject constructor() : AnimalDataSource {
 
     private fun initMedical() {
         medicalData = mutableListOf(
-            Medical(100000, "중성화 수술", "우주 돈까스 먹으로 가는 날", "장산 동물 병원"),
-            Medical(200000, "정기 건강검진", "우주 주사 맞으러 가는 날", "장산 동물 병원"),
+            Medical("0", 100000, "중성화 수술", "우주 돈까스 먹으로 가는 날", "장산 동물 병원"),
+            Medical("1", 200000, "정기 건강검진", "우주 주사 맞으러 가는 날", "장산 동물 병원"),
         )
     }
 
