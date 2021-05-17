@@ -40,8 +40,8 @@ class DefaultAnimalRepository @Inject constructor(
     override suspend fun updateAnimalDetail(aid: String, animal: Animal): Result<Void> =
         animalRemoteDataSource.updateAnimalDetail(aid, animal)
 
-    override suspend fun updateMemo(mid: String, memo: Memo): Result<Void> =
-        animalRemoteDataSource.updateMemo(mid, memo)
+    override suspend fun updateMemo(mid: String, gid: String, content: String): Result<Void> =
+        animalRemoteDataSource.updateMemo(mid, gid, content)
 
     override suspend fun deleteMemo(mid: String): Result<Void> =
         animalRemoteDataSource.deleteMemo(mid)

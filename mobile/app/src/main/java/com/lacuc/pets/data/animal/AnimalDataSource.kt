@@ -20,7 +20,7 @@ interface AnimalDataSource {
 
     suspend fun setMemo(aid: String, memo: Memo): Result<Void>
 
-    suspend fun updateMemo(mid: String, memo: Memo): Result<Void>
+    suspend fun updateMemo(mid: String, gid: String, content: String): Result<Void>
 
     suspend fun deleteMemo(mid: String): Result<Void>
 
