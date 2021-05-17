@@ -26,6 +26,23 @@ module.exports = {
     }
   },
 
+  getItem: async ({ id }) => {
+    if (!id) {
+      return { error: "그룹 아이디가 존재하지 않습니다." };
+    }
+
+    try {
+      const items = await ItemHistory.findOne({
+        where: { HID: id },
+        raw: true,
+      });
+      return items;
+    } catch (error) {
+      console.log(error);
+      return { error };
+    }
+  },
+
   setItem: async (body) => {
     const bodyValid = checkBodyValid(body);
     if (!bodyValid) {

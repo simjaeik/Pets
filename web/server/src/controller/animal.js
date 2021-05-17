@@ -48,6 +48,12 @@ module.exports = {
     return res.status(status).json(result);
   },
 
+  getMemo: async (req, res) => {
+    const { status, result } = await control(service.getMemo, req.params);
+
+    return res.status(status).json(result);
+  },
+
   setMemo: async (req, res) => {
     const { status, result } = await control(service.setMemo, {
       AID: req.params,
@@ -76,6 +82,15 @@ module.exports = {
   getMedicalHistories: async (req, res) => {
     const { status, result } = await control(
       service.getMedicalHistories,
+      req.params
+    );
+
+    return res.status(status).json(result);
+  },
+
+  getMedicalHistory: async (req, res) => {
+    const { status, result } = await control(
+      service.getMedicalHistory,
       req.params
     );
 

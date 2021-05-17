@@ -118,6 +118,22 @@ module.exports = {
     }
   },
 
+  getMemo: async ({ id }) => {
+    if (!id) {
+      return { error: "AID를 확인하세요." };
+    }
+
+    try {
+      const memos = await Memo.findOne({
+        where: { MID: id },
+      });
+      return memos;
+    } catch (error) {
+      console.log(error);
+      return { error };
+    }
+  },
+
   setMemo: async ({ AID, body }) => {
     if (!AID || !body) {
       return { error: "입력한 정보가 부족합니다." };
@@ -183,6 +199,23 @@ module.exports = {
         raw: true,
       });
       return medicals;
+    } catch (error) {
+      console.log(error);
+      return { error };
+    }
+  },
+
+  getMedicalHistory: async ({ id }) => {
+    if (!id) {
+      return { error: "HID를 확인하세요." };
+    }
+
+    try {
+      const medical = await MedicalHistory.findOne({
+        where: { HID: id },
+        raw: true,
+      });
+      return medical;
     } catch (error) {
       console.log(error);
       return { error };
