@@ -40,11 +40,20 @@ class InviteMemberFragment : DaggerFragment() {
     ): View {
         _binding = FragmentInviteMemberBinding.inflate(inflater, container, false).apply {
             lifecycleOwner = viewLifecycleOwner
+            vm = viewModel
         }
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.toolbarInviteMember.setupWithNavController(navController)
+
+        setOnCompleteEventObserver()
+    }
+
+    private fun setOnCompleteEventObserver() {
+        viewModel.completeEvent.observe(viewLifecycleOwner) {
+            navController.navigateUp()
+        }
     }
 }
