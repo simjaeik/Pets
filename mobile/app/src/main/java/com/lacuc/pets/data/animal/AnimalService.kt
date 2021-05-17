@@ -46,7 +46,7 @@ interface AnimalService {
     @POST("api/animal/medical/{id}")
     suspend fun setMedicalHistory(
         @Path("id") aid: String,
-        params: Map<String, String>
+        @FieldMap params: Map<String, String>
     ): Result<Void>
 
     @FormUrlEncoded
