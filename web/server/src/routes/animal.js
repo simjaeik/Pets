@@ -1,9 +1,10 @@
 // Dependencies
 const express = require("express");
+const router = express.Router();
 
 // Controller
 const controller = require("../controller/animal");
-const router = express.Router();
+const { upload } = require("./middleware/multer");
 
 const groupAuth = require("./middleware/group-auth");
 
@@ -12,9 +13,14 @@ router.get("/all/:id", groupAuth, controller.getAnimalByGroup);
 
 router.get("/:id", controller.getAnimal);
 
-router.post("/:id", groupAuth, controller.addAnimal);
+router.post("/:id", upload.single("img"), groupAuth, controller.addAnimal);
 
-router.patch("/:id", groupAuth, controller.updateAnimalDetail);
+router.patch(
+  "/:id",
+  upload.single("img"),
+  groupAuth,
+  controller.updateAnimalDetail
+);
 
 router.delete("/:id", groupAuth, controller.deleteAnimal);
 
