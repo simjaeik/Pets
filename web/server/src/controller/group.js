@@ -27,6 +27,7 @@ module.exports = {
     const { status, result } = await control(service.setGroup, {
       data: req.data,
       body: req.body,
+      file: req.file,
     });
 
     return res.status(status).json(result);
@@ -45,6 +46,7 @@ module.exports = {
     const { status, result } = await control(service.updateGroup, {
       GID: req.gid,
       body: req.body,
+      file: req.file,
     });
 
     return res.status(status).json(result);
