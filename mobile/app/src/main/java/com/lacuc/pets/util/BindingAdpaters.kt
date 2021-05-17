@@ -49,3 +49,8 @@ fun setLink(textView: TextView, link: String) {
 fun setTest(tabLayout: TabLayout, listener: Consumer<Int>) {
     tabLayout.doOnTabSelectedListener { listener.accept(tabLayout.selectedTabPosition) }
 }
+
+@BindingAdapter("date")
+fun setDate(textView: TextView, date: String) {
+    textView.text = date.split("T")[0]
+}
