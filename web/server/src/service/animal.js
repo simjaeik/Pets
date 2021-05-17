@@ -181,4 +181,20 @@ module.exports = {
     }
   },
 
+  setMedicalHistory: async ({ AID, body }) => {
+    if (!AID || !body) {
+      return { error: "입력한 정보가 부족합니다." };
+    }
+    body.AID = AID.id;
+    delete body.GID;
+    try {
+      const result = await MedicalHistory.create(body);
+      console.log(result);
+      return { result: true };
+    } catch (error) {
+      console.log(error);
+      return { result: false, error };
+    }
+  },
+
 };
