@@ -8,6 +8,7 @@ const checkAddBodyValid = (body) => {
 };
 
 module.exports = {
+  // Animal
   getAnimalByGroup: async (GID) => {
     if (!GID) {
       return { error: "GID가 존재하지 않습니다." };
@@ -83,6 +84,76 @@ module.exports = {
       await MedicalHistory.destroy({ where: { AID: id } });
       await Memo.destroy({ where: { AID: id } });
       await Animal.destroy({ where: { AID: id } });
+      return { result: true };
+    } catch (error) {
+      console.log(error);
+      return { result: false, error };
+    }
+  },
+
+  // Memos
+
+  getMemos: async ({ id }) => {
+    if (!id) {
+      return { error: "AID를 확인하세요." };
+    }
+
+    try {
+      const memos = await Memo.findAll({
+        where: { AID: id },
+        attributes: ["MID", "content"],
+      });
+      return memos;
+    } catch (error) {
+      console.log(error);
+      return { error };
+    }
+  },
+
+  setMemo: async ({ AID, body }) => {
+    if (!AID || !body) {
+      return { error: "입력한 정보가 부족합니다." };
+    }
+    body.AID = AID.id;
+    delete body.GID;
+    try {
+      await Memo.create(body);
+      return { result: true };
+    } catch (error) {
+      console.log(error);
+      return { result: false, error };
+    }
+  },
+
+  updateMemo: async ({ MID, body }) => {
+    MID = MID.id;
+    if (!MID || !body) {
+      return { error: "입력한 정보가 부족합니다." };
+    }
+    delete body.GID;
+
+    try {
+      const result = await Memo.update(body, { where: { MID } });
+      if (result <= 0) {
+        return { result: false, error: "수정된 내용이 없습니다." };
+      }
+      return { result: true };
+    } catch (error) {
+      console.log(error);
+      return { result: false, error };
+    }
+  },
+
+  deleteMemo: async ({ id }) => {
+    if (!id) {
+      return { error: "입력한 정보가 부족합니다." };
+    }
+
+    try {
+      const result = await Memo.destroy({ where: { MID: id } });
+      if (result <= 0) {
+        return { result: false, error: "아무것도 삭제되지 않았습니다." };
+      }
       return { result: true };
     } catch (error) {
       console.log(error);
