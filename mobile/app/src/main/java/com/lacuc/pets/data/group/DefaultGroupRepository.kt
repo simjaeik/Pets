@@ -67,8 +67,8 @@ class DefaultGroupRepository @Inject constructor(
     override suspend fun setItem(params: Map<String, String>): Result<Void> =
         groupRemoteDataSource.setItem(params)
 
-    override suspend fun updateItem(iid: String, itemHistory: ItemHistory): Result<Void> =
-        groupRemoteDataSource.updateItem(iid, itemHistory)
+    override suspend fun updateItem(hid: String, params: Map<String, String>): Result<Void> =
+        groupRemoteDataSource.updateItem(hid, params)
 
     override suspend fun deleteItem(iid: String): Result<Void> =
         groupRemoteDataSource.deleteItem(iid)

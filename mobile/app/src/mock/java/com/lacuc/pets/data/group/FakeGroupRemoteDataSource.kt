@@ -166,9 +166,16 @@ class FakeGroupRemoteDataSource @Inject constructor() : GroupDataSource {
             Result.Success(null)
         }
 
-    override suspend fun updateItem(iid: String, itemHistory: ItemHistory): Result<Void> =
+    override suspend fun updateItem(hid: String, params: Map<String, String>): Result<Void> =
         withContext(Dispatchers.IO) {
-            itemData = (itemData.filter { it.HID != iid } + itemHistory) as MutableList<ItemHistory>
+            itemData = (itemData.filter { it.HID != hid } + ItemHistory(
+                hid,
+                params.getValue("GID"),
+                params.getValue("name"),
+                params.getValue("category"),
+                params.getValue("link"),
+                params.getValue("price")
+            )) as MutableList<ItemHistory>
             Result.Success(null)
         }
 

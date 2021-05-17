@@ -49,7 +49,7 @@ interface GroupDataSource {
 
     suspend fun setItem(params: Map<String, String>): Result<Void>
 
-    suspend fun updateItem(iid: String, itemHistory: ItemHistory): Result<Void>
+    suspend fun updateItem(hid: String, params: Map<String, String>): Result<Void>
 
     suspend fun deleteItem(iid: String): Result<Void>
 }

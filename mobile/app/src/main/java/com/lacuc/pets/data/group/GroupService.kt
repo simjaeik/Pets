@@ -70,8 +70,9 @@ interface GroupService {
     @POST("api/item")
     suspend fun setItem(@FieldMap params: Map<String, String>): Result<Void>
 
+    @FormUrlEncoded
     @PATCH("api/item/{id}")
-    suspend fun updateItem(@Path("id") iid: String, @Body itemHistory: ItemHistory): Result<Void>
+    suspend fun updateItem(@Path("id") hid: String, params: Map<String, String>): Result<Void>
 
     @DELETE("api/item/{id}")
     suspend fun deleteItem(@Path("id") iid: String): Result<Void>
