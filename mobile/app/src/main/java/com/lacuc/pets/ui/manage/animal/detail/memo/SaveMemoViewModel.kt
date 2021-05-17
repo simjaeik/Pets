@@ -13,7 +13,7 @@ import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
 
-class AddMemoViewModel @Inject constructor(
+class SaveMemoViewModel @Inject constructor(
     private val addMemoUseCase: AddMemoUseCase,
     private val errorEvent: SingleLiveEvent<String>
 ) : ViewModel() {

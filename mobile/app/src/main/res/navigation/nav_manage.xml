@@ -89,7 +89,7 @@
             app:destination="@id/addMedicalFragment" />
         <action
             android:id="@+id/action_animalDetailFragment_to_addMemoFragment"
-            app:destination="@id/addMemoFragment" />
+            app:destination="@id/saveMemoFragment" />
     </fragment>
 
     <fragment
@@ -98,9 +98,9 @@
         tools:layout="@layout/fragment_add_medical" />
 
     <fragment
-        android:id="@+id/addMemoFragment"
-        android:name="com.lacuc.pets.ui.manage.animal.detail.memo.AddMemoFragment"
-        tools:layout="@layout/fragment_add_memo" />
+        android:id="@+id/saveMemoFragment"
+        android:name="com.lacuc.pets.ui.manage.animal.detail.memo.SaveMemoFragment"
+        tools:layout="@layout/fragment_save_memo" />
 
     <fragment
         android:id="@+id/userProfileFragment"
