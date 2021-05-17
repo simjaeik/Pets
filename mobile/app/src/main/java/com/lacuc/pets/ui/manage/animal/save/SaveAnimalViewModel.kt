@@ -25,11 +25,11 @@ class SaveAnimalViewModel @Inject constructor(
     var aid = ""
     val name = MutableLiveData("")
     val image = MutableLiveData("")
-    val age = MutableLiveData<String>()
+    val age = MutableLiveData("")
     val sex = MutableLiveData("")
     val species = MutableLiveData("")
     val subspecies = MutableLiveData("")
-    val weight = MutableLiveData<String>()
+    val weight = MutableLiveData("")
     val number = MutableLiveData("")
 
     var isUpdate = false
@@ -67,11 +67,11 @@ class SaveAnimalViewModel @Inject constructor(
         gid,
         name.safeValue,
         image.safeValue,
-        if (age.value.isNullOrEmpty()) 0 else age.safeValue.toInt(),
+        age.safeValue,
         sex.safeValue,
         species.safeValue,
         subspecies.safeValue,
-        if (weight.value.isNullOrEmpty()) 0.0 else age.safeValue.toDouble(),
+        weight.safeValue,
         number.safeValue
     )
 
@@ -99,11 +99,11 @@ class SaveAnimalViewModel @Inject constructor(
         isUpdate = true
         name.value = animal.name
         image.value = animal.image
-        age.value = animal.age.toString()
+        age.value = animal.age
         sex.value = animal.sex
         species.value = animal.species
         subspecies.value = animal.subspecies
-        weight.value = animal.weight.toString()
+        weight.value = animal.weight
         number.value = animal.number
     }
 

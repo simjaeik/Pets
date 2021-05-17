@@ -9,10 +9,10 @@ data class Animal(
     val GID: String,
     val name: String,
     val image: String,
-    val age: Int,
+    val age: String,
     val sex: String,
     val species: String,
     val subspecies: String,
-    val weight: Double,
+    val weight: String,
     val number: String,
 ) : Parcelable
