@@ -7,7 +7,9 @@ const controll = require("../controller/item");
 
 const router = express.Router();
 
-router.get("/:id", controll.getItems);
+router.get("/all/:id", controll.getItems);
+
+router.get("/:id", controll.getItem);
 
 router.post("/", groupAuth, controll.setItem);
 

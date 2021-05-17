@@ -26,7 +26,9 @@ router.delete("/:id", groupAuth, controller.deleteAnimal);
 
 // Memo
 
-router.get("/memo/:id", controller.getMemos);
+router.get("/memo/all/:id", controller.getMemos);
+
+router.get("/memo/:id", controller.getMemo);
 
 router.post("/memo/:id", groupAuth, controller.setMemo);
 
@@ -36,7 +38,9 @@ router.delete("/memo/:id", groupAuth, controller.deleteMemo);
 
 // MedicalHistory
 
-router.get("/medical/:id", controller.getMedicalHistories);
+router.get("/medical/all/:id", controller.getMedicalHistories);
+
+router.get("/medical/:id", controller.getMedicalHistory);
 
 router.post("/medical/:id", groupAuth, controller.setMedicalHistory);
 
