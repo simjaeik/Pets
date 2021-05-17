@@ -148,7 +148,10 @@ module.exports = {
       body.image = file.location;
     }
     try {
-      await Group.update(body, { where: { GID } });
+      const result = await Group.update(body, { where: { GID } });
+      if (result <= 0) {
+        return { result: false, error: "수정이 정상적으로 되지 않았습니다." };
+      }
       return { result: true };
     } catch (error) {
       console.log(error);
@@ -163,7 +166,10 @@ module.exports = {
     try {
       let { share } = await Group.findOne({ where: { GID }, raw: true });
       share = share === 1 ? 0 : 1;
-      await Group.update({ share }, { where: { GID } });
+      const result = await Group.update({ share }, { where: { GID } });
+      if (result <= 0) {
+        return { result: false, error: "수정이 정상적으로 되지 않았습니다." };
+      }
       return { result: true };
     } catch (error) {
       console.log(error);
@@ -178,7 +184,10 @@ module.exports = {
 
     try {
       const result = await Group.destroy({ where: { GID } });
-      return result;
+      if (result <= 0) {
+        return { result: false, error: "삭제가 정상적으로 되지 않았습니다." };
+      }
+      return { result: true };
     } catch (error) {
       console.log(error);
       return { error };
@@ -199,7 +208,12 @@ module.exports = {
       await GalleryImage.destroy({ where: { GID } });
       await Post.destroy({ where: { GID } });
 
-      await MemberGroup.destroy({ where: { [Op.and]: [{ UID }, { GID }] } });
+      const result = await MemberGroup.destroy({
+        where: { [Op.and]: [{ UID }, { GID }] },
+      });
+      if (result <= 0) {
+        return { result: false, error: "삭제가 정상적으로 되지 않았습니다." };
+      }
       return { result: true };
     } catch (error) {
       console.log(error);
