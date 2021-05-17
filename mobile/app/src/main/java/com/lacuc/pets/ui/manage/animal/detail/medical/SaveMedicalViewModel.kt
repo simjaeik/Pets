@@ -6,18 +6,24 @@ import androidx.lifecycle.viewModelScope
 import com.lacuc.pets.data.Result
 import com.lacuc.pets.data.animal.entity.Medical
 import com.lacuc.pets.domain.animal.medical.AddMedicalUseCase
+import com.lacuc.pets.domain.animal.medical.GetMedicalUseCase
 import com.lacuc.pets.util.SingleLiveEvent
 import com.lacuc.pets.util.safeValue
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import java.util.*
 import javax.inject.Inject
 
 class SaveMedicalViewModel @Inject constructor(
+    private val getMedicalUseCase: GetMedicalUseCase,
     private val addMedicalUseCase: AddMedicalUseCase,
     private val errorEvent: SingleLiveEvent<String>
 ) : ViewModel() {
 
+    var gid = ""
     var aid = ""
+    var hid = ""
+
     val title = MutableLiveData("")
     val hospital = MutableLiveData("")
     val time = MutableLiveData("")
@@ -25,10 +31,13 @@ class SaveMedicalViewModel @Inject constructor(
 
     val completeEvent = SingleLiveEvent<Unit>()
 
+    private var isUpdate = false
+
     fun onCompleteClick() {
         viewModelScope.launch {
             val result = addMedicalUseCase(
                 aid, Medical(
+                    UUID.randomUUID().toString(),
                     System.currentTimeMillis(),
                     title.safeValue,
                     content.safeValue,
@@ -43,6 +52,29 @@ class SaveMedicalViewModel @Inject constructor(
                 is Result.NetworkError -> errorEvent.value = "네트워크 문제가 발생했습니다."
                 is Result.Unexpected -> {
                     Timber.d(result.t.toString())
+                    errorEvent.value = "알수없는 오류가 발생했습니다."
+                }
+            }
+        }
+    }
+
+    fun loadMedical() {
+        viewModelScope.launch {
+            val medical = getMedicalUseCase(aid, hid)
+
+            when (medical) {
+                is Result.Success -> medical.body?.let {
+                    isUpdate = true
+                    title.value = it.title
+                    time.value = it.date.toString()
+                    content.value = it.content
+                    hospital.value = it.hospital
+                }
+                is Result.Failure -> errorEvent.value =
+                    "code: ${medical.code} message: ${medical.error}"
+                is Result.NetworkError -> errorEvent.value = "네트워크 문제가 발생했습니다."
+                is Result.Unexpected -> {
+                    Timber.d(medical.t.toString())
                     errorEvent.value = "알수없는 오류가 발생했습니다."
                 }
             }
