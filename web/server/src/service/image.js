@@ -51,4 +51,27 @@ module.exports = {
     }
   },
 
+  updateGalleryImage: async ({ IID, file }) => {
+    console.log(IID, file);
+    if (!IID || !file) {
+      return { error: "모든 정보를 입력하세요." };
+    }
+
+    IID = IID.id;
+
+    try {
+      const result = await GalleryImage.update(
+        { url: file.location },
+        { where: { IID } }
+      );
+      if (result <= 0) {
+        return { result: false, error: "수정에 실패하였습니다." };
+      }
+      return { result: true };
+    } catch (error) {
+      console.log(error);
+      return { result: false, error };
+    }
+  },
+
 };
