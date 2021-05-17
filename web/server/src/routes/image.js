@@ -11,4 +11,6 @@ router.get("/all/:id", controller.getGalleryImages);
 
 router.get("/:id", controller.getGalleryImage);
 
+router.post("/", upload.single("img"), controller.setGalleryImage);
+
 module.exports = router;
