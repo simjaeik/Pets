@@ -64,7 +64,7 @@ class GalleryFragment : DaggerFragment() {
         viewModel.imageClickEvent.observe(viewLifecycleOwner) {
             val action = GalleryFragmentDirections
                 .actionGalleryFragmentToImageDetailFragment()
-            activityViewModel.iid = it.image.iid
+            activityViewModel.iid = it.image.IID
             navController.navigate(action)
         }
     }
