@@ -5,7 +5,9 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.lacuc.pets.BR
 import com.lacuc.pets.R
+import com.lacuc.pets.databinding.ItemMemberFooterBinding
 import com.lacuc.pets.util.BindableAdapter
+import com.lacuc.pets.util.SingleLiveEvent
 import com.lacuc.pets.util.ViewBindingHolder
 import java.lang.reflect.Member
 
@@ -14,8 +16,15 @@ class ManageMemberAdapter : RecyclerView.Adapter<ViewBindingHolder<*>>(),
 
     private val items = ArrayList<Member>()
 
+    val inviteMemberEvent = SingleLiveEvent<Unit>()
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewBindingHolder<*> {
-        return ViewBindingHolder<ViewDataBinding>(parent.context, viewType)
+        val viewHolder = ViewBindingHolder<ViewDataBinding>(parent.context, viewType)
+        if (viewType == R.layout.item_member_footer) {
+            (viewHolder.binding as ItemMemberFooterBinding).btnItemMemberFooterInviteMember
+                .setOnClickListener { inviteMemberEvent.value = Unit }
+        }
+        return viewHolder
     }
 
     override fun onBindViewHolder(holder: ViewBindingHolder<*>, position: Int) {

@@ -53,7 +53,22 @@ class ManageMemberFragment : DaggerFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.toolbarManageMember.setupWithNavController(navController)
 
-        binding.recyclerViewManageMember.setup(ManageMemberAdapter())
+        setupRecyclerView()
+    }
+
+    private fun setupRecyclerView() {
+        val adapter = ManageMemberAdapter()
+        binding.recyclerViewManageMember.setup(adapter)
+
+        setupInviteMemberBtnObserver(adapter)
+    }
+
+    private fun setupInviteMemberBtnObserver(adapter: ManageMemberAdapter) {
+        adapter.inviteMemberEvent.observe(viewLifecycleOwner) {
+            val action = ManageMemberFragmentDirections
+                .actionManageMemberFragmentToInviteMemberFragment()
+            navController.navigate(action)
+        }
     }
 
     override fun onDestroyView() {
