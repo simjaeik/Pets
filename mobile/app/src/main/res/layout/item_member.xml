@@ -31,10 +31,25 @@
                 android:layout_marginHorizontal="16dp"
                 android:text="@{item.name}"
                 android:textAppearance="?textAppearanceSubtitle1"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/tv_itemMember_email"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
                 tools:text="Member Name" />
+
+            <TextView
+                android:id="@+id/tv_itemMember_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginHorizontal="16dp"
+                android:text="@{item.email}"
+                android:textAppearance="?textAppearanceCaption"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_itemMember_name"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="foo@lacuc.pet.com" />
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
