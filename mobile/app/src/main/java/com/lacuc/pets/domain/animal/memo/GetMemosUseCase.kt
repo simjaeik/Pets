@@ -5,7 +5,7 @@ import com.lacuc.pets.data.animal.AnimalRepository
 import com.lacuc.pets.domain.animal.AnimalDetailMemoItem
 import javax.inject.Inject
 
-class GetMemoUseCase @Inject constructor(private val repository: AnimalRepository) {
+class GetMemosUseCase @Inject constructor(private val repository: AnimalRepository) {
     suspend operator fun invoke(
         aid: String,
         listener: (AnimalDetailMemoItem) -> Unit
