@@ -64,6 +64,9 @@ class DefaultGroupRepository @Inject constructor(
     override suspend fun getItems(gid: String): Result<List<ItemHistory>> =
         groupRemoteDataSource.getItems(gid)
 
+    override suspend fun getItem(hid: String): Result<ItemHistory> =
+        groupRemoteDataSource.getItem(hid)
+
     override suspend fun setItem(params: Map<String, String>): Result<Void> =
         groupRemoteDataSource.setItem(params)
 

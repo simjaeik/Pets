@@ -66,6 +66,9 @@ interface GroupService {
     @GET("api/item/{id}")
     suspend fun getItems(@Path("id") gid: String): Result<List<ItemHistory>>
 
+    @GET("api/item/{id}")
+    suspend fun getItem(@Path("id") hid: String): Result<ItemHistory>
+
     @FormUrlEncoded
     @POST("api/item")
     suspend fun setItem(@FieldMap params: Map<String, String>): Result<Void>

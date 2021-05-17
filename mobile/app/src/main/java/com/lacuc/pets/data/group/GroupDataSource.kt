@@ -47,6 +47,8 @@ interface GroupDataSource {
 
     suspend fun getItems(gid: String): Result<List<ItemHistory>>
 
+    suspend fun getItem(hid: String): Result<ItemHistory>
+
     suspend fun setItem(params: Map<String, String>): Result<Void>
 
     suspend fun updateItem(hid: String, params: Map<String, String>): Result<Void>
