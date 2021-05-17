@@ -15,7 +15,7 @@ class FakeGroupRemoteDataSource @Inject constructor() : GroupDataSource {
     private var memberData = mutableListOf<Member>()
     private var imageData = mutableListOf<GroupImage>()
     private var itemData = mutableListOf<ItemHistory>()
-    private var profile = Member("0", "foo", "foo", "foo", "foo")
+    private var profile = Member("0", "testName", "", "testEmail", "testNickName")
 
     init {
         initGroup()

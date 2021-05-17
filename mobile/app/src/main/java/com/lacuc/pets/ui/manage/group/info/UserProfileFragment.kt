@@ -34,11 +34,7 @@ class UserProfileFragment : DaggerFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        activityViewModel.gid?.let { viewModel.gid = it }
-        activityViewModel.uid?.let {
-            viewModel.uid = it
-            viewModel.loadProfile()
-        }
+        viewModel.loadProfile()
     }
 
     override fun onCreateView(
@@ -73,7 +69,8 @@ class UserProfileFragment : DaggerFragment() {
         disposables.add(
             viewModel.bindCompleteBtnEnable(
                 binding.textInputUserProfileName.textChanges(),
-                binding.textInputUserProfileEmail.textChanges()
+                binding.textInputUserProfileEmail.textChanges(),
+                binding.textInputUserProfileNickName.textChanges()
             )
         )
     }
