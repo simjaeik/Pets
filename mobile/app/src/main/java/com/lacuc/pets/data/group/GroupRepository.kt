@@ -41,7 +41,10 @@ interface GroupRepository {
 
     suspend fun getGroupImage(gid: String, iid: String): Result<GroupImage>
 
-    suspend fun setGroupImage(imageParams: Map<String, Any>): Result<Void>
+    suspend fun setGroupImage(
+        imageParams: Map<String, String>,
+        imageFile: MultipartBody.Part
+    ): Result<Void>
 
     suspend fun updateGroupImage(imageParams: Map<String, Any>): Result<Void>
 

@@ -52,8 +52,11 @@ class GroupRemoteDataSource @Inject constructor(
         TODO("Not yet implemented")
     }
 
-    override suspend fun setGroupImage(imageParams: Map<String, Any>): Result<Void> =
-        groupService.setGroupImage(imageParams)
+    override suspend fun setGroupImage(
+        imageParams: Map<String, String>,
+        imageFile: MultipartBody.Part
+    ): Result<Void> =
+        groupService.setGroupImage(imageParams, imageFile)
 
     override suspend fun updateGroupImage(imageParams: Map<String, Any>): Result<Void> {
         TODO("Not yet implemented")

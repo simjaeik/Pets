@@ -55,8 +55,11 @@ class DefaultGroupRepository @Inject constructor(
     override suspend fun getGroupImage(gid: String, iid: String): Result<GroupImage> =
         groupRemoteDataSource.getGroupImage(gid, iid)
 
-    override suspend fun setGroupImage(imageParams: Map<String, Any>): Result<Void> =
-        groupRemoteDataSource.setGroupImage(imageParams)
+    override suspend fun setGroupImage(
+        imageParams: Map<String, String>,
+        imageFile: MultipartBody.Part
+    ): Result<Void> =
+        groupRemoteDataSource.setGroupImage(imageParams, imageFile)
 
     override suspend fun updateGroupImage(imageParams: Map<String, Any>): Result<Void> =
         groupRemoteDataSource.updateGroupImage(imageParams)
