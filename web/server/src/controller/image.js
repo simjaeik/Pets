@@ -11,5 +11,14 @@ module.exports = {
     return res.status(status).json(result);
   },
 
+  getGalleryImage: async (req, res) => {
+    const { status, result } = await control(
+      service.getGalleryImage,
+      req.params
+    );
+
+    return res.status(status).json(result);
+  },
+
 
 };
