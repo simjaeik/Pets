@@ -80,7 +80,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:text="@{vm.name}" />
+                    android:text="@={vm.name}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -102,7 +102,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:text="@{vm.category}" />
+                    android:text="@={vm.category}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -124,7 +124,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:text="@{vm.price}" />
+                    android:text="@={vm.price}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -146,7 +146,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:text="@{vm.link}" />
+                    android:text="@={vm.link}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
