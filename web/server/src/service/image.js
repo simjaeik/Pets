@@ -74,4 +74,20 @@ module.exports = {
     }
   },
 
+  deleteGalleryImage: async ({ id }) => {
+    if (!id) {
+      return { error: "모든 정보를 입력해주세요" };
+    }
+
+    try {
+      const result = await GalleryImage.destroy({ where: { IID: id } });
+      if (result <= 0) {
+        return { result: false, error: "삭제에 실패했습니다." };
+      }
+      return { result: true };
+    } catch (error) {
+      console.log(error);
+      return { result: false, error };
+    }
+  },
 };
