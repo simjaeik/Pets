@@ -5,13 +5,19 @@ const express = require("express");
 const controller = require("../controller/animal");
 const router = express.Router();
 
-const group_auth = require("./middleware/group-auth");
+const groupAuth = require("./middleware/group-auth");
 
-router.get("/all/:id", group_auth, controller.getAnimalByGroup);
+// Aniaml
+router.get("/all/:id", groupAuth, controller.getAnimalByGroup);
 
 router.get("/:id", controller.getAnimal);
 
-router.post("/:id", group_auth, controller.addAnimal);
+router.post("/:id", groupAuth, controller.addAnimal);
+
+router.patch("/:id", groupAuth, controller.updateAnimalDetail);
+
+router.delete("/:id", groupAuth, controller.deleteAnimal);
+
 
 router.patch("/:id", group_auth, controller.updateAnimalDetail);
 
