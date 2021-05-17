@@ -1,10 +1,10 @@
 package com.lacuc.pets.data.group.entity
 
 data class ItemHistory(
-    val hid: String,
-    val gid: String,
+    val HID: String,
+    val GID: String,
     val name: String,
     val category: String,
     val link: String,
-    val price: Int
+    val price: String
 )
