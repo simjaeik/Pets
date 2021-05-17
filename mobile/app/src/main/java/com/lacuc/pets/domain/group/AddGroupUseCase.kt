@@ -25,7 +25,7 @@ class AddGroupUseCase @Inject constructor(private val repository: GroupRepositor
 
         val imageFile = File(imageUri)
         val imageBody = imageFile.asRequestBody("image/*".toMediaTypeOrNull())
-        val imagePart = MultipartBody.Part.createFormData("image", imageFile.name, imageBody)
+        val imagePart = MultipartBody.Part.createFormData("img", imageFile.name, imageBody)
 
         return repository.setGroup(partMap, imagePart)
     }

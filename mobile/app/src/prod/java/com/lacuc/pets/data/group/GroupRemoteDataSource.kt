@@ -22,8 +22,9 @@ class GroupRemoteDataSource @Inject constructor(
     override suspend fun updateGroup(
         gid: String,
         params: Map<String, String>,
-        imageFile: MultipartBody.Part
-    ): Result<Void> = groupService.updateGroup(gid, params, imageFile)
+        imageFile: MultipartBody.Part?
+    ): Result<Void> = imageFile?.let { groupService.updateGroup(gid, params, imageFile) }
+        ?: groupService.updateGroup(gid, params)
 
     override suspend fun addGroupMember(
         gid: String,

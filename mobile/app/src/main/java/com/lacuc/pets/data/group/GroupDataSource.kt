@@ -16,7 +16,7 @@ interface GroupDataSource {
     suspend fun updateGroup(
         gid: String,
         params: Map<String, String>,
-        imageFile: MultipartBody.Part
+        imageFile: MultipartBody.Part? = null
     ): Result<Void>
 
     suspend fun addGroupMember(

@@ -27,6 +27,13 @@ interface GroupService {
         @Part imageFile: MultipartBody.Part
     ): Result<Void>
 
+    @Multipart
+    @PATCH("api/group/{id}")
+    suspend fun updateGroup(
+        @Path("id") gid: String,
+        @PartMap params: Map<String, String>,
+    ): Result<Void>
+
     @GET("api/group/{id}")
     suspend fun getGroup(@Path("id") gid: String): Result<Group>
 

@@ -26,7 +26,7 @@ class DefaultGroupRepository @Inject constructor(
     override suspend fun updateGroup(
         gid: String,
         params: Map<String, String>,
-        imageFile: MultipartBody.Part
+        imageFile: MultipartBody.Part?
     ): Result<Void> =
         groupRemoteDataSource.updateGroup(gid, params, imageFile)
 
