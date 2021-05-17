@@ -2,6 +2,7 @@ const service = require("../service/animal");
 const control = require("../lib/controller");
 
 module.exports = {
+  // Animal
   getAnimalByGroup: async (req, res) => {
     const { status, result } = await control(service.getAnimalByGroup, req.gid);
 
@@ -34,6 +35,16 @@ module.exports = {
 
   deleteAnimal: async (req, res) => {
     const { status, result } = await control(service.deleteAnimal, req.params);
+
+    return res.status(status).json(result);
+  },
+
+  // Memo
+  getMemos: async (req, res) => {
+    const { status, result } = await control(service.getMemos, req.params);
+
+    return res.status(status).json(result);
+  },
 
     return res.status(status).json(result);
   },
