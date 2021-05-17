@@ -21,7 +21,7 @@ class AnimalDetailMedicalItem(
     val listener: (AnimalDetailMedicalItem) -> Unit
 ) : AnimalDetailItem() {
     val title = medical.title
-    val date = medical.date.toString()
+    val date = medical.date
     val hospital = medical.hospital
     val content = medical.content
 }
