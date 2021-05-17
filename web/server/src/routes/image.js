@@ -9,4 +9,6 @@ const router = express.Router();
 
 router.get("/all/:id", controller.getGalleryImages);
 
+router.get("/:id", controller.getGalleryImage);
+
 module.exports = router;
