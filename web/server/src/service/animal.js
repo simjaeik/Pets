@@ -110,4 +110,19 @@ module.exports = {
     }
   },
 
+  setMemo: async ({ AID, body }) => {
+    if (!AID || !body) {
+      return { error: "입력한 정보가 부족합니다." };
+    }
+    body.AID = AID.id;
+    delete body.GID;
+    try {
+      await Memo.create(body);
+      return { result: true };
+    } catch (error) {
+      console.log(error);
+      return { result: false, error };
+    }
+  },
+
 };
