@@ -24,7 +24,7 @@ router.get("/memo/:id", controller.getMemos);
 
 router.post("/memo/:id", groupAuth, controller.setMemo);
 
-router.patch("/:id", group_auth, controller.updateAnimalDetail);
+router.patch("/memo/:id", groupAuth, controller.updateMemo);
 
 router.delete("/:id", group_auth, controller.deleteAnimal);
 
