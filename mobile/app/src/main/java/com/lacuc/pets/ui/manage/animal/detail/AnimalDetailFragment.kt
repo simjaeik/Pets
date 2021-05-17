@@ -52,6 +52,7 @@ class AnimalDetailFragment : DaggerFragment() {
             vm = viewModel
         }
         activityViewModel.mid = null
+        activityViewModel.hid = null
         return binding.root
     }
 
@@ -76,11 +77,17 @@ class AnimalDetailFragment : DaggerFragment() {
             when (item) {
                 is AnimalDetailDetailItem -> {
                 }
-                is AnimalDetailMedicalItem -> {
-                }
+                is AnimalDetailMedicalItem -> navToSaveMedical(item)
                 is AnimalDetailMemoItem -> navToSaveMemo(item)
             }
         }
+    }
+
+    private fun navToSaveMedical(item: AnimalDetailMedicalItem) {
+        activityViewModel.hid = item.medical.HID
+        val action = AnimalDetailFragmentDirections
+            .actionAnimalDetailFragmentToAddMedicalFragment()
+        navController.navigate(action)
     }
 
     private fun navToSaveMemo(item: AnimalDetailMemoItem) {
