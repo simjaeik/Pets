@@ -55,6 +55,15 @@ module.exports = {
     return res.status(status).json(result);
   },
 
+  updateMemo: async (req, res) => {
+    const { status, result } = await control(service.updateMemo, {
+      MID: req.params,
+      body: req.body,
+    });
+
+    return res.status(status).json(result);
+  },
+
     return res.status(status).json(result);
   },
 };
