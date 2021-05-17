@@ -67,7 +67,7 @@ class UserProfileViewModel @Inject constructor(
                     Timber.d("$it")
                     name.value = it.name
                     email.value = it.email
-                    nickName.value = it.nickName
+                    nickName.value = it.nickname
                 }
                 is Result.Failure -> errorEvent.value =
                     "code: ${profile.code} message: ${profile.error}"

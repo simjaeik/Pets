@@ -35,6 +35,7 @@ class SaveMedicalFragment : DaggerFragment() {
             viewModel.loadMedical()
         }
         activityViewModel.gid?.let { viewModel.gid = it }
+        activityViewModel.aid?.let { viewModel.aid = it }
     }
 
     override fun onCreateView(

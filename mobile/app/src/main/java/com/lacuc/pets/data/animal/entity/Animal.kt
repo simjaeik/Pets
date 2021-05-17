@@ -5,14 +5,14 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Animal(
-    val aid: String,
-    val gid: String,
+    val AID: String,
+    val GID: String,
     val name: String,
     val image: String,
-    val age: Int,
+    val age: String,
     val sex: String,
     val species: String,
     val subspecies: String,
-    val weight: Double,
+    val weight: String,
     val number: String,
 ) : Parcelable

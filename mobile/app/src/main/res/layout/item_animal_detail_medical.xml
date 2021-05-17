@@ -42,8 +42,8 @@
                     android:id="@+id/tv_itemMedical_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{item.date}"
                     android:textAppearance="?textAppearanceCaption"
+                    app:date="@{item.date}"
                     app:layout_constraintBottom_toBottomOf="@id/tv_itemMedical_hospital"
                     app:layout_constraintEnd_toEndOf="parent"
                     tools:text="21/04/03" />

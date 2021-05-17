@@ -26,11 +26,13 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collapsingToolbarLayout_animalDetail"
                 style="@style/Widget.MaterialComponents.Toolbar.Surface"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:expandedTitleMarginStart="60dp"
-                app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
+                app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
+                app:title="@{vm.animalName}">
 
                 <ImageView
                     android:layout_width="match_parent"
@@ -53,7 +55,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="?actionBarSize"
                     android:background="@android:color/transparent"
-                    app:title="@{vm.animalName}"
                     tools:title="우주" />
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>

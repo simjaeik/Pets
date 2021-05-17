@@ -39,9 +39,6 @@ class DefaultGroupRepository @Inject constructor(
     override suspend fun getGroupMembers(gid: String): Result<List<Member>> =
         groupRemoteDataSource.getGroupMembers(gid)
 
-    override suspend fun getGroupMember(gid: String, uid: String): Result<Member> =
-        groupRemoteDataSource.getGroupMember(gid, uid)
-
     override suspend fun getProfile(): Result<Member> = groupRemoteDataSource.getProfile()
 
     override suspend fun updateProfile(

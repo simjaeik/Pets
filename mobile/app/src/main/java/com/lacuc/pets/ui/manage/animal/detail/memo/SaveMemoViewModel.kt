@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lacuc.pets.data.Result
-import com.lacuc.pets.data.animal.entity.Memo
 import com.lacuc.pets.domain.animal.memo.AddMemoUseCase
 import com.lacuc.pets.domain.animal.memo.GetMemoUseCase
 import com.lacuc.pets.domain.animal.memo.UpdateMemoUseCase
@@ -12,7 +11,6 @@ import com.lacuc.pets.util.SingleLiveEvent
 import com.lacuc.pets.util.safeValue
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import java.util.*
 import javax.inject.Inject
 
 class SaveMemoViewModel @Inject constructor(
@@ -37,7 +35,7 @@ class SaveMemoViewModel @Inject constructor(
             val result = if (isUpdate)
                 updateMemoUseCase(mid, gid, content.safeValue)
             else
-                addMemoUseCase(aid, Memo(UUID.randomUUID().toString(), content.safeValue))
+                addMemoUseCase(aid, gid, content.safeValue)
 
             when (result) {
                 is Result.Success -> completeEvent.value = Unit

@@ -53,6 +53,7 @@ class InviteMemberFragment : DaggerFragment() {
 
     private fun setOnCompleteEventObserver() {
         viewModel.completeEvent.observe(viewLifecycleOwner) {
+            navController.previousBackStackEntry?.savedStateHandle?.set("onCompleteEvent", true)
             navController.navigateUp()
         }
     }

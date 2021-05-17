@@ -7,6 +7,7 @@ import com.lacuc.pets.data.animal.entity.Memo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
+import java.util.*
 import javax.inject.Inject
 
 class FakeAnimalRemoteDataSource @Inject constructor() : AnimalDataSource {
@@ -38,12 +39,12 @@ class FakeAnimalRemoteDataSource @Inject constructor() : AnimalDataSource {
     }
 
     override suspend fun getAnimal(aid: String): Result<Animal> = withContext(Dispatchers.IO) {
-        Result.Success(animalData.find { it.aid == aid })
+        Result.Success(animalData.find { it.AID == aid })
     }
 
     override suspend fun updateAnimalDetail(aid: String, animal: Animal): Result<Void> =
         withContext(Dispatchers.IO) {
-            animalData = (animalData.filter { it.aid != aid } + animal) as MutableList<Animal>
+            animalData = (animalData.filter { it.AID != aid } + animal) as MutableList<Animal>
             Result.Success(null)
         }
 
@@ -77,10 +78,16 @@ class FakeAnimalRemoteDataSource @Inject constructor() : AnimalDataSource {
             Result.Success(medicalData)
         }
 
-    override suspend fun addMedical(aid: String, medical: Medical): Result<Void> =
+    override suspend fun addMedical(aid: String, params: Map<String, String>): Result<Void> =
         withContext(Dispatchers.IO) {
             delay(100)
-            medicalData = (medicalData + medical) as MutableList<Medical>
+            medicalData = (medicalData + Medical(
+                UUID.randomUUID().toString(),
+                params.getValue("date"),
+                params.getValue("title"),
+                params.getValue("content"),
+                params.getValue("hospital")
+            )) as MutableList<Medical>
             Result.Success(null)
         }
 
@@ -98,7 +105,7 @@ class FakeAnimalRemoteDataSource @Inject constructor() : AnimalDataSource {
         withContext(Dispatchers.IO) {
             val medical = Medical(
                 hid,
-                params.getValue("date").toLong(),
+                params.getValue("date"),
                 params.getValue("title"),
                 params.getValue("content"),
                 params.getValue("hospital")
@@ -138,8 +145,8 @@ class FakeAnimalRemoteDataSource @Inject constructor() : AnimalDataSource {
 
     private fun initMedical() {
         medicalData = mutableListOf(
-            Medical("0", 100000, "중성화 수술", "우주 돈까스 먹으로 가는 날", "장산 동물 병원"),
-            Medical("1", 200000, "정기 건강검진", "우주 주사 맞으러 가는 날", "장산 동물 병원"),
+            Medical("0", "100000", "중성화 수술", "우주 돈까스 먹으로 가는 날", "장산 동물 병원"),
+            Medical("1", "200000", "정기 건강검진", "우주 주사 맞으러 가는 날", "장산 동물 병원"),
         )
     }
 

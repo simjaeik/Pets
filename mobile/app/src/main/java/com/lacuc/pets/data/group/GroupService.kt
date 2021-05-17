@@ -49,7 +49,7 @@ interface GroupService {
         @Field("authority") authority: String
     ): Result<Void>
 
-    @GET("api/group/member/{id}")
+    @GET("api/group/members/{id}")
     suspend fun getGroupMembers(@Path("id") gid: String): Result<List<Member>>
 
     @DELETE("api/group/members/{id}")

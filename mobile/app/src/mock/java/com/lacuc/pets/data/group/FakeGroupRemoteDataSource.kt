@@ -93,11 +93,6 @@ class FakeGroupRemoteDataSource @Inject constructor() : GroupDataSource {
             Result.Success(memberData)
         }
 
-    override suspend fun getGroupMember(gid: String, uid: String): Result<Member> =
-        withContext(Dispatchers.IO) {
-            Result.Success(memberData.find { it.UID == uid })
-        }
-
     override suspend fun getProfile(): Result<Member> = withContext(Dispatchers.IO) {
         Result.Success(profile)
     }
