@@ -98,6 +98,12 @@ module.exports = {
     return res.status(status).json(result);
   },
 
+  deleteMedicalHistory: async (req, res) => {
+    const { status, result } = await control(
+      service.deleteMedicalHistory,
+      req.params
+    );
+
     return res.status(status).json(result);
   },
 };
