@@ -45,7 +45,7 @@ class SaveAnimalViewModel @Inject constructor(
         viewModelScope.launch {
             val animal = createAnimal()
             val result = if (isUpdate)
-                updateAnimalUseCase(aid, gid, animal)
+                updateAnimalUseCase(aid, gid, image.safeValue, animal)
             else addAnimalUseCase(gid, image.safeValue, animal)
 
             when (result) {

@@ -18,7 +18,11 @@ interface AnimalDataSource {
 
     suspend fun getAnimal(aid: String): Result<Animal>
 
-    suspend fun updateAnimalDetail(aid: String, gid: String, animal: Animal): Result<Void>
+    suspend fun updateAnimalDetail(
+        aid: String,
+        params: Map<String, String>,
+        imageFile: MultipartBody.Part? = null
+    ): Result<Void>
 
     suspend fun getMemos(aid: String): Result<List<Memo>>
 

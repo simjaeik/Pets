@@ -25,12 +25,19 @@ interface AnimalService {
     @GET("api/animal/{id}")
     suspend fun getAnimal(@Path("id") aid: String): Result<Animal>
 
-    @FormUrlEncoded
+    @Multipart
     @PATCH("api/animal/{id}")
     suspend fun updateAnimalDetail(
         @Path("id") aid: String,
-        @Field("GID") gid: String,
-        @Body animal: Animal
+        @PartMap params: Map<String, String>,
+        @Part imageFile: MultipartBody.Part?
+    ): Result<Void>
+
+    @Multipart
+    @PATCH("api/animal/{id}")
+    suspend fun updateAnimalDetail(
+        @Path("id") aid: String,
+        @PartMap params: Map<String, String>
     ): Result<Void>
 
     @GET("api/animal/memo/{id}")

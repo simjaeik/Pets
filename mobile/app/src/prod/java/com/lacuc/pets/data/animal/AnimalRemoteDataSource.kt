@@ -30,11 +30,10 @@ class AnimalRemoteDataSource @Inject constructor(
 
     override suspend fun updateAnimalDetail(
         aid: String,
-        gid: String,
-        animal: Animal
-    ): Result<Void> {
-        return animalService.updateAnimalDetail(aid, gid, animal)
-    }
+        params: Map<String, String>,
+        imageFile: MultipartBody.Part?
+    ): Result<Void> = imageFile?.let { animalService.updateAnimalDetail(aid, params, imageFile) }
+        ?: animalService.updateAnimalDetail(aid, params)
 
     override suspend fun getMemos(aid: String): Result<List<Memo>> {
         return animalService.getMemos(aid)

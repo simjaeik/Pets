@@ -50,10 +50,10 @@ class DefaultAnimalRepository @Inject constructor(
 
     override suspend fun updateAnimalDetail(
         aid: String,
-        gid: String,
-        animal: Animal
+        params: Map<String, String>,
+        imageFile: MultipartBody.Part?
     ): Result<Void> =
-        animalRemoteDataSource.updateAnimalDetail(aid, gid, animal)
+        animalRemoteDataSource.updateAnimalDetail(aid, params, imageFile)
 
     override suspend fun updateMemo(mid: String, gid: String, content: String): Result<Void> =
         animalRemoteDataSource.updateMemo(mid, gid, content)
