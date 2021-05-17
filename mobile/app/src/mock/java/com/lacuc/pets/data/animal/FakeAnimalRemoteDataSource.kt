@@ -94,6 +94,19 @@ class FakeAnimalRemoteDataSource @Inject constructor() : AnimalDataSource {
             Result.Success(medicalData.find { it.HID == hid })
         }
 
+    override suspend fun updateMedical(hid: String, params: Map<String, String>): Result<Void> =
+        withContext(Dispatchers.IO) {
+            val medical = Medical(
+                hid,
+                params.getValue("date").toLong(),
+                params.getValue("title"),
+                params.getValue("content"),
+                params.getValue("hospital")
+            )
+            medicalData = (medicalData.filter { it.HID != hid } + medical) as MutableList<Medical>
+            Result.Success(null)
+        }
+
     private fun initAnimal() {
         animalData = mutableListOf(
             Animal(

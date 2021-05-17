@@ -33,4 +33,5 @@ interface AnimalRepository {
 
     suspend fun getMedical(aid: String, hid: String): Result<Medical>
 
+    suspend fun updateMedical(hid: String, params: Map<String, String>): Result<Void>
 }
