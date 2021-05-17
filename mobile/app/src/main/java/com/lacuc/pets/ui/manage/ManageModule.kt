@@ -11,6 +11,7 @@ import com.lacuc.pets.ui.manage.group.gallery.detail.ImageDetailFragment
 import com.lacuc.pets.ui.manage.group.gallery.save.SaveImageFragment
 import com.lacuc.pets.ui.manage.group.info.UserProfileFragment
 import com.lacuc.pets.ui.manage.group.item.ItemListFragment
+import com.lacuc.pets.ui.manage.group.item.save.SaveItemFragment
 import com.lacuc.pets.ui.manage.group.member.ManageMemberFragment
 import com.lacuc.pets.ui.manage.group.member.invite.InviteMemberFragment
 import com.lacuc.pets.ui.manage.group.save.SaveGroupFragment
@@ -60,4 +61,7 @@ abstract class ManageModule {
 
     @ContributesAndroidInjector
     abstract fun getInviteMemberFragment(): InviteMemberFragment
+
+    @ContributesAndroidInjector
+    abstract fun getSaveItemFragment(): SaveItemFragment
 }

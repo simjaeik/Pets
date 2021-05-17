@@ -1,0 +1,42 @@
+package com.lacuc.pets.ui.manage.group.item.save
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
+import com.lacuc.pets.ViewModelFactory
+import com.lacuc.pets.databinding.FragmentSaveItemBinding
+import com.lacuc.pets.ui.manage.ManageViewModel
+import dagger.android.support.DaggerFragment
+import javax.inject.Inject
+
+class SaveItemFragment : DaggerFragment() {
+    private var _binding: FragmentSaveItemBinding? = null
+    private val binding get() = _binding!!
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val viewModel: SaveItemViewModel by viewModels { viewModelFactory }
+
+    private val activityViewModel: ManageViewModel by activityViewModels { viewModelFactory }
+
+    private val navController: NavController by lazy { findNavController() }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentSaveItemBinding.inflate(inflater, container, false).apply {
+            lifecycleOwner = viewLifecycleOwner
+            vm = viewModel
+        }
+        return binding.root
+    }
+
+}
