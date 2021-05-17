@@ -34,6 +34,8 @@ class AnimalDetailViewModel @Inject constructor(
 
     val tabPosition = MutableLiveData(0)
 
+    val detailItemClickEvent = SingleLiveEvent<AnimalDetailItem>()
+
     fun onTabSelect(position: Int) {
         tabPosition.value = position
         loadDetailItem()
@@ -45,7 +47,7 @@ class AnimalDetailViewModel @Inject constructor(
             val itemList = when (tabPosition.value) {
                 0 -> getAnimalDetailUseCase(aid)
                 1 -> getMedicalUseCase(aid)
-                2 -> getMemoUseCase(aid)
+                2 -> getMemoUseCase(aid) { detailItemClickEvent.value = it }
                 else -> {
                     loading.value = false
                     return@launch

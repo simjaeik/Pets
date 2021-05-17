@@ -19,6 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="8dp"
+            android:onClick="@{() -> item.listener.invoke(item)}"
             app:cardCornerRadius="8dp"
             app:cardElevation="4dp">
 
