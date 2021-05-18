@@ -88,7 +88,7 @@ interface GroupService {
         @Part tag: String
     ): Result<Void>
 
-    @GET("api/item/{id}")
+    @GET("api/item/all/{id}")
     suspend fun getItems(@Path("id") gid: String): Result<List<ItemHistory>>
 
     @GET("api/item/{id}")
@@ -100,7 +100,10 @@ interface GroupService {
 
     @FormUrlEncoded
     @PATCH("api/item/{id}")
-    suspend fun updateItem(@Path("id") hid: String, params: Map<String, String>): Result<Void>
+    suspend fun updateItem(
+        @Path("id") hid: String,
+        @FieldMap params: Map<String, String>
+    ): Result<Void>
 
     @DELETE("api/item/{id}")
     suspend fun deleteItem(@Path("id") iid: String): Result<Void>
