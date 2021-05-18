@@ -73,6 +73,21 @@ interface GroupService {
         @Part imageFile: MultipartBody.Part
     ): Result<Void>
 
+    @Multipart
+    @PATCH("api/image/{id}")
+    suspend fun updateGroupImage(
+        @Path("id") iid: String,
+        @Part tag: String,
+        @Part imageFile: MultipartBody.Part
+    ): Result<Void>
+
+    @Multipart
+    @PATCH("api/image/{id}")
+    suspend fun updateGroupImage(
+        @Path("id") iid: String,
+        @Part tag: String
+    ): Result<Void>
+
     @GET("api/item/{id}")
     suspend fun getItems(@Path("id") gid: String): Result<List<ItemHistory>>
 

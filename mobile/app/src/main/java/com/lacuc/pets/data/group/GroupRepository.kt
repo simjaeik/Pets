@@ -46,7 +46,11 @@ interface GroupRepository {
         imageFile: MultipartBody.Part
     ): Result<Void>
 
-    suspend fun updateGroupImage(imageParams: Map<String, Any>): Result<Void>
+    suspend fun updateGroupImage(
+        iid: String,
+        tag: String,
+        imageFile: MultipartBody.Part? = null
+    ): Result<Void>
 
     suspend fun getItems(gid: String): Result<List<ItemHistory>>
 
