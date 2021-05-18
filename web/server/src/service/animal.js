@@ -40,6 +40,10 @@ module.exports = {
   },
 
   addAnimal: async ({ GID, body, file }) => {
+    if (!file) {
+      return { error: "이미지 파일이 없습니다." };
+    }
+    body.image = file.location;
     if (!GID) {
       return { error: "GID가 존재하지 않습니다." };
     }
