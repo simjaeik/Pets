@@ -34,7 +34,7 @@ class SaveItemViewModel @Inject constructor(
 
     fun loadItem() {
         viewModelScope.launch {
-            val item = getItemUseCase()
+            val item = getItemUseCase(hid)
 
             when (item) {
                 is Result.Success -> item.body?.let {

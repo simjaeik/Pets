@@ -63,9 +63,8 @@ class GroupRemoteDataSource @Inject constructor(
 
     override suspend fun getItem(hid: String): Result<ItemHistory> = groupService.getItem(hid)
 
-    override suspend fun setItem(params: Map<String, String>): Result<Void> {
-        TODO("Not yet implemented")
-    }
+    override suspend fun setItem(params: Map<String, String>): Result<Void> =
+        groupService.setItem(params)
 
     override suspend fun updateItem(hid: String, params: Map<String, String>): Result<Void> =
         groupService.updateItem(hid, params)
