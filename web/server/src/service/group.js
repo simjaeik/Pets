@@ -87,7 +87,11 @@ module.exports = {
   },
 
   setGroup: async ({ data, body, file }) => {
+    if (!file) {
+      return { error: "이미지 파일이 없습니다." };
+    }
     body.image = file.location;
+
     if (!data) {
       return { error: "invalid Token" };
     }
@@ -183,6 +187,7 @@ module.exports = {
     }
 
     try {
+      await MemberGroup.destroy({ where: { GID } });
       const result = await Group.destroy({ where: { GID } });
       if (result <= 0) {
         return { result: false, error: "삭제가 정상적으로 되지 않았습니다." };
@@ -195,14 +200,12 @@ module.exports = {
   },
 
   deleteGroupMember: async ({ GID, UID }) => {
-    console.log(GID, UID);
     if (!GID || !UID) {
       return { error: "삭제하고자 하는 그룹의 id가 존재하지 않습니다." };
     }
 
     try {
       await Animal.destroy({ where: { GID } });
-      await MemberGroup.destroy({ where: { GID } });
       await Favorite.destroy({ where: { GID } });
       await ItemHistory.destroy({ where: { GID } });
       await GalleryImage.destroy({ where: { GID } });

@@ -32,11 +32,14 @@ module.exports = {
     }
 
     try {
-      const items = await ItemHistory.findOne({
+      const item = await ItemHistory.findOne({
         where: { HID: id },
         raw: true,
       });
-      return items;
+      if (item === null) {
+        return { result: false, error: "해당 아이템이 존재하지 않습니다." };
+      }
+      return item;
     } catch (error) {
       console.log(error);
       return { error };
