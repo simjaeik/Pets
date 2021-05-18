@@ -52,7 +52,7 @@ class SaveMemoViewModel @Inject constructor(
 
     fun loadMemo() {
         viewModelScope.launch {
-            val memo = getMemoUseCase(aid, mid)
+            val memo = getMemoUseCase(mid)
 
             when (memo) {
                 is Result.Success -> memo.body?.let {

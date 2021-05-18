@@ -43,6 +43,9 @@ interface AnimalService {
     @GET("api/animal/memo/all/{id}")
     suspend fun getMemos(@Path("id") aid: String): Result<List<Memo>>
 
+    @GET("api/animal/memo/{id}")
+    suspend fun getMemo(@Path("id") mid: String): Result<Memo>
+
     @FormUrlEncoded
     @POST("api/animal/memo/{id}")
     suspend fun setMemo(
