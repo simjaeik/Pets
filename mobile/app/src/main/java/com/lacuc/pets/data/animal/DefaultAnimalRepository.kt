@@ -4,6 +4,7 @@ import com.lacuc.pets.data.Result
 import com.lacuc.pets.data.animal.entity.Animal
 import com.lacuc.pets.data.animal.entity.Medical
 import com.lacuc.pets.data.animal.entity.Memo
+import okhttp3.MultipartBody
 import javax.inject.Inject
 
 class DefaultAnimalRepository @Inject constructor(
@@ -12,8 +13,12 @@ class DefaultAnimalRepository @Inject constructor(
     override suspend fun getAnimalByGroup(gid: String): Result<List<Animal>> =
         animalRemoteDataSource.getAnimalByGroup(gid)
 
-    override suspend fun addAnimal(animal: Animal): Result<Void> =
-        animalRemoteDataSource.addAnimal(animal)
+    override suspend fun addAnimal(
+        gid: String,
+        params: Map<String, String>,
+        imageFile: MultipartBody.Part
+    ): Result<Void> =
+        animalRemoteDataSource.addAnimal(gid, params, imageFile)
 
     override suspend fun loadMedical(aid: String): Result<List<Medical>> =
         animalRemoteDataSource.loadMedical(aid)
@@ -43,8 +48,12 @@ class DefaultAnimalRepository @Inject constructor(
     override suspend fun getAnimal(aid: String): Result<Animal> =
         animalRemoteDataSource.getAnimal(aid)
 
-    override suspend fun updateAnimalDetail(aid: String, animal: Animal): Result<Void> =
-        animalRemoteDataSource.updateAnimalDetail(aid, animal)
+    override suspend fun updateAnimalDetail(
+        aid: String,
+        params: Map<String, String>,
+        imageFile: MultipartBody.Part?
+    ): Result<Void> =
+        animalRemoteDataSource.updateAnimalDetail(aid, params, imageFile)
 
     override suspend fun updateMemo(mid: String, gid: String, content: String): Result<Void> =
         animalRemoteDataSource.updateMemo(mid, gid, content)

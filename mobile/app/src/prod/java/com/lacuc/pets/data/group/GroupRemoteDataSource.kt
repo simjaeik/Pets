@@ -22,8 +22,9 @@ class GroupRemoteDataSource @Inject constructor(
     override suspend fun updateGroup(
         gid: String,
         params: Map<String, String>,
-        imageFile: MultipartBody.Part
-    ): Result<Void> = groupService.updateGroup(gid, params, imageFile)
+        imageFile: MultipartBody.Part?
+    ): Result<Void> = imageFile?.let { groupService.updateGroup(gid, params, imageFile) }
+        ?: groupService.updateGroup(gid, params)
 
     override suspend fun addGroupMember(
         gid: String,
@@ -51,12 +52,18 @@ class GroupRemoteDataSource @Inject constructor(
         TODO("Not yet implemented")
     }
 
-    override suspend fun setGroupImage(imageParams: Map<String, Any>): Result<Void> =
-        groupService.setGroupImage(imageParams)
+    override suspend fun setGroupImage(
+        imageParams: Map<String, String>,
+        imageFile: MultipartBody.Part
+    ): Result<Void> =
+        groupService.setGroupImage(imageParams, imageFile)
 
-    override suspend fun updateGroupImage(imageParams: Map<String, Any>): Result<Void> {
-        TODO("Not yet implemented")
-    }
+    override suspend fun updateGroupImage(
+        iid: String,
+        tag: String,
+        imageFile: MultipartBody.Part?
+    ): Result<Void> = imageFile?.let { groupService.updateGroupImage(iid, tag, imageFile) }
+        ?: groupService.updateGroupImage(iid, tag)
 
     override suspend fun getItems(gid: String): Result<List<ItemHistory>> =
         groupService.getItems(gid)

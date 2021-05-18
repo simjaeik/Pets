@@ -24,12 +24,11 @@ class UpdateGroupUseCase @Inject constructor(private val repository: GroupReposi
             "longitude" to "0"
         )
         return if (imageUri.startsWith("http")) {
-            val imagePart = MultipartBody.Part.createFormData("image", imageUri)
-            repository.updateGroup(gid, partMap, imagePart)
+            repository.updateGroup(gid, partMap)
         } else {
             val imageFile = File(imageUri)
             val imageBody = imageFile.asRequestBody("image/*".toMediaTypeOrNull())
-            val imagePart = MultipartBody.Part.createFormData("image", imageFile.name, imageBody)
+            val imagePart = MultipartBody.Part.createFormData("img", imageFile.name, imageBody)
 
             repository.updateGroup(gid, partMap, imagePart)
         }

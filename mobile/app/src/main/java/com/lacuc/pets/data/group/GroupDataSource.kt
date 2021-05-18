@@ -16,7 +16,7 @@ interface GroupDataSource {
     suspend fun updateGroup(
         gid: String,
         params: Map<String, String>,
-        imageFile: MultipartBody.Part
+        imageFile: MultipartBody.Part? = null
     ): Result<Void>
 
     suspend fun addGroupMember(
@@ -41,9 +41,16 @@ interface GroupDataSource {
 
     suspend fun getGroupImage(gid: String, iid: String): Result<GroupImage>
 
-    suspend fun setGroupImage(imageParams: Map<String, Any>): Result<Void>
+    suspend fun setGroupImage(
+        imageParams: Map<String, String>,
+        imageFile: MultipartBody.Part
+    ): Result<Void>
 
-    suspend fun updateGroupImage(imageParams: Map<String, Any>): Result<Void>
+    suspend fun updateGroupImage(
+        iid: String,
+        tag: String,
+        imageFile: MultipartBody.Part? = null
+    ): Result<Void>
 
     suspend fun getItems(gid: String): Result<List<ItemHistory>>
 

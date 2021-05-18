@@ -58,4 +58,9 @@
         <item>수정권한</item>
         <item>권한없음</item>
     </string-array>
+
+    <string-array name="animal_sex_array">
+        <item>남</item>
+        <item>여</item>
+    </string-array>
 </resources>

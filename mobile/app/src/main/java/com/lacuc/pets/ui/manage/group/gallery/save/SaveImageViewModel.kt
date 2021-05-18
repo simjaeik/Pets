@@ -105,21 +105,13 @@ class SaveImageViewModel @Inject constructor(
     }
 
     private suspend fun updateImage() = updateImageUseCase(
-        mapOf(
-            "IID" to iid,
-            "GID" to gid,
-            "url" to image.safeValue,
-            "tag" to addedTagList.joinToString(",")
-        )
+        iid, image.safeValue, addedTagList.joinToString(",")
     )
 
 
     private suspend fun uploadImage() = uploadImageUseCase(
-        mapOf(
-            "GID" to gid,
-            "url" to image.safeValue,
-            "tag" to addedTagList.joinToString(",")
-        )
+        mapOf("GID" to gid, "tag" to addedTagList.joinToString(",")),
+        image.safeValue
     )
 
 }

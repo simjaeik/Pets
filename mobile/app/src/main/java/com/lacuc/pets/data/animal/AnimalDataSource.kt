@@ -4,17 +4,25 @@ import com.lacuc.pets.data.Result
 import com.lacuc.pets.data.animal.entity.Animal
 import com.lacuc.pets.data.animal.entity.Medical
 import com.lacuc.pets.data.animal.entity.Memo
+import okhttp3.MultipartBody
 
 interface AnimalDataSource {
     suspend fun getAnimalByGroup(gid: String): Result<List<Animal>>
 
-    suspend fun addAnimal(animal: Animal): Result<Void>
+    suspend fun addAnimal(
+        gid: String, params: Map<String, String>,
+        imageFile: MultipartBody.Part
+    ): Result<Void>
 
     suspend fun deleteAnimal(aid: String): Result<Void>
 
     suspend fun getAnimal(aid: String): Result<Animal>
 
-    suspend fun updateAnimalDetail(aid: String, animal: Animal): Result<Void>
+    suspend fun updateAnimalDetail(
+        aid: String,
+        params: Map<String, String>,
+        imageFile: MultipartBody.Part? = null
+    ): Result<Void>
 
     suspend fun getMemos(aid: String): Result<List<Memo>>
 

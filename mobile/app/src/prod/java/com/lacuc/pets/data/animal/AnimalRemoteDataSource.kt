@@ -4,6 +4,7 @@ import com.lacuc.pets.data.Result
 import com.lacuc.pets.data.animal.entity.Animal
 import com.lacuc.pets.data.animal.entity.Medical
 import com.lacuc.pets.data.animal.entity.Memo
+import okhttp3.MultipartBody
 import javax.inject.Inject
 
 class AnimalRemoteDataSource @Inject constructor(
@@ -12,7 +13,12 @@ class AnimalRemoteDataSource @Inject constructor(
     override suspend fun getAnimalByGroup(gid: String): Result<List<Animal>> =
         animalService.getAnimalByGroup(gid)
 
-    override suspend fun addAnimal(animal: Animal): Result<Void> = animalService.addAnimal(animal)
+    override suspend fun addAnimal(
+        gid: String,
+        params: Map<String, String>,
+        imageFile: MultipartBody.Part
+    ): Result<Void> =
+        animalService.addAnimal(gid, params, imageFile)
 
     override suspend fun deleteAnimal(aid: String): Result<Void> {
         return animalService.deleteAnimal(aid)
@@ -22,9 +28,12 @@ class AnimalRemoteDataSource @Inject constructor(
         return animalService.getAnimal(aid)
     }
 
-    override suspend fun updateAnimalDetail(aid: String, animal: Animal): Result<Void> {
-        return animalService.updateAnimalDetail(aid, animal)
-    }
+    override suspend fun updateAnimalDetail(
+        aid: String,
+        params: Map<String, String>,
+        imageFile: MultipartBody.Part?
+    ): Result<Void> = imageFile?.let { animalService.updateAnimalDetail(aid, params, imageFile) }
+        ?: animalService.updateAnimalDetail(aid, params)
 
     override suspend fun getMemos(aid: String): Result<List<Memo>> {
         return animalService.getMemos(aid)

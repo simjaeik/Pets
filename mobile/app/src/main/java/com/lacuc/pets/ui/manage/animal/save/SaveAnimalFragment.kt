@@ -1,12 +1,16 @@
 package com.lacuc.pets.ui.manage.animal.save
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
@@ -16,6 +20,7 @@ import com.lacuc.pets.databinding.FragmentSaveAnimalBinding
 import com.lacuc.pets.ui.manage.ManageViewModel
 import com.lacuc.pets.util.setupWithNavController
 import dagger.android.support.DaggerFragment
+import timber.log.Timber
 import javax.inject.Inject
 
 class SaveAnimalFragment : DaggerFragment() {
@@ -34,8 +39,35 @@ class SaveAnimalFragment : DaggerFragment() {
 
     private val requestImageLauncher =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            it.data?.let { intent -> viewModel.setImage(intent.dataString) }
+            it.data?.let { intent ->
+                val path = obtainFilePath(intent.data)
+                Timber.d(path)
+                viewModel.setImage(path)
+            }
         }
+
+    private val requestPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+            if (isGranted) {
+                val intent =
+                    Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+                requestImageLauncher.launch(intent)
+            }
+        }
+
+    private fun obtainFilePath(contentUri: Uri?): String? {
+        return contentUri?.let {
+            val cursor = requireActivity().contentResolver
+                .query(contentUri, null, null, null, null)
+            val path = cursor?.let {
+                cursor.moveToNext()
+                cursor.getString(cursor.getColumnIndex("_data"))
+            }
+            cursor?.close()
+
+            path
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -87,8 +119,17 @@ class SaveAnimalFragment : DaggerFragment() {
     }
 
     private fun requestImage() {
-        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
-        requestImageLauncher.launch(intent)
+        when {
+            ContextCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            ) == PackageManager.PERMISSION_GRANTED -> {
+                val intent =
+                    Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
+                requestImageLauncher.launch(intent)
+            }
+            else -> requestPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
+        }
     }
 
     override fun onDestroyView() {

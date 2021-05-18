@@ -27,6 +27,13 @@ interface GroupService {
         @Part imageFile: MultipartBody.Part
     ): Result<Void>
 
+    @Multipart
+    @PATCH("api/group/{id}")
+    suspend fun updateGroup(
+        @Path("id") gid: String,
+        @PartMap params: Map<String, String>,
+    ): Result<Void>
+
     @GET("api/group/{id}")
     suspend fun getGroup(@Path("id") gid: String): Result<Group>
 
@@ -55,13 +62,31 @@ interface GroupService {
     @DELETE("api/group/members/{id}")
     suspend fun deleteGroupMember(@Path("id") gid: String): Result<Void>
 
-    @GET("api/group/images/{id}")
+    @GET("api/image/all/{id}")
     suspend fun getGroupImages(@Path("id") gid: String): Result<List<GroupImage>>
     // 그룹 단위 갤러리의 이미지를 가져오는 함수
 
-    @FormUrlEncoded
-    @POST("api/group/images")
-    suspend fun setGroupImage(@FieldMap imageParams: Map<String, Any>): Result<Void>
+    @Multipart
+    @POST("api/image")
+    suspend fun setGroupImage(
+        @PartMap imageParams: Map<String, String>,
+        @Part imageFile: MultipartBody.Part
+    ): Result<Void>
+
+    @Multipart
+    @PATCH("api/image/{id}")
+    suspend fun updateGroupImage(
+        @Path("id") iid: String,
+        @Part tag: String,
+        @Part imageFile: MultipartBody.Part
+    ): Result<Void>
+
+    @Multipart
+    @PATCH("api/image/{id}")
+    suspend fun updateGroupImage(
+        @Path("id") iid: String,
+        @Part tag: String
+    ): Result<Void>
 
     @GET("api/item/{id}")
     suspend fun getItems(@Path("id") gid: String): Result<List<ItemHistory>>
