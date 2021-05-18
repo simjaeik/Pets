@@ -87,7 +87,11 @@ module.exports = {
   },
 
   setGroup: async ({ data, body, file }) => {
+    if (!file) {
+      return { error: "이미지 파일이 없습니다." };
+    }
     body.image = file.location;
+
     if (!data) {
       return { error: "invalid Token" };
     }
