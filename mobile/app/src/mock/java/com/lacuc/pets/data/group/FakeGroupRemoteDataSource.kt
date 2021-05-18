@@ -148,23 +148,39 @@ class FakeGroupRemoteDataSource @Inject constructor() : GroupDataSource {
 
     override suspend fun getItems(gid: String): Result<List<ItemHistory>> =
         withContext(Dispatchers.IO) {
-            Result.Success(itemData.filter { it.gid == gid })
+            Result.Success(itemData.filter { it.GID == gid })
         }
 
-    override suspend fun setItem(itemHistory: ItemHistory): Result<Void> =
+    override suspend fun setItem(params: Map<String, String>): Result<Void> =
         withContext(Dispatchers.IO) {
-            itemData.add(itemHistory)
+            itemData.add(
+                ItemHistory(
+                    UUID.randomUUID().toString(),
+                    params.getValue("GID"),
+                    params.getValue("name"),
+                    params.getValue("category"),
+                    params.getValue("link"),
+                    params.getValue("price")
+                )
+            )
             Result.Success(null)
         }
 
-    override suspend fun updateItem(iid: String, itemHistory: ItemHistory): Result<Void> =
+    override suspend fun updateItem(hid: String, params: Map<String, String>): Result<Void> =
         withContext(Dispatchers.IO) {
-            itemData = (itemData.filter { it.hid != iid } + itemHistory) as MutableList<ItemHistory>
+            itemData = (itemData.filter { it.HID != hid } + ItemHistory(
+                hid,
+                params.getValue("GID"),
+                params.getValue("name"),
+                params.getValue("category"),
+                params.getValue("link"),
+                params.getValue("price")
+            )) as MutableList<ItemHistory>
             Result.Success(null)
         }
 
     override suspend fun deleteItem(iid: String): Result<Void> = withContext(Dispatchers.IO) {
-        itemData = itemData.filter { it.hid != iid } as MutableList<ItemHistory>
+        itemData = itemData.filter { it.HID != iid } as MutableList<ItemHistory>
         Result.Success(null)
     }
 
@@ -271,7 +287,7 @@ class FakeGroupRemoteDataSource @Inject constructor() : GroupDataSource {
                 "로얄캐닌 고양이 사료",
                 "고양이 사료",
                 "https://search.shopping.naver.com/bridge/searchGate.nhn?query=%EA%B3%A0%EC%96%91%EC%9D%B4+%EC%82%AC%EB%A3%8C&bt=1&nv_mid=81195838622&cat_id=50006679&h=3e50f203941275637c9a154b7a99017ea80f7e4f&t=KOH3HF7Y&frm=NVSCPRO",
-                32900
+                "a"
             )
         )
         itemData.add(
@@ -281,7 +297,7 @@ class FakeGroupRemoteDataSource @Inject constructor() : GroupDataSource {
                 "패스룸 프리미엄 고양이 모래",
                 "고양이 모래",
                 "https://adcr.naver.com/adcr?x=IvaaG2kmday/4Rj+egxDjP///w==kHXPiEPwCJFa7+9ThDe9+Jcnwyhf7ADYhh1M2Jmn3zOQtSuIfNYRhuNlGwGIYe43Wi+uwWhsme077spYkW+jUitj2ir5Ef4emcqB7Q7eWkH2ni1aO3umMjWZ2ZObUjLgAtlDvhwK56RuxOBay4xpr/3b3n8Sh/XAZq4n0wqfp41dcW3QEBuAoicY8vlzgkaN+r67MX7nxNupMgZ/mVg6OF6prhU44fVbJZfnoaTK+nlg8EZUbIv6uqjHDrhiVNR154mfTd3a5y82D/qkeSgJ3k4tUzWtX62kmRQccJRknQQQTSH8tD9OUyFgp4yLZElLECpoqhU4ZV/reXuV2TYWREohr9Ct3lZFabY5l8EBzXWMjTlIIukO14rbFpNDhCHTRtyeAeDo7KTYZ8G2ff91m6IBsEeTI4IfChJU06J4ICSdDlYA1G/CorAMTFsVqG6J4DLATsqn5IxiI4JHlav8v3eK+COwrT65snYHLC/S7+QRtsc9ItgSvtG//MmEFNmH+4lKFi5s05AriamTVOHTqsyU2KgmpB7b2Y1aWZzqSyoDLwJN96StQ4ohn3ej0rogNyHbr4a80PA4wnk0PNUqCe97zzOceg7eMiXDukKCNu90CIEFIIOYgU7JSM6qLvvEah4BeCy1ImmkhNrIngiVPbJxsjbSK0BxreLQ9thQqKNF0/r7dXaO2zZFcWO8H9dmk84PPOxL6TrKZxzFtotP3G75Q0Jv9+laok1p5unprVfTznqbMWHXb0gm5lR1oYviXYNgpt7RjQvsJviXQl1Fw3o85WomtgCcpdDPfJfuJg6vOdpyJKCZeZEuMow6Gkk4FMMwnnCFIeIQfz2Es7lpGZrjMUtOvI/Vj5LjuPQvekzV0QgdzrpmYKhf6XdQDaA+61srXpPBlpxOQ5I2EgXnLrM4WFrNrabyLomKTLdHM9hofh3k72BUZ3xDFTBzBVkUXS0OXT5x9jo5M24Mwfafu6A==&ui=GUIDE",
-                22900
+                "22900"
             )
         )
         itemData.add(
@@ -291,7 +307,7 @@ class FakeGroupRemoteDataSource @Inject constructor() : GroupDataSource {
                 "캐티맨 펫모닝 강아지풀",
                 "고양이 장난감",
                 "https://adcr.naver.com/adcr?x=vbUVPUrVxH8Uavd2JrbbZ////w==kihy2QORdPOg8sWPW7satPeV6Zy1Vn+uixjmCITuVQjV0/CjQL9Lpd5ejx5TWkLzJLIFfCg+SK4AMYr6/3R7vAyY2huByXYEvzsMN0qTtBtGlX88WZKKES2UUPFWS+Mk0NPEfXGZCGavOmix4zsLIdZM7hg6nc65oun3jqqlMSt0Ib2wLVn1+bnMAgQH9uosZsf9sPBDkv3aUyyjhQa9u5V82WkW+i4ow83el4APOflOeNrsMztfKHHipGru9HV+1bkarJLvAxcY0jhorPmOi8sGmNff6SuXZitIrMWqPPcYIe9z6fHvowzOVNXOw5h8kRrwKWpMxISs88+nNzh/HTA82vIL/Lv5SVqueOney/sq5V1LCn9OKo2R7LtnVGL9Mbl6M697P4XCGSBF76tSLuFQ2Wr1sRlRQRZGLWRCAkdO8kmaqWM4j2MEWXTPn0LaBIx3m8J3/wngR+WwBIesLIgSH9v1ldpSEf9XgDAHyqhpyTd4VIVhPhHsmUYfsETw5JJ59tOjT2ZtJp0n+Vqtq6GrrAnBCsi/6d/raWbU4bz5EekWhmU8WESx2Xclj8BZRdrdJBJDMl5evFJsr4QdqjW6WVq07v8w05GKvvA6hOAYtIa3qNW7i6GOthh6xUGblcK2/5Rax2S5l1w6wuzyqM+ZN5TlDy2Dy7gwv1LGerAvA9kEGywBw/KjINssn9s7jCPSYVyWM/8vYsj2ggv1Z8F7Z7vPDKwibFqaEYwP9qo1qYMZ1XbynKMCvCuHF2iCR3zT2j78bOQ+XICDZxJ7sMhzQbMjfG2nwZfK1Xx9naIaoPhDIOIi2UJK6690PeSgd53Up9rL6zy5yB09ifJl5LA==&ui=GUIDE",
-                1990
+                "1990"
             )
         )
         itemData.add(
@@ -301,7 +317,7 @@ class FakeGroupRemoteDataSource @Inject constructor() : GroupDataSource {
                 "이나바 챠오 츄르",
                 "고양이 간식",
                 "https://search.shopping.naver.com/bridge/searchGate.nhn?query=%EA%B3%A0%EC%96%91%EC%9D%B4+%EC%B8%84%EB%A5%B4&bt=1&nv_mid=10063637668&cat_id=50006685&h=0c2cf9c58c35492c9d3965988feba5a06cb98f93&t=KOH3LT8Y&frm=NVSCPRO",
-                1920
+                "1920"
             )
         )
     }

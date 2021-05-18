@@ -49,6 +49,9 @@
     <string name="nickName">닉네임</string>
     <string name="invite">초대</string>
     <string name="hint_email">aabbcc@lacuc.pets.com</string>
+    <string name="item_name">물품명</string>
+    <string name="category">분류</string>
+    <string name="price">가격</string>
 
     <string-array name="member_authority_array">
         <item>관리자</item>

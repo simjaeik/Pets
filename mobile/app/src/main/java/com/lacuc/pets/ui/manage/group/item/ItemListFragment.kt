@@ -8,6 +8,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.lacuc.pets.R
 import com.lacuc.pets.ViewModelFactory
 import com.lacuc.pets.databinding.FragmentItemListBinding
 import com.lacuc.pets.ui.manage.ManageViewModel
@@ -46,13 +47,44 @@ class ItemListFragment : DaggerFragment() {
             lifecycleOwner = viewLifecycleOwner
             vm = viewModel
         }
+        activityViewModel.hid = null
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.toolbarItemList.setupWithNavController(navController)
+        setupToolbar()
 
         binding.recyclerviewItemList.setup(ItemListAdapter())
+
+        viewModel.itemClickEvent.observe(viewLifecycleOwner) {
+            activityViewModel.hid = it.itemHistory.HID
+            val action = ItemListFragmentDirections.actionItemListFragmentToSaveItemFragment()
+            navController.navigate(action)
+        }
+
+        setOnCompleteObserver()
+    }
+
+    private fun setupToolbar() {
+        binding.toolbarItemList.apply {
+            setupWithNavController(navController)
+
+            inflateMenu(R.menu.menu_add)
+            setOnMenuItemClickListener {
+                val action = ItemListFragmentDirections.actionItemListFragmentToSaveItemFragment()
+                navController.navigate(action)
+                true
+            }
+        }
+    }
+
+    private fun setOnCompleteObserver() {
+        navController.currentBackStackEntry
+            ?.savedStateHandle
+            ?.getLiveData<Boolean>("onCompleteEvent")
+            ?.observe(viewLifecycleOwner) {
+                viewModel.loadItems()
+            }
     }
 
     override fun onDestroyView() {

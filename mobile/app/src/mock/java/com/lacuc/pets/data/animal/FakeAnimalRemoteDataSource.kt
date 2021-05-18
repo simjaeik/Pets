@@ -53,10 +53,10 @@ class FakeAnimalRemoteDataSource @Inject constructor() : AnimalDataSource {
         Result.Success(memoData)
     }
 
-    override suspend fun setMemo(aid: String, memo: Memo): Result<Void> =
+    override suspend fun setMemo(aid: String, gid: String, content: String): Result<Void> =
         withContext(Dispatchers.IO) {
             delay(100)
-            memoData = (memoData + memo) as MutableList<Memo>
+            memoData = (memoData + Memo(UUID.randomUUID().toString(), content)) as MutableList<Memo>
             Result.Success(null)
         }
 
@@ -121,11 +121,11 @@ class FakeAnimalRemoteDataSource @Inject constructor() : AnimalDataSource {
                 "0",
                 "보리",
                 "https://images.unsplash.com/photo-1495360010541-f48722b34f7d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1276&q=80",
-                2,
+                "2",
                 "male",
                 "고양이",
                 "아비시니안",
-                2.1,
+                "2.1",
                 "1-1"
             ),
             Animal(
@@ -133,11 +133,11 @@ class FakeAnimalRemoteDataSource @Inject constructor() : AnimalDataSource {
                 "0",
                 "우주",
                 "https://images.unsplash.com/photo-1572632821054-b1bb7d7010c0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-                2,
+                "2",
                 "male",
                 "고양이",
                 "노르웨이 숲 고양이",
-                5.8,
+                "5.8",
                 "1-2"
             ),
         )
