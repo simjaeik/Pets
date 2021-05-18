@@ -198,6 +198,9 @@ module.exports = {
         attributes: ["HID", "date", "title", "content", "hospital"],
         raw: true,
       });
+      if (medicals === null) {
+        return { result: false, error: "해당 병원기록이 없습니다." };
+      }
       return medicals;
     } catch (error) {
       console.log(error);
@@ -215,6 +218,9 @@ module.exports = {
         where: { HID: id },
         raw: true,
       });
+      if (medical === null) {
+        return { result: false, error: "해당 병원기록이 존재하지 않습니다." };
+      }
       return medical;
     } catch (error) {
       console.log(error);
@@ -230,7 +236,9 @@ module.exports = {
     delete body.GID;
     try {
       const result = await MedicalHistory.create(body);
-      console.log(result);
+      if (result === null) {
+        return { result: false, error: "생성에 실패하였습니다." };
+      }
       return { result: true };
     } catch (error) {
       console.log(error);
