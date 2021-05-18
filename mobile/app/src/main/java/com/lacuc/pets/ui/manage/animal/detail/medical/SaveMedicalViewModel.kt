@@ -63,13 +63,13 @@ class SaveMedicalViewModel @Inject constructor(
 
     fun loadMedical() {
         viewModelScope.launch {
-            val medical = getMedicalUseCase(aid, hid)
+            val medical = getMedicalUseCase(hid)
 
             when (medical) {
                 is Result.Success -> medical.body?.let {
                     isUpdate = true
                     title.value = it.title
-                    time.value = it.date.toString()
+                    time.value = it.date.split("T")[0]
                     content.value = it.content
                     hospital.value = it.hospital
                 }

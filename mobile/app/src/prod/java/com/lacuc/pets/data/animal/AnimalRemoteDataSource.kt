@@ -63,8 +63,8 @@ class AnimalRemoteDataSource @Inject constructor(
         TODO("Not yet implemented")
     }
 
-    override suspend fun getMedical(aid: String, hid: String): Result<Medical> {
-        TODO("Not yet implemented")
+    override suspend fun getMedical(hid: String): Result<Medical> {
+        return animalService.getMedicalHistory(hid)
     }
 
     override suspend fun updateMedical(hid: String, params: Map<String, String>): Result<Void> {

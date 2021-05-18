@@ -40,7 +40,7 @@ interface AnimalService {
         @PartMap params: Map<String, String>
     ): Result<Void>
 
-    @GET("api/animal/memo/{id}")
+    @GET("api/animal/memo/all/{id}")
     suspend fun getMemos(@Path("id") aid: String): Result<List<Memo>>
 
     @FormUrlEncoded
@@ -62,7 +62,7 @@ interface AnimalService {
     @DELETE("api/animal/memo/{id}")
     suspend fun deleteMemo(@Path("id") mid: String): Result<Void>
 
-    @GET("api/animal/medical/{id}")
+    @GET("api/animal/medical/all/{id}")
     suspend fun getMedicalHistories(@Path("id") aid: String): Result<List<Medical>>
 
     @FormUrlEncoded
@@ -71,6 +71,9 @@ interface AnimalService {
         @Path("id") aid: String,
         @FieldMap params: Map<String, String>
     ): Result<Void>
+
+    @GET("api/animal/medical/{id}")
+    suspend fun getMedicalHistory(@Path("id") hid: String): Result<Medical>
 
     @FormUrlEncoded
     @PATCH("api/animal/medical/{id}")
