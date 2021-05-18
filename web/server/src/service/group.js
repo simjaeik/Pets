@@ -187,6 +187,7 @@ module.exports = {
     }
 
     try {
+      await MemberGroup.destroy({ where: { GID } });
       const result = await Group.destroy({ where: { GID } });
       if (result <= 0) {
         return { result: false, error: "삭제가 정상적으로 되지 않았습니다." };
