@@ -2,7 +2,7 @@
 > 다양한 API를 제공하고 데이터베이스를 관리합니다
 
 ### 사용된 기술
-![사용된 기술](https://user-images.githubusercontent.com/43948654/137658540-8ba0350c-2b7f-4aa3-8420-60bb48b9c5ff.png)
+![사용된 기술](https://user-images.githubusercontent.com/43948654/137658796-5c64bee7-d524-483e-8ec1-ce8ee54d03e3.png)
 
 
 ### 서버 아키텍처
