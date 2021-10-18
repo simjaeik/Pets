@@ -26,8 +26,9 @@
  +-- readme.md
 ```
 -----
-### [API 명세서](https://www.notion.so/API-e6f9824c71344c49aaef5658f3be2a4a)
+### API 명세서 - [LINK](https://www.notion.so/API-e6f9824c71344c49aaef5658f3be2a4a)
 
+-----
 ### 사용된 기술
 ![사용된 기술](https://user-images.githubusercontent.com/43948654/137658796-5c64bee7-d524-483e-8ec1-ce8ee54d03e3.png)
 
