@@ -10,19 +10,19 @@
 
 ### 심재익
 
-> WEB **백앤드**
+> WEB **백앤드** - [github](https://github.com/simjaeik/Pets/tree/develop/web/server)
 
 [simjaeik - Overview](https://github.com/simjaeik)
 
 ### 성혜림
 
-> WEB **프론트앤드**
+> WEB **프론트앤드** - [github](https://github.com/simjaeik/Pets/tree/develop/web/client)
 
 
 
 ### 김성환
 
-> **안드로이드**
+> **안드로이드** - [github](https://github.com/simjaeik/Pets/tree/develop/mobile)
 
 [shshksh - Overview](https://github.com/shshksh)
 
@@ -36,9 +36,5 @@
 
 [API 명세서](https://www.notion.so/API-e6f9824c71344c49aaef5658f3be2a4a)
 
-## 💾 세미나 자료
-
-- 1주차
-- 2주차
 
 ## ✏️ [회의록](https://www.notion.so/f80a9f2fa23344bb87273757bc5923d5)
