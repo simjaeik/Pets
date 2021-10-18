@@ -2,11 +2,11 @@
 > 다양한 API를 제공하고 데이터베이스를 관리합니다
 
 ### 사용된 기술
-![image](https://user-images.githubusercontent.com/43948654/137658202-2fedff57-4e57-4116-809e-2e1ec1781604.png)
+![사용된 기술](https://user-images.githubusercontent.com/43948654/137658365-5c6beb9e-a55e-494c-9ff7-6c312e886d04.png)
 
 
 ### 서버 아키텍처
-![image](https://user-images.githubusercontent.com/43948654/137657686-c7b65b1d-ab96-443d-a554-6a8e493d9ac8.png)
+![서버 아키텍쳐](https://user-images.githubusercontent.com/43948654/137658324-c55c5866-3b02-4d60-944e-8f22dae17fc8.png)
 
 
 ### 디렉토리 구조
