@@ -1,6 +1,9 @@
 ## web - server
 > 다양한 API를 제공하고 데이터베이스를 관리합니다
 
+-----
+### API 명세서 - [LINK](https://www.notion.so/API-e6f9824c71344c49aaef5658f3be2a4a)
+-----
 ### 서버 아키텍처
 ![서버 아키텍쳐](https://user-images.githubusercontent.com/43948654/137658324-c55c5866-3b02-4d60-944e-8f22dae17fc8.png)
 
@@ -25,8 +28,7 @@
  +-- pakage.json
  +-- readme.md
 ```
------
-### API 명세서 - [LINK](https://www.notion.so/API-e6f9824c71344c49aaef5658f3be2a4a)
+
 
 -----
 ### 사용된 기술
