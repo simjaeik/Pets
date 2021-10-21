@@ -7,10 +7,10 @@ module.exports = (req, res, next) => {
     { session: false },
     (error, member, message) => {
       if (!member) {
-        return res.status(400).json(message);
+        return res.status(401).json(message);
       }
       if (error) {
-        return res.status(400).json(error);
+        return res.status(401).json(error);
       }
 
       req.member = member;
